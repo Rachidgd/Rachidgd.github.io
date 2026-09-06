@@ -1,0 +1,481 @@
+{%- comment -%}
+  ==========================================================================
+  Clickscreation — Bandes défilantes croisées + texte révélé au défilement
+  --------------------------------------------------------------------------
+  Deux bandes inclinées qui se croisent, chacune faisant défiler ses propres
+  mentions, puis un paragraphe dont les mots passent du gris au noir au fil du
+  défilement de la page.
+
+  Les bandes : même technique de marquee que la vitrine — deux groupes
+  identiques, translation de -50 %, boucle sans couture, transform seul donc
+  composé par le GPU. L'inclinaison est portée par un conteneur extérieur, pas
+  par la piste animée : faire tourner l'élément animé aurait recalculé la
+  rotation à chaque image.
+
+  Le texte révélé : les mots sont rendus D'EMBLÉE dans leur couleur finale.
+  Le JavaScript ne fait que les repasser en gris puis les rallumer au fil du
+  défilement. Sans JavaScript, le paragraphe reste donc parfaitement lisible —
+  c'est de l'amélioration progressive, pas une dépendance.
+  ==========================================================================
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign uid = section.id
+
+  assign motion = true
+  if settings.cc_motion == false
+    assign motion = false
+  endif
+
+  assign items_a = s.ribbon_a_items | strip | newline_to_br | split: '<br />'
+  assign items_b = s.ribbon_b_items | strip | newline_to_br | split: '<br />'
+
+  assign chip_count = 0
+  for block in section.blocks
+    if block.type == 'chip'
+      assign chip_count = chip_count | plus: 1
+    endif
+  endfor
+-%}
+
+<style>
+  #shopify-section-{{ uid }} .cc-ribbons {
+    position: relative;
+    overflow: clip;
+    padding-block:
+      calc({{ s.pt_mobile }} * 1px + ({{ s.pt_desktop }} - {{ s.pt_mobile }}) * var(--cc-fluid-t))
+      calc({{ s.pb_mobile }} * 1px + ({{ s.pb_desktop }} - {{ s.pb_mobile }}) * var(--cc-fluid-t));
+    {%- if s.bg_color != blank %}background-color: {{ s.bg_color }};{% endif %}
+  }
+  /* box-sizing avant toute chose : sans lui, les marges internes du bandeau
+     pleine largeur s'ajoutent à sa largeur et débordent l'écran. On ne peut
+     pas compter sur le reset du thème hôte pour le poser. */
+  #shopify-section-{{ uid }},
+  #shopify-section-{{ uid }} *,
+  #shopify-section-{{ uid }} *::before,
+  #shopify-section-{{ uid }} *::after { box-sizing: border-box; }
+  #shopify-section-{{ uid }} :is(h2, p) { margin: 0; }
+  #shopify-section-{{ uid }} ul { list-style: none; margin: 0; padding: 0; }
+  #shopify-section-{{ uid }} a { color: inherit; text-decoration: none; }
+
+  /* --- Zone des bandes ----------------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-ribbons__stage {
+    position: relative;
+    block-size: calc({{ s.stage_h_min }} * 1px + ({{ s.stage_h_max }} - {{ s.stage_h_min }}) * var(--cc-fluid-t));
+    margin-bottom: calc({{ s.stage_mb_min }} * 1px + ({{ s.stage_mb_max }} - {{ s.stage_mb_min }}) * var(--cc-fluid-t));
+  }
+  #shopify-section-{{ uid }} .cc-ribbon {
+    position: absolute;
+    inset-inline: -18%;
+    inset-block-start: 50%;
+    /* L'inclinaison vit sur ce conteneur, jamais sur la piste animée. */
+    transform-origin: center;
+  }
+  #shopify-section-{{ uid }} .cc-ribbon--a {
+    transform: translateY(-50%) rotate({{ s.ribbon_a_angle }}deg);
+    z-index: 2;
+  }
+  #shopify-section-{{ uid }} .cc-ribbon--b {
+    transform: translateY(-50%) rotate({{ s.ribbon_b_angle }}deg);
+    z-index: 1;
+  }
+  #shopify-section-{{ uid }} .cc-ribbon__inner {
+    overflow: hidden;
+    padding-block: calc({{ s.ribbon_py_min }} * 1px + ({{ s.ribbon_py_max }} - {{ s.ribbon_py_min }}) * var(--cc-fluid-t));
+  }
+  #shopify-section-{{ uid }} .cc-ribbon--a .cc-ribbon__inner { background-color: {{ s.ribbon_a_bg }}; }
+  #shopify-section-{{ uid }} .cc-ribbon--b .cc-ribbon__inner { background-color: {{ s.ribbon_b_bg }}; }
+  #shopify-section-{{ uid }} .cc-ribbon--a { color: {{ s.ribbon_a_color }}; }
+  #shopify-section-{{ uid }} .cc-ribbon--b { color: {{ s.ribbon_b_color }}; }
+
+  #shopify-section-{{ uid }} .cc-ribbon__track {
+    display: flex;
+    inline-size: max-content;
+    {%- if motion -%}
+    animation-name: cc-ribbon-{{ uid }};
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+    {%- endif -%}
+  }
+  {%- if motion -%}
+  #shopify-section-{{ uid }} .cc-ribbon--a .cc-ribbon__track {
+    animation-duration: {{ s.ribbon_a_speed }}s;
+    {%- if s.ribbon_a_direction == 'right' %}animation-direction: reverse;{% endif %}
+  }
+  #shopify-section-{{ uid }} .cc-ribbon--b .cc-ribbon__track {
+    animation-duration: {{ s.ribbon_b_speed }}s;
+    {%- if s.ribbon_b_direction == 'right' %}animation-direction: reverse;{% endif %}
+  }
+  @keyframes cc-ribbon-{{ uid }} {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+  }
+  {%- endif -%}
+  #shopify-section-{{ uid }} .cc-ribbon__group {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    gap: calc({{ s.ribbon_gap_min }} * 1px + ({{ s.ribbon_gap_max }} - {{ s.ribbon_gap_min }}) * var(--cc-fluid-t));
+    padding-inline-end: calc({{ s.ribbon_gap_min }} * 1px + ({{ s.ribbon_gap_max }} - {{ s.ribbon_gap_min }}) * var(--cc-fluid-t));
+  }
+  #shopify-section-{{ uid }} .cc-ribbon__item {
+    --cc-fs-min: {{ s.ribbon_fs_mobile }};
+    --cc-fs-max: {{ s.ribbon_fs_desktop }};
+    display: flex;
+    align-items: center;
+    gap: calc({{ s.ribbon_gap_min }} * 1px + ({{ s.ribbon_gap_max }} - {{ s.ribbon_gap_min }}) * var(--cc-fluid-t));
+    flex: 0 0 auto;
+    font-family: var(--cc-font-heading, inherit);
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    font-weight: {{ s.ribbon_weight }};
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+  #shopify-section-{{ uid }} .cc-ribbon__sep { opacity: 0.55; font-weight: 400; }
+
+  /* --- Bloc de texte ------------------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-ribbons__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: calc({{ s.body_gap_min }} * 1px + ({{ s.body_gap_max }} - {{ s.body_gap_min }}) * var(--cc-fluid-t));
+  }
+  #shopify-section-{{ uid }} .cc-ribbons__eyebrow {
+    --cc-fs-min: {{ s.eyebrow_fs_mobile }};
+    --cc-fs-max: {{ s.eyebrow_fs_desktop }};
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    font-family: {{ s.eyebrow_font }};
+    font-style: {{ s.eyebrow_style }};
+    font-weight: {{ s.eyebrow_weight }};
+    color: {{ s.eyebrow_color }};
+    line-height: 1.2;
+  }
+  #shopify-section-{{ uid }} .cc-reveal {
+    --cc-fs-min: {{ s.reveal_fs_mobile }};
+    --cc-fs-max: {{ s.reveal_fs_desktop }};
+    max-width: {{ s.reveal_max_width }}ch;
+    font-family: var(--cc-font-heading, inherit);
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    font-weight: {{ s.reveal_weight }};
+    line-height: {{ s.reveal_leading | divided_by: 100.0 }};
+    letter-spacing: var(--cc-heading-tracking, -0.02em);
+    text-wrap: balance;
+  }
+  /* État par défaut : couleur finale. Le JavaScript ne fait qu'ajouter la
+     progression, il ne conditionne jamais la lisibilité. */
+  #shopify-section-{{ uid }} .cc-reveal__w {
+    color: {{ s.reveal_color_on }};
+    transition: color {{ s.reveal_fade | divided_by: 100.0 }}s var(--cc-ease);
+  }
+  #shopify-section-{{ uid }} .cc-reveal[data-armed="true"] .cc-reveal__w { color: {{ s.reveal_color_off }}; }
+  #shopify-section-{{ uid }} .cc-reveal[data-armed="true"] .cc-reveal__w.is-on { color: {{ s.reveal_color_on }}; }
+
+  /* --- Pastilles ----------------------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: {{ s.chip_gap }}px;
+    max-width: {{ s.chips_max_width }}px;
+  }
+  #shopify-section-{{ uid }} .cc-chip {
+    --cc-fs-min: {{ s.chip_fs_mobile }};
+    --cc-fs-max: {{ s.chip_fs_desktop }};
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: {{ s.chip_pad_y }}px {{ s.chip_pad_x }}px;
+    border-radius: 999px;
+    background-color: {{ s.chip_bg }};
+    color: {{ s.chip_color }};
+    font-family: var(--cc-font-body, inherit);
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    line-height: 1.2;
+    white-space: nowrap;
+    transition: background-color 0.2s var(--cc-ease), color 0.2s var(--cc-ease);
+  }
+  #shopify-section-{{ uid }} a.cc-chip:hover { background-color: {{ s.chip_bg_hover }}; }
+  #shopify-section-{{ uid }} .cc-chip img { block-size: 1.1em; inline-size: auto; display: block; }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ uid }} .cc-ribbon__track { animation: none; }
+    #shopify-section-{{ uid }} .cc-reveal__w { transition: none; }
+  }
+</style>
+
+<div class="cc-ribbons">
+  {%- if items_a.size > 0 or items_b.size > 0 -%}
+    <div class="cc-ribbons__stage" aria-hidden="true">
+      {%- for pair in (1..2) -%}
+        {%- liquid
+          if pair == 1
+            assign items = items_a
+            assign modifier = 'a'
+          else
+            assign items = items_b
+            assign modifier = 'b'
+          endif
+        -%}
+        {%- if items.size > 0 -%}
+          <div class="cc-ribbon cc-ribbon--{{ modifier }}">
+            <div class="cc-ribbon__inner">
+              <div class="cc-ribbon__track">
+                {%- for pass in (1..2) -%}
+                  <ul class="cc-ribbon__group">
+                    {%- for item in items -%}
+                      {%- assign label = item | strip -%}
+                      {%- if label != blank -%}
+                        <li class="cc-ribbon__item">
+                          <span>{{ label | escape }}</span>
+                          <span class="cc-ribbon__sep">{{ s.separator | escape }}</span>
+                        </li>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                {%- endfor -%}
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  <div class="cc-container cc-ribbons__body">
+    {%- if s.eyebrow != blank -%}
+      <p class="cc-ribbons__eyebrow">{{ s.eyebrow | escape }}</p>
+    {%- endif -%}
+
+    {%- if s.reveal_text != blank -%}
+      <p class="cc-reveal" data-cc-reveal data-armed="false">
+        {%- assign words = s.reveal_text | strip | split: ' ' -%}
+        {%- for word in words -%}
+          {%- if word != blank -%}<span class="cc-reveal__w">{{ word | escape }}</span>{% unless forloop.last %} {% endunless %}{%- endif -%}
+        {%- endfor -%}
+      </p>
+    {%- endif -%}
+
+    {%- if chip_count > 0 -%}
+      <ul class="cc-chips">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'chip' and block.settings.label != blank -%}
+            <li {{ block.shopify_attributes }}>
+              {%- if block.settings.url != blank -%}
+                <a class="cc-chip" href="{{ block.settings.url }}">
+                  {%- if block.settings.icon != blank -%}
+                    {{ block.settings.icon | image_url: height: 48 | image_tag: loading: 'lazy', alt: '' }}
+                  {%- endif -%}
+                  <span>{{ block.settings.label | escape }}</span>
+                </a>
+              {%- else -%}
+                <span class="cc-chip">
+                  {%- if block.settings.icon != blank -%}
+                    {{ block.settings.icon | image_url: height: 48 | image_tag: loading: 'lazy', alt: '' }}
+                  {%- endif -%}
+                  <span>{{ block.settings.label | escape }}</span>
+                </span>
+              {%- endif -%}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+<script src="{{ 'cc-reveal.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Bandes défilantes + texte révélé",
+  "tag": "section",
+  "class": "cc-ribbons-section",
+  "settings": [
+    { "type": "header", "content": "Bande 1" },
+    {
+      "type": "textarea",
+      "id": "ribbon_a_items",
+      "label": "Mentions",
+      "info": "Une mention par ligne. Elles sont répétées en boucle.",
+      "default": "Référencement naturel\nCréation de site\nE-commerce Shopify\nOptimisation de la conversion\nMeta Ads"
+    },
+    { "type": "color", "id": "ribbon_a_bg", "label": "Fond", "default": "#ff4a17" },
+    { "type": "color", "id": "ribbon_a_color", "label": "Texte", "default": "#ffffff" },
+    { "type": "range", "id": "ribbon_a_angle", "label": "Inclinaison", "unit": "°", "min": -25, "max": 25, "step": 1, "default": -7 },
+    { "type": "range", "id": "ribbon_a_speed", "label": "Durée d'un cycle", "unit": "s", "min": 10, "max": 120, "step": 2, "default": 40, "info": "Plus la valeur est haute, plus le défilement est lent." },
+    {
+      "type": "select",
+      "id": "ribbon_a_direction",
+      "label": "Sens du défilement",
+      "options": [
+        { "value": "left", "label": "Vers la gauche" },
+        { "value": "right", "label": "Vers la droite" }
+      ],
+      "default": "left"
+    },
+
+    { "type": "header", "content": "Bande 2" },
+    {
+      "type": "textarea",
+      "id": "ribbon_b_items",
+      "label": "Mentions",
+      "info": "Une mention par ligne.",
+      "default": "PME et e-commerce\nParis\nNice\nLuxembourg\nLiquid natif"
+    },
+    { "type": "color", "id": "ribbon_b_bg", "label": "Fond", "default": "#14120f" },
+    { "type": "color", "id": "ribbon_b_color", "label": "Texte", "default": "#ffffff" },
+    { "type": "range", "id": "ribbon_b_angle", "label": "Inclinaison", "unit": "°", "min": -25, "max": 25, "step": 1, "default": 7 },
+    { "type": "range", "id": "ribbon_b_speed", "label": "Durée d'un cycle", "unit": "s", "min": 10, "max": 120, "step": 2, "default": 52 },
+    {
+      "type": "select",
+      "id": "ribbon_b_direction",
+      "label": "Sens du défilement",
+      "options": [
+        { "value": "left", "label": "Vers la gauche" },
+        { "value": "right", "label": "Vers la droite" }
+      ],
+      "default": "left"
+    },
+
+    { "type": "header", "content": "Réglages communs aux bandes" },
+    { "type": "text", "id": "separator", "label": "Séparateur", "default": "✳" },
+    { "type": "range", "id": "ribbon_fs_mobile", "label": "Taille du texte — mobile", "unit": "px", "min": 12, "max": 32, "step": 1, "default": 15 },
+    { "type": "range", "id": "ribbon_fs_desktop", "label": "Taille du texte — desktop", "unit": "px", "min": 14, "max": 48, "step": 1, "default": 24 },
+    {
+      "type": "select",
+      "id": "ribbon_weight",
+      "label": "Graisse du texte",
+      "options": [
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    { "type": "range", "id": "ribbon_py_min", "label": "Épaisseur des bandes — mobile", "unit": "px", "min": 6, "max": 40, "step": 1, "default": 10 },
+    { "type": "range", "id": "ribbon_py_max", "label": "Épaisseur des bandes — desktop", "unit": "px", "min": 8, "max": 60, "step": 1, "default": 16 },
+    { "type": "range", "id": "ribbon_gap_min", "label": "Espace entre mentions — mobile", "unit": "px", "min": 8, "max": 60, "step": 2, "default": 16 },
+    { "type": "range", "id": "ribbon_gap_max", "label": "Espace entre mentions — desktop", "unit": "px", "min": 12, "max": 100, "step": 2, "default": 28 },
+    { "type": "range", "id": "stage_h_min", "label": "Hauteur de la zone — mobile", "unit": "px", "min": 120, "max": 400, "step": 4, "default": 200 },
+    { "type": "range", "id": "stage_h_max", "label": "Hauteur de la zone — desktop", "unit": "px", "min": 160, "max": 560, "step": 4, "default": 300 },
+    { "type": "range", "id": "stage_mb_min", "label": "Espace sous les bandes — mobile", "unit": "px", "min": 0, "max": 120, "step": 2, "default": 40 },
+    { "type": "range", "id": "stage_mb_max", "label": "Espace sous les bandes — desktop", "unit": "px", "min": 0, "max": 200, "step": 2, "default": 80 },
+
+    { "type": "header", "content": "Sur-titre" },
+    { "type": "text", "id": "eyebrow", "label": "Texte", "default": "(bonjour)" },
+    { "type": "color", "id": "eyebrow_color", "label": "Couleur", "default": "#ff4a17" },
+    {
+      "type": "select",
+      "id": "eyebrow_font",
+      "label": "Police",
+      "options": [
+        { "value": "cursive", "label": "Manuscrite (police système)" },
+        { "value": "var(--cc-font-heading, inherit)", "label": "Police des titres" },
+        { "value": "var(--cc-font-body, inherit)", "label": "Police du texte" }
+      ],
+      "default": "cursive"
+    },
+    {
+      "type": "select",
+      "id": "eyebrow_style",
+      "label": "Style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italique" }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "eyebrow_weight",
+      "label": "Graisse",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "600"
+    },
+    { "type": "range", "id": "eyebrow_fs_mobile", "label": "Taille — mobile", "unit": "px", "min": 14, "max": 40, "step": 1, "default": 22 },
+    { "type": "range", "id": "eyebrow_fs_desktop", "label": "Taille — desktop", "unit": "px", "min": 16, "max": 56, "step": 1, "default": 28 },
+
+    { "type": "header", "content": "Texte révélé au défilement" },
+    {
+      "type": "paragraph",
+      "content": "Les mots passent de la couleur de départ à la couleur d'arrivée au fil du défilement. Sans JavaScript, le texte s'affiche directement dans sa couleur d'arrivée : la lisibilité n'est jamais conditionnée à l'animation."
+    },
+    {
+      "type": "textarea",
+      "id": "reveal_text",
+      "label": "Texte",
+      "default": "Nous aidons les PME et les marques e-commerce à gagner des positions durables — avec des livrables clairs, un interlocuteur unique et des résultats mesurés."
+    },
+    { "type": "color", "id": "reveal_color_off", "label": "Couleur de départ", "default": "#a8a29b" },
+    { "type": "color", "id": "reveal_color_on", "label": "Couleur d'arrivée", "default": "#14120f" },
+    { "type": "range", "id": "reveal_fade", "label": "Douceur du passage", "unit": "×0,01 s", "min": 10, "max": 120, "step": 5, "default": 35 },
+    { "type": "range", "id": "reveal_fs_mobile", "label": "Taille — mobile", "unit": "px", "min": 18, "max": 44, "step": 1, "default": 24 },
+    { "type": "range", "id": "reveal_fs_desktop", "label": "Taille — desktop", "unit": "px", "min": 22, "max": 72, "step": 1, "default": 40 },
+    {
+      "type": "select",
+      "id": "reveal_weight",
+      "label": "Graisse",
+      "options": [
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    { "type": "range", "id": "reveal_leading", "label": "Interlignage", "unit": "%", "min": 90, "max": 160, "step": 2, "default": 124 },
+    { "type": "range", "id": "reveal_max_width", "label": "Largeur maximale", "unit": "car", "min": 20, "max": 60, "step": 1, "default": 40 },
+    { "type": "range", "id": "body_gap_min", "label": "Espace entre les éléments — mobile", "unit": "px", "min": 8, "max": 48, "step": 1, "default": 18 },
+    { "type": "range", "id": "body_gap_max", "label": "Espace entre les éléments — desktop", "unit": "px", "min": 8, "max": 72, "step": 1, "default": 28 },
+
+    { "type": "header", "content": "Pastilles" },
+    { "type": "color", "id": "chip_bg", "label": "Fond", "default": "#3e3a35" },
+    { "type": "color", "id": "chip_bg_hover", "label": "Fond au survol", "default": "#14120f" },
+    { "type": "color", "id": "chip_color", "label": "Texte", "default": "#ffffff" },
+    { "type": "range", "id": "chip_fs_mobile", "label": "Taille du texte — mobile", "unit": "px", "min": 11, "max": 20, "step": 1, "default": 13 },
+    { "type": "range", "id": "chip_fs_desktop", "label": "Taille du texte — desktop", "unit": "px", "min": 12, "max": 22, "step": 1, "default": 14 },
+    { "type": "range", "id": "chip_pad_y", "label": "Hauteur interne", "unit": "px", "min": 6, "max": 20, "step": 1, "default": 10 },
+    { "type": "range", "id": "chip_pad_x", "label": "Largeur interne", "unit": "px", "min": 10, "max": 32, "step": 1, "default": 16 },
+    { "type": "range", "id": "chip_gap", "label": "Espace entre pastilles", "unit": "px", "min": 4, "max": 24, "step": 1, "default": 8 },
+    { "type": "range", "id": "chips_max_width", "label": "Largeur maximale du groupe", "unit": "px", "min": 300, "max": 900, "step": 20, "default": 520 },
+
+    { "type": "header", "content": "Mise en page de la section" },
+    { "type": "color", "id": "bg_color", "label": "Fond de section", "info": "Laissez vide pour hériter du fond du site." },
+    { "type": "range", "id": "pt_mobile", "label": "Espace au-dessus — mobile", "unit": "px", "min": 20, "max": 200, "step": 4, "default": 40 },
+    { "type": "range", "id": "pt_desktop", "label": "Espace au-dessus — desktop", "unit": "px", "min": 20, "max": 260, "step": 4, "default": 64 },
+    { "type": "range", "id": "pb_mobile", "label": "Espace en dessous — mobile", "unit": "px", "min": 20, "max": 200, "step": 4, "default": 56 },
+    { "type": "range", "id": "pb_desktop", "label": "Espace en dessous — desktop", "unit": "px", "min": 20, "max": 260, "step": 4, "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "chip",
+      "name": "Pastille",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Libellé", "default": "SEO" },
+        { "type": "image_picker", "id": "icon", "label": "Icône (facultative)", "info": "Petit PNG ou SVG transparent. La hauteur suit celle du texte." },
+        { "type": "url", "id": "url", "label": "Lien (facultatif)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bandes défilantes + texte révélé",
+      "blocks": [
+        { "type": "chip", "settings": { "label": "SEO" } },
+        { "type": "chip", "settings": { "label": "Site sur mesure" } },
+        { "type": "chip", "settings": { "label": "Shopify" } },
+        { "type": "chip", "settings": { "label": "Conversion" } },
+        { "type": "chip", "settings": { "label": "Meta Ads" } },
+        { "type": "chip", "settings": { "label": "Audit" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

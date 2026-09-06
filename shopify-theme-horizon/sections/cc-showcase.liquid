@@ -1,0 +1,382 @@
+{%- comment -%}
+  ==========================================================================
+  Clickscreation — Vitrine des travaux + bandeau de logos
+  --------------------------------------------------------------------------
+  Une grande image porteuse (le montage des réalisations), puis une bande de
+  logos clients qui défile en continu.
+
+  Le défilement est un simple marquee CSS : la piste contient deux groupes
+  identiques et se translate de -50 %, ce qui produit une boucle sans couture
+  et sans JavaScript. L'animation ne joue que sur transform, donc elle est
+  composée par le GPU et ne provoque aucun recalcul de mise en page.
+
+  Section autonome : CSS scopé sur l'identifiant de section, y compris le
+  minimum de reset dont elle a besoin. Elle ne dépend d'aucune autre feuille
+  que .cc-container, et ne peut rien casser dans le thème hôte.
+  ==========================================================================
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign uid = section.id
+
+  assign logo_count = 0
+  for block in section.blocks
+    if block.type == 'logo'
+      assign logo_count = logo_count | plus: 1
+    endif
+  endfor
+
+  assign motion = true
+  if settings.cc_motion == false
+    assign motion = false
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ uid }} .cc-showcase {
+    position: relative;
+    padding-block:
+      calc({{ s.pt_mobile }} * 1px + ({{ s.pt_desktop }} - {{ s.pt_mobile }}) * var(--cc-fluid-t))
+      calc({{ s.pb_mobile }} * 1px + ({{ s.pb_desktop }} - {{ s.pb_mobile }}) * var(--cc-fluid-t));
+    {%- if s.bg_color != blank %}background-color: {{ s.bg_color }};{% endif %}
+  }
+  /* box-sizing avant toute chose : sans lui, les marges internes du bandeau
+     pleine largeur s'ajoutent à sa largeur et débordent l'écran. On ne peut
+     pas compter sur le reset du thème hôte pour le poser. */
+  #shopify-section-{{ uid }},
+  #shopify-section-{{ uid }} *,
+  #shopify-section-{{ uid }} *::before,
+  #shopify-section-{{ uid }} *::after { box-sizing: border-box; }
+  #shopify-section-{{ uid }} :is(h2, p) { margin: 0; }
+  #shopify-section-{{ uid }} ul { list-style: none; margin: 0; padding: 0; }
+  #shopify-section-{{ uid }} img { display: block; max-width: 100%; }
+  #shopify-section-{{ uid }} a { color: inherit; text-decoration: none; }
+
+  /* --- Intitulé facultatif ------------------------------------------------ */
+  #shopify-section-{{ uid }} .cc-showcase__head {
+    display: flex;
+    flex-direction: column;
+    align-items: {% if s.align == 'left' %}flex-start{% else %}center{% endif %};
+    text-align: {% if s.align == 'left' %}left{% else %}center{% endif %};
+    gap: 10px;
+    margin-bottom: calc({{ s.head_mb_min }} * 1px + ({{ s.head_mb_max }} - {{ s.head_mb_min }}) * var(--cc-fluid-t));
+  }
+  #shopify-section-{{ uid }} .cc-showcase__eyebrow {
+    --cc-fs-min: {{ s.eyebrow_fs_mobile }};
+    --cc-fs-max: {{ s.eyebrow_fs_desktop }};
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    font-family: var(--cc-font-body, inherit);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: {{ s.eyebrow_color }};
+  }
+  #shopify-section-{{ uid }} .cc-showcase__title {
+    --cc-fs-min: {{ s.title_fs_mobile }};
+    --cc-fs-max: {{ s.title_fs_desktop }};
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    font-family: var(--cc-font-heading, inherit);
+    font-weight: {{ s.title_weight }};
+    line-height: 1.1;
+    letter-spacing: var(--cc-heading-tracking, -0.02em);
+    color: {{ s.title_color }};
+    max-width: {{ s.title_max_width }}ch;
+    text-wrap: balance;
+  }
+
+  /* --- Image porteuse ----------------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-showcase__frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: {{ s.image_radius }}px;
+    background-color: {{ s.frame_bg }};
+    {%- if s.image_ratio != 'natural' %}aspect-ratio: {{ s.image_ratio }};{% endif %}
+    {%- if s.frame_border_width > 0 %}box-shadow: inset 0 0 0 {{ s.frame_border_width }}px {{ s.frame_border_color }};{% endif %}
+  }
+  #shopify-section-{{ uid }} .cc-showcase__frame > img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: {{ s.image_fit }};
+    object-position: center;
+  }
+  #shopify-section-{{ uid }} .cc-showcase__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-block-size: 320px;
+    color: {{ s.frame_border_color }};
+    font-size: 15px;
+  }
+  {%- if s.image_mobile != blank -%}
+  #shopify-section-{{ uid }} .cc-showcase__img--mobile { display: none; }
+  @media (max-width: 767px) {
+    #shopify-section-{{ uid }} .cc-showcase__img--desktop { display: none; }
+    #shopify-section-{{ uid }} .cc-showcase__img--mobile { display: block; }
+  }
+  {%- endif -%}
+
+  /* --- Bandeau de logos --------------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-strip {
+    margin-top: calc({{ s.strip_mt_min }} * 1px + ({{ s.strip_mt_max }} - {{ s.strip_mt_min }}) * var(--cc-fluid-t));
+    padding-block: {{ s.strip_py }}px;
+    {%- if s.strip_bg != blank %}background-color: {{ s.strip_bg }};{% endif %}
+    {%- if s.strip_full_width %}
+    margin-inline: calc(50% - 50vw);
+    padding-inline: var(--cc-gutter);
+    {%- endif %}
+    {%- if s.strip_radius > 0 %}border-radius: {{ s.strip_radius }}px;{% endif %}
+  }
+  #shopify-section-{{ uid }} .cc-marquee {
+    overflow: hidden;
+    /* Estompe les deux bords pour que les logos entrent et sortent sans coupe
+       nette. Masque et non dégradé peint : reste correct sur n'importe quel fond. */
+    {%- if s.strip_fade > 0 -%}
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 {{ s.strip_fade }}%, #000 {{ 100 | minus: s.strip_fade }}%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 {{ s.strip_fade }}%, #000 {{ 100 | minus: s.strip_fade }}%, transparent);
+    {%- endif -%}
+  }
+  #shopify-section-{{ uid }} .cc-marquee__track {
+    display: flex;
+    inline-size: max-content;
+    {%- if motion -%}
+    animation: cc-marquee-{{ uid }} {{ s.strip_speed }}s linear infinite;
+    {%- if s.strip_direction == 'right' %}animation-direction: reverse;{% endif %}
+    will-change: transform;
+    {%- endif -%}
+  }
+  {%- if s.strip_pause_hover -%}
+  #shopify-section-{{ uid }} .cc-marquee:hover .cc-marquee__track,
+  #shopify-section-{{ uid }} .cc-marquee:focus-within .cc-marquee__track { animation-play-state: paused; }
+  {%- endif -%}
+  #shopify-section-{{ uid }} .cc-marquee__group {
+    display: flex;
+    align-items: center;
+    gap: calc({{ s.logo_gap_min }} * 1px + ({{ s.logo_gap_max }} - {{ s.logo_gap_min }}) * var(--cc-fluid-t));
+    padding-inline-end: calc({{ s.logo_gap_min }} * 1px + ({{ s.logo_gap_max }} - {{ s.logo_gap_min }}) * var(--cc-fluid-t));
+    flex: 0 0 auto;
+  }
+  #shopify-section-{{ uid }} .cc-logo-item {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+  }
+  #shopify-section-{{ uid }} .cc-logo-item img {
+    block-size: calc({{ s.logo_h_min }} * 1px + ({{ s.logo_h_max }} - {{ s.logo_h_min }}) * var(--cc-fluid-t));
+    inline-size: auto;
+    max-inline-size: none;
+    opacity: {{ s.logo_opacity | divided_by: 100.0 }};
+    {%- if s.logo_grayscale %}filter: grayscale(1);{% endif %}
+    transition: opacity 0.25s var(--cc-ease), filter 0.25s var(--cc-ease);
+  }
+  #shopify-section-{{ uid }} .cc-logo-item:hover img { opacity: 1; filter: none; }
+
+  @keyframes cc-marquee-{{ uid }} {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ uid }} .cc-marquee__track { animation: none; }
+    #shopify-section-{{ uid }} .cc-marquee { overflow-x: auto; }
+  }
+</style>
+
+<div class="cc-showcase">
+  <div class="cc-container">
+    {%- if s.eyebrow != blank or s.title != blank -%}
+      <div class="cc-showcase__head">
+        {%- if s.eyebrow != blank -%}
+          <p class="cc-showcase__eyebrow">{{ s.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if s.title != blank -%}
+          <h2 class="cc-showcase__title">{{ s.title | escape }}</h2>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="cc-showcase__frame">
+      {%- if s.image != blank -%}
+        {{ s.image | image_url: width: 2400 | image_tag: loading: 'lazy', class: 'cc-showcase__img--desktop', alt: s.image_alt, sizes: '(min-width: 1240px) 1200px, 100vw', widths: '600, 900, 1200, 1600, 2000, 2400' }}
+        {%- if s.image_mobile != blank -%}
+          {{ s.image_mobile | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'cc-showcase__img--mobile', alt: s.image_alt, sizes: '100vw', widths: '400, 600, 900, 1200' }}
+        {%- endif -%}
+      {%- else -%}
+        <div class="cc-showcase__placeholder">{{ s.placeholder_label | escape }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if logo_count > 0 -%}
+    <div class="cc-container">
+      <div class="cc-strip">
+        <div class="cc-marquee">
+          <div class="cc-marquee__track">
+            {%- comment -%}
+              Deux groupes identiques : la piste se translate de -50 %, donc le
+              second groupe prend exactement la place du premier à la fin du
+              cycle. La boucle est invisible. Le doublon est masqué aux lecteurs
+              d'écran pour ne pas annoncer deux fois la même liste.
+            {%- endcomment -%}
+            {%- for pass in (1..2) -%}
+              <ul class="cc-marquee__group"{% if pass == 2 %} aria-hidden="true"{% endif %}>
+                {%- for block in section.blocks -%}
+                  {%- if block.type == 'logo' and block.settings.image != blank -%}
+                    <li class="cc-logo-item"{% if pass == 1 %} {{ block.shopify_attributes }}{% endif %}>
+                      {%- if block.settings.url != blank and pass == 1 -%}
+                        <a href="{{ block.settings.url }}" rel="noopener">
+                          {{ block.settings.image | image_url: height: 200 | image_tag: loading: 'lazy', alt: block.settings.alt }}
+                        </a>
+                      {%- else -%}
+                        {{ block.settings.image | image_url: height: 200 | image_tag: loading: 'lazy', alt: block.settings.alt }}
+                      {%- endif -%}
+                    </li>
+                  {%- endif -%}
+                {%- endfor -%}
+              </ul>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Vitrine + logos",
+  "tag": "section",
+  "class": "cc-showcase-section",
+  "settings": [
+    { "type": "header", "content": "Intitulé (facultatif)" },
+    { "type": "text", "id": "eyebrow", "label": "Sur-titre", "info": "Laissez vide pour masquer." },
+    { "type": "color", "id": "eyebrow_color", "label": "Couleur du sur-titre", "default": "#ff4a17" },
+    { "type": "range", "id": "eyebrow_fs_mobile", "label": "Taille du sur-titre — mobile", "unit": "px", "min": 10, "max": 20, "step": 1, "default": 12 },
+    { "type": "range", "id": "eyebrow_fs_desktop", "label": "Taille du sur-titre — desktop", "unit": "px", "min": 11, "max": 22, "step": 1, "default": 13 },
+    { "type": "text", "id": "title", "label": "Titre", "info": "Laissez vide pour masquer." },
+    { "type": "color", "id": "title_color", "label": "Couleur du titre", "default": "#14120f" },
+    { "type": "range", "id": "title_fs_mobile", "label": "Taille du titre — mobile", "unit": "px", "min": 20, "max": 48, "step": 1, "default": 28 },
+    { "type": "range", "id": "title_fs_desktop", "label": "Taille du titre — desktop", "unit": "px", "min": 24, "max": 72, "step": 1, "default": 42 },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Graisse du titre",
+      "options": [
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" }
+      ],
+      "default": "700"
+    },
+    { "type": "range", "id": "title_max_width", "label": "Largeur maximale du titre", "unit": "car", "min": 10, "max": 50, "step": 1, "default": 28 },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Alignement",
+      "options": [
+        { "value": "center", "label": "Centré" },
+        { "value": "left", "label": "Aligné à gauche" }
+      ],
+      "default": "center"
+    },
+    { "type": "range", "id": "head_mb_min", "label": "Espace sous l'intitulé — mobile", "unit": "px", "min": 8, "max": 48, "step": 1, "default": 20 },
+    { "type": "range", "id": "head_mb_max", "label": "Espace sous l'intitulé — desktop", "unit": "px", "min": 8, "max": 80, "step": 1, "default": 36 },
+
+    { "type": "header", "content": "Image des réalisations" },
+    {
+      "type": "paragraph",
+      "content": "Une seule image porteuse : composez-y le montage de vos travaux. Visez 2400 px de large pour rester net sur les écrans à haute densité."
+    },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "image_picker", "id": "image_mobile", "label": "Image — mobile", "info": "Facultatif. Utilisée sous 768 px si elle est renseignée." },
+    { "type": "text", "id": "image_alt", "label": "Texte alternatif", "info": "Décrivez ce que montre le montage. Compte pour le référencement des images." },
+    { "type": "text", "id": "placeholder_label", "label": "Texte affiché sans image", "default": "Chargez ici le montage de vos réalisations" },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Format",
+      "options": [
+        { "value": "natural", "label": "Proportions d'origine" },
+        { "value": "16 / 9", "label": "16:9 — panoramique" },
+        { "value": "2 / 1", "label": "2:1 — très large" },
+        { "value": "3 / 2", "label": "3:2" },
+        { "value": "4 / 3", "label": "4:3" },
+        { "value": "1 / 1", "label": "Carré" }
+      ],
+      "default": "16 / 9"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "label": "Ajustement dans le cadre",
+      "options": [
+        { "value": "cover", "label": "Remplir — l'image est recadrée" },
+        { "value": "contain", "label": "Contenir — l'image entière est visible" }
+      ],
+      "default": "cover",
+      "visible_if": "{{ section.settings.image_ratio != 'natural' }}"
+    },
+    { "type": "range", "id": "image_radius", "label": "Arrondi du cadre", "unit": "px", "min": 0, "max": 48, "step": 1, "default": 20 },
+    { "type": "color", "id": "frame_bg", "label": "Fond du cadre", "default": "#14120f" },
+    { "type": "range", "id": "frame_border_width", "label": "Épaisseur du filet", "unit": "px", "min": 0, "max": 6, "step": 1, "default": 0 },
+    { "type": "color", "id": "frame_border_color", "label": "Couleur du filet", "default": "#dcd7d1" },
+
+    { "type": "header", "content": "Bandeau de logos" },
+    {
+      "type": "paragraph",
+      "content": "Ajoutez un block Logo par client. Le bandeau ne s'affiche que s'il contient au moins un logo. Le défilement s'arrête pour les visiteurs ayant demandé une réduction des animations, et la bande devient alors simplement scrollable."
+    },
+    { "type": "color", "id": "strip_bg", "label": "Fond du bandeau", "default": "#f0eeec" },
+    { "type": "checkbox", "id": "strip_full_width", "label": "Bandeau pleine largeur", "default": true },
+    { "type": "range", "id": "strip_radius", "label": "Arrondi du bandeau", "unit": "px", "min": 0, "max": 48, "step": 1, "default": 0 },
+    { "type": "range", "id": "strip_py", "label": "Hauteur interne du bandeau", "unit": "px", "min": 0, "max": 60, "step": 2, "default": 28 },
+    { "type": "range", "id": "strip_mt_min", "label": "Espace au-dessus — mobile", "unit": "px", "min": 0, "max": 64, "step": 1, "default": 24 },
+    { "type": "range", "id": "strip_mt_max", "label": "Espace au-dessus — desktop", "unit": "px", "min": 0, "max": 120, "step": 2, "default": 40 },
+    { "type": "range", "id": "strip_speed", "label": "Durée d'un cycle de défilement", "unit": "s", "min": 10, "max": 120, "step": 2, "default": 40, "info": "Plus la valeur est haute, plus le défilement est lent." },
+    {
+      "type": "select",
+      "id": "strip_direction",
+      "label": "Sens du défilement",
+      "options": [
+        { "value": "left", "label": "Vers la gauche" },
+        { "value": "right", "label": "Vers la droite" }
+      ],
+      "default": "left"
+    },
+    { "type": "checkbox", "id": "strip_pause_hover", "label": "Mettre en pause au survol", "default": true },
+    { "type": "range", "id": "strip_fade", "label": "Estompe des bords", "unit": "%", "min": 0, "max": 20, "step": 1, "default": 8 },
+    { "type": "range", "id": "logo_h_min", "label": "Hauteur des logos — mobile", "unit": "px", "min": 12, "max": 60, "step": 1, "default": 20 },
+    { "type": "range", "id": "logo_h_max", "label": "Hauteur des logos — desktop", "unit": "px", "min": 16, "max": 80, "step": 1, "default": 28 },
+    { "type": "range", "id": "logo_gap_min", "label": "Espace entre logos — mobile", "unit": "px", "min": 12, "max": 80, "step": 2, "default": 36 },
+    { "type": "range", "id": "logo_gap_max", "label": "Espace entre logos — desktop", "unit": "px", "min": 16, "max": 140, "step": 2, "default": 72 },
+    { "type": "range", "id": "logo_opacity", "label": "Opacité des logos", "unit": "%", "min": 20, "max": 100, "step": 5, "default": 100 },
+    { "type": "checkbox", "id": "logo_grayscale", "label": "Logos en niveaux de gris", "default": false, "info": "La couleur revient au survol." },
+
+    { "type": "header", "content": "Mise en page de la section" },
+    { "type": "color", "id": "bg_color", "label": "Fond de section", "info": "Laissez vide pour hériter du fond du site." },
+    { "type": "range", "id": "pt_mobile", "label": "Espace au-dessus — mobile", "unit": "px", "min": 20, "max": 200, "step": 4, "default": 48 },
+    { "type": "range", "id": "pt_desktop", "label": "Espace au-dessus — desktop", "unit": "px", "min": 20, "max": 260, "step": 4, "default": 80 },
+    { "type": "range", "id": "pb_mobile", "label": "Espace en dessous — mobile", "unit": "px", "min": 20, "max": 200, "step": 4, "default": 40 },
+    { "type": "range", "id": "pb_desktop", "label": "Espace en dessous — desktop", "unit": "px", "min": 20, "max": 260, "step": 4, "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo client",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Logo", "info": "SVG ou PNG transparent. La hauteur est imposée par le bandeau, la largeur suit." },
+        { "type": "text", "id": "alt", "label": "Texte alternatif", "info": "Le nom du client. Laissez vide si le logo est purement décoratif." },
+        { "type": "url", "id": "url", "label": "Lien (facultatif)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Vitrine + logos",
+      "blocks": [
+        { "type": "logo" }, { "type": "logo" }, { "type": "logo" },
+        { "type": "logo" }, { "type": "logo" }, { "type": "logo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

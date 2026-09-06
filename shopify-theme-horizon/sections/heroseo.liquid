@@ -122,16 +122,30 @@
     font-weight: {{ s.h1_weight }};
     line-height: calc(var(--cc-heading-leading) / 100);
     letter-spacing: var(--cc-heading-tracking);
-    color: var(--cc-ink);
     text-wrap: balance;
   }
-  #shopify-section-{{ uid }} .cc-hero__seg--muted { color: var(--cc-muted); }
-  #shopify-section-{{ uid }} .cc-hero__seg--accent { color: var(--cc-accent); }
-  #shopify-section-{{ uid }} .cc-hero__seg--on-dark { color: var(--cc-on-dark); }
+  #shopify-section-{{ uid }} .cc-hero__title { color: {{ s.color_ink }}; }
+  #shopify-section-{{ uid }} .cc-hero__seg--default { color: {{ s.color_ink }}; }
+  #shopify-section-{{ uid }} .cc-hero__seg--muted   { color: {{ s.color_muted }}; }
+  #shopify-section-{{ uid }} .cc-hero__seg--accent  { color: {{ s.color_accent }}; }
+  #shopify-section-{{ uid }} .cc-hero__seg--on-dark { color: {{ s.color_light }}; }
 
   /* --- Bulles ------------------------------------------------------------- */
   #shopify-section-{{ uid }} .cc-bubble {
     --cc-round-size: calc(var(--cc-sz-min) * 1px + (var(--cc-sz-max) - var(--cc-sz-min)) * var(--cc-fluid-t));
+    /* Géométrie verrouillée : un thème hôte peut poser des règles globales sur
+       img ou sur les médias de section qui écraseraient la pastille et la
+       rendraient ovale. Le sélecteur d'identifiant passe devant. */
+    display: inline-block;
+    inline-size: var(--cc-round-size);
+    block-size: var(--cc-round-size);
+    min-inline-size: var(--cc-round-size);
+    min-block-size: var(--cc-round-size);
+    max-inline-size: none;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    flex: 0 0 auto;
     vertical-align: middle;
     position: relative;
     top: {{ s.bubble_shift }}px;
@@ -154,6 +168,33 @@
     75%      { transform: translate3d(calc(var(--cc-fx) * -1), calc(var(--cc-fy) * -0.72), 0) rotate(calc(var(--cc-fr) * -1)); }
   }
   {%- endif -%}
+
+  #shopify-section-{{ uid }} .cc-bubble > img,
+  #shopify-section-{{ uid }} .cc-bubble > svg,
+  #shopify-section-{{ uid }} .cc-hero__avatars .cc-round > img,
+  #shopify-section-{{ uid }} .cc-hero__avatars .cc-round > svg {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+    min-inline-size: 100%;
+    min-block-size: 100%;
+    max-inline-size: none;
+    max-block-size: none;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  #shopify-section-{{ uid }} .cc-hero__avatars .cc-round {
+    display: inline-block;
+    inline-size: var(--cc-round-size);
+    block-size: var(--cc-round-size);
+    min-inline-size: var(--cc-round-size);
+    min-block-size: var(--cc-round-size);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    flex: 0 0 auto;
+  }
 
   /* --- Sous-titre et action ---------------------------------------------- */
   #shopify-section-{{ uid }} .cc-hero__sub {
@@ -455,6 +496,16 @@
       "info": "Recommandé : sous 767 px, le titre se réagence tout seul au lieu de subir une découpe pensée pour le desktop."
     },
 
+    { "type": "header", "content": "Couleurs du titre" },
+    {
+      "type": "paragraph",
+      "content": "Ces trois couleurs alimentent le choix proposé sur chaque segment de texte du titre. Modifiez-les ici pour changer toutes les occurrences d'un coup, ou choisissez « Personnalisée » sur un segment précis."
+    },
+    { "type": "color", "id": "color_ink", "label": "Noir — texte principal", "default": "#14120f" },
+    { "type": "color", "id": "color_accent", "label": "Orange — accent de marque", "default": "#ff4a17" },
+    { "type": "color", "id": "color_muted", "label": "Gris — texte secondaire", "default": "#8a847d" },
+    { "type": "color", "id": "color_light", "label": "Clair — sur fond foncé", "default": "#ffffff" },
+
     { "type": "header", "content": "Bulles du titre" },
     { "type": "checkbox", "id": "enable_float", "label": "Animer le flottement des bulles", "default": true, "info": "L'animation ne joue que sur la position et l'inclinaison : le diamètre des bulles ne varie jamais et le texte ne se décale pas." },
     { "type": "range", "id": "bubble_gap", "label": "Espace autour des bulles", "unit": "px", "min": 0, "max": 24, "step": 1, "default": 3 },
@@ -562,11 +613,11 @@
           "id": "tone",
           "label": "Couleur",
           "options": [
-            { "value": "default", "label": "Texte principal" },
-            { "value": "muted", "label": "Texte secondaire" },
-            { "value": "accent", "label": "Accent de marque" },
-            { "value": "on-dark", "label": "Clair (sur fond foncé)" },
-            { "value": "custom", "label": "Personnalisée" }
+            { "value": "default", "label": "Noir — texte principal" },
+            { "value": "muted", "label": "Gris — texte secondaire" },
+            { "value": "accent", "label": "Orange — accent de marque" },
+            { "value": "on-dark", "label": "Clair — sur fond foncé" },
+            { "value": "custom", "label": "Personnalisée — ci-dessous" }
           ],
           "default": "default"
         },
