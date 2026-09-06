@@ -85,8 +85,17 @@
     {%- if s.reveal_text != blank -%}
       <p class="cc-reveal" data-cc-reveal data-armed="false">
         {%- assign words = s.reveal_text | strip | split: ' ' -%}
+        {%- comment -%}
+          L'espace entre les mots est une entité, pas un caractère blanc : les
+          marqueurs de rognage des tags voisins avalaient les espaces
+          littérales et collaient tous les mots. Une entité n'est pas de
+          l'espace pour Liquid, mais en reste une pour le navigateur — le
+          retour à la ligne continue donc de fonctionner.
+          Ne jamais écrire de délimiteur Liquid dans un commentaire : le
+          parseur les lit même à l'intérieur d'un bloc comment.
+        {%- endcomment -%}
         {%- for word in words -%}
-          {%- if word != blank -%}<span class="cc-reveal__w">{{ word | escape }}</span>{% unless forloop.last %} {% endunless %}{%- endif -%}
+          {%- if word != blank -%}<span class="cc-reveal__w">{{ word | escape }}</span>&#32;{%- endif -%}
         {%- endfor -%}
       </p>
     {%- endif -%}
