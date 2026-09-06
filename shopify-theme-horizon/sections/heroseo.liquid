@@ -14,6 +14,11 @@
   défini dans l'admin) puis object-fit: cover côté CSS. Une image portrait ou
   panoramique donnera donc toujours le même cercle, aux mêmes dimensions.
 
+  Garde-fou d'animation : le réglage global settings.cc_motion n'existe pas
+  dans un thème hôte comme Horizon. Sa valeur y est nulle, donc fausse, ce qui
+  coupait toutes les animations. La condition ne retient donc qu'une
+  désactivation explicite du marchand.
+
   L'animation de flottement n'agit que sur transform (translation et légère
   rotation, jamais d'échelle) : le diamètre reste constant, le calque est
   composité par le GPU, et le texte ne bouge pas d'un pixel — aucun CLS.
@@ -48,11 +53,6 @@
     assign avatars = avatars | append: '4,'
   endif
 
-  # settings.cc_motion n'existe pas dans un thème hôte : la valeur est nil,
-  # donc fausse, et toute animation disparaissait sans raison. On inverse la
-  # logique — seule une désactivation explicite compte. Commentaires en # et
-  # non en bloc comment : dans une balise {% liquid %}, chaque ligne est lue
-  # comme un tag, et du texte libre y est un risque de parsing.
   assign motion = s.enable_float
   if settings.cc_motion == false
     assign motion = false
