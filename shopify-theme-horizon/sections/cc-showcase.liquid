@@ -41,6 +41,17 @@
       calc({{ s.pb_mobile }} * 1px + ({{ s.pb_desktop }} - {{ s.pb_mobile }}) * var(--cc-fluid-t));
     {%- if s.bg_color != blank %}background-color: {{ s.bg_color }};{% endif %}
   }
+  /* Carte blanche à bords arrondis, posée sur le fond gris de la page.
+     --cc-card-pad est déclarée ici et héritée par le bandeau de logos, qui
+     l'annule en marge négative pour venir toucher les bords de la carte. */
+  #shopify-section-{{ uid }} .cc-showcase__card {
+    --cc-card-pad: calc({{ s.card_pad_min }} * 1px + ({{ s.card_pad_max }} - {{ s.card_pad_min }}) * var(--cc-fluid-t));
+    background-color: {{ s.card_bg }};
+    border-radius: {{ s.card_radius }}px;
+    padding: var(--cc-card-pad);
+    /* clip et non hidden : conserve le masque d'estompe du bandeau */
+    overflow: clip;
+  }
   /* box-sizing avant toute chose : sans lui, les marges internes du bandeau
      pleine largeur s'ajoutent à sa largeur et débordent l'écran. On ne peut
      pas compter sur le reset du thème hôte pour le poser. */
@@ -121,10 +132,11 @@
     padding-block: {{ s.strip_py }}px;
     {%- if s.strip_bg != blank %}background-color: {{ s.strip_bg }};{% endif %}
     {%- if s.strip_full_width %}
-    margin-inline: calc(50% - 50vw);
-    padding-inline: var(--cc-gutter);
+    margin-inline: calc(var(--cc-card-pad) * -1);
+    margin-bottom: calc(var(--cc-card-pad) * -1);
+    padding-inline: var(--cc-card-pad);
     {%- endif %}
-    {%- if s.strip_radius > 0 %}border-radius: {{ s.strip_radius }}px;{% endif %}
+    {%- if s.strip_border_top %}border-top: 1px solid {{ s.strip_border_color }};{% endif %}
   }
   #shopify-section-{{ uid }} .cc-marquee {
     overflow: hidden;
@@ -183,6 +195,7 @@
 
 <div class="cc-showcase">
   <div class="cc-container">
+   <div class="cc-showcase__card">
     {%- if s.eyebrow != blank or s.title != blank -%}
       <div class="cc-showcase__head">
         {%- if s.eyebrow != blank -%}
@@ -204,10 +217,8 @@
         <div class="cc-showcase__placeholder">{{ s.placeholder_label | escape }}</div>
       {%- endif -%}
     </div>
-  </div>
 
-  {%- if logo_count > 0 -%}
-    <div class="cc-container">
+    {%- if logo_count > 0 -%}
       <div class="cc-strip">
         <div class="cc-marquee">
           <div class="cc-marquee__track">
@@ -237,8 +248,9 @@
           </div>
         </div>
       </div>
-    </div>
-  {%- endif -%}
+    {%- endif -%}
+   </div>
+  </div>
 </div>
 
 {% schema %}
@@ -320,14 +332,25 @@
     { "type": "range", "id": "frame_border_width", "label": "Épaisseur du filet", "unit": "px", "min": 0, "max": 6, "step": 1, "default": 0 },
     { "type": "color", "id": "frame_border_color", "label": "Couleur du filet", "default": "#dcd7d1" },
 
+    { "type": "header", "content": "Carte blanche" },
+    {
+      "type": "paragraph",
+      "content": "La section est un bloc blanc à bords arrondis posé sur le fond gris de la page. Le bandeau de logos vient toucher les bords de ce bloc."
+    },
+    { "type": "color", "id": "card_bg", "label": "Fond de la carte", "default": "#ffffff" },
+    { "type": "range", "id": "card_radius", "label": "Arrondi de la carte", "unit": "px", "min": 0, "max": 64, "step": 2, "default": 28 },
+    { "type": "range", "id": "card_pad_min", "label": "Marge interne — mobile", "unit": "px", "min": 0, "max": 48, "step": 2, "default": 14 },
+    { "type": "range", "id": "card_pad_max", "label": "Marge interne — desktop", "unit": "px", "min": 0, "max": 72, "step": 2, "default": 22 },
+
     { "type": "header", "content": "Bandeau de logos" },
     {
       "type": "paragraph",
       "content": "Ajoutez un block Logo par client. Le bandeau ne s'affiche que s'il contient au moins un logo. Le défilement s'arrête pour les visiteurs ayant demandé une réduction des animations, et la bande devient alors simplement scrollable."
     },
-    { "type": "color", "id": "strip_bg", "label": "Fond du bandeau", "default": "#f0eeec" },
-    { "type": "checkbox", "id": "strip_full_width", "label": "Bandeau pleine largeur", "default": true },
-    { "type": "range", "id": "strip_radius", "label": "Arrondi du bandeau", "unit": "px", "min": 0, "max": 48, "step": 1, "default": 0 },
+    { "type": "color", "id": "strip_bg", "label": "Fond du bandeau", "default": "#ffffff" },
+    { "type": "checkbox", "id": "strip_full_width", "label": "Étendre aux bords de la carte", "default": true },
+    { "type": "checkbox", "id": "strip_border_top", "label": "Filet au-dessus du bandeau", "default": false },
+    { "type": "color", "id": "strip_border_color", "label": "Couleur du filet", "default": "#e7e3df" },
     { "type": "range", "id": "strip_py", "label": "Hauteur interne du bandeau", "unit": "px", "min": 0, "max": 60, "step": 2, "default": 28 },
     { "type": "range", "id": "strip_mt_min", "label": "Espace au-dessus — mobile", "unit": "px", "min": 0, "max": 64, "step": 1, "default": 24 },
     { "type": "range", "id": "strip_mt_max", "label": "Espace au-dessus — desktop", "unit": "px", "min": 0, "max": 120, "step": 2, "default": 40 },
@@ -353,10 +376,10 @@
 
     { "type": "header", "content": "Mise en page de la section" },
     { "type": "color", "id": "bg_color", "label": "Fond de section", "info": "Laissez vide pour hériter du fond du site." },
-    { "type": "range", "id": "pt_mobile", "label": "Espace au-dessus — mobile", "unit": "px", "min": 20, "max": 200, "step": 4, "default": 48 },
-    { "type": "range", "id": "pt_desktop", "label": "Espace au-dessus — desktop", "unit": "px", "min": 20, "max": 260, "step": 4, "default": 80 },
-    { "type": "range", "id": "pb_mobile", "label": "Espace en dessous — mobile", "unit": "px", "min": 20, "max": 200, "step": 4, "default": 40 },
-    { "type": "range", "id": "pb_desktop", "label": "Espace en dessous — desktop", "unit": "px", "min": 20, "max": 260, "step": 4, "default": 64 }
+    { "type": "range", "id": "pt_mobile", "label": "Espace au-dessus — mobile", "unit": "px", "min": 0, "max": 200, "step": 4, "default": 8 },
+    { "type": "range", "id": "pt_desktop", "label": "Espace au-dessus — desktop", "unit": "px", "min": 0, "max": 260, "step": 4, "default": 16 },
+    { "type": "range", "id": "pb_mobile", "label": "Espace en dessous — mobile", "unit": "px", "min": 0, "max": 200, "step": 4, "default": 24 },
+    { "type": "range", "id": "pb_desktop", "label": "Espace en dessous — desktop", "unit": "px", "min": 0, "max": 260, "step": 4, "default": 40 }
   ],
   "blocks": [
     {
