@@ -1,0 +1,816 @@
+{%- comment -%}
+  ==========================================================================
+  Clickscreation — Barre de navigation
+  --------------------------------------------------------------------------
+  Section autonome. Elle embarque son propre CSS scopé sur l'identifiant de
+  section, ce qui garantit qu'elle ne peut ni fuir sur le reste du site ni
+  entrer en conflit avec une autre section.
+
+  Pourquoi du CSS inline plutôt qu'un fichier d'asset :
+    1. l'en-tête est au-dessus de la ligne de flottaison ; une feuille externe
+       ajouterait une requête bloquante avant le premier rendu (LCP) ;
+    2. le point de bascule du menu mobile est un réglage marchand, or une
+       media query ne peut pas lire une variable CSS. L'interpoler en Liquid
+       est le seul moyen de le rendre réellement configurable.
+
+  Aucun texte n'est écrit en dur. Toutes les tailles de police sont réglables
+  indépendamment en mobile et en desktop, la valeur tablette étant interpolée.
+  ==========================================================================
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign bp = s.nav_breakpoint | plus: 0
+  assign uid = section.id
+
+  assign menu = linklists[s.menu]
+  assign has_menu = false
+  if menu != blank and menu.links.size > 0
+    assign has_menu = true
+  endif
+
+  assign show_cta = false
+  if s.show_cta and s.cta_label != blank
+    assign show_cta = true
+  endif
+
+  assign cta_url = s.cta_url
+  if cta_url == blank
+    assign cta_url = routes.root_url
+  endif
+
+  assign logo_alt = s.logo_alt
+  if logo_alt == blank
+    assign logo_alt = shop.name
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ uid }} {
+    --cc-hdr-py: {{ s.header_py }}px;
+    --cc-hdr-link: {{ s.nav_color }};
+    --cc-hdr-link-hover: {{ s.nav_color_hover }};
+    position: relative;
+    z-index: 100;
+    display: block;
+  }
+  {%- if s.sticky -%}
+  /* Horizon enveloppe le groupe d'en-tête dans un div #header-group. Un
+     élément sticky ne peut pas déborder de son parent : logé dans ce div haut
+     d'environ 80 px, l'en-tête se décollerait dès le début du défilement.
+     display: contents retire le div de l'arbre de boîtes sans le retirer du
+     DOM — le script inline d'Horizon continue donc de le trouver, et le bloc
+     conteneur du sticky devient .page-wrapper, qui court sur toute la page. */
+  #header-group { display: contents; }
+  #shopify-section-{{ uid }} { position: sticky; top: 0; }
+  {%- endif -%}
+
+  /* --- Barre --------------------------------------------------------------
+     Le fond translucide et le flou sont portés par .cc-header__bar et non par
+     la racine de section : backdrop-filter crée un bloc conteneur pour les
+     descendants en position fixed, ce qui casserait le panneau mobile.
+     ---------------------------------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-header__bar {
+    background-color: transparent;
+    transition: background-color 0.28s var(--cc-ease), box-shadow 0.28s var(--cc-ease);
+  }
+  {%- if s.sticky -%}
+  #shopify-section-{{ uid }} .cc-header__bar.is-stuck {
+    background-color: rgba(var(--cc-bg-rgb), 0.82);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    backdrop-filter: saturate(180%) blur(14px);
+    box-shadow: 0 1px 0 0 var(--cc-line);
+  }
+  {%- endif -%}
+  {%- if s.show_border -%}
+  #shopify-section-{{ uid }} .cc-header__bar { box-shadow: 0 1px 0 0 var(--cc-line); }
+  {%- endif -%}
+
+  #shopify-section-{{ uid }} .cc-header__inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    column-gap: 20px;
+    padding-block: var(--cc-hdr-py);
+  }
+
+  /* --- Logo -------------------------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-logo {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 44px;
+    min-width: 0;
+    overflow: hidden;
+  }
+  #shopify-section-{{ uid }} .cc-logo__img {
+    --cc-sz-min: {{ s.logo_width_mobile }};
+    --cc-sz-max: {{ s.logo_width_desktop }};
+    inline-size: calc(var(--cc-sz-min) * 1px + (var(--cc-sz-max) - var(--cc-sz-min)) * var(--cc-fluid-t));
+    block-size: auto;
+  }
+  #shopify-section-{{ uid }} .cc-logo__text {
+    --cc-fs-min: {{ s.logo_fs_mobile }};
+    --cc-fs-max: {{ s.logo_fs_desktop }};
+    font-family: var(--cc-font-heading);
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    font-weight: {{ s.logo_weight }};
+    letter-spacing: var(--cc-heading-tracking);
+    line-height: 1;
+    color: {{ s.logo_color }};
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  #shopify-section-{{ uid }} .cc-logo__dot { color: {{ s.logo_dot_color }}; }
+
+  /* --- Navigation desktop ------------------------------------------------ */
+  #shopify-section-{{ uid }} .cc-nav { justify-self: center; }
+  #shopify-section-{{ uid }} .cc-nav__list {
+    display: flex;
+    align-items: center;
+    gap: {{ s.nav_gap }}px;
+  }
+  #shopify-section-{{ uid }} .cc-nav__item { position: relative; }
+  #shopify-section-{{ uid }} .cc-nav__link {
+    --cc-fs-min: {{ s.nav_fs_mobile }};
+    --cc-fs-max: {{ s.nav_fs_desktop }};
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    min-block-size: 44px;
+    padding-block: 0.55em;
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    font-weight: {{ s.nav_weight }};
+    line-height: 1.2;
+    color: var(--cc-hdr-link);
+    white-space: nowrap;
+    transition: color 0.2s var(--cc-ease);
+  }
+  #shopify-section-{{ uid }} .cc-nav__link::after {
+    content: "";
+    display: block;
+    block-size: 2px;
+    inline-size: 0;
+    margin-top: 2px;
+    margin-inline: auto;
+    border-radius: 2px;
+    background-color: var(--cc-hdr-link-hover);
+    transition: inline-size 0.24s var(--cc-ease);
+  }
+  #shopify-section-{{ uid }} .cc-nav__item:hover > .cc-nav__link,
+  #shopify-section-{{ uid }} .cc-nav__link[aria-current="page"] { color: var(--cc-hdr-link-hover); }
+  #shopify-section-{{ uid }} .cc-nav__item:hover > .cc-nav__link::after,
+  #shopify-section-{{ uid }} .cc-nav__link[aria-current="page"]::after { inline-size: 100%; }
+
+  /* Sous-menu : ouverture au survol ET au focus clavier, sans JavaScript. */
+  #shopify-section-{{ uid }} .cc-nav__panel {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    min-inline-size: 236px;
+    padding: 10px;
+    border-radius: calc(var(--cc-radius) * 0.8);
+    background-color: var(--cc-bg);
+    box-shadow: 0 1px 0 0 var(--cc-line), 0 18px 40px -18px rgba(var(--cc-ink-rgb), 0.28);
+    opacity: 0;
+    visibility: hidden;
+    translate: -50% 6px;
+    transition: opacity 0.2s var(--cc-ease), translate 0.2s var(--cc-ease), visibility 0.2s;
+  }
+  #shopify-section-{{ uid }} .cc-nav__item:hover > .cc-nav__panel,
+  #shopify-section-{{ uid }} .cc-nav__item:focus-within > .cc-nav__panel {
+    opacity: 1;
+    visibility: visible;
+    translate: -50% 0;
+  }
+  #shopify-section-{{ uid }} .cc-nav__sublink {
+    --cc-fs-min: {{ s.nav_fs_mobile }};
+    --cc-fs-max: {{ s.nav_fs_desktop }};
+    display: flex;
+    align-items: center;
+    min-block-size: 44px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    line-height: 1.35;
+    color: var(--cc-hdr-link);
+    transition: background-color 0.18s var(--cc-ease), color 0.18s var(--cc-ease);
+  }
+  #shopify-section-{{ uid }} .cc-nav__sublink:hover {
+    background-color: rgba(var(--cc-ink-rgb), 0.05);
+    color: var(--cc-hdr-link-hover);
+  }
+
+  /* --- Actions ----------------------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-header__actions {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #shopify-section-{{ uid }} .cc-header__cta {
+    --cc-btn-fs-min: {{ s.cta_fs_mobile }};
+    --cc-btn-fs-max: {{ s.cta_fs_desktop }};
+    --cc-btn-py: {{ s.cta_pad_y }}px;
+    --cc-btn-px: {{ s.cta_pad_x }}px;
+  }
+
+  /* --- Bouton menu ------------------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-burger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    inline-size: 44px;
+    block-size: 44px;
+    border-radius: 999px;
+    color: {{ s.logo_color }};
+  }
+  #shopify-section-{{ uid }} .cc-burger__bar {
+    display: block;
+    inline-size: 20px;
+    block-size: 2px;
+    border-radius: 2px;
+    background-color: currentColor;
+    transition: translate 0.25s var(--cc-ease), rotate 0.25s var(--cc-ease), opacity 0.15s var(--cc-ease);
+  }
+  #shopify-section-{{ uid }} .cc-burger__bar + .cc-burger__bar { margin-top: 5px; }
+  #shopify-section-{{ uid }} .cc-burger[aria-expanded="true"] .cc-burger__bar:nth-child(1) { translate: 0 7px; rotate: 45deg; }
+  #shopify-section-{{ uid }} .cc-burger[aria-expanded="true"] .cc-burger__bar:nth-child(2) { opacity: 0; }
+  #shopify-section-{{ uid }} .cc-burger[aria-expanded="true"] .cc-burger__bar:nth-child(3) { translate: 0 -7px; rotate: -45deg; }
+
+  /* --- Panneau mobile ---------------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-content: start;
+    background-color: var(--cc-bg);
+    opacity: 0;
+    visibility: hidden;
+    /* Délai asymétrique sur visibility : elle bascule instantanément à
+       l'ouverture, et n'attend la fin du fondu qu'à la fermeture.
+       Si visibility était transitionnée, sa valeur calculée resterait
+       « hidden » à l'instant t=0 — et un élément invisible n'est pas
+       focusable : le focus clavier ne pourrait jamais entrer dans le panneau. */
+    transition: opacity 0.24s var(--cc-ease), visibility 0s linear 0.24s;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  #shopify-section-{{ uid }} .cc-drawer[data-open="true"] {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.24s var(--cc-ease), visibility 0s linear 0s;
+  }
+  #shopify-section-{{ uid }} .cc-drawer__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-block: var(--cc-hdr-py);
+  }
+  #shopify-section-{{ uid }} .cc-drawer__close { display: inline-flex; }
+  #shopify-section-{{ uid }} .cc-drawer__body { padding-block: 8px 48px; }
+  #shopify-section-{{ uid }} .cc-drawer__link,
+  #shopify-section-{{ uid }} .cc-drawer__toggle {
+    --cc-fs-min: {{ s.drawer_fs_mobile }};
+    --cc-fs-max: {{ s.drawer_fs_desktop }};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    inline-size: 100%;
+    min-block-size: 48px;
+    padding-block: 0.6em;
+    font-family: var(--cc-font-heading);
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: var(--cc-heading-tracking);
+    color: var(--cc-ink);
+    text-align: left;
+  }
+  #shopify-section-{{ uid }} .cc-drawer__group + .cc-drawer__group { border-top: 1px solid var(--cc-line); }
+  #shopify-section-{{ uid }} .cc-drawer__sub { padding: 0 0 14px 14px; }
+  #shopify-section-{{ uid }} .cc-drawer__sublink {
+    --cc-fs-min: 15;
+    --cc-fs-max: 17;
+    display: flex;
+    align-items: center;
+    min-block-size: 44px;
+    padding-block: 0.45em;
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    color: var(--cc-muted);
+  }
+  #shopify-section-{{ uid }} .cc-drawer__sublink:hover { color: var(--cc-ink); }
+  #shopify-section-{{ uid }} .cc-drawer__chev { flex: 0 0 auto; transition: rotate 0.22s var(--cc-ease); }
+  #shopify-section-{{ uid }} .cc-drawer__toggle[aria-expanded="true"] .cc-drawer__chev { rotate: 180deg; }
+  #shopify-section-{{ uid }} .cc-drawer__foot { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px; }
+  #shopify-section-{{ uid }} .cc-drawer__cta { --cc-btn-py: 1em; --cc-btn-px: 1.6em; flex: 1 1 200px; }
+  #shopify-section-{{ uid }} .cc-drawer__social {
+    display: inline-flex;
+    align-items: center;
+    padding: 11px 16px;
+    border-radius: 999px;
+    font-size: 15px;
+    color: var(--cc-muted);
+    box-shadow: inset 0 0 0 1px var(--cc-line);
+    transition: color 0.18s var(--cc-ease), box-shadow 0.18s var(--cc-ease);
+  }
+  #shopify-section-{{ uid }} .cc-drawer__social:hover { color: var(--cc-ink); box-shadow: inset 0 0 0 1px var(--cc-ink); }
+
+  /* --- Bascule responsive : seuil piloté depuis l'éditeur ----------------- */
+  @media (max-width: {{ bp }}px) {
+    #shopify-section-{{ uid }} .cc-nav { display: none; }
+    #shopify-section-{{ uid }} .cc-burger { display: inline-flex; }
+    #shopify-section-{{ uid }} .cc-header__cta { --cc-btn-py: {{ s.cta_pad_y | plus: 4 }}px; }
+    #shopify-section-{{ uid }} .cc-header__inner { grid-template-columns: 1fr auto; }
+    {%- if s.hide_cta_mobile -%}
+    #shopify-section-{{ uid }} .cc-header__cta { display: none; }
+    {%- endif -%}
+  }
+  @media (min-width: {{ bp | plus: 1 }}px) {
+    #shopify-section-{{ uid }} .cc-drawer { display: none; }
+  }
+</style>
+
+{%- if s.show_skip_link -%}
+  <a class="cc-skip" href="#MainContent">{{ s.skip_label | escape }}</a>
+{%- endif -%}
+
+<div class="cc-header__bar" data-cc-bar>
+  <div class="cc-container cc-header__inner">
+    <a
+      class="cc-logo"
+      href="{{ routes.root_url }}"
+      {% if request.page_type == 'index' %}aria-current="page"{% endif %}
+    >
+      {%- if s.logo != blank -%}
+        {{ s.logo | image_url: width: 720 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'cc-logo__img', alt: logo_alt }}
+      {%- else -%}
+        <span class="cc-logo__text">
+          {{- s.logo_text | escape -}}
+          {%- if s.logo_show_dot -%}<span class="cc-logo__dot">.</span>{%- endif -%}
+        </span>
+      {%- endif -%}
+    </a>
+
+    {%- if has_menu -%}
+      <nav class="cc-nav" aria-label="{{ s.nav_aria_label | escape }}">
+        <ul class="cc-nav__list">
+          {%- for link in menu.links -%}
+            <li class="cc-nav__item">
+              <a class="cc-nav__link" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>
+                {{- link.title | escape -}}
+              </a>
+              {%- if link.links.size > 0 -%}
+                <div class="cc-nav__panel">
+                  <ul>
+                    {%- for child in link.links -%}
+                      <li>
+                        <a class="cc-nav__sublink" href="{{ child.url }}"{% if child.current %} aria-current="page"{% endif %}>
+                          {{- child.title | escape -}}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
+    <div class="cc-header__actions">
+      {%- if show_cta -%}
+        <a class="cc-btn cc-btn--solid cc-header__cta" href="{{ cta_url }}">{{ s.cta_label | escape }}</a>
+      {%- endif -%}
+      <button
+        class="cc-burger"
+        type="button"
+        aria-expanded="false"
+        aria-controls="cc-drawer-{{ uid }}"
+        aria-label="{{ s.menu_open_label | escape }}"
+        data-cc-burger
+      >
+        <span class="cc-burger__bar"></span>
+        <span class="cc-burger__bar"></span>
+        <span class="cc-burger__bar"></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="cc-drawer" id="cc-drawer-{{ uid }}" data-open="false" tabindex="-1" role="dialog" aria-modal="true" aria-label="{{ s.nav_aria_label | escape }}" data-cc-drawer inert>
+  <div class="cc-container cc-drawer__head">
+    <span class="cc-logo__text" aria-hidden="true">
+      {{- s.logo_text | escape -}}
+      {%- if s.logo_show_dot -%}<span class="cc-logo__dot">.</span>{%- endif -%}
+    </span>
+    <button class="cc-burger cc-drawer__close" type="button" aria-label="{{ s.menu_close_label | escape }}" data-cc-close>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+        <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="cc-container cc-drawer__body">
+    {%- if has_menu -%}
+      <nav aria-label="{{ s.nav_aria_label | escape }}">
+        {%- for link in menu.links -%}
+          <div class="cc-drawer__group">
+            {%- if link.links.size > 0 -%}
+              <button
+                class="cc-drawer__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="cc-sub-{{ uid }}-{{ forloop.index }}"
+                data-cc-acc
+              >
+                <span>{{ link.title | escape }}</span>
+                <svg class="cc-drawer__chev" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+                  <path d="M3.5 6L8 10.5 12.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="cc-drawer__sub" id="cc-sub-{{ uid }}-{{ forloop.index }}" hidden>
+                <a class="cc-drawer__sublink" href="{{ link.url }}">{{ s.overview_label | escape }}</a>
+                {%- for child in link.links -%}
+                  <a class="cc-drawer__sublink" href="{{ child.url }}">{{ child.title | escape }}</a>
+                {%- endfor -%}
+              </div>
+            {%- else -%}
+              <a class="cc-drawer__link" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>
+                {{- link.title | escape -}}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </nav>
+    {%- endif -%}
+
+    <div class="cc-drawer__foot">
+      {%- if show_cta -%}
+        <a class="cc-btn cc-btn--solid cc-drawer__cta" href="{{ cta_url }}">{{ s.cta_label | escape }}</a>
+      {%- endif -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'social' and block.settings.url != blank and block.settings.label != blank -%}
+          <a
+            class="cc-drawer__social"
+            href="{{ block.settings.url }}"
+            rel="noopener"
+            target="_blank"
+            {{ block.shopify_attributes }}
+          >{{ block.settings.label | escape }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'cc-header.js' | asset_url }}" defer></script>
+
+{%- comment -%}
+  ==========================================================================
+  Données structurées de portée site (schema.org)
+  --------------------------------------------------------------------------
+  Placées ici parce que l'en-tête est la seule section présente sur toutes les
+  pages : l'entité Organization et l'entité WebSite ne sont donc déclarées
+  qu'une seule fois, avec des @id stables réutilisables par les autres pages
+  (Service, Article, BreadcrumbList…) via une simple référence.
+  Rien n'est inventé : chaque propriété n'est émise que si le marchand l'a
+  renseignée dans l'éditeur de thème.
+  ==========================================================================
+{%- endcomment -%}
+
+{%- if s.schema_org_enable and s.schema_org_name != blank -%}
+  {%- liquid
+    assign org_id = shop.url | append: '/#organization'
+    assign site_id = shop.url | append: '/#website'
+
+    assign has_address = false
+    if s.schema_org_city != blank
+      assign has_address = true
+    endif
+
+    assign areas = s.schema_org_areas | strip | newline_to_br | split: '<br />'
+  -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": {{ s.schema_org_type | json }},
+      "@id": {{ org_id | json }},
+      "name": {{ s.schema_org_name | json }},
+      "url": {{ shop.url | json }}
+      {%- if s.schema_org_legal_name != blank -%}
+        ,"legalName": {{ s.schema_org_legal_name | json }}
+      {%- endif -%}
+      {%- if s.schema_org_description != blank -%}
+        ,"description": {{ s.schema_org_description | json }}
+      {%- endif -%}
+      {%- if s.schema_org_logo != blank -%}
+        {%- assign logo_src = s.schema_org_logo | image_url: width: 512 | prepend: 'https:' -%}
+        ,"logo": {
+          "@type": "ImageObject",
+          "url": {{ logo_src | json }},
+          "width": 512,
+          "height": {{ 512 | divided_by: s.schema_org_logo.aspect_ratio | round }}
+        }
+        ,"image": {{ logo_src | json }}
+      {%- endif -%}
+      {%- if s.schema_org_email != blank -%}
+        ,"email": {{ s.schema_org_email | json }}
+      {%- endif -%}
+      {%- if s.schema_org_phone != blank -%}
+        ,"telephone": {{ s.schema_org_phone | json }}
+      {%- endif -%}
+      {%- if s.schema_org_price_range != blank -%}
+        ,"priceRange": {{ s.schema_org_price_range | json }}
+      {%- endif -%}
+      {%- if has_address -%}
+        ,"address": {
+          "@type": "PostalAddress"
+          {%- if s.schema_org_street != blank %},"streetAddress": {{ s.schema_org_street | json }}{% endif -%}
+          ,"addressLocality": {{ s.schema_org_city | json }}
+          {%- if s.schema_org_postal != blank %},"postalCode": {{ s.schema_org_postal | json }}{% endif -%}
+          {%- if s.schema_org_region != blank %},"addressRegion": {{ s.schema_org_region | json }}{% endif -%}
+          ,"addressCountry": {{ s.schema_org_country | json }}
+        }
+      {%- endif -%}
+      {%- if areas.size > 0 -%}
+        ,"areaServed": [
+          {%- assign a = 0 -%}
+          {%- for area in areas -%}
+            {%- assign clean_area = area | strip -%}
+            {%- if clean_area != blank -%}
+              {%- if a > 0 %},{% endif -%}
+              { "@type": "AdministrativeArea", "name": {{ clean_area | json }} }
+              {%- assign a = a | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        ]
+      {%- endif -%}
+      {%- assign social_count = 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'social' and block.settings.url != blank -%}
+          {%- assign social_count = social_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- if social_count > 0 -%}
+        ,"sameAs": [
+          {%- assign i = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'social' and block.settings.url != blank -%}
+              {%- if i > 0 %},{% endif -%}
+              {{ block.settings.url | json }}
+              {%- assign i = i | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        ]
+      {%- endif -%}
+    }
+  </script>
+
+  {%- if s.schema_website_enable -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": {{ site_id | json }},
+        "url": {{ shop.url | json }},
+        "name": {{ s.schema_org_name | json }},
+        "inLanguage": {{ request.locale.iso_code | json }},
+        "publisher": { "@id": {{ org_id | json }} }
+        {%- if s.schema_search_action and request.page_type == 'index' -%}
+          {%- assign search_target = shop.url | append: '/search?q={search_term_string}' -%}
+          ,"potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": {{ search_target | json }}
+            },
+            "query-input": "required name=search_term_string"
+          }
+        {%- endif -%}
+      }
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "En-tête",
+  "tag": "header",
+  "class": "cc-header-section",
+  "limit": 1,
+  "enabled_on": { "groups": ["header"] },
+  "settings": [
+    { "type": "header", "content": "Logo" },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "Format SVG ou PNG transparent. Si aucune image n'est chargée, le logo texte ci-dessous est utilisé."
+    },
+    {
+      "type": "text",
+      "id": "logo_alt",
+      "label": "Texte alternatif du logo",
+      "info": "Laissé vide, le nom de la boutique est utilisé.",
+      "visible_if": "{{ section.settings.logo != blank }}"
+    },
+    {
+      "type": "range",
+      "id": "logo_width_mobile",
+      "label": "Largeur du logo — mobile",
+      "unit": "px",
+      "min": 60, "max": 240, "step": 2, "default": 120,
+      "visible_if": "{{ section.settings.logo != blank }}"
+    },
+    {
+      "type": "range",
+      "id": "logo_width_desktop",
+      "label": "Largeur du logo — desktop",
+      "unit": "px",
+      "min": 80, "max": 360, "step": 4, "default": 168,
+      "visible_if": "{{ section.settings.logo != blank }}"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo texte",
+      "default": "Clickscreation"
+    },
+    {
+      "type": "checkbox",
+      "id": "logo_show_dot",
+      "label": "Ajouter le point final",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "logo_fs_mobile",
+      "label": "Taille du logo texte — mobile",
+      "unit": "px",
+      "min": 16, "max": 40, "step": 1, "default": 23,
+      "visible_if": "{{ section.settings.logo == blank }}"
+    },
+    {
+      "type": "range",
+      "id": "logo_fs_desktop",
+      "label": "Taille du logo texte — desktop",
+      "unit": "px",
+      "min": 18, "max": 56, "step": 1, "default": 30,
+      "visible_if": "{{ section.settings.logo == blank }}"
+    },
+    {
+      "type": "select",
+      "id": "logo_weight",
+      "label": "Graisse du logo texte",
+      "options": [
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra-bold" }
+      ],
+      "default": "700",
+      "visible_if": "{{ section.settings.logo == blank }}"
+    },
+    { "type": "color", "id": "logo_color", "label": "Couleur du logo texte", "default": "#ff4a17" },
+    { "type": "color", "id": "logo_dot_color", "label": "Couleur du point", "default": "#ff4a17" },
+
+    { "type": "header", "content": "Navigation" },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu",
+      "info": "Les intitulés et les URL se modifient dans Boutique en ligne › Navigation. Un niveau de sous-menu est pris en charge et s'ouvre au survol comme au clavier."
+    },
+    { "type": "text", "id": "nav_aria_label", "label": "Nom accessible du menu", "default": "Navigation principale" },
+    { "type": "range", "id": "nav_fs_mobile", "label": "Taille des liens — mobile", "unit": "px", "min": 12, "max": 22, "step": 1, "default": 14 },
+    { "type": "range", "id": "nav_fs_desktop", "label": "Taille des liens — desktop", "unit": "px", "min": 12, "max": 24, "step": 1, "default": 15 },
+    {
+      "type": "select",
+      "id": "nav_weight",
+      "label": "Graisse des liens",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" }
+      ],
+      "default": "500"
+    },
+    { "type": "range", "id": "nav_gap", "label": "Espace entre les liens", "unit": "px", "min": 8, "max": 64, "step": 1, "default": 34 },
+    { "type": "color", "id": "nav_color", "label": "Couleur des liens", "default": "#3e3a35" },
+    { "type": "color", "id": "nav_color_hover", "label": "Couleur au survol et page active", "default": "#14120f" },
+
+    { "type": "header", "content": "Bouton d'action" },
+    { "type": "checkbox", "id": "show_cta", "label": "Afficher le bouton", "default": true },
+    { "type": "text", "id": "cta_label", "label": "Libellé", "default": "Nous contacter" },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Destination",
+      "info": "Vérifiez que la page existe bien dans l'admin avant la mise en ligne."
+    },
+    { "type": "checkbox", "id": "hide_cta_mobile", "label": "Masquer le bouton sous le point de bascule", "default": true, "info": "Recommandé : sous le point de bascule, le bouton entre en concurrence avec le logo. Il reste accessible en pleine largeur dans le panneau mobile." },
+    { "type": "range", "id": "cta_fs_mobile", "label": "Taille du libellé — mobile", "unit": "px", "min": 12, "max": 22, "step": 1, "default": 14 },
+    { "type": "range", "id": "cta_fs_desktop", "label": "Taille du libellé — desktop", "unit": "px", "min": 12, "max": 24, "step": 1, "default": 15 },
+    { "type": "range", "id": "cta_pad_y", "label": "Hauteur interne du bouton", "unit": "px", "min": 6, "max": 24, "step": 1, "default": 11 },
+    { "type": "range", "id": "cta_pad_x", "label": "Largeur interne du bouton", "unit": "px", "min": 12, "max": 56, "step": 1, "default": 22 },
+
+    { "type": "header", "content": "Mise en page et comportement" },
+    { "type": "range", "id": "header_py", "label": "Hauteur de la barre", "unit": "px", "min": 4, "max": 56, "step": 1, "default": 26 },
+    { "type": "checkbox", "id": "sticky", "label": "En-tête collant au scroll", "default": true },
+    { "type": "checkbox", "id": "show_border", "label": "Filet sous l'en-tête", "default": false },
+    {
+      "type": "select",
+      "id": "nav_breakpoint",
+      "label": "Point de bascule du menu mobile",
+      "info": "Largeur en dessous de laquelle le menu horizontal laisse place au panneau plein écran.",
+      "options": [
+        { "value": "767", "label": "Mobile uniquement (767 px)" },
+        { "value": "1023", "label": "Mobile et tablette (1023 px)" },
+        { "value": "1199", "label": "Jusqu'aux petits écrans (1199 px)" }
+      ],
+      "default": "1023"
+    },
+
+    { "type": "header", "content": "Panneau mobile" },
+    { "type": "text", "id": "menu_open_label", "label": "Libellé du bouton d'ouverture", "default": "Ouvrir le menu" },
+    { "type": "text", "id": "menu_close_label", "label": "Libellé du bouton de fermeture", "default": "Fermer le menu" },
+    { "type": "text", "id": "overview_label", "label": "Lien vers la page parente", "default": "Vue d'ensemble" },
+    { "type": "range", "id": "drawer_fs_mobile", "label": "Taille des liens — mobile", "unit": "px", "min": 18, "max": 44, "step": 1, "default": 27 },
+    { "type": "range", "id": "drawer_fs_desktop", "label": "Taille des liens — grand écran", "unit": "px", "min": 18, "max": 48, "step": 1, "default": 32 },
+
+    { "type": "header", "content": "Accessibilité" },
+    { "type": "checkbox", "id": "show_skip_link", "label": "Afficher le lien d'évitement", "default": true, "info": "Décochez si le thème hôte en pose déjà un : deux liens consécutifs gênent la navigation clavier." },
+    { "type": "text", "id": "skip_label", "label": "Lien d'évitement", "default": "Aller au contenu principal", "info": "Visible uniquement à la navigation clavier. Critère RGAA 12.7.", "visible_if": "{{ section.settings.show_skip_link }}" },
+
+    { "type": "header", "content": "Données structurées" },
+    {
+      "type": "paragraph",
+      "content": "Déclare l'entité de l'entreprise une seule fois pour tout le site. Ne renseignez que des informations exactes et vérifiables : une donnée fausse expose à une action manuelle Google."
+    },
+    { "type": "checkbox", "id": "schema_org_enable", "label": "Activer le balisage de l'entreprise", "default": true },
+    {
+      "type": "select",
+      "id": "schema_org_type",
+      "label": "Type d'entité",
+      "options": [
+        { "value": "Organization", "label": "Organization — entreprise sans adresse publique" },
+        { "value": "ProfessionalService", "label": "ProfessionalService — prestataire avec adresse" },
+        { "value": "LocalBusiness", "label": "LocalBusiness — établissement recevant du public" }
+      ],
+      "default": "ProfessionalService"
+    },
+    { "type": "text", "id": "schema_org_name", "label": "Nom de la marque", "default": "Clickscreation" },
+    { "type": "text", "id": "schema_org_legal_name", "label": "Raison sociale" },
+    {
+      "type": "textarea",
+      "id": "schema_org_description",
+      "label": "Description de l'entreprise",
+      "default": "Agence d'acquisition à taille réduite. Référencement naturel, sites sur mesure, boutiques Shopify, optimisation de la conversion et Meta Ads pour les PME et les marques e-commerce."
+    },
+    { "type": "image_picker", "id": "schema_org_logo", "label": "Logo pour les résultats de recherche", "info": "Carré ou rectangulaire, 512 px minimum sur le plus grand côté." },
+    { "type": "text", "id": "schema_org_email", "label": "E-mail public" },
+    { "type": "text", "id": "schema_org_phone", "label": "Téléphone", "info": "Format international, par exemple +33 1 23 45 67 89." },
+    { "type": "text", "id": "schema_org_price_range", "label": "Fourchette de prix", "info": "Par exemple €€ ou €€€. Laissez vide si vous ne communiquez pas dessus." },
+    { "type": "text", "id": "schema_org_street", "label": "Adresse" },
+    { "type": "text", "id": "schema_org_postal", "label": "Code postal" },
+    { "type": "text", "id": "schema_org_city", "label": "Ville", "info": "L'adresse n'est émise que si la ville est renseignée." },
+    { "type": "text", "id": "schema_org_region", "label": "Région" },
+    { "type": "text", "id": "schema_org_country", "label": "Pays", "default": "FR", "info": "Code ISO à deux lettres." },
+    {
+      "type": "textarea",
+      "id": "schema_org_areas",
+      "label": "Zones desservies",
+      "info": "Une zone par ligne.",
+      "default": "Paris\nÎle-de-France\nNice\nLuxembourg"
+    },
+    { "type": "checkbox", "id": "schema_website_enable", "label": "Déclarer l'entité WebSite", "default": true },
+    { "type": "checkbox", "id": "schema_search_action", "label": "Déclarer la recherche interne (page d'accueil)", "default": false, "info": "À n'activer que si une page de recherche est réellement accessible aux visiteurs." }
+  ],
+  "blocks": [
+    {
+      "type": "social",
+      "name": "Réseau social",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Nom du réseau", "default": "LinkedIn" },
+        { "type": "url", "id": "url", "label": "URL du profil" },
+        { "type": "paragraph", "content": "Chaque profil renseigné alimente la propriété sameAs des données structurées et apparaît dans le panneau mobile." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "En-tête",
+      "blocks": [{ "type": "social" }]
+    }
+  ]
+}
+{% endschema %}

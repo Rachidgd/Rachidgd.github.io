@@ -1,0 +1,132 @@
+{%- comment -%}
+  ==========================================================================
+  Clickscreation — Pastille de statut
+  --------------------------------------------------------------------------
+  Petit bandeau suspendu au bord haut de la page, au-dessus de la navigation.
+  Section distincte de l'en-tête pour une raison technique : un élément
+  position: sticky ne peut pas dépasser les limites de son parent. Si cette
+  pastille vivait dans la même section que la barre de navigation, celle-ci
+  se décollerait du haut de l'écran après quelques dizaines de pixels de
+  défilement. En la sortant, la barre reste collée sur toute la page — et le
+  marchand peut masquer, déplacer ou supprimer la pastille indépendamment.
+  ==========================================================================
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign uid = section.id
+-%}
+
+{%- if s.text != blank -%}
+  <style>
+    #shopify-section-{{ uid }} {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      /* Doit rester SOUS la section d'en-tête (z-index: 100). L'en-tête étant
+         positionné avec un z-index, il forme un contexte d'empilement : le
+         panneau mobile qu'il contient ne peut pas dépasser une pastille qui
+         serait au-dessus de lui, quel que soit son propre z-index. */
+      z-index: 99;
+    }
+    #shopify-section-{{ uid }} .cc-badge {
+      --cc-fs-min: {{ s.fs_mobile }};
+      --cc-fs-max: {{ s.fs_desktop }};
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6em;
+      max-width: calc(100vw - 2 * var(--cc-gutter));
+      padding: {{ s.pad_y }}px {{ s.pad_x }}px;
+      border-radius: 0 0 {{ s.radius }}px {{ s.radius }}px;
+      background-color: {{ s.bg }};
+      color: {{ s.color }};
+      font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+      font-weight: {{ s.weight }};
+      line-height: 1.3;
+      text-align: center;
+      text-wrap: balance;
+    }
+    #shopify-section-{{ uid }} a.cc-badge { transition: background-color 0.2s var(--cc-ease); }
+    #shopify-section-{{ uid }} a.cc-badge:hover { background-color: {{ s.bg_hover }}; }
+    #shopify-section-{{ uid }} .cc-badge__dot {
+      flex: 0 0 auto;
+      inline-size: 0.5em;
+      block-size: 0.5em;
+      border-radius: 50%;
+      background-color: {{ s.dot_color }};
+    }
+    {%- unless settings.cc_motion == false -%}
+    #shopify-section-{{ uid }} .cc-badge__dot {
+      animation: cc-badge-pulse-{{ uid }} 2.8s var(--cc-ease) infinite;
+    }
+    @keyframes cc-badge-pulse-{{ uid }} {
+      0%, 55%, 100% { box-shadow: 0 0 0 0 rgba({{ s.dot_color.red }}, {{ s.dot_color.green }}, {{ s.dot_color.blue }}, 0.55); }
+      28%           { box-shadow: 0 0 0 0.36em rgba({{ s.dot_color.red }}, {{ s.dot_color.green }}, {{ s.dot_color.blue }}, 0); }
+    }
+    {%- endunless -%}
+    {%- unless s.show_mobile -%}
+    @media (max-width: 767px) {
+      #shopify-section-{{ uid }} { display: none; }
+    }
+    {%- endunless -%}
+  </style>
+
+  {%- if s.url != blank -%}
+    <a class="cc-badge" href="{{ s.url }}">
+      {%- if s.show_dot -%}<span class="cc-badge__dot" aria-hidden="true"></span>{%- endif -%}
+      <span>{{ s.text | escape }}</span>
+    </a>
+  {%- else -%}
+    <p class="cc-badge">
+      {%- if s.show_dot -%}<span class="cc-badge__dot" aria-hidden="true"></span>{%- endif -%}
+      <span>{{ s.text | escape }}</span>
+    </p>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Pastille de statut",
+  "tag": "div",
+  "class": "cc-badge-section",
+  "limit": 1,
+  "enabled_on": { "groups": ["header"] },
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Texte",
+      "default": "Disponible pour de nouveaux projets",
+      "info": "Laissez vide pour masquer complètement la pastille."
+    },
+    { "type": "url", "id": "url", "label": "Lien (facultatif)" },
+    { "type": "checkbox", "id": "show_dot", "label": "Afficher la pastille de disponibilité", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Afficher sur mobile", "default": true },
+
+    { "type": "header", "content": "Typographie" },
+    { "type": "range", "id": "fs_mobile", "label": "Taille du texte — mobile", "unit": "px", "min": 10, "max": 20, "step": 1, "default": 12 },
+    { "type": "range", "id": "fs_desktop", "label": "Taille du texte — desktop", "unit": "px", "min": 10, "max": 22, "step": 1, "default": 14 },
+    {
+      "type": "select",
+      "id": "weight",
+      "label": "Graisse",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" }
+      ],
+      "default": "400"
+    },
+
+    { "type": "header", "content": "Apparence" },
+    { "type": "color", "id": "bg", "label": "Fond", "default": "#3e3a35" },
+    { "type": "color", "id": "bg_hover", "label": "Fond au survol", "default": "#14120f" },
+    { "type": "color", "id": "color", "label": "Texte", "default": "#ffffff" },
+    { "type": "color", "id": "dot_color", "label": "Pastille de disponibilité", "default": "#3ecf6e" },
+    { "type": "range", "id": "radius", "label": "Arrondi bas", "unit": "px", "min": 0, "max": 40, "step": 1, "default": 24 },
+    { "type": "range", "id": "pad_y", "label": "Hauteur interne", "unit": "px", "min": 4, "max": 24, "step": 1, "default": 9 },
+    { "type": "range", "id": "pad_x", "label": "Largeur interne", "unit": "px", "min": 8, "max": 48, "step": 1, "default": 20 }
+  ],
+  "presets": [{ "name": "Pastille de statut" }]
+}
+{% endschema %}
