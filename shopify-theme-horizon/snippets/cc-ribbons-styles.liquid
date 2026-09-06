@@ -135,7 +135,7 @@
      progression, il ne conditionne jamais la lisibilité. */
   #shopify-section-{{ uid }} .cc-reveal__w {
     color: {{ s.reveal_color_on }};
-    transition: color {{ s.reveal_fade | divided_by: 100.0 }}s var(--cc-ease);
+    transition: color {{ s.reveal_fade }}ms var(--cc-ease);
   }
   #shopify-section-{{ uid }} .cc-reveal[data-armed="true"] .cc-reveal__w { color: {{ s.reveal_color_off }}; }
   #shopify-section-{{ uid }} .cc-reveal[data-armed="true"] .cc-reveal__w.is-on { color: {{ s.reveal_color_on }}; }
