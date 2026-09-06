@@ -45,15 +45,13 @@
   {%- if items_a.size > 0 or items_b.size > 0 -%}
     <div class="cc-ribbons__stage" aria-hidden="true">
       {%- for pair in (1..2) -%}
-        {%- liquid
-          if pair == 1
-            assign items = items_a
-            assign modifier = 'a'
-          else
-            assign items = items_b
-            assign modifier = 'b'
-          endif
-        -%}
+        {%- if pair == 1 -%}
+          {%- assign items = items_a -%}
+          {%- assign modifier = 'a' -%}
+        {%- else -%}
+          {%- assign items = items_b -%}
+          {%- assign modifier = 'b' -%}
+        {%- endif -%}
         {%- if items.size > 0 -%}
           <div class="cc-ribbon cc-ribbon--{{ modifier }}">
             <div class="cc-ribbon__inner">
