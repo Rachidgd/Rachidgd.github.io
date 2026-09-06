@@ -94,7 +94,7 @@ mobile (390 px) et une borne desktop (1440 px), et se fige au-delà. La tablette
 est donc juste par construction, sans media query dédiée. Mesuré : le H1 passe
 de 34 px à 390 px, à 43,4 px à 768 px, 49,7 px à 1024 px et 60 px à 1440 px.
 
-**Performance.** Aucune dépendance externe. Un seul fichier JS de 5 ko en
+**Performance.** Aucune dépendance externe. Un seul fichier JS de 7,5 ko (2,4 ko compressés) en
 `defer`, qui ne pilote que l'état collant, le panneau mobile et les accordéons —
 le menu déroulant desktop fonctionne en CSS pur et reste utilisable si le script
 échoue. Police des titres préchargée (`preload` + `font-display: swap`).
