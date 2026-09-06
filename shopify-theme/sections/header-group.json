@@ -1,0 +1,31 @@
+{
+  "type": "header",
+  "name": "En-tête",
+  "sections": {
+    "announcement-badge": {
+      "type": "announcement-badge",
+      "settings": {
+        "text": "Disponible pour de nouveaux projets",
+        "show_dot": true,
+        "show_mobile": true
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_text": "Clickscreation",
+        "logo_show_dot": true,
+        "menu": "main-menu",
+        "show_cta": true,
+        "cta_label": "Nous contacter",
+        "cta_url": "/pages/contact",
+        "sticky": true,
+        "hide_cta_mobile": true
+      }
+    }
+  },
+  "order": [
+    "announcement-badge",
+    "header"
+  ]
+}

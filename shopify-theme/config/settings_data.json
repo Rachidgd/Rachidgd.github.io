@@ -1,0 +1,25 @@
+{
+  "current": {
+    "cc_bg": "#f0eeec",
+    "cc_ink": "#14120f",
+    "cc_muted": "#8a847d",
+    "cc_line": "#dcd7d1",
+    "cc_accent": "#ff4a17",
+    "cc_dark": "#3e3a35",
+    "cc_on_dark": "#ffffff",
+    "cc_focus": "#0b57d0",
+    "cc_heading_font": "poppins_n7",
+    "cc_body_font": "poppins_n4",
+    "cc_heading_tracking": -25,
+    "cc_heading_leading": 108,
+    "cc_body_leading": 154,
+    "cc_fluid_min_w": 390,
+    "cc_fluid_max_w": 1440,
+    "cc_container": 1200,
+    "cc_gutter_mobile": 20,
+    "cc_gutter_desktop": 32,
+    "cc_radius": 20,
+    "cc_motion": true
+  },
+  "presets": {}
+}

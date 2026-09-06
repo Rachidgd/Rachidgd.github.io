@@ -1,0 +1,627 @@
+{%- comment -%}
+  ==========================================================================
+  Clickscreation — Hero d'accueil (offre SEO)
+  --------------------------------------------------------------------------
+  Le titre H1 n'est pas une chaîne figée : il se compose de blocks dans
+  l'éditeur de thème. Trois types sont disponibles et se combinent librement :
+
+    · Segment de texte  — un mot ou un groupe de mots, avec sa propre couleur
+    · Bulle             — une image circulaire insérée dans le fil du titre
+    · Retour à la ligne — pour maîtriser la découpe typographique
+
+  Les bulles : c'est la bulle qui impose son diamètre, jamais l'image. Le
+  recadrage carré est fait côté CDN Shopify (crop centré, ou point focal si
+  défini dans l'admin) puis object-fit: cover côté CSS. Une image portrait ou
+  panoramique donnera donc toujours le même cercle, aux mêmes dimensions.
+
+  L'animation de flottement n'agit que sur transform (translation et légère
+  rotation, jamais d'échelle) : le diamètre reste constant, le calque est
+  composité par le GPU, et le texte ne bouge pas d'un pixel — aucun CLS.
+  ==========================================================================
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+  assign uid = section.id
+
+  assign cta_url = s.cta_url
+  if cta_url == blank
+    assign cta_url = routes.root_url
+  endif
+
+  assign show_cta = false
+  if s.cta_label != blank
+    assign show_cta = true
+  endif
+
+  assign avatars = ''
+  if s.avatar_1 != blank
+    assign avatars = avatars | append: '1,'
+  endif
+  if s.avatar_2 != blank
+    assign avatars = avatars | append: '2,'
+  endif
+  if s.avatar_3 != blank
+    assign avatars = avatars | append: '3,'
+  endif
+  if s.avatar_4 != blank
+    assign avatars = avatars | append: '4,'
+  endif
+
+  assign motion = false
+  if settings.cc_motion and s.enable_float
+    assign motion = true
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ uid }} .cc-hero {
+    --cc-hero-pt-min: {{ s.pt_mobile }};
+    --cc-hero-pt-max: {{ s.pt_desktop }};
+    --cc-hero-pb-min: {{ s.pb_mobile }};
+    --cc-hero-pb-max: {{ s.pb_desktop }};
+    position: relative;
+    padding-block:
+      calc(var(--cc-hero-pt-min) * 1px + (var(--cc-hero-pt-max) - var(--cc-hero-pt-min)) * var(--cc-fluid-t))
+      calc(var(--cc-hero-pb-min) * 1px + (var(--cc-hero-pb-max) - var(--cc-hero-pb-min)) * var(--cc-fluid-t));
+    {%- if s.bg_color != blank %}background-color: {{ s.bg_color }};{% endif %}
+    overflow: clip;
+  }
+
+  #shopify-section-{{ uid }} .cc-hero__inner {
+    display: flex;
+    flex-direction: column;
+    {%- if s.align == 'left' -%}
+    align-items: flex-start;
+    text-align: left;
+    {%- else -%}
+    align-items: center;
+    text-align: center;
+    {%- endif -%}
+    position: relative;
+    z-index: 2;
+  }
+
+  /* --- Bandeau de réassurance -------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-hero__proof {
+    display: inline-flex;
+    align-items: center;
+    gap: {{ s.proof_gap }}px;
+    margin-bottom: calc({{ s.proof_mb_min }} * 1px + ({{ s.proof_mb_max }} - {{ s.proof_mb_min }}) * var(--cc-fluid-t));
+  }
+  #shopify-section-{{ uid }} .cc-hero__avatars { display: flex; }
+  #shopify-section-{{ uid }} .cc-hero__avatars .cc-round {
+    --cc-sz-min: {{ s.avatar_size_mobile }};
+    --cc-sz-max: {{ s.avatar_size_desktop }};
+    --cc-round-size: calc(var(--cc-sz-min) * 1px + (var(--cc-sz-max) - var(--cc-sz-min)) * var(--cc-fluid-t));
+    box-shadow: 0 0 0 2px {{ s.avatar_ring }};
+  }
+  #shopify-section-{{ uid }} .cc-hero__avatars .cc-round + .cc-round {
+    margin-inline-start: calc(var(--cc-round-size) * -0.3);
+  }
+  #shopify-section-{{ uid }} .cc-hero__proof-text {
+    --cc-fs-min: {{ s.proof_fs_mobile }};
+    --cc-fs-max: {{ s.proof_fs_desktop }};
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    line-height: 1.4;
+    color: {{ s.proof_color }};
+  }
+
+  /* --- Titre -------------------------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-hero__title {
+    --cc-fs-min: {{ s.h1_fs_mobile }};
+    --cc-fs-max: {{ s.h1_fs_desktop }};
+    max-width: {{ s.h1_max_width }}ch;
+    font-family: var(--cc-font-heading);
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    font-weight: {{ s.h1_weight }};
+    line-height: calc(var(--cc-heading-leading) / 100);
+    letter-spacing: var(--cc-heading-tracking);
+    color: var(--cc-ink);
+    text-wrap: balance;
+  }
+  #shopify-section-{{ uid }} .cc-hero__seg--muted { color: var(--cc-muted); }
+  #shopify-section-{{ uid }} .cc-hero__seg--accent { color: var(--cc-accent); }
+  #shopify-section-{{ uid }} .cc-hero__seg--on-dark { color: var(--cc-on-dark); }
+
+  /* --- Bulles ------------------------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-bubble {
+    --cc-round-size: calc(var(--cc-sz-min) * 1px + (var(--cc-sz-max) - var(--cc-sz-min)) * var(--cc-fluid-t));
+    vertical-align: middle;
+    position: relative;
+    top: {{ s.bubble_shift }}px;
+    margin-inline: {{ s.bubble_gap }}px;
+{%- if s.bubble_ring_width > 0 %}
+    box-shadow: 0 0 0 {{ s.bubble_ring_width }}px {{ s.bubble_ring_color }};
+{%- endif %}
+  }
+  {%- if motion -%}
+  #shopify-section-{{ uid }} .cc-bubble {
+    animation-name: cc-float-{{ uid }};
+    animation-timing-function: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+  @keyframes cc-float-{{ uid }} {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+    25%      { transform: translate3d(var(--cc-fx), calc(var(--cc-fy) * -0.72), 0) rotate(var(--cc-fr)); }
+    50%      { transform: translate3d(0, calc(var(--cc-fy) * -1), 0) rotate(0deg); }
+    75%      { transform: translate3d(calc(var(--cc-fx) * -1), calc(var(--cc-fy) * -0.72), 0) rotate(calc(var(--cc-fr) * -1)); }
+  }
+  {%- endif -%}
+
+  /* --- Sous-titre et action ---------------------------------------------- */
+  #shopify-section-{{ uid }} .cc-hero__sub {
+    --cc-fs-min: {{ s.sub_fs_mobile }};
+    --cc-fs-max: {{ s.sub_fs_desktop }};
+    max-width: {{ s.sub_max_width }}ch;
+    margin-top: calc({{ s.sub_mt_min }} * 1px + ({{ s.sub_mt_max }} - {{ s.sub_mt_min }}) * var(--cc-fluid-t));
+    font-size: calc(var(--cc-fs-min) * 1px + (var(--cc-fs-max) - var(--cc-fs-min)) * var(--cc-fluid-t));
+    line-height: calc(var(--cc-body-leading) / 100);
+    color: {{ s.sub_color }};
+    text-wrap: pretty;
+  }
+  #shopify-section-{{ uid }} .cc-hero__cta {
+    --cc-btn-fs-min: {{ s.cta_fs_mobile }};
+    --cc-btn-fs-max: {{ s.cta_fs_desktop }};
+    --cc-btn-py: {{ s.cta_pad_y }}px;
+    --cc-btn-px: {{ s.cta_pad_x }}px;
+    margin-top: calc({{ s.cta_mt_min }} * 1px + ({{ s.cta_mt_max }} - {{ s.cta_mt_min }}) * var(--cc-fluid-t));
+  }
+
+  /* --- Visuel flottant ---------------------------------------------------- */
+  {%- if s.float_image != blank -%}
+  #shopify-section-{{ uid }} .cc-hero__float {
+    position: absolute;
+    z-index: 1;
+    inset-inline-end: {{ s.float_offset_x }}px;
+    inset-block-end: {{ s.float_offset_y }}px;
+    inline-size: calc({{ s.float_width_mobile }} * 1px + ({{ s.float_width_desktop }} - {{ s.float_width_mobile }}) * var(--cc-fluid-t));
+    border-radius: {{ s.float_radius }}px;
+    overflow: hidden;
+    rotate: {{ s.float_rotate }}deg;
+    box-shadow: 0 24px 60px -24px rgba(var(--cc-ink-rgb), 0.45);
+    pointer-events: none;
+  }
+  #shopify-section-{{ uid }} .cc-hero__float img { inline-size: 100%; block-size: auto; }
+  {%- if s.float_hide_mobile -%}
+  @media (max-width: 767px) {
+    #shopify-section-{{ uid }} .cc-hero__float { display: none; }
+  }
+  {%- endif -%}
+  {%- endif -%}
+
+  /* --- Réglages mobile ----------------------------------------------------- */
+  {%- if s.collapse_breaks_mobile -%}
+  @media (max-width: 767px) {
+    #shopify-section-{{ uid }} .cc-hero__title br { display: none; }
+  }
+  {%- endif -%}
+</style>
+
+<div class="cc-hero">
+  <div class="cc-container cc-hero__inner">
+    {%- if s.proof_text != blank or avatars != blank -%}
+      <div class="cc-hero__proof">
+        {%- if avatars != blank -%}
+          <span class="cc-hero__avatars">
+            {%- assign avatar_keys = avatars | split: ',' -%}
+            {%- for key in avatar_keys -%}
+              {%- liquid
+                case key
+                  when '1'
+                    assign av = s.avatar_1
+                  when '2'
+                    assign av = s.avatar_2
+                  when '3'
+                    assign av = s.avatar_3
+                  when '4'
+                    assign av = s.avatar_4
+                endcase
+              -%}
+              {%- render 'cc-round-image',
+                image: av,
+                size: s.avatar_size_desktop,
+                loading: 'eager',
+                decorative: true
+              -%}
+            {%- endfor -%}
+          </span>
+        {%- endif -%}
+        {%- if s.proof_text != blank -%}
+          <span class="cc-hero__proof-text">{{ s.proof_text | escape }}</span>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <h1 class="cc-hero__title">
+      {%- assign bubble_index = 0 -%}
+      {%- for block in section.blocks -%}
+        {%- unless forloop.first -%}&#32;{%- endunless -%}
+        {%- case block.type -%}
+
+          {%- when 'line_break' -%}
+            <br {{ block.shopify_attributes }} />
+
+          {%- when 'text' -%}
+            <span
+              class="cc-hero__seg cc-hero__seg--{{ block.settings.tone }}"
+              {%- if block.settings.tone == 'custom' %} style="color: {{ block.settings.custom_color }};"{% endif %}
+              {{ block.shopify_attributes }}
+            >{{ block.settings.text | escape }}</span>
+
+          {%- when 'bubble' -%}
+            {%- liquid
+              assign delay = bubble_index | times: -13 | divided_by: 10.0
+              assign bubble_index = bubble_index | plus: 1
+
+              capture bubble_style
+                echo '--cc-sz-min:'
+                echo block.settings.size_mobile
+                echo ';--cc-sz-max:'
+                echo block.settings.size_desktop
+                echo ';'
+                if motion
+                  echo '--cc-fx:'
+                  echo block.settings.amplitude | divided_by: 2.4 | round: 2
+                  echo 'px;--cc-fy:'
+                  echo block.settings.amplitude
+                  echo 'px;--cc-fr:'
+                  echo block.settings.rotate | divided_by: 10.0
+                  echo 'deg;animation-duration:'
+                  echo block.settings.duration
+                  echo 's;animation-delay:'
+                  echo delay
+                  echo 's;'
+                endif
+              endcapture
+            -%}
+            <span {{ block.shopify_attributes }}>
+              {%- render 'cc-round-image',
+                image: block.settings.image,
+                size: block.settings.size_desktop,
+                alt: block.settings.image_alt,
+                decorative: block.settings.decorative,
+                loading: 'eager',
+                class: 'cc-bubble',
+                style: bubble_style
+              -%}
+            </span>
+
+        {%- endcase -%}
+      {%- endfor -%}
+    </h1>
+
+    {%- if s.sub_text != blank -%}
+      <p class="cc-hero__sub">{{ s.sub_text | escape }}</p>
+    {%- endif -%}
+
+    {%- if show_cta -%}
+      <a class="cc-btn cc-btn--{{ s.cta_style }} cc-hero__cta" href="{{ cta_url }}">
+        <span>{{ s.cta_label | escape }}</span>
+        {%- if s.cta_show_arrow -%}
+          <svg class="cc-btn__icon" width="17" height="14" viewBox="0 0 17 14" fill="none" aria-hidden="true" focusable="false">
+            <path d="M1 7h14M10 1.5 15.5 7 10 12.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        {%- endif -%}
+      </a>
+    {%- endif -%}
+  </div>
+
+  {%- if s.float_image != blank -%}
+    <div class="cc-hero__float" aria-hidden="true">
+      {{ s.float_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: '' }}
+    </div>
+  {%- endif -%}
+</div>
+
+{%- comment -%}
+  ==========================================================================
+  Données structurées de la section — Service
+  --------------------------------------------------------------------------
+  La prestation décrite par le hero est déclarée comme entité Service et
+  rattachée à l'entité Organization posée par l'en-tête via son @id. Les deux
+  entités se répondent au lieu de se dupliquer : c'est ce rattachement qui
+  permet à Google de relier la prestation à l'entreprise.
+  Rien n'est émis si le marchand n'a pas renseigné les champs.
+  ==========================================================================
+{%- endcomment -%}
+
+{%- if s.schema_service_enable and s.schema_service_name != blank -%}
+  {%- liquid
+    assign org_id = shop.url | append: '/#organization'
+    assign service_id = canonical_url | append: '#service'
+    assign areas = s.schema_service_areas | strip | newline_to_br | split: '<br />'
+    assign offers = s.schema_service_offers | strip | newline_to_br | split: '<br />'
+  -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": {{ service_id | json }},
+      "name": {{ s.schema_service_name | json }},
+      "url": {{ canonical_url | json }},
+      "provider": { "@id": {{ org_id | json }} }
+      {%- if s.schema_service_type != blank -%}
+        ,"serviceType": {{ s.schema_service_type | json }}
+      {%- endif -%}
+      {%- if s.schema_service_description != blank -%}
+        ,"description": {{ s.schema_service_description | json }}
+      {%- endif -%}
+      {%- if s.schema_service_audience != blank -%}
+        ,"audience": {
+          "@type": "BusinessAudience",
+          "name": {{ s.schema_service_audience | json }}
+        }
+      {%- endif -%}
+      {%- if areas.size > 0 -%}
+        ,"areaServed": [
+          {%- assign a = 0 -%}
+          {%- for area in areas -%}
+            {%- assign clean = area | strip -%}
+            {%- if clean != blank -%}
+              {%- if a > 0 %},{% endif -%}
+              { "@type": "AdministrativeArea", "name": {{ clean | json }} }
+              {%- assign a = a | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        ]
+      {%- endif -%}
+      {%- if offers.size > 0 -%}
+        ,"hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": {{ s.schema_service_name | json }},
+          "itemListElement": [
+            {%- assign o = 0 -%}
+            {%- for offer in offers -%}
+              {%- assign clean_offer = offer | strip -%}
+              {%- if clean_offer != blank -%}
+                {%- if o > 0 %},{% endif -%}
+                {
+                  "@type": "Offer",
+                  "itemOffered": { "@type": "Service", "name": {{ clean_offer | json }} }
+                }
+                {%- assign o = o | plus: 1 -%}
+              {%- endif -%}
+            {%- endfor -%}
+          ]
+        }
+      {%- endif -%}
+    }
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Hero — offre SEO",
+  "tag": "section",
+  "class": "cc-hero-section",
+  "settings": [
+    { "type": "header", "content": "Bandeau de réassurance" },
+    {
+      "type": "text",
+      "id": "proof_text",
+      "label": "Texte",
+      "default": "Ils nous confient leur acquisition."
+    },
+    { "type": "image_picker", "id": "avatar_1", "label": "Portrait 1" },
+    { "type": "image_picker", "id": "avatar_2", "label": "Portrait 2" },
+    { "type": "image_picker", "id": "avatar_3", "label": "Portrait 3" },
+    { "type": "image_picker", "id": "avatar_4", "label": "Portrait 4" },
+    {
+      "type": "paragraph",
+      "content": "Utilisez de vraies photos de clients ou de dirigeants accompagnés, avec leur accord. Des portraits de banque d'images sur une preuve sociale se repèrent, et se retournent contre la crédibilité de la page."
+    },
+    { "type": "range", "id": "avatar_size_mobile", "label": "Diamètre des portraits — mobile", "unit": "px", "min": 18, "max": 48, "step": 1, "default": 22 },
+    { "type": "range", "id": "avatar_size_desktop", "label": "Diamètre des portraits — desktop", "unit": "px", "min": 20, "max": 64, "step": 1, "default": 26 },
+    { "type": "color", "id": "avatar_ring", "label": "Liseré autour des portraits", "default": "#f0eeec" },
+    { "type": "range", "id": "proof_fs_mobile", "label": "Taille du texte — mobile", "unit": "px", "min": 11, "max": 20, "step": 1, "default": 13 },
+    { "type": "range", "id": "proof_fs_desktop", "label": "Taille du texte — desktop", "unit": "px", "min": 12, "max": 22, "step": 1, "default": 15 },
+    { "type": "color", "id": "proof_color", "label": "Couleur du texte", "default": "#3e3a35" },
+    { "type": "range", "id": "proof_gap", "label": "Espace portraits / texte", "unit": "px", "min": 4, "max": 24, "step": 1, "default": 10 },
+    { "type": "range", "id": "proof_mb_min", "label": "Espace sous le bandeau — mobile", "unit": "px", "min": 8, "max": 48, "step": 1, "default": 20 },
+    { "type": "range", "id": "proof_mb_max", "label": "Espace sous le bandeau — desktop", "unit": "px", "min": 8, "max": 64, "step": 1, "default": 34 },
+
+    { "type": "header", "content": "Titre principal (H1)" },
+    {
+      "type": "paragraph",
+      "content": "Le titre se compose avec les blocks ci-dessous : ajoutez des segments de texte, glissez des bulles entre eux et placez des retours à la ligne. Un seul H1 par page — c'est celui-ci sur la page d'accueil."
+    },
+    { "type": "range", "id": "h1_fs_mobile", "label": "Taille du titre — mobile", "unit": "px", "min": 22, "max": 56, "step": 1, "default": 34 },
+    { "type": "range", "id": "h1_fs_desktop", "label": "Taille du titre — desktop", "unit": "px", "min": 32, "max": 110, "step": 1, "default": 60 },
+    {
+      "type": "select",
+      "id": "h1_weight",
+      "label": "Graisse du titre",
+      "options": [
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi-bold" },
+        { "value": "700", "label": "Bold" },
+        { "value": "800", "label": "Extra-bold" }
+      ],
+      "default": "700"
+    },
+    { "type": "range", "id": "h1_max_width", "label": "Largeur maximale du titre", "unit": "car", "min": 10, "max": 40, "step": 1, "default": 30 },
+    {
+      "type": "checkbox",
+      "id": "collapse_breaks_mobile",
+      "label": "Ignorer les retours à la ligne sur mobile",
+      "default": true,
+      "info": "Recommandé : sous 767 px, le titre se réagence tout seul au lieu de subir une découpe pensée pour le desktop."
+    },
+
+    { "type": "header", "content": "Bulles du titre" },
+    { "type": "checkbox", "id": "enable_float", "label": "Animer le flottement des bulles", "default": true, "info": "L'animation ne joue que sur la position et l'inclinaison : le diamètre des bulles ne varie jamais et le texte ne se décale pas." },
+    { "type": "range", "id": "bubble_gap", "label": "Espace autour des bulles", "unit": "px", "min": 0, "max": 24, "step": 1, "default": 3 },
+    { "type": "range", "id": "bubble_shift", "label": "Décalage vertical des bulles", "unit": "px", "min": -20, "max": 20, "step": 1, "default": 0 },
+    { "type": "range", "id": "bubble_ring_width", "label": "Épaisseur du liseré", "unit": "px", "min": 0, "max": 8, "step": 1, "default": 0 },
+    { "type": "color", "id": "bubble_ring_color", "label": "Couleur du liseré", "default": "#ffffff" },
+
+    { "type": "header", "content": "Sous-titre" },
+    {
+      "type": "textarea",
+      "id": "sub_text",
+      "label": "Texte",
+      "default": "Structure technique, contenu et autorité : nous ciblons les recherches qui précèdent l'achat, et vous suivez les demandes qu'elles génèrent."
+    },
+    { "type": "range", "id": "sub_fs_mobile", "label": "Taille — mobile", "unit": "px", "min": 13, "max": 22, "step": 1, "default": 15 },
+    { "type": "range", "id": "sub_fs_desktop", "label": "Taille — desktop", "unit": "px", "min": 14, "max": 26, "step": 1, "default": 17 },
+    { "type": "range", "id": "sub_max_width", "label": "Largeur maximale", "unit": "car", "min": 30, "max": 90, "step": 1, "default": 64 },
+    { "type": "color", "id": "sub_color", "label": "Couleur", "default": "#6b655e" },
+    { "type": "range", "id": "sub_mt_min", "label": "Espace au-dessus — mobile", "unit": "px", "min": 8, "max": 48, "step": 1, "default": 18 },
+    { "type": "range", "id": "sub_mt_max", "label": "Espace au-dessus — desktop", "unit": "px", "min": 8, "max": 64, "step": 1, "default": 26 },
+
+    { "type": "header", "content": "Bouton d'action" },
+    { "type": "text", "id": "cta_label", "label": "Libellé", "default": "Demander un audit SEO", "info": "Annoncez l'action réelle. Un libellé vide masque le bouton." },
+    { "type": "url", "id": "cta_url", "label": "Destination", "default": "/pages/contact" },
+    { "type": "checkbox", "id": "cta_show_arrow", "label": "Afficher la flèche", "default": true },
+    {
+      "type": "select",
+      "id": "cta_style",
+      "label": "Style",
+      "options": [
+        { "value": "solid", "label": "Plein foncé" },
+        { "value": "accent", "label": "Plein accent" },
+        { "value": "ghost", "label": "Contour" }
+      ],
+      "default": "solid"
+    },
+    { "type": "range", "id": "cta_fs_mobile", "label": "Taille du libellé — mobile", "unit": "px", "min": 13, "max": 22, "step": 1, "default": 15 },
+    { "type": "range", "id": "cta_fs_desktop", "label": "Taille du libellé — desktop", "unit": "px", "min": 14, "max": 24, "step": 1, "default": 16 },
+    { "type": "range", "id": "cta_pad_y", "label": "Hauteur interne", "unit": "px", "min": 8, "max": 28, "step": 1, "default": 14 },
+    { "type": "range", "id": "cta_pad_x", "label": "Largeur interne", "unit": "px", "min": 14, "max": 56, "step": 1, "default": 30 },
+    { "type": "range", "id": "cta_mt_min", "label": "Espace au-dessus — mobile", "unit": "px", "min": 8, "max": 56, "step": 1, "default": 26 },
+    { "type": "range", "id": "cta_mt_max", "label": "Espace au-dessus — desktop", "unit": "px", "min": 8, "max": 80, "step": 1, "default": 38 },
+
+    { "type": "header", "content": "Visuel flottant" },
+    { "type": "image_picker", "id": "float_image", "label": "Image", "info": "Élément décoratif, volontairement rogné par le bord de section. Laissez vide pour ne rien afficher." },
+    { "type": "checkbox", "id": "float_hide_mobile", "label": "Masquer sur mobile", "default": true },
+    { "type": "range", "id": "float_width_mobile", "label": "Largeur — mobile", "unit": "px", "min": 80, "max": 320, "step": 4, "default": 140 },
+    { "type": "range", "id": "float_width_desktop", "label": "Largeur — desktop", "unit": "px", "min": 120, "max": 520, "step": 4, "default": 232 },
+    { "type": "range", "id": "float_offset_x", "label": "Décalage horizontal", "unit": "px", "min": -200, "max": 80, "step": 4, "default": -40 },
+    { "type": "range", "id": "float_offset_y", "label": "Décalage vertical", "unit": "px", "min": -200, "max": 120, "step": 4, "default": -56 },
+    { "type": "range", "id": "float_radius", "label": "Arrondi", "unit": "px", "min": 0, "max": 40, "step": 1, "default": 20 },
+    { "type": "range", "id": "float_rotate", "label": "Inclinaison", "unit": "°", "min": -15, "max": 15, "step": 1, "default": -4 },
+
+    { "type": "header", "content": "Mise en page de la section" },
+    {
+      "type": "select",
+      "id": "align",
+      "label": "Alignement",
+      "options": [
+        { "value": "center", "label": "Centré" },
+        { "value": "left", "label": "Aligné à gauche" }
+      ],
+      "default": "center"
+    },
+    { "type": "color", "id": "bg_color", "label": "Fond de section", "info": "Laissez vide pour hériter du fond du site." },
+    { "type": "range", "id": "pt_mobile", "label": "Espace au-dessus — mobile", "unit": "px", "min": 20, "max": 200, "step": 4, "default": 48 },
+    { "type": "range", "id": "pt_desktop", "label": "Espace au-dessus — desktop", "unit": "px", "min": 20, "max": 260, "step": 4, "default": 96 },
+    { "type": "range", "id": "pb_mobile", "label": "Espace en dessous — mobile", "unit": "px", "min": 20, "max": 200, "step": 4, "default": 64 },
+    { "type": "range", "id": "pb_desktop", "label": "Espace en dessous — desktop", "unit": "px", "min": 20, "max": 260, "step": 4, "default": 120 },
+
+    { "type": "header", "content": "Données structurées" },
+    { "type": "checkbox", "id": "schema_service_enable", "label": "Déclarer la prestation (Service)", "default": true },
+    { "type": "text", "id": "schema_service_name", "label": "Nom de la prestation", "default": "Référencement naturel" },
+    { "type": "text", "id": "schema_service_type", "label": "Type de prestation", "default": "Optimisation pour les moteurs de recherche" },
+    {
+      "type": "textarea",
+      "id": "schema_service_description",
+      "label": "Description",
+      "default": "Accompagnement en référencement naturel pour PME et marques e-commerce : audit, structure technique, production de contenu et acquisition d'autorité, mesurés à la demande entrante."
+    },
+    { "type": "text", "id": "schema_service_audience", "label": "Public visé", "default": "PME et marques e-commerce" },
+    {
+      "type": "textarea",
+      "id": "schema_service_areas",
+      "label": "Zones desservies",
+      "info": "Une zone par ligne.",
+      "default": "Paris\nÎle-de-France\nNice\nLuxembourg"
+    },
+    {
+      "type": "textarea",
+      "id": "schema_service_offers",
+      "label": "Prestations du catalogue",
+      "info": "Une prestation par ligne. Alimente le OfferCatalog. Ne listez que des prestations réellement vendues.",
+      "default": "Audit SEO\nSEO technique\nContenu et sémantique\nNetlinking\nSEO Shopify\nOptimisation de la conversion"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Segment de texte",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Texte", "default": "Un mot" },
+        {
+          "type": "select",
+          "id": "tone",
+          "label": "Couleur",
+          "options": [
+            { "value": "default", "label": "Texte principal" },
+            { "value": "muted", "label": "Texte secondaire" },
+            { "value": "accent", "label": "Accent de marque" },
+            { "value": "on-dark", "label": "Clair (sur fond foncé)" },
+            { "value": "custom", "label": "Personnalisée" }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "color",
+          "id": "custom_color",
+          "label": "Couleur personnalisée",
+          "default": "#14120f",
+          "visible_if": "{{ block.settings.tone == 'custom' }}"
+        }
+      ]
+    },
+    {
+      "type": "bubble",
+      "name": "Bulle",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        {
+          "type": "paragraph",
+          "content": "L'image se recadre automatiquement dans le cercle, quel que soit son format d'origine. Pour choisir la partie visible, définissez le point focal dans Contenu › Fichiers."
+        },
+        { "type": "range", "id": "size_mobile", "label": "Diamètre — mobile", "unit": "px", "min": 16, "max": 80, "step": 1, "default": 34 },
+        { "type": "range", "id": "size_desktop", "label": "Diamètre — desktop", "unit": "px", "min": 24, "max": 140, "step": 2, "default": 62 },
+        { "type": "range", "id": "amplitude", "label": "Amplitude du flottement", "unit": "px", "min": 0, "max": 20, "step": 1, "default": 6 },
+        { "type": "range", "id": "rotate", "label": "Inclinaison du flottement", "unit": "×0,1°", "min": -80, "max": 80, "step": 2, "default": 24 },
+        { "type": "range", "id": "duration", "label": "Durée d'un cycle", "unit": "s", "min": 3, "max": 14, "step": 1, "default": 7 },
+        {
+          "type": "checkbox",
+          "id": "decorative",
+          "label": "Image décorative",
+          "default": true,
+          "info": "Recommandé : une bulle décorative est ignorée par les lecteurs d'écran, ce qui garde le H1 lisible. Décochez seulement si l'image porte une information et remplissez alors le texte alternatif."
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Texte alternatif",
+          "visible_if": "{{ block.settings.decorative == false }}"
+        }
+      ]
+    },
+    { "type": "line_break", "name": "Retour à la ligne", "settings": [] }
+  ],
+  "presets": [
+    {
+      "name": "Hero — offre SEO",
+      "blocks": [
+        { "type": "text", "settings": { "text": "Agence", "tone": "default" } },
+        { "type": "bubble" },
+        { "type": "text", "settings": { "text": "SEO à Paris.", "tone": "accent" } },
+        { "type": "line_break" },
+        { "type": "text", "settings": { "text": "Des positions", "tone": "muted" } },
+        { "type": "bubble", "settings": { "duration": 8, "amplitude": 5, "rotate": -20 } },
+        { "type": "text", "settings": { "text": "durables,", "tone": "default" } },
+        { "type": "line_break" },
+        { "type": "text", "settings": { "text": "des demandes", "tone": "default" } },
+        { "type": "bubble", "settings": { "duration": 6, "amplitude": 7, "rotate": 30 } },
+        { "type": "text", "settings": { "text": "qualifiées.", "tone": "default" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

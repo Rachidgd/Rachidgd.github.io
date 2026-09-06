@@ -1,0 +1,71 @@
+{%- comment -%}
+  Média circulaire — Clickscreation
+
+  Principe : c'est la pastille qui impose sa taille, l'image s'y adapte.
+  On recadre carré côté CDN Shopify (crop: 'center', ou point focal si défini
+  dans l'admin) puis object-fit: cover côté CSS. Une image portrait, paysage
+  ou panoramique donnera donc toujours un cercle parfait, sans déformation et
+  sans jamais modifier les dimensions de la pastille.
+
+  Paramètres
+    image         objet image (facultatif — placeholder sinon)
+    size          nombre — diamètre d'affichage max en px (desktop)
+    alt           chaîne — texte alternatif (facultatif)
+    decorative    booléen — true = masqué aux lecteurs d'écran
+    loading       'eager' | 'lazy' (défaut : 'lazy')
+    priority      booléen — true = fetchpriority="high"
+    class         classes additionnelles sur la pastille
+    style         style inline additionnel (variables CSS)
+{%- endcomment -%}
+
+{%- liquid
+  assign cc_px = 180
+  if size != blank
+    assign cc_px = size | times: 3 | round
+  endif
+  if cc_px < 90
+    assign cc_px = 90
+  endif
+  if cc_px > 900
+    assign cc_px = 900
+  endif
+
+  assign cc_loading = loading
+  if cc_loading == blank
+    assign cc_loading = 'lazy'
+  endif
+
+  assign cc_alt = alt
+  if cc_alt == blank
+    assign cc_alt = image.alt
+  endif
+
+  assign cc_class = 'cc-round'
+  if class != blank
+    assign cc_class = cc_class | append: ' ' | append: class
+  endif
+-%}
+
+<span
+  class="{{ cc_class }}"
+  {%- if style != blank %} style="{{ style }}"{% endif %}
+  {%- if decorative %} aria-hidden="true"{% endif %}
+>
+  {%- if image != blank -%}
+    {%- if priority -%}
+      {{
+        image
+        | image_url: width: cc_px, height: cc_px, crop: 'center'
+        | image_tag: loading: cc_loading, fetchpriority: 'high', alt: cc_alt, class: 'cc-round__img'
+      }}
+    {%- else -%}
+      {{
+        image
+        | image_url: width: cc_px, height: cc_px, crop: 'center'
+        | image_tag: loading: cc_loading, alt: cc_alt, class: 'cc-round__img'
+      }}
+    {%- endif -%}
+  {%- else -%}
+    {{ 'image' | placeholder_svg_tag: 'cc-round__img cc-round__img--placeholder' }}
+  {%- endif -%}
+</span>

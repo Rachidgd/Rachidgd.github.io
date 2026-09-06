@@ -1,0 +1,23 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Aller au contenu principal",
+      "close": "Fermer",
+      "menu": "Menu"
+    },
+    "meta": {
+      "tags": "Étiqueté « {{ tags }} »",
+      "page": "Page {{ page }}"
+    },
+    "search": {
+      "search": "Rechercher"
+    }
+  },
+  "shopify": {
+    "sentence": {
+      "words_connector": ", ",
+      "two_words_connector": " et ",
+      "last_word_connector": " et "
+    }
+  }
+}

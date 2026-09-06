@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-seo",
+      "blocks": {
+        "seg-1": { "type": "text", "settings": { "text": "Agence", "tone": "default" } },
+        "bubble-1": { "type": "bubble", "settings": { "duration": 7, "amplitude": 6, "rotate": 24 } },
+        "seg-2": { "type": "text", "settings": { "text": "SEO à Paris.", "tone": "accent" } },
+        "br-1": { "type": "line_break", "settings": {} },
+        "seg-3": { "type": "text", "settings": { "text": "Des positions", "tone": "muted" } },
+        "bubble-2": { "type": "bubble", "settings": { "duration": 8, "amplitude": 5, "rotate": -20 } },
+        "seg-4": { "type": "text", "settings": { "text": "durables,", "tone": "default" } },
+        "br-2": { "type": "line_break", "settings": {} },
+        "seg-5": { "type": "text", "settings": { "text": "des demandes", "tone": "default" } },
+        "bubble-3": { "type": "bubble", "settings": { "duration": 6, "amplitude": 7, "rotate": 30 } },
+        "seg-6": { "type": "text", "settings": { "text": "qualifiées.", "tone": "default" } }
+      },
+      "block_order": [
+        "seg-1", "bubble-1", "seg-2",
+        "br-1",
+        "seg-3", "bubble-2", "seg-4",
+        "br-2",
+        "seg-5", "bubble-3", "seg-6"
+      ],
+      "settings": {}
+    }
+  },
+  "order": ["hero"]
+}

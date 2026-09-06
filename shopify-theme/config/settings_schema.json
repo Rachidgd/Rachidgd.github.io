@@ -1,0 +1,205 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Clickscreation",
+    "theme_version": "1.0.0",
+    "theme_author": "Clickscreation",
+    "theme_documentation_url": "https://clickscreation.com/pages/plan-du-site",
+    "theme_support_url": "https://clickscreation.com/pages/contact"
+  },
+  {
+    "name": "Couleurs",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Fond et texte"
+      },
+      {
+        "type": "color",
+        "id": "cc_bg",
+        "label": "Fond du site",
+        "default": "#f0eeec"
+      },
+      {
+        "type": "color",
+        "id": "cc_ink",
+        "label": "Texte principal",
+        "default": "#14120f"
+      },
+      {
+        "type": "color",
+        "id": "cc_muted",
+        "label": "Texte secondaire",
+        "default": "#8a847d"
+      },
+      {
+        "type": "color",
+        "id": "cc_line",
+        "label": "Filets et bordures",
+        "default": "#dcd7d1"
+      },
+      {
+        "type": "header",
+        "content": "Couleurs de marque"
+      },
+      {
+        "type": "color",
+        "id": "cc_accent",
+        "label": "Accent (orange de marque)",
+        "default": "#ff4a17"
+      },
+      {
+        "type": "color",
+        "id": "cc_dark",
+        "label": "Surface foncée (boutons, badge)",
+        "default": "#3e3a35"
+      },
+      {
+        "type": "color",
+        "id": "cc_on_dark",
+        "label": "Texte sur surface foncée",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "cc_focus",
+        "label": "Anneau de focus clavier",
+        "info": "Doit rester très contrasté : c'est un critère d'accessibilité RGAA / WCAG.",
+        "default": "#0b57d0"
+      }
+    ]
+  },
+  {
+    "name": "Typographie",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "cc_heading_font",
+        "label": "Police des titres",
+        "default": "poppins_n7"
+      },
+      {
+        "type": "font_picker",
+        "id": "cc_body_font",
+        "label": "Police du texte courant",
+        "default": "poppins_n4"
+      },
+      {
+        "type": "range",
+        "id": "cc_heading_tracking",
+        "label": "Interlettrage des titres",
+        "unit": "‰",
+        "min": -60,
+        "max": 20,
+        "step": 1,
+        "default": -25,
+        "info": "Valeur négative = lettres resserrées. Reproduit le serrage de la maquette."
+      },
+      {
+        "type": "range",
+        "id": "cc_heading_leading",
+        "label": "Interlignage des titres",
+        "unit": "%",
+        "min": 85,
+        "max": 150,
+        "step": 1,
+        "default": 108
+      },
+      {
+        "type": "range",
+        "id": "cc_body_leading",
+        "label": "Interlignage du texte courant",
+        "unit": "%",
+        "min": 110,
+        "max": 200,
+        "step": 2,
+        "default": 154
+      },
+      {
+        "type": "header",
+        "content": "Bornes du texte fluide"
+      },
+      {
+        "type": "paragraph",
+        "content": "Toutes les tailles de police du thème sont interpolées entre ces deux largeurs d'écran. En dessous de la borne mobile et au-dessus de la borne desktop, la taille se fige : aucun texte ne devient illisible ou démesuré."
+      },
+      {
+        "type": "range",
+        "id": "cc_fluid_min_w",
+        "label": "Borne mobile",
+        "unit": "px",
+        "min": 320,
+        "max": 480,
+        "step": 10,
+        "default": 390
+      },
+      {
+        "type": "range",
+        "id": "cc_fluid_max_w",
+        "label": "Borne desktop",
+        "unit": "px",
+        "min": 1100,
+        "max": 1800,
+        "step": 20,
+        "default": 1440
+      }
+    ]
+  },
+  {
+    "name": "Mise en page",
+    "settings": [
+      {
+        "type": "range",
+        "id": "cc_container",
+        "label": "Largeur maximale du contenu",
+        "unit": "px",
+        "min": 960,
+        "max": 1680,
+        "step": 20,
+        "default": 1200
+      },
+      {
+        "type": "range",
+        "id": "cc_gutter_mobile",
+        "label": "Marge latérale sur mobile",
+        "unit": "px",
+        "min": 12,
+        "max": 40,
+        "step": 2,
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "cc_gutter_desktop",
+        "label": "Marge latérale sur desktop",
+        "unit": "px",
+        "min": 16,
+        "max": 80,
+        "step": 2,
+        "default": 32
+      },
+      {
+        "type": "range",
+        "id": "cc_radius",
+        "label": "Arrondi des cartes et visuels",
+        "unit": "px",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "default": 20
+      }
+    ]
+  },
+  {
+    "name": "Animations",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cc_motion",
+        "label": "Activer les animations décoratives",
+        "default": true,
+        "info": "Les animations sont automatiquement désactivées pour les visiteurs qui ont demandé une réduction des animations dans leur système (prefers-reduced-motion)."
+      }
+    ]
+  }
+]

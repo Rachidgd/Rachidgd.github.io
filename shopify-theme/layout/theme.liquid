@@ -1,0 +1,107 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {%- comment -%}
+      Pas de maximum-scale ni de user-scalable=no : bloquer le zoom est un
+      échec d'accessibilité (WCAG 1.4.4) et un signal négatif côté mobile.
+    {%- endcomment -%}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="{{ settings.cc_bg }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 48, height: 48 }}">
+    {%- endif -%}
+
+    <title>
+      {{- page_title -}}
+      {%- if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {%- liquid
+      assign heading_font = settings.cc_heading_font
+      assign body_font = settings.cc_body_font
+
+      assign body_font_bold = body_font | font_modify: 'weight', 'bolder'
+      if body_font_bold == blank
+        assign body_font_bold = body_font
+      endif
+
+      assign body_font_medium = body_font | font_modify: 'weight', 500
+      if body_font_medium == blank
+        assign body_font_medium = body_font
+      endif
+    -%}
+
+    {%- comment -%} La police des titres porte le LCP : on la précharge. {%- endcomment -%}
+    {{ heading_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: 'anonymous' }}
+
+    {{ heading_font | font_face: font_display: 'swap' }}
+    {{ body_font | font_face: font_display: 'swap' }}
+    {{ body_font_medium | font_face: font_display: 'swap' }}
+    {{ body_font_bold | font_face: font_display: 'swap' }}
+
+    {%- comment -%}
+      Tokens du design system injectés depuis les réglages du thème.
+      Aucune couleur, police ou dimension n'est écrite en dur dans les CSS.
+    {%- endcomment -%}
+    <style>
+      :root {
+        --cc-bg: {{ settings.cc_bg }};
+        --cc-ink: {{ settings.cc_ink }};
+        --cc-ink-rgb: {{ settings.cc_ink.red }}, {{ settings.cc_ink.green }}, {{ settings.cc_ink.blue }};
+        --cc-muted: {{ settings.cc_muted }};
+        --cc-line: {{ settings.cc_line }};
+        --cc-accent: {{ settings.cc_accent }};
+        --cc-accent-rgb: {{ settings.cc_accent.red }}, {{ settings.cc_accent.green }}, {{ settings.cc_accent.blue }};
+        --cc-dark: {{ settings.cc_dark }};
+        --cc-dark-rgb: {{ settings.cc_dark.red }}, {{ settings.cc_dark.green }}, {{ settings.cc_dark.blue }};
+        --cc-on-dark: {{ settings.cc_on_dark }};
+        --cc-focus: {{ settings.cc_focus }};
+
+        --cc-font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+        --cc-font-heading-weight: {{ heading_font.weight }};
+        --cc-font-heading-style: {{ heading_font.style }};
+        --cc-font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+        --cc-font-body-weight: {{ body_font.weight }};
+
+        --cc-heading-tracking: {{ settings.cc_heading_tracking | divided_by: 1000.0 }}em;
+        --cc-heading-leading: {{ settings.cc_heading_leading }};
+        --cc-body-leading: {{ settings.cc_body_leading }};
+
+        --cc-fluid-min-w: {{ settings.cc_fluid_min_w }};
+        --cc-fluid-max-w: {{ settings.cc_fluid_max_w }};
+
+        --cc-container: {{ settings.cc_container }};
+        --cc-gutter-mobile: {{ settings.cc_gutter_mobile }};
+        --cc-gutter-desktop: {{ settings.cc_gutter_desktop }};
+        --cc-radius: {{ settings.cc_radius }}px;
+      }
+    </style>
+
+    {{ 'cc-base.css' | asset_url | stylesheet_tag }}
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    </script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="cc-body template-{{ request.page_type | handle }}">
+    {% sections 'header-group' %}
+
+    <main id="MainContent" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+  </body>
+</html>
