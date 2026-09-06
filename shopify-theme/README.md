@@ -160,6 +160,17 @@ largeurs testées.
 
 ---
 
+## Avant chaque envoi
+
+```bash
+node tools/validate-schemas.mjs shopify-theme
+```
+
+Theme Check ne couvre pas toutes les règles de schema : un `default` interdit
+sur un réglage `url` passe son contrôle et n'échoue qu'à l'enregistrement du
+fichier dans l'éditeur de thème. Ce validateur les vérifie en amont. Détail
+dans `tools/README.md`.
+
 ## Contrôles passés
 
 Theme Check : **0 erreur**. Rendu réel des fichiers Liquid via un moteur Liquid,

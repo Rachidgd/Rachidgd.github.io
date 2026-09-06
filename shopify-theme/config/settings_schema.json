@@ -149,6 +149,16 @@
     "name": "Mise en page",
     "settings": [
       {
+        "type": "header",
+        "content": "Identité"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Image carrée, 96 × 96 px minimum."
+      },
+      {
         "type": "range",
         "id": "cc_container",
         "label": "Largeur maximale du contenu",
