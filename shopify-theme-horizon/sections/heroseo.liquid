@@ -48,11 +48,11 @@
     assign avatars = avatars | append: '4,'
   endif
 
-  comment
-    settings.cc_motion n'existe pas dans un thème hôte : la valeur est nil,
-    donc fausse, et toute animation disparaissait sans raison. On inverse la
-    logique — seule une désactivation explicite compte.
-  endcomment
+  # settings.cc_motion n'existe pas dans un thème hôte : la valeur est nil,
+  # donc fausse, et toute animation disparaissait sans raison. On inverse la
+  # logique — seule une désactivation explicite compte. Commentaires en # et
+  # non en bloc comment : dans une balise {% liquid %}, chaque ligne est lue
+  # comme un tag, et du texte libre y est un risque de parsing.
   assign motion = s.enable_float
   if settings.cc_motion == false
     assign motion = false
