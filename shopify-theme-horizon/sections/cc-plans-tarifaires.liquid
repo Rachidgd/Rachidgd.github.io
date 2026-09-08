@@ -1,0 +1,678 @@
+{%- liquid
+  assign s = section.settings
+  assign uid = section.id
+-%}
+
+<style>
+  #shopify-section-{{ uid }} {
+    display: block;
+    overflow-x: clip;
+    background: {{ s.background_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing {
+    overflow-x: clip;
+    padding-top: {{ s.padding_top_mobile }}px;
+    padding-bottom: {{ s.padding_bottom_mobile }}px;
+    color: {{ s.text_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing,
+  #shopify-section-{{ uid }} .cc-pricing *,
+  #shopify-section-{{ uid }} .cc-pricing *::before,
+  #shopify-section-{{ uid }} .cc-pricing *::after {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__inner {
+    width: min({{ s.max_width }}px, calc(100% - 32px));
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__header {
+    display: grid;
+    justify-items: center;
+    gap: {{ s.header_gap_mobile }}px;
+    margin-bottom: {{ s.header_bottom_mobile }}px;
+    text-align: center;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__eyebrow {
+    margin: 0;
+    color: {{ s.eyebrow_color }};
+    font-size: {{ s.eyebrow_size }}px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__title {
+    margin: 0;
+    color: {{ s.title_color }};
+    font-size: {{ s.title_size_mobile }}px;
+    font-weight: 850;
+    line-height: 0.96;
+    letter-spacing: 0;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__cards {
+    display: grid;
+    width: min({{ s.cards_width }}px, 100%);
+    gap: {{ s.card_gap_mobile }}px;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__card {
+    position: relative;
+    display: grid;
+    min-height: {{ s.card_min_height_mobile }}px;
+    gap: 32px;
+    overflow: hidden;
+    padding: {{ s.card_padding_mobile }}px;
+    border: 1px solid var(--cc-card-border);
+    border-radius: {{ s.card_radius }}px;
+    background: var(--cc-card-bg);
+    color: var(--cc-card-text);
+    isolation: isolate;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__card-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -4;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: var(--cc-bg-opacity);
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__card-glow {
+    position: absolute;
+    inset: auto -18% -38% -18%;
+    z-index: -3;
+    height: 62%;
+    background:
+      radial-gradient(circle at 22% 92%, var(--cc-glow-color) 0%, rgba(255, 255, 255, 0) 58%),
+      linear-gradient(0deg, var(--cc-accent) 0%, rgba(255, 255, 255, 0) 100%);
+    opacity: var(--cc-glow-opacity);
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__card-texture {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0) 36%),
+      repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0 1px, rgba(255, 255, 255, 0) 1px 8px);
+    opacity: var(--cc-texture-opacity);
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__card-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.12));
+    opacity: var(--cc-overlay-opacity);
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__side {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 34px;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__icon {
+    display: inline-grid;
+    width: {{ s.icon_box_size }}px;
+    height: {{ s.icon_box_size }}px;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid var(--cc-icon-border);
+    border-radius: {{ s.icon_radius }}px;
+    background: var(--cc-icon-bg);
+    color: var(--cc-icon-text);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, {{ s.icon_shadow_opacity | divided_by: 100.0 }});
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__icon-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__icon-text {
+    font-size: {{ s.icon_text_size }}px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__plan-title {
+    margin: {{ s.plan_title_top }}px 0 0;
+    color: var(--cc-card-text);
+    font-size: {{ s.plan_title_size_mobile }}px;
+    font-weight: 850;
+    line-height: 1.05;
+    letter-spacing: 0;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__description {
+    max-width: {{ s.description_width }}px;
+    margin: {{ s.description_top }}px 0 0;
+    color: var(--cc-muted);
+    font-size: {{ s.body_size_mobile }}px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__delivery {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+    padding-bottom: {{ s.delivery_bottom_padding }}px;
+    border-bottom: 1px solid var(--cc-divider);
+    color: var(--cc-delivery-text);
+    font-size: {{ s.body_size_mobile }}px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__delivery-value {
+    color: var(--cc-delivery-value);
+    font-weight: 800;
+    text-align: right;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__price-wrap {
+    display: flex;
+    min-width: 0;
+    align-items: end;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__price-prefix {
+    flex-basis: 100%;
+    color: var(--cc-card-text);
+    font-size: {{ s.price_prefix_size_mobile }}px;
+    font-weight: 850;
+    line-height: 1.05;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__price {
+    color: var(--cc-price-color);
+    font-size: {{ s.price_size_mobile }}px;
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: 0;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__period {
+    padding-bottom: 0.32em;
+    color: var(--cc-muted);
+    font-size: {{ s.period_size }}px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__divider {
+    width: 100%;
+    height: 1px;
+    margin: {{ s.price_divider_top }}px 0 {{ s.price_divider_bottom }}px;
+    background: var(--cc-divider);
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__features {
+    display: grid;
+    gap: {{ s.feature_gap }}px;
+    margin: 0;
+    padding: {{ s.features_extra_top }}px 0 0;
+    list-style: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__feature {
+    display: grid;
+    grid-template-columns: {{ s.check_size }}px minmax(0, 1fr);
+    align-items: start;
+    gap: 12px;
+    color: var(--cc-feature-text);
+    font-size: {{ s.body_size_mobile }}px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__check {
+    display: inline-grid;
+    width: {{ s.check_size }}px;
+    height: {{ s.check_size }}px;
+    place-items: center;
+    border-radius: 999px;
+    background: var(--cc-check-bg);
+    color: var(--cc-check-text);
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__check svg {
+    width: 62%;
+    height: 62%;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: {{ s.button_height }}px;
+    margin-top: {{ s.button_top }}px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: var(--cc-button-bg);
+    color: var(--cc-button-text);
+    font-size: {{ s.button_size }}px;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__button svg {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+  }
+
+  #shopify-section-{{ uid }} .cc-pricing__empty {
+    display: grid;
+    min-height: 260px;
+    place-items: center;
+    padding: 32px;
+    border-radius: {{ s.card_radius }}px;
+    background: rgba(255, 255, 255, 0.55);
+    color: {{ s.text_color }};
+    text-align: center;
+  }
+
+  @media (min-width: 750px) {
+    #shopify-section-{{ uid }} .cc-pricing {
+      padding-top: {{ s.padding_top_desktop }}px;
+      padding-bottom: {{ s.padding_bottom_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-pricing__inner {
+      width: min({{ s.max_width }}px, calc(100% - 64px));
+    }
+
+    #shopify-section-{{ uid }} .cc-pricing__header {
+      gap: {{ s.header_gap_desktop }}px;
+      margin-bottom: {{ s.header_bottom_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-pricing__title {
+      font-size: {{ s.title_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-pricing__cards {
+      gap: {{ s.card_gap_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-pricing__card {
+      min-height: {{ s.card_min_height_desktop }}px;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: {{ s.card_column_gap }}px;
+      padding: {{ s.card_padding_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-pricing__plan-title {
+      font-size: {{ s.plan_title_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-pricing__description,
+    #shopify-section-{{ uid }} .cc-pricing__delivery,
+    #shopify-section-{{ uid }} .cc-pricing__feature {
+      font-size: {{ s.body_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-pricing__price-prefix {
+      font-size: {{ s.price_prefix_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-pricing__price {
+      font-size: {{ s.price_size_desktop }}px;
+    }
+  }
+</style>
+
+<section class="cc-pricing" aria-label="{{ s.section_aria_label | escape }}">
+  <div class="cc-pricing__inner">
+    <div class="cc-pricing__header">
+      {%- if s.eyebrow != blank -%}
+        <p class="cc-pricing__eyebrow">{{ s.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      {%- if s.title != blank -%}
+        <h2 class="cc-pricing__title">{{ s.title | escape }}</h2>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="cc-pricing__cards">
+        {%- for block in section.blocks -%}
+          {%- assign features = block.settings.features | strip | newline_to_br | split: '<br />' -%}
+          <article
+            class="cc-pricing__card"
+            style="
+              --cc-card-bg: {{ block.settings.card_background }};
+              --cc-card-text: {{ block.settings.card_text_color }};
+              --cc-muted: {{ block.settings.muted_text_color }};
+              --cc-muted-strong: {{ block.settings.muted_strong_color }};
+              --cc-delivery-text: {% if block.settings.delivery_text_color != blank %}{{ block.settings.delivery_text_color }}{% else %}{{ block.settings.card_text_color }}{% endif %};
+              --cc-delivery-value: {% if block.settings.delivery_value_color != blank %}{{ block.settings.delivery_value_color }}{% else %}{{ block.settings.card_text_color }}{% endif %};
+              --cc-feature-text: {{ block.settings.feature_text_color }};
+              --cc-price-color: {{ block.settings.price_color }};
+              --cc-accent: {{ block.settings.accent_color }};
+              --cc-divider: {{ block.settings.divider_color }};
+              --cc-card-border: {{ block.settings.border_color }};
+              --cc-icon-bg: {{ block.settings.icon_background }};
+              --cc-icon-text: {{ block.settings.icon_text_color }};
+              --cc-icon-border: {{ block.settings.icon_border_color }};
+              --cc-check-bg: {{ block.settings.check_background }};
+              --cc-check-text: {{ block.settings.check_color }};
+              --cc-button-bg: {{ block.settings.button_background }};
+              --cc-button-text: {{ block.settings.button_text_color }};
+              --cc-glow-color: {{ block.settings.glow_color }};
+              --cc-glow-opacity: {{ block.settings.glow_opacity | divided_by: 100.0 }};
+              --cc-texture-opacity: {{ block.settings.texture_opacity | divided_by: 100.0 }};
+              --cc-overlay-opacity: {{ block.settings.overlay_opacity | divided_by: 100.0 }};
+              --cc-bg-opacity: {{ block.settings.background_image_opacity | divided_by: 100.0 }};
+            "
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.background_image != blank -%}
+              {{ block.settings.background_image | image_url: width: 1600 | image_tag: loading: 'lazy', class: 'cc-pricing__card-bg', alt: '' }}
+            {%- endif -%}
+            <span class="cc-pricing__card-glow" aria-hidden="true"></span>
+            <span class="cc-pricing__card-texture" aria-hidden="true"></span>
+            <span class="cc-pricing__card-overlay" aria-hidden="true"></span>
+
+            <div class="cc-pricing__side cc-pricing__side--left">
+              <div>
+                <span class="cc-pricing__icon" aria-hidden="true">
+                  {%- if block.settings.icon_image != blank -%}
+                    {{ block.settings.icon_image | image_url: width: 140 | image_tag: loading: 'lazy', class: 'cc-pricing__icon-image', alt: '' }}
+                  {%- else -%}
+                    <span class="cc-pricing__icon-text">{{ block.settings.icon_text | escape }}</span>
+                  {%- endif -%}
+                </span>
+
+                {%- if block.settings.title != blank -%}
+                  <h3 class="cc-pricing__plan-title">{{ block.settings.title | escape }}</h3>
+                {%- endif -%}
+
+                {%- if block.settings.description != blank -%}
+                  <p class="cc-pricing__description">{{ block.settings.description | escape | newline_to_br }}</p>
+                {%- endif -%}
+              </div>
+
+              <div class="cc-pricing__delivery">
+                <span>{{ block.settings.delivery_label | escape }}</span>
+                <span class="cc-pricing__delivery-value">{{ block.settings.delivery_value | escape }}</span>
+              </div>
+            </div>
+
+            <div class="cc-pricing__side cc-pricing__side--right">
+              <div>
+                <div class="cc-pricing__price-wrap">
+                  {%- if block.settings.price_prefix != blank -%}
+                    <span class="cc-pricing__price-prefix">{{ block.settings.price_prefix | escape }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.price != blank -%}
+                    <span class="cc-pricing__price">{{ block.settings.price | escape }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.period != blank -%}
+                    <span class="cc-pricing__period">{{ block.settings.period | escape }}</span>
+                  {%- endif -%}
+                </div>
+
+                <div class="cc-pricing__divider"></div>
+
+                {%- if block.settings.features != blank -%}
+                  <ul class="cc-pricing__features">
+                    {%- for feature in features -%}
+                      {%- assign clean_feature = feature | strip -%}
+                      {%- if clean_feature != blank -%}
+                        <li class="cc-pricing__feature">
+                          <span class="cc-pricing__check" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" focusable="false">
+                              <path d="M6 12.5L10.1 16.4L18 7.6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </span>
+                          <span>{{ clean_feature | escape }}</span>
+                        </li>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                {%- endif -%}
+              </div>
+
+              {%- if block.settings.button_label != blank -%}
+                <a class="cc-pricing__button" href="{{ block.settings.button_link | default: '#' }}">
+                  <span>{{ block.settings.button_label | escape }}</span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M5 12H18M13 7L18 12L13 17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              {%- endif -%}
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="cc-pricing__empty">
+        <p>{{ s.empty_state_text | escape }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Plans tarifaires",
+  "tag": "section",
+  "class": "cc-pricing-section",
+  "settings": [
+    { "type": "header", "content": "Textes" },
+    { "type": "text", "id": "section_aria_label", "label": "Libellé accessible", "default": "Plans tarifaires" },
+    { "type": "text", "id": "eyebrow", "label": "Surtitre", "default": "(Plans tarifaires)" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Explorez nos tarifs" },
+    { "type": "text", "id": "empty_state_text", "label": "Texte si aucun plan n'est ajouté", "default": "Ajoutez un plan tarifaire depuis l'éditeur de thème." },
+
+    { "type": "header", "content": "Marges et largeur" },
+    { "type": "range", "id": "padding_top_mobile", "label": "Marge haute mobile", "unit": "px", "min": 0, "max": 240, "step": 4, "default": 72 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Marge basse mobile", "unit": "px", "min": 0, "max": 240, "step": 4, "default": 72 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Marge haute desktop", "unit": "px", "min": 0, "max": 320, "step": 4, "default": 112 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Marge basse desktop", "unit": "px", "min": 0, "max": 320, "step": 4, "default": 112 },
+    { "type": "range", "id": "max_width", "label": "Largeur section", "unit": "px", "min": 760, "max": 1400, "step": 10, "default": 1100 },
+    { "type": "range", "id": "cards_width", "label": "Largeur des cartes", "unit": "px", "min": 620, "max": 980, "step": 10, "default": 760 },
+    { "type": "range", "id": "header_gap_mobile", "label": "Espace surtitre/titre mobile", "unit": "px", "min": 6, "max": 48, "step": 1, "default": 16 },
+    { "type": "range", "id": "header_gap_desktop", "label": "Espace surtitre/titre desktop", "unit": "px", "min": 6, "max": 60, "step": 1, "default": 18 },
+    { "type": "range", "id": "header_bottom_mobile", "label": "Espace sous le titre mobile", "unit": "px", "min": 28, "max": 110, "step": 1, "default": 52 },
+    { "type": "range", "id": "header_bottom_desktop", "label": "Espace sous le titre desktop", "unit": "px", "min": 36, "max": 150, "step": 2, "default": 72 },
+
+    { "type": "header", "content": "Cartes" },
+    { "type": "range", "id": "card_gap_mobile", "label": "Espace entre cartes mobile", "unit": "px", "min": 12, "max": 80, "step": 1, "default": 22 },
+    { "type": "range", "id": "card_gap_desktop", "label": "Espace entre cartes desktop", "unit": "px", "min": 12, "max": 90, "step": 1, "default": 28 },
+    { "type": "range", "id": "card_min_height_mobile", "label": "Hauteur minimale carte mobile", "unit": "px", "min": 380, "max": 760, "step": 5, "default": 520 },
+    { "type": "range", "id": "card_min_height_desktop", "label": "Hauteur minimale carte desktop", "unit": "px", "min": 260, "max": 480, "step": 5, "default": 330 },
+    { "type": "range", "id": "card_padding_mobile", "label": "Marge intérieure mobile", "unit": "px", "min": 22, "max": 56, "step": 1, "default": 28 },
+    { "type": "range", "id": "card_padding_desktop", "label": "Marge intérieure desktop", "unit": "px", "min": 28, "max": 72, "step": 1, "default": 36 },
+    { "type": "range", "id": "card_column_gap", "label": "Espace colonnes desktop", "unit": "px", "min": 28, "max": 90, "step": 1, "default": 46 },
+    { "type": "range", "id": "card_radius", "label": "Arrondi des cartes", "unit": "px", "min": 0, "max": 42, "step": 1, "default": 22 },
+
+    { "type": "header", "content": "Icône et éléments" },
+    { "type": "range", "id": "icon_box_size", "label": "Taille carré icône", "unit": "px", "min": 34, "max": 70, "step": 1, "default": 46 },
+    { "type": "range", "id": "icon_radius", "label": "Arrondi icône", "unit": "px", "min": 0, "max": 24, "step": 1, "default": 10 },
+    { "type": "range", "id": "icon_text_size", "label": "Taille texte icône", "unit": "px", "min": 12, "max": 28, "step": 1, "default": 18 },
+    { "type": "range", "id": "icon_shadow_opacity", "label": "Ombre icône", "unit": "%", "min": 0, "max": 45, "step": 1, "default": 20 },
+    { "type": "range", "id": "check_size", "label": "Taille pastilles check", "unit": "px", "min": 16, "max": 30, "step": 1, "default": 18 },
+    { "type": "range", "id": "feature_gap", "label": "Espace entre avantages", "unit": "px", "min": 8, "max": 24, "step": 1, "default": 13 },
+    { "type": "range", "id": "features_extra_top", "label": "Espace prix/avantages", "unit": "px", "min": 0, "max": 40, "step": 1, "default": 8 },
+    { "type": "range", "id": "button_height", "label": "Hauteur bouton", "unit": "px", "min": 38, "max": 62, "step": 1, "default": 44 },
+    { "type": "range", "id": "button_top", "label": "Espace au-dessus du bouton", "unit": "px", "min": 16, "max": 52, "step": 1, "default": 26 },
+
+    { "type": "header", "content": "Typographie" },
+    { "type": "range", "id": "eyebrow_size", "label": "Taille surtitre", "unit": "px", "min": 10, "max": 22, "step": 1, "default": 14 },
+    { "type": "range", "id": "title_size_mobile", "label": "Taille titre mobile", "unit": "px", "min": 36, "max": 78, "step": 1, "default": 48 },
+    { "type": "range", "id": "title_size_desktop", "label": "Taille titre desktop", "unit": "px", "min": 54, "max": 110, "step": 1, "default": 72 },
+    { "type": "range", "id": "plan_title_size_mobile", "label": "Taille nom du plan mobile", "unit": "px", "min": 20, "max": 40, "step": 1, "default": 24 },
+    { "type": "range", "id": "plan_title_size_desktop", "label": "Taille nom du plan desktop", "unit": "px", "min": 20, "max": 42, "step": 1, "default": 26 },
+    { "type": "range", "id": "plan_title_top", "label": "Espace icône/nom du plan", "unit": "px", "min": 12, "max": 48, "step": 1, "default": 28 },
+    { "type": "range", "id": "description_top", "label": "Espace nom/description", "unit": "px", "min": 10, "max": 42, "step": 1, "default": 20 },
+    { "type": "range", "id": "description_width", "label": "Largeur description", "unit": "px", "min": 240, "max": 460, "step": 5, "default": 330 },
+    { "type": "range", "id": "body_size_mobile", "label": "Taille textes mobile", "unit": "px", "min": 12, "max": 20, "step": 1, "default": 14 },
+    { "type": "range", "id": "body_size_desktop", "label": "Taille textes desktop", "unit": "px", "min": 12, "max": 20, "step": 1, "default": 14 },
+    { "type": "range", "id": "price_prefix_size_mobile", "label": "Taille préfixe prix mobile", "unit": "px", "min": 22, "max": 46, "step": 1, "default": 30 },
+    { "type": "range", "id": "price_prefix_size_desktop", "label": "Taille préfixe prix desktop", "unit": "px", "min": 24, "max": 54, "step": 1, "default": 34 },
+    { "type": "range", "id": "price_size_mobile", "label": "Taille prix mobile", "unit": "px", "min": 34, "max": 78, "step": 1, "default": 46 },
+    { "type": "range", "id": "price_size_desktop", "label": "Taille prix desktop", "unit": "px", "min": 42, "max": 90, "step": 1, "default": 54 },
+    { "type": "range", "id": "period_size", "label": "Taille période", "unit": "px", "min": 10, "max": 18, "step": 1, "default": 13 },
+    { "type": "range", "id": "price_divider_top", "label": "Espace au-dessus ligne prix", "unit": "px", "min": 18, "max": 54, "step": 1, "default": 30 },
+    { "type": "range", "id": "price_divider_bottom", "label": "Espace sous ligne prix", "unit": "px", "min": 16, "max": 46, "step": 1, "default": 34 },
+    { "type": "range", "id": "delivery_bottom_padding", "label": "Espace sous délai", "unit": "px", "min": 12, "max": 36, "step": 1, "default": 22 },
+    { "type": "range", "id": "button_size", "label": "Taille bouton", "unit": "px", "min": 12, "max": 20, "step": 1, "default": 14 },
+
+    { "type": "header", "content": "Couleurs section" },
+    { "type": "color", "id": "background_color", "label": "Fond section", "default": "#dedede" },
+    { "type": "color", "id": "text_color", "label": "Texte général", "default": "#111111" },
+    { "type": "color", "id": "eyebrow_color", "label": "Surtitre", "default": "#707070" },
+    { "type": "color", "id": "title_color", "label": "Titre", "default": "#101010" }
+  ],
+  "blocks": [
+    {
+      "type": "plan",
+      "name": "Plan tarifaire",
+      "settings": [
+        { "type": "header", "content": "Contenu" },
+        { "type": "text", "id": "title", "label": "Nom du plan", "default": "SEO Essentiel" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Pour installer une base SEO solide, corriger les freins techniques et publier du contenu optimisé chaque mois." },
+        { "type": "text", "id": "price_prefix", "label": "Texte avant le prix" },
+        { "type": "text", "id": "price", "label": "Prix", "default": "700€" },
+        { "type": "text", "id": "period", "label": "Période", "default": "/mois" },
+        { "type": "textarea", "id": "features", "label": "Avantages", "info": "Un avantage par ligne.", "default": "Audit SEO initial\nOptimisation technique prioritaire\nRecherche de mots-clés ciblés\nSuivi mensuel des positions" },
+        { "type": "text", "id": "delivery_label", "label": "Libellé délai", "default": "Délai de livraison" },
+        { "type": "text", "id": "delivery_value", "label": "Valeur délai", "default": "4-6 semaines" },
+        { "type": "text", "id": "button_label", "label": "Texte bouton", "default": "Commencer" },
+        { "type": "url", "id": "button_link", "label": "Lien bouton" },
+
+        { "type": "header", "content": "Icône et image" },
+        { "type": "image_picker", "id": "icon_image", "label": "Image icône optionnelle" },
+        { "type": "text", "id": "icon_text", "label": "Texte icône", "default": "✦" },
+        { "type": "image_picker", "id": "background_image", "label": "Image de fond optionnelle" },
+        { "type": "range", "id": "background_image_opacity", "label": "Opacité image de fond", "unit": "%", "min": 0, "max": 100, "step": 5, "default": 100 },
+
+        { "type": "header", "content": "Couleurs du plan" },
+        { "type": "color", "id": "card_background", "label": "Fond carte", "default": "#f3f3f3" },
+        { "type": "color", "id": "card_text_color", "label": "Texte principal", "default": "#121212" },
+        { "type": "color", "id": "muted_text_color", "label": "Texte secondaire", "default": "#777777" },
+        { "type": "color", "id": "muted_strong_color", "label": "Texte secondaire fort", "default": "#606060" },
+        { "type": "color", "id": "delivery_text_color", "label": "Texte délai" },
+        { "type": "color", "id": "delivery_value_color", "label": "Valeur délai" },
+        { "type": "color", "id": "feature_text_color", "label": "Texte avantages", "default": "#252525" },
+        { "type": "color", "id": "price_color", "label": "Couleur prix", "default": "#111111" },
+        { "type": "color", "id": "accent_color", "label": "Couleur accent", "default": "#ff5a1f" },
+        { "type": "color", "id": "divider_color", "label": "Lignes", "default": "#d8d8d8" },
+        { "type": "color", "id": "border_color", "label": "Bordure carte", "default": "#f2f2f2" },
+        { "type": "color", "id": "icon_background", "label": "Fond icône", "default": "#2f2f2f" },
+        { "type": "color", "id": "icon_text_color", "label": "Texte icône", "default": "#ffffff" },
+        { "type": "color", "id": "icon_border_color", "label": "Bordure icône", "default": "#424242" },
+        { "type": "color", "id": "check_background", "label": "Fond check", "default": "#dddddd" },
+        { "type": "color", "id": "check_color", "label": "Couleur check", "default": "#4f4f4f" },
+        { "type": "color", "id": "button_background", "label": "Fond bouton", "default": "#626262" },
+        { "type": "color", "id": "button_text_color", "label": "Texte bouton", "default": "#ffffff" },
+        { "type": "color", "id": "glow_color", "label": "Lueur bas de carte", "default": "#ff5a1f" },
+        { "type": "range", "id": "glow_opacity", "label": "Opacité lueur", "unit": "%", "min": 0, "max": 100, "step": 1, "default": 0 },
+        { "type": "range", "id": "texture_opacity", "label": "Opacité texture", "unit": "%", "min": 0, "max": 60, "step": 1, "default": 0 },
+        { "type": "range", "id": "overlay_opacity", "label": "Opacité voile", "unit": "%", "min": 0, "max": 80, "step": 1, "default": 0 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Plans tarifaires",
+      "blocks": [
+        {
+          "type": "plan",
+          "settings": {
+            "title": "SEO Essentiel",
+            "description": "Pour installer une base SEO solide, corriger les freins techniques et publier du contenu optimisé chaque mois.",
+            "price": "700€",
+            "period": "/mois",
+            "features": "Audit SEO initial\nOptimisation technique prioritaire\nRecherche de mots-clés ciblés\nSuivi mensuel des positions",
+            "delivery_label": "Engagement",
+            "delivery_value": "Mensuel",
+            "button_label": "Commencer",
+            "card_background": "#f4f4f4",
+            "card_text_color": "#111111",
+            "muted_text_color": "#777777",
+            "muted_strong_color": "#111111",
+            "delivery_text_color": "#111111",
+            "delivery_value_color": "#111111",
+            "feature_text_color": "#252525",
+            "price_color": "#111111",
+            "button_background": "#626262",
+            "button_text_color": "#ffffff",
+            "glow_opacity": 0,
+            "texture_opacity": 0,
+            "overlay_opacity": 0
+          }
+        },
+        {
+          "type": "plan",
+          "settings": {
+            "title": "SEO Croissance",
+            "description": "Pour accélérer la visibilité organique avec une stratégie complète, du contenu régulier et un pilotage précis.",
+            "price_prefix": "À partir de",
+            "price": "1200€",
+            "period": "/mois",
+            "features": "Stratégie SEO complète\nOptimisation technique avancée\nPlan éditorial et contenus SEO\nReporting détaillé et recommandations",
+            "delivery_label": "Engagement",
+            "delivery_value": "Mensuel",
+            "button_label": "Commencer",
+            "icon_text": "○",
+            "card_background": "#120602",
+            "card_text_color": "#ffffff",
+            "muted_text_color": "#bba9a0",
+            "muted_strong_color": "#e0d1c8",
+            "delivery_text_color": "#ffffff",
+            "delivery_value_color": "#ffffff",
+            "feature_text_color": "#ffffff",
+            "price_color": "#ff5a1f",
+            "divider_color": "#4d2c20",
+            "border_color": "#2a1008",
+            "icon_background": "#171717",
+            "icon_text_color": "#ffffff",
+            "icon_border_color": "#343434",
+            "check_background": "#624234",
+            "check_color": "#ffffff",
+            "button_background": "#5f514c",
+            "button_text_color": "#ffffff",
+            "glow_color": "#ff5a1f",
+            "glow_opacity": 92,
+            "texture_opacity": 18,
+            "overlay_opacity": 30
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
