@@ -1,0 +1,320 @@
+{
+  "sections": {
+    "hero": {
+      "type": "heroseo",
+      "blocks": {
+        "t1": { "type": "text", "settings": { "text": "Création de", "tone": "default", "custom_color": "#14120f" } },
+        "b1": { "type": "bubble", "settings": { "image": "shopify://shop_images/cc_avatar_2.webp", "size_mobile": 34, "size_desktop": 62, "amplitude": 6, "rotate": 24, "duration": 7, "decorative": true, "image_alt": "" } },
+        "t2": { "type": "text", "settings": { "text": "site vitrine.", "tone": "custom", "custom_color": "#fa703d" } },
+        "br1": { "type": "line_break", "settings": {} },
+        "t3": { "type": "text", "settings": { "text": "Un site rapide,", "tone": "muted", "custom_color": "#14120f" } },
+        "b2": { "type": "bubble", "settings": { "size_mobile": 34, "size_desktop": 62, "amplitude": 5, "rotate": -20, "duration": 8, "decorative": true, "image_alt": "" } },
+        "t4": { "type": "text", "settings": { "text": "clair,", "tone": "default", "custom_color": "#14120f" } },
+        "br2": { "type": "line_break", "settings": {} },
+        "t5": { "type": "text", "settings": { "text": "et des demandes", "tone": "default", "custom_color": "#14120f" } },
+        "b3": { "type": "bubble", "settings": { "size_mobile": 34, "size_desktop": 62, "amplitude": 7, "rotate": 30, "duration": 6, "decorative": true, "image_alt": "" } },
+        "t6": { "type": "text", "settings": { "text": "en plus.", "tone": "custom", "custom_color": "#fa703d" } }
+      },
+      "block_order": ["t1", "b1", "t2", "br1", "t3", "b2", "t4", "br2", "t5", "b3", "t6"],
+      "settings": {
+        "proof_text": "PME, artisans, indépendants : ils nous confient leur site.",
+        "avatar_1": "shopify://shop_images/cc_avatar_2.webp",
+        "avatar_2": "shopify://shop_images/cc_avatar_2.webp",
+        "avatar_size_mobile": 22, "avatar_size_desktop": 26, "avatar_ring": "#f0eeec",
+        "proof_fs_mobile": 13, "proof_fs_desktop": 15, "proof_color": "#3e3a35",
+        "proof_gap": 10, "proof_mb_min": 20, "proof_mb_max": 34,
+        "h1_fs_mobile": 34, "h1_fs_desktop": 60, "h1_weight": "700", "h1_max_width": 30,
+        "collapse_breaks_mobile": true,
+        "color_ink": "#14120f", "color_accent": "#ff4a17", "color_muted": "#8a847d", "color_light": "#ffffff",
+        "enable_float": true, "bubble_gap": 3, "bubble_shift": 0, "bubble_ring_width": 0, "bubble_ring_color": "#ffffff",
+        "sub_text": "Un site sur mesure qui charge vite, explique votre offre, et que vous modifiez vous-même sans rappeler personne.",
+        "sub_fs_mobile": 15, "sub_fs_desktop": 17, "sub_max_width": 64, "sub_color": "#6b655e",
+        "sub_mt_min": 18, "sub_mt_max": 26,
+        "cta_label": "Demander un devis", "cta_url": "/pages/contact",
+        "cta_show_arrow": true, "cta_style": "solid",
+        "cta_fs_mobile": 15, "cta_fs_desktop": 16, "cta_pad_y": 14, "cta_pad_x": 30,
+        "cta_mt_min": 26, "cta_mt_max": 38,
+        "float_hide_mobile": true, "float_width_mobile": 140, "float_width_desktop": 232,
+        "float_offset_x": -40, "float_offset_y": -56, "float_radius": 20, "float_rotate": -4,
+        "align": "center", "bg_color": "",
+        "pt_mobile": 48, "pt_desktop": 96, "pb_mobile": 64, "pb_desktop": 20,
+        "schema_service_enable": true,
+        "schema_service_name": "Création de site vitrine",
+        "schema_service_type": "Conception et développement de sites internet",
+        "schema_service_description": "Conception de sites vitrine sur mesure pour PME, artisans et indépendants : cadrage de l'arborescence, maquette validée avant développement, intégration en Liquid natif et prise en main par le client.",
+        "schema_service_audience": "PME, artisans et indépendants",
+        "schema_service_areas": "Paris\nÎle-de-France\nNice\nLuxembourg",
+        "schema_service_offers": "Cadrage et arborescence\nMaquette sur mesure\nDéveloppement Liquid\nRédaction des contenus\nMise en ligne et formation"
+      }
+    },
+    "ribbons": {
+      "type": "cc-ribbons",
+      "blocks": {
+        "c1": { "type": "chip", "settings": { "label": "Maquette", "url": "" } },
+        "c2": { "type": "chip", "settings": { "label": "Développement", "url": "" } },
+        "c3": { "type": "chip", "settings": { "label": "Rédaction", "url": "" } },
+        "c4": { "type": "chip", "settings": { "label": "Responsive", "url": "" } },
+        "c5": { "type": "chip", "settings": { "label": "Performance", "url": "" } },
+        "c6": { "type": "chip", "settings": { "label": "Autonomie", "url": "" } }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"],
+      "settings": {
+        "ribbon_a_items": "Site vitrine\nRefonte de site\nMaquette sur mesure\nRédaction web\nMise en ligne",
+        "ribbon_a_bg": "#ff4a17", "ribbon_a_color": "#ffffff", "ribbon_a_angle": -7,
+        "ribbon_a_speed": 40, "ribbon_a_direction": "left",
+        "ribbon_b_items": "PME\nArtisans\nIndépendants\nCabinets\nRestaurants\nCommerces",
+        "ribbon_b_bg": "#14120f", "ribbon_b_color": "#ffffff", "ribbon_b_angle": 7,
+        "ribbon_b_speed": 52, "ribbon_b_direction": "left",
+        "separator": "✳",
+        "ribbon_fs_mobile": 15, "ribbon_fs_desktop": 24, "ribbon_weight": "600",
+        "ribbon_py_min": 10, "ribbon_py_max": 16, "ribbon_gap_min": 16, "ribbon_gap_max": 28,
+        "stage_h_min": 200, "stage_h_max": 300, "stage_mb_min": 40, "stage_mb_max": 80,
+        "eyebrow": "(votre site)", "eyebrow_color": "#ff4a17", "eyebrow_font": "cursive",
+        "eyebrow_style": "normal", "eyebrow_weight": "600",
+        "eyebrow_fs_mobile": 22, "eyebrow_fs_desktop": 28,
+        "reveal_text": "Un site vitrine sert à une chose : donner envie de vous appeler. Tout ce qui retarde cette décision — effets inutiles, pages vides, temps de chargement — travaille contre vous.",
+        "reveal_color_off": "#a8a29b", "reveal_color_on": "#14120f", "reveal_fade": 350,
+        "reveal_fs_mobile": 24, "reveal_fs_desktop": 40, "reveal_weight": "700",
+        "reveal_leading": 124, "reveal_max_width": 40,
+        "body_gap_min": 18, "body_gap_max": 28,
+        "chip_bg": "#3e3a35", "chip_bg_hover": "#14120f", "chip_color": "#ffffff", "chip_color_hover": "#ffffff",
+        "chip_fs_mobile": 13, "chip_fs_desktop": 14, "chip_pad_y": 10, "chip_pad_x": 16,
+        "chip_gap": 8, "chips_max_width": 520,
+        "bg_color": "", "pt_mobile": 40, "pt_desktop": 64, "pb_mobile": 56, "pb_desktop": 96
+      }
+    },
+    "methode": {
+      "type": "cc-services-accordeon-defilant",
+      "blocks": {
+        "s1": {
+          "type": "service",
+          "settings": {
+            "title": "Cadrage et maquette",
+            "marquee_text": "Cadrage",
+            "image_alt": "",
+            "description": "Nous partons de votre offre, de vos clients et de vos concurrents pour poser une arborescence et une maquette. Tout est validé avant la première ligne de code.",
+            "tags": "Arborescence\nContenus\nMaquette\nValidation",
+            "button_label": "", "button_link": ""
+          }
+        },
+        "s2": {
+          "type": "service",
+          "settings": {
+            "title": "Développement sur mesure",
+            "marquee_text": "Développement",
+            "image_alt": "",
+            "description": "Le site est développé en Liquid natif, sans page builder ni empilement d'applications. Des pages légères aujourd'hui, et qui le restent dans deux ans.",
+            "tags": "Liquid natif\nResponsive\nPerformance\nAccessibilité",
+            "button_label": "", "button_link": ""
+          }
+        },
+        "s3": {
+          "type": "service",
+          "settings": {
+            "title": "Mise en ligne et autonomie",
+            "marquee_text": "Autonomie",
+            "image_alt": "",
+            "description": "Vous repartez avec un site que vous pilotez : textes, images et sections se règlent depuis l'éditeur. Le domaine et l'hébergement restent à votre nom.",
+            "tags": "Prise en main\nÉditeur de thème\nDocumentation\nSuivi",
+            "button_label": "", "button_link": ""
+          }
+        }
+      },
+      "block_order": ["s1", "s2", "s3"],
+      "settings": {
+        "section_aria_label": "Méthode de création",
+        "accordion_aria_label": "Choisir une étape",
+        "eyebrow": "(Méthode)", "title": "Comment on avance",
+        "marquee_separator": "✣",
+        "image_placeholder_text": "Ajoutez une image",
+        "empty_state_text": "Ajoutez une étape depuis l'éditeur de thème.",
+        "padding_top_mobile": 72, "padding_bottom_mobile": 72,
+        "padding_top_desktop": 120, "padding_bottom_desktop": 120,
+        "max_width": 1440,
+        "header_gap_mobile": 18, "header_gap_desktop": 22,
+        "header_bottom_mobile": 48, "header_bottom_desktop": 72,
+        "accordion_bottom_mobile": 54, "accordion_bottom_desktop": 80,
+        "image_width_mobile": 340, "image_height_mobile": 240,
+        "image_width_desktop": 560, "image_height_desktop": 340,
+        "image_radius": 20, "image_shadow_opacity": 18,
+        "body_top_mobile": 26, "body_top_desktop": 30,
+        "body_gap_mobile": 18, "body_gap_desktop": 22, "description_width": 460,
+        "marquee_size_mobile": 64, "marquee_size_desktop": 150, "marquee_duration": 36,
+        "marquee_top_mobile": 50, "marquee_top_desktop": 52,
+        "marquee_space_mobile": 76, "marquee_space_desktop": 96, "marquee_faded_opacity": 34,
+        "eyebrow_size": 14, "title_size_mobile": 56, "title_size_desktop": 96,
+        "accordion_size_mobile": 15, "accordion_size_desktop": 15,
+        "description_size_mobile": 15, "description_size_desktop": 16,
+        "tag_size": 12, "button_size": 13,
+        "background_color": "#dedede", "text_color": "#111111",
+        "eyebrow_color": "#6f6f6f", "title_color": "#080808",
+        "inactive_color": "#777777", "accent_color": "#ff4b0b",
+        "divider_color": "#cfcfcf", "description_color": "#1a1a1a",
+        "image_background": "#151515", "tag_background": "#666666",
+        "tag_color": "#ffffff", "tag_shadow_opacity": 25,
+        "button_background": "#111111", "button_text_color": "#ffffff"
+      }
+    },
+    "realisations": {
+      "type": "cc-realisations-scroll",
+      "blocks": {
+        "p1": {
+          "type": "projet",
+          "settings": {
+            "title": "Cabinet Stellar",
+            "description": "Un site de cabinet qui explique enfin ce qu'il fait, en trois pages plutôt qu'en douze, avec un formulaire qui qualifie la demande avant l'appel.",
+            "image_alt": "", "year": "2025", "role": "Design et développement",
+            "services": "Arborescence\nWebdesign\nRédaction\nDéveloppement",
+            "project_url": "", "card_color": "#111111"
+          }
+        },
+        "p2": {
+          "type": "projet",
+          "settings": {
+            "title": "Atelier Nord",
+            "description": "Une refonte pour un atelier qui vendait mal en ligne ce qu'il vendait très bien en boutique. Priorité donnée aux photos et au passage à l'appel.",
+            "image_alt": "", "year": "2024", "role": "Direction artistique",
+            "services": "Identité\nMaquette\nPhotographie\nIntégration",
+            "project_url": "", "card_color": "#3a1510"
+          }
+        },
+        "p3": {
+          "type": "projet",
+          "settings": {
+            "title": "Maison Aube",
+            "description": "Un site vitrine livré en quelques semaines, que l'équipe met à jour seule depuis. Aucune intervention de notre part depuis la mise en ligne.",
+            "image_alt": "", "year": "2024", "role": "Conception et intégration",
+            "services": "Webdesign\nDéveloppement\nSEO technique\nFormation",
+            "project_url": "", "card_color": "#181f24"
+          }
+        }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {
+        "section_aria_label": "Sites vitrine réalisés",
+        "eyebrow": "(Réalisations)", "title": "Quelques sites",
+        "year_label": "Année", "role_label": "Rôle", "services_label": "Services",
+        "project_link_label": "Voir le projet",
+        "image_placeholder_text": "Ajoutez une image de projet",
+        "empty_state_text": "Ajoutez un projet depuis l'éditeur de thème.",
+        "padding_top_mobile": 72, "padding_top_desktop": 132,
+        "padding_bottom_mobile": 72, "padding_bottom_desktop": 168,
+        "max_width": 1720, "header_offset_mobile": -8, "header_offset_desktop": -28,
+        "card_height_mobile": 740, "card_height_desktop": 720,
+        "card_radius_mobile": 24, "card_radius_desktop": 32,
+        "card_padding_mobile": 28, "card_padding_desktop": 84,
+        "media_height_mobile": 320, "media_height_desktop": 520, "media_radius": 22,
+        "card_gap_mobile": 22, "card_gap_tablet": 24, "card_gap_desktop": 28,
+        "reveal_offset": 42, "reveal_duration": 700,
+        "eyebrow_size": 14, "eyebrow_gap": 22,
+        "title_size_mobile": 70, "title_size_desktop": 168,
+        "project_title_size_mobile": 48, "project_title_size_desktop": 62,
+        "body_size_mobile": 14, "body_size_desktop": 16,
+        "label_size": 14, "counter_size": 15,
+        "background_color": "#dedede", "section_text_color": "#1f1f1f",
+        "eyebrow_color": "#767676", "title_color": "#c3c3c3", "title_opacity": 70,
+        "card_overlay": 48, "left_shadow": 36, "right_shadow": 68,
+        "background_image_opacity": 58, "background_blur": 16
+      }
+    },
+    "faq": {
+      "type": "cc-faq-accordeon-animee",
+      "blocks": {
+        "q1": { "type": "question", "settings": { "column": "left", "question": "Combien de temps prend la création d'un site vitrine ?", "answer": "Comptez quelques semaines entre le cadrage et la mise en ligne. Le délai dépend surtout du nombre de pages et de la disponibilité de vos contenus.", "open_by_default": true } },
+        "q2": { "type": "question", "settings": { "column": "left", "question": "Puis-je modifier le site moi-même ensuite ?", "answer": "Oui. Chaque texte, image et section se règle depuis l'éditeur de thème. Changer un horaire ou une photo ne demande pas de nous rappeler.", "open_by_default": false } },
+        "q3": { "type": "question", "settings": { "column": "left", "question": "Rédigez-vous les textes ?", "answer": "Oui si vous le souhaitez. Nous partons de votre offre et de vos clients pour écrire des pages qui expliquent avant de vendre.", "open_by_default": false } },
+        "q4": { "type": "question", "settings": { "column": "right", "question": "Le site est-il optimisé pour Google ?", "answer": "La base l'est : structure des titres, vitesse, balises, données structurées. Le référencement se travaille ensuite dans la durée, page par page.", "open_by_default": false } },
+        "q5": { "type": "question", "settings": { "column": "right", "question": "À qui appartiennent le domaine et l'hébergement ?", "answer": "À vous. Le domaine, l'hébergement et les accès restent rattachés à votre organisation, quoi qu'il arrive ensuite.", "open_by_default": false } },
+        "q6": { "type": "question", "settings": { "column": "right", "question": "Que se passe-t-il après la mise en ligne ?", "answer": "Vous repartez avec un site autonome et une prise en main. Nous restons joignables si un besoin dépasse ce que vous pouvez faire seul.", "open_by_default": false } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6"],
+      "settings": {
+        "section_aria_label": "Questions fréquentes sur la création de site vitrine",
+        "eyebrow": "(FAQ)", "title": "Ce qu'on nous demande le plus",
+        "subtitle": "Délais, autonomie, propriété des accès : les points qui reviennent avant de lancer un site.",
+        "close_others": false,
+        "padding_top_mobile": 72, "padding_bottom_mobile": 72,
+        "padding_top_desktop": 112, "padding_bottom_desktop": 128,
+        "max_width": 1320, "faq_width": 1080, "title_width": 900, "subtitle_width": 620,
+        "header_gap_mobile": 14, "header_gap_desktop": 18,
+        "header_bottom_mobile": 46, "header_bottom_desktop": 82,
+        "column_gap_mobile": 14, "column_gap_desktop": 28,
+        "item_gap_mobile": 14, "item_gap_desktop": 18,
+        "item_min_height_mobile": 78, "item_min_height_desktop": 88,
+        "item_padding_x_mobile": 24, "item_padding_y_mobile": 22,
+        "item_padding_x_desktop": 30, "item_padding_y_desktop": 26,
+        "answer_padding_bottom_mobile": 28, "answer_padding_bottom_desktop": 34,
+        "card_radius_mobile": 22, "card_radius_desktop": 24, "card_border_width": 0,
+        "shadow_y": 0, "shadow_blur": 0, "shadow_opacity": 0,
+        "eyebrow_size_mobile": 13, "eyebrow_size_desktop": 14,
+        "title_size_mobile": 46, "title_size_desktop": 84,
+        "subtitle_size_mobile": 16, "subtitle_size_desktop": 18,
+        "question_size_mobile": 20, "question_size_desktop": 24,
+        "answer_size_mobile": 16, "answer_size_desktop": 18, "icon_size": 18,
+        "section_fade_duration": 820, "item_duration": 760, "stagger_delay": 80,
+        "slide_distance_mobile": 28, "slide_distance_desktop": 70,
+        "header_offset": 28, "fade_blur": 6,
+        "background_color": "#dedede", "text_color": "#111111",
+        "eyebrow_color": "#6b6b6b", "title_color": "#0f0f0f", "subtitle_color": "#666666",
+        "card_background": "#f2f2f2", "card_border_color": "#f2f2f2",
+        "question_color": "#1d1d1d", "answer_color": "#6a6a6a",
+        "icon_background": "#111111", "icon_color": "#ffffff",
+        "icon_open_background": "#111111", "icon_open_color": "#ffffff"
+      }
+    },
+    "contact": {
+      "type": "cc-contact-natif-shopify",
+      "settings": {
+        "section_aria_label": "Contact",
+        "back_title": "Votre site", "title": "Parlons de votre site.",
+        "subtitle": "Dites-nous ce que vous vendez et à qui. Nous revenons vers vous avec un périmètre et un délai.",
+        "email_subject": "Demande — création de site vitrine",
+        "name_label": "Votre nom", "name_placeholder": "Entrez votre nom",
+        "email_label": "Votre email", "email_placeholder": "Entrez votre email",
+        "message_label": "Votre projet", "message_placeholder": "Votre activité, vos clients, ce qui existe déjà...",
+        "button_label": "Envoyer", "success_message": "Merci, votre message a bien été envoyé.",
+        "marquee_text": "contact@clickscreation.com", "marquee_separator": "✦",
+        "image_opacity": 72, "image_blur": 6, "image_saturation": 90, "image_scale": 104,
+        "image_bleed": 16, "overlay_opacity": 54, "side_shadow_opacity": 74, "grain_opacity": 18,
+        "padding_top_mobile": 72, "padding_bottom_mobile": 72,
+        "padding_top_desktop": 88, "padding_bottom_desktop": 88,
+        "max_width": 1620, "content_width": 1080, "copy_width": 430, "form_width": 440,
+        "panel_min_height_mobile": 680, "panel_min_height_desktop": 650,
+        "panel_padding_x_mobile": 26, "panel_padding_y_mobile": 52,
+        "panel_padding_x_desktop": 96, "panel_padding_y_desktop": 92,
+        "panel_radius_mobile": 24, "panel_radius_desktop": 34, "panel_border_width": 0,
+        "panel_shadow_y": 0, "panel_shadow_blur": 0, "panel_shadow_opacity": 0,
+        "content_gap_mobile": 38, "content_gap_desktop": 110,
+        "back_title_size_mobile": 78, "back_title_size_desktop": 176,
+        "back_title_top_mobile": 0, "back_title_top_desktop": 0, "back_title_opacity": 30,
+        "title_size_mobile": 44, "title_size_desktop": 64,
+        "subtitle_size_mobile": 15, "subtitle_size_desktop": 16, "subtitle_top": 24,
+        "label_size_mobile": 15, "label_size_desktop": 16,
+        "input_size_mobile": 14, "input_size_desktop": 15,
+        "button_size_mobile": 14, "button_size_desktop": 15, "feedback_size": 14,
+        "field_gap_mobile": 26, "field_gap_desktop": 30, "label_gap": 14,
+        "input_height": 40, "input_padding_bottom": 10, "input_border_width": 1,
+        "textarea_height_mobile": 110, "textarea_height_desktop": 112,
+        "button_height": 48, "button_top": 8,
+        "marquee_space_mobile": 74, "marquee_space_desktop": 82,
+        "marquee_bottom_mobile": 34, "marquee_bottom_desktop": 54,
+        "marquee_size_mobile": 26, "marquee_size_desktop": 36,
+        "marquee_gap_mobile": 28, "marquee_gap_desktop": 40, "marquee_duration": 34,
+        "reveal_duration": 820, "reveal_blur": 6,
+        "panel_reveal_offset": 26, "back_title_reveal_offset": 18,
+        "background_color": "#dedede", "text_color": "#ffffff",
+        "back_title_color": "#bdbdbd", "panel_fallback_color": "#0b0b0b",
+        "panel_border_color": "#161616", "panel_text_color": "#ffffff",
+        "panel_title_color": "#ffffff", "panel_muted_color": "#c8c8c8",
+        "label_color": "#ffffff", "input_text_color": "#ffffff",
+        "placeholder_color": "#bdbdbd", "input_border_color": "#ffffff",
+        "input_focus_color": "#ffffff", "button_background": "#eeeeee",
+        "button_text_color": "#242424", "focus_ring_color": "#ffffff",
+        "success_background": "#e9f8ef", "success_color": "#135f32",
+        "error_background": "#ffecec", "error_color": "#8a1f1f",
+        "marquee_color": "#ffffff", "marquee_separator_color": "#ffffff"
+      }
+    }
+  },
+  "order": ["hero", "ribbons", "methode", "realisations", "faq", "contact"]
+}
