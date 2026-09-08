@@ -76,9 +76,14 @@
     color: #ffffff !important;
     font-size: calc({{ s.cta_fs_mobile }} * 1px + ({{ s.cta_fs_desktop }} - {{ s.cta_fs_mobile }}) * var(--cc-fluid-t));
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.15;
     text-decoration: none;
-    white-space: nowrap;
+    /* Le bouton doit encaisser n'importe quel libellé saisi dans l'éditeur :
+       sans cette limite, un intitulé long débordait de son conteneur sous
+       320 px et se faisait rogner. Il passe désormais sur deux lignes. */
+    max-width: 100%;
+    text-align: center;
+    text-wrap: balance;
     box-shadow: 0 14px 32px -16px rgba(20, 18, 15, 0.45);
     transition: background 0.2s var(--cc-ease), color 0.2s var(--cc-ease), transform 0.2s var(--cc-ease);
   }

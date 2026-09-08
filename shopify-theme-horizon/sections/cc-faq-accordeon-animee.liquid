@@ -1,0 +1,598 @@
+{%- liquid
+  assign s = section.settings
+  assign uid = section.id
+-%}
+
+<style>
+  #shopify-section-{{ uid }} {
+    display: block;
+    overflow-x: clip;
+    background: {{ s.background_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-faq {
+    overflow-x: clip;
+    padding-top: {{ s.padding_top_mobile }}px;
+    padding-bottom: {{ s.padding_bottom_mobile }}px;
+    color: {{ s.text_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-faq,
+  #shopify-section-{{ uid }} .cc-faq *,
+  #shopify-section-{{ uid }} .cc-faq *::before,
+  #shopify-section-{{ uid }} .cc-faq *::after {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__inner {
+    width: min({{ s.max_width }}px, calc(100% - 32px));
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__header {
+    display: grid;
+    justify-items: center;
+    gap: {{ s.header_gap_mobile }}px;
+    margin-bottom: {{ s.header_bottom_mobile }}px;
+    text-align: center;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__eyebrow {
+    margin: 0;
+    color: {{ s.eyebrow_color }};
+    font-size: {{ s.eyebrow_size_mobile }}px;
+    font-weight: 750;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__title {
+    max-width: {{ s.title_width }}px;
+    margin: 0;
+    color: {{ s.title_color }};
+    font-size: {{ s.title_size_mobile }}px;
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: 0;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__subtitle {
+    max-width: {{ s.subtitle_width }}px;
+    margin: 0;
+    color: {{ s.subtitle_color }};
+    font-size: {{ s.subtitle_size_mobile }}px;
+    font-weight: 650;
+    line-height: 1.45;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__grid {
+    display: grid;
+    gap: {{ s.column_gap_mobile }}px;
+    width: min({{ s.faq_width }}px, 100%);
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__column {
+    display: grid;
+    align-content: start;
+    gap: {{ s.item_gap_mobile }}px;
+    min-width: 0;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__item {
+    overflow: hidden;
+    border: {{ s.card_border_width }}px solid {{ s.card_border_color }};
+    border-radius: {{ s.card_radius_mobile }}px;
+    background: {{ s.card_background }};
+    color: {{ s.question_color }};
+    box-shadow: 0 {{ s.shadow_y }}px {{ s.shadow_blur }}px rgba(0, 0, 0, {{ s.shadow_opacity | divided_by: 100.0 }});
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__summary {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) {{ s.icon_size }}px;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    min-height: {{ s.item_min_height_mobile }}px;
+    padding: {{ s.item_padding_y_mobile }}px {{ s.item_padding_x_mobile }}px;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__question {
+    margin: 0;
+    color: {{ s.question_color }};
+    font-size: {{ s.question_size_mobile }}px;
+    font-weight: 650;
+    line-height: 1.18;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__icon {
+    position: relative;
+    display: inline-grid;
+    width: {{ s.icon_size }}px;
+    height: {{ s.icon_size }}px;
+    place-items: center;
+    border-radius: 999px;
+    background: {{ s.icon_background }};
+    color: {{ s.icon_color }};
+    transition: transform 0.28s ease, background-color 0.28s ease, color 0.28s ease;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__icon::before,
+  #shopify-section-{{ uid }} .cc-faq__icon::after {
+    content: "";
+    position: absolute;
+    width: 48%;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    transition: transform 0.28s ease, opacity 0.28s ease;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__icon::after {
+    transform: rotate(90deg);
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__item[open] .cc-faq__icon {
+    transform: rotate(180deg);
+    background: {{ s.icon_open_background }};
+    color: {{ s.icon_open_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__item[open] .cc-faq__icon::after {
+    opacity: 0;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__answer {
+    padding: 0 {{ s.item_padding_x_mobile }}px {{ s.answer_padding_bottom_mobile }}px;
+    color: {{ s.answer_color }};
+    font-size: {{ s.answer_size_mobile }}px;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq__answer p {
+    margin: 0;
+  }
+
+  #shopify-section-{{ uid }} .cc-faq--ready .cc-faq__header,
+  #shopify-section-{{ uid }} .cc-faq--ready .cc-faq__item {
+    opacity: 0;
+    filter: blur({{ s.fade_blur }}px);
+    transition:
+      opacity {{ s.section_fade_duration }}ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform {{ s.item_duration }}ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter {{ s.item_duration }}ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  #shopify-section-{{ uid }} .cc-faq--ready .cc-faq__header {
+    transform: translateY({{ s.header_offset }}px);
+  }
+
+  #shopify-section-{{ uid }} .cc-faq--ready .cc-faq__item {
+    transition-delay: calc(var(--cc-faq-index, 0) * {{ s.stagger_delay }}ms);
+  }
+
+  #shopify-section-{{ uid }} .cc-faq--ready .cc-faq__column--left .cc-faq__item {
+    transform: translateX(calc(-1 * {{ s.slide_distance_mobile }}px));
+  }
+
+  #shopify-section-{{ uid }} .cc-faq--ready .cc-faq__column--right .cc-faq__item {
+    transform: translateX({{ s.slide_distance_mobile }}px);
+  }
+
+  #shopify-section-{{ uid }} .cc-faq--visible .cc-faq__header,
+  #shopify-section-{{ uid }} .cc-faq--visible .cc-faq__item {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  @media (min-width: 750px) {
+    #shopify-section-{{ uid }} .cc-faq {
+      padding-top: {{ s.padding_top_desktop }}px;
+      padding-bottom: {{ s.padding_bottom_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-faq__inner {
+      width: min({{ s.max_width }}px, calc(100% - 64px));
+    }
+
+    #shopify-section-{{ uid }} .cc-faq__header {
+      gap: {{ s.header_gap_desktop }}px;
+      margin-bottom: {{ s.header_bottom_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-faq__eyebrow {
+      font-size: {{ s.eyebrow_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-faq__title {
+      font-size: {{ s.title_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-faq__subtitle {
+      font-size: {{ s.subtitle_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-faq__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: {{ s.column_gap_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-faq__column {
+      gap: {{ s.item_gap_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-faq__item {
+      border-radius: {{ s.card_radius_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-faq__summary {
+      min-height: {{ s.item_min_height_desktop }}px;
+      padding: {{ s.item_padding_y_desktop }}px {{ s.item_padding_x_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-faq__question {
+      font-size: {{ s.question_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-faq__answer {
+      padding: 0 {{ s.item_padding_x_desktop }}px {{ s.answer_padding_bottom_desktop }}px;
+      font-size: {{ s.answer_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-faq--ready .cc-faq__column--left .cc-faq__item {
+      transform: translateX(calc(-1 * {{ s.slide_distance_desktop }}px));
+    }
+
+    #shopify-section-{{ uid }} .cc-faq--ready .cc-faq__column--right .cc-faq__item {
+      transform: translateX({{ s.slide_distance_desktop }}px);
+    }
+
+    #shopify-section-{{ uid }} .cc-faq--visible .cc-faq__column--left .cc-faq__item,
+    #shopify-section-{{ uid }} .cc-faq--visible .cc-faq__column--right .cc-faq__item {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ uid }} .cc-faq--ready .cc-faq__header,
+    #shopify-section-{{ uid }} .cc-faq--ready .cc-faq__item {
+      opacity: 1;
+      filter: none;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<section id="cc-faq-{{ uid }}" class="cc-faq" aria-label="{{ s.section_aria_label | escape }}">
+  <div class="cc-faq__inner">
+    <div class="cc-faq__header">
+      {%- if s.eyebrow != blank -%}
+        <p class="cc-faq__eyebrow">{{ s.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      {%- if s.title != blank -%}
+        <h2 class="cc-faq__title">{{ s.title | escape }}</h2>
+      {%- endif -%}
+
+      {%- if s.subtitle != blank -%}
+        <p class="cc-faq__subtitle">{{ s.subtitle | escape }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="cc-faq__grid">
+      <div class="cc-faq__column cc-faq__column--left">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.column == 'left' -%}
+            <details class="cc-faq__item" style="--cc-faq-index: {{ forloop.index0 }};" {% if block.settings.open_by_default %}open{% endif %} {{ block.shopify_attributes }}>
+              <summary class="cc-faq__summary">
+                <h3 class="cc-faq__question">{{ block.settings.question | escape }}</h3>
+                <span class="cc-faq__icon" aria-hidden="true"></span>
+              </summary>
+
+              {%- if block.settings.answer != blank -%}
+                <div class="cc-faq__answer">
+                  <p>{{ block.settings.answer | escape | newline_to_br }}</p>
+                </div>
+              {%- endif -%}
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="cc-faq__column cc-faq__column--right">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.column == 'right' -%}
+            <details class="cc-faq__item" style="--cc-faq-index: {{ forloop.index0 }};" {% if block.settings.open_by_default %}open{% endif %} {{ block.shopify_attributes }}>
+              <summary class="cc-faq__summary">
+                <h3 class="cc-faq__question">{{ block.settings.question | escape }}</h3>
+                <span class="cc-faq__icon" aria-hidden="true"></span>
+              </summary>
+
+              {%- if block.settings.answer != blank -%}
+                <div class="cc-faq__answer">
+                  <p>{{ block.settings.answer | escape | newline_to_br }}</p>
+                </div>
+              {%- endif -%}
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const section = document.getElementById('cc-faq-{{ uid }}');
+    if (!section) return;
+
+    section.classList.add('cc-faq--ready');
+
+    const reveal = () => section.classList.add('cc-faq--visible');
+
+    if (!('IntersectionObserver' in window)) {
+      reveal();
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          reveal();
+          observer.unobserve(section);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    observer.observe(section);
+
+    {% if s.close_others %}
+      const items = section.querySelectorAll('.cc-faq__item');
+      items.forEach((item) => {
+        item.addEventListener('toggle', () => {
+          if (!item.open) return;
+          items.forEach((other) => {
+            if (other !== item) other.removeAttribute('open');
+          });
+        });
+      });
+    {% endif %}
+
+    if (window.Shopify && window.Shopify.designMode) {
+      reveal();
+    }
+  })();
+</script>
+
+{%- comment -%}
+  ==========================================================================
+  Données structurées de la section — FAQPage
+  --------------------------------------------------------------------------
+  Chaque question de l'accordéon devient une entité Question rattachée à
+  l'URL canonique de la page. Le texte déclaré est exactement celui affiché
+  à l'écran : c'est la condition posée par Google, et la seule façon de ne
+  pas exposer le site à une pénalité pour balisage trompeur.
+
+  Une seule entité FAQPage doit exister par page. Si vous placez deux fois
+  cette section sur la même page, décochez le réglage sur la seconde.
+  ==========================================================================
+{%- endcomment -%}
+
+{%- if s.schema_faq_enable -%}
+  {%- assign faq_count = 0 -%}
+  {%- for block in section.blocks -%}
+    {%- if block.settings.question != blank and block.settings.answer != blank -%}
+      {%- assign faq_count = faq_count | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if faq_count > 0 -%}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": {{ canonical_url | append: '#faq' | json }},
+        "mainEntityOfPage": {{ canonical_url | json }},
+        "mainEntity": [
+          {%- assign emitted = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.settings.question != blank and block.settings.answer != blank -%}
+              {%- if emitted > 0 %},{% endif -%}
+              {
+                "@type": "Question",
+                "name": {{ block.settings.question | json }},
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": {{ block.settings.answer | json }}
+                }
+              }
+              {%- assign emitted = emitted | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+        ]
+      }
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "FAQ animée",
+  "tag": "section",
+  "class": "cc-faq-section",
+  "settings": [
+    { "type": "header", "content": "Textes" },
+    { "type": "text", "id": "section_aria_label", "label": "Libellé accessible", "default": "Questions fréquentes" },
+    { "type": "text", "id": "eyebrow", "label": "Surtitre", "default": "(FAQ)" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Vos questions, nos réponses" },
+    { "type": "textarea", "id": "subtitle", "label": "Sous-titre", "default": "Tout ce qu'il faut savoir sur notre accompagnement SEO, notre méthode et nos délais." },
+    { "type": "checkbox", "id": "schema_faq_enable", "label": "Déclarer la FAQ (FAQPage)", "default": true, "info": "Publie les questions et réponses en données structurées. Une seule FAQPage par page : décochez si la section est présente deux fois." },
+    { "type": "checkbox", "id": "close_others", "label": "Fermer les autres questions à l'ouverture", "default": false },
+
+    { "type": "header", "content": "Marges et largeur" },
+    { "type": "range", "id": "padding_top_mobile", "label": "Marge haute mobile", "unit": "px", "min": 0, "max": 240, "step": 4, "default": 72 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Marge basse mobile", "unit": "px", "min": 0, "max": 240, "step": 4, "default": 72 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Marge haute desktop", "unit": "px", "min": 0, "max": 320, "step": 4, "default": 112 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Marge basse desktop", "unit": "px", "min": 0, "max": 320, "step": 4, "default": 128 },
+    { "type": "range", "id": "max_width", "label": "Largeur section", "unit": "px", "min": 900, "max": 1600, "step": 10, "default": 1320 },
+    { "type": "range", "id": "faq_width", "label": "Largeur FAQ", "unit": "px", "min": 760, "max": 1320, "step": 10, "default": 1080 },
+    { "type": "range", "id": "title_width", "label": "Largeur titre", "unit": "px", "min": 560, "max": 1180, "step": 10, "default": 900 },
+    { "type": "range", "id": "subtitle_width", "label": "Largeur sous-titre", "unit": "px", "min": 320, "max": 820, "step": 10, "default": 620 },
+
+    { "type": "header", "content": "Espacements" },
+    { "type": "range", "id": "header_gap_mobile", "label": "Espace entête mobile", "unit": "px", "min": 8, "max": 44, "step": 1, "default": 14 },
+    { "type": "range", "id": "header_gap_desktop", "label": "Espace entête desktop", "unit": "px", "min": 8, "max": 54, "step": 1, "default": 18 },
+    { "type": "range", "id": "header_bottom_mobile", "label": "Espace sous entête mobile", "unit": "px", "min": 32, "max": 110, "step": 1, "default": 46 },
+    { "type": "range", "id": "header_bottom_desktop", "label": "Espace sous entête desktop", "unit": "px", "min": 48, "max": 160, "step": 2, "default": 82 },
+    { "type": "range", "id": "column_gap_mobile", "label": "Espace colonnes mobile", "unit": "px", "min": 12, "max": 80, "step": 1, "default": 14 },
+    { "type": "range", "id": "column_gap_desktop", "label": "Espace entre colonnes", "unit": "px", "min": 20, "max": 80, "step": 1, "default": 28 },
+    { "type": "range", "id": "item_gap_mobile", "label": "Espace questions mobile", "unit": "px", "min": 10, "max": 50, "step": 1, "default": 14 },
+    { "type": "range", "id": "item_gap_desktop", "label": "Espace questions desktop", "unit": "px", "min": 10, "max": 60, "step": 1, "default": 18 },
+
+    { "type": "header", "content": "Cartes" },
+    { "type": "range", "id": "item_min_height_mobile", "label": "Hauteur question mobile", "unit": "px", "min": 58, "max": 120, "step": 1, "default": 78 },
+    { "type": "range", "id": "item_min_height_desktop", "label": "Hauteur question desktop", "unit": "px", "min": 70, "max": 130, "step": 1, "default": 88 },
+    { "type": "range", "id": "item_padding_x_mobile", "label": "Marge horizontale mobile", "unit": "px", "min": 18, "max": 48, "step": 1, "default": 24 },
+    { "type": "range", "id": "item_padding_y_mobile", "label": "Marge verticale mobile", "unit": "px", "min": 16, "max": 42, "step": 1, "default": 22 },
+    { "type": "range", "id": "item_padding_x_desktop", "label": "Marge horizontale desktop", "unit": "px", "min": 24, "max": 58, "step": 1, "default": 30 },
+    { "type": "range", "id": "item_padding_y_desktop", "label": "Marge verticale desktop", "unit": "px", "min": 18, "max": 46, "step": 1, "default": 26 },
+    { "type": "range", "id": "answer_padding_bottom_mobile", "label": "Marge basse réponse mobile", "unit": "px", "min": 18, "max": 52, "step": 1, "default": 28 },
+    { "type": "range", "id": "answer_padding_bottom_desktop", "label": "Marge basse réponse desktop", "unit": "px", "min": 22, "max": 62, "step": 1, "default": 34 },
+    { "type": "range", "id": "card_radius_mobile", "label": "Arrondi mobile", "unit": "px", "min": 8, "max": 42, "step": 1, "default": 22 },
+    { "type": "range", "id": "card_radius_desktop", "label": "Arrondi desktop", "unit": "px", "min": 8, "max": 52, "step": 1, "default": 24 },
+    { "type": "range", "id": "card_border_width", "label": "Épaisseur bordure", "unit": "px", "min": 0, "max": 4, "step": 1, "default": 0 },
+    { "type": "range", "id": "shadow_y", "label": "Ombre verticale", "unit": "px", "min": 0, "max": 28, "step": 1, "default": 0 },
+    { "type": "range", "id": "shadow_blur", "label": "Flou ombre", "unit": "px", "min": 0, "max": 60, "step": 1, "default": 0 },
+    { "type": "range", "id": "shadow_opacity", "label": "Opacité ombre", "unit": "%", "min": 0, "max": 35, "step": 1, "default": 0 },
+
+    { "type": "header", "content": "Typographie" },
+    { "type": "range", "id": "eyebrow_size_mobile", "label": "Taille surtitre mobile", "unit": "px", "min": 10, "max": 20, "step": 1, "default": 13 },
+    { "type": "range", "id": "eyebrow_size_desktop", "label": "Taille surtitre desktop", "unit": "px", "min": 10, "max": 22, "step": 1, "default": 14 },
+    { "type": "range", "id": "title_size_mobile", "label": "Taille titre mobile", "unit": "px", "min": 34, "max": 76, "step": 1, "default": 46 },
+    { "type": "range", "id": "title_size_desktop", "label": "Taille titre desktop", "unit": "px", "min": 56, "max": 120, "step": 1, "default": 84 },
+    { "type": "range", "id": "subtitle_size_mobile", "label": "Taille sous-titre mobile", "unit": "px", "min": 13, "max": 24, "step": 1, "default": 16 },
+    { "type": "range", "id": "subtitle_size_desktop", "label": "Taille sous-titre desktop", "unit": "px", "min": 14, "max": 26, "step": 1, "default": 18 },
+    { "type": "range", "id": "question_size_mobile", "label": "Taille question mobile", "unit": "px", "min": 16, "max": 30, "step": 1, "default": 20 },
+    { "type": "range", "id": "question_size_desktop", "label": "Taille question desktop", "unit": "px", "min": 18, "max": 34, "step": 1, "default": 24 },
+    { "type": "range", "id": "answer_size_mobile", "label": "Taille réponse mobile", "unit": "px", "min": 13, "max": 22, "step": 1, "default": 16 },
+    { "type": "range", "id": "answer_size_desktop", "label": "Taille réponse desktop", "unit": "px", "min": 14, "max": 24, "step": 1, "default": 18 },
+    { "type": "range", "id": "icon_size", "label": "Taille icône", "unit": "px", "min": 16, "max": 34, "step": 1, "default": 18 },
+
+    { "type": "header", "content": "Animation" },
+    { "type": "range", "id": "section_fade_duration", "label": "Durée fondu section", "unit": "ms", "min": 300, "max": 1300, "step": 10, "default": 820 },
+    { "type": "range", "id": "item_duration", "label": "Durée animation questions", "unit": "ms", "min": 300, "max": 1300, "step": 10, "default": 760 },
+    { "type": "range", "id": "stagger_delay", "label": "Décalage entre questions", "unit": "ms", "min": 0, "max": 180, "step": 2, "default": 80 },
+    { "type": "range", "id": "slide_distance_mobile", "label": "Distance animation mobile", "unit": "px", "min": 12, "max": 80, "step": 1, "default": 28 },
+    { "type": "range", "id": "slide_distance_desktop", "label": "Distance animation desktop", "unit": "px", "min": 20, "max": 120, "step": 1, "default": 70 },
+    { "type": "range", "id": "header_offset", "label": "Décalage fondu entête", "unit": "px", "min": 0, "max": 70, "step": 1, "default": 28 },
+    { "type": "range", "id": "fade_blur", "label": "Flou du fondu", "unit": "px", "min": 0, "max": 12, "step": 1, "default": 6 },
+
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background_color", "label": "Fond section", "default": "#dedede" },
+    { "type": "color", "id": "text_color", "label": "Texte général", "default": "#111111" },
+    { "type": "color", "id": "eyebrow_color", "label": "Surtitre", "default": "#6b6b6b" },
+    { "type": "color", "id": "title_color", "label": "Titre", "default": "#0f0f0f" },
+    { "type": "color", "id": "subtitle_color", "label": "Sous-titre", "default": "#666666" },
+    { "type": "color", "id": "card_background", "label": "Fond des questions", "default": "#f2f2f2" },
+    { "type": "color", "id": "card_border_color", "label": "Bordure des questions", "default": "#f2f2f2" },
+    { "type": "color", "id": "question_color", "label": "Texte question", "default": "#1d1d1d" },
+    { "type": "color", "id": "answer_color", "label": "Texte réponse", "default": "#6a6a6a" },
+    { "type": "color", "id": "icon_background", "label": "Fond icône fermée", "default": "#111111" },
+    { "type": "color", "id": "icon_color", "label": "Icône fermée", "default": "#ffffff" },
+    { "type": "color", "id": "icon_open_background", "label": "Fond icône ouverte", "default": "#111111" },
+    { "type": "color", "id": "icon_open_color", "label": "Icône ouverte", "default": "#ffffff" }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "select",
+          "id": "column",
+          "label": "Colonne",
+          "options": [
+            { "value": "left", "label": "Gauche" },
+            { "value": "right", "label": "Droite" }
+          ],
+          "default": "left"
+        },
+        { "type": "text", "id": "question", "label": "Question", "default": "Combien de temps faut-il pour voir les résultats SEO ?" },
+        { "type": "textarea", "id": "answer", "label": "Réponse", "default": "Les premiers signaux peuvent apparaître en quelques semaines, mais une progression durable se construit généralement sur plusieurs mois." },
+        { "type": "checkbox", "id": "open_by_default", "label": "Ouverte par défaut", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ animée",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "column": "left",
+            "question": "Pourquoi investir dans le SEO ?",
+            "answer": "Le SEO permet de capter une demande existante sur Google et d'obtenir du trafic qualifié sans dépendre uniquement de la publicité.",
+            "open_by_default": false
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "column": "left",
+            "question": "Quand voit-on les premiers résultats ?",
+            "answer": "Selon l'état du site et la concurrence, les premiers mouvements peuvent arriver en 4 à 8 semaines. Les résultats solides se travaillent plutôt sur 3 à 6 mois.",
+            "open_by_default": true
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "column": "left",
+            "question": "Est-ce que vous rédigez les contenus ?",
+            "answer": "Oui, la stratégie peut inclure la recherche de mots-clés, la structure des pages et la rédaction de contenus optimisés.",
+            "open_by_default": false
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "column": "right",
+            "question": "Travaillez-vous sur Shopify ?",
+            "answer": "Oui, l'optimisation peut couvrir les collections, fiches produits, pages éditoriales, performances et éléments techniques propres à Shopify.",
+            "open_by_default": false
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "column": "right",
+            "question": "Que comprend l'accompagnement mensuel ?",
+            "answer": "Il peut inclure l'audit, les optimisations techniques, la stratégie de contenus, le suivi des positions et les recommandations prioritaires.",
+            "open_by_default": false
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "column": "right",
+            "question": "Y a-t-il un engagement ?",
+            "answer": "L'engagement dépend de l'offre choisie. Le SEO demande de la régularité, donc un suivi sur plusieurs mois est recommandé.",
+            "open_by_default": false
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
