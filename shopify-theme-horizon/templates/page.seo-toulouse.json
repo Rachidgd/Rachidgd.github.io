@@ -31,7 +31,7 @@
         "t3": {
           "type": "text",
           "settings": {
-            "text": "Vos prospects cherchent",
+            "text": "Plus de visibilité,",
             "tone": "muted"
           }
         },
@@ -47,7 +47,7 @@
         "t4": {
           "type": "text",
           "settings": {
-            "text": "un procédé,"
+            "text": "plus"
           }
         },
         "br2": {
@@ -57,7 +57,7 @@
         "t5": {
           "type": "text",
           "settings": {
-            "text": "pas une"
+            "text": "de"
           }
         },
         "b3": {
@@ -72,7 +72,7 @@
         "t6": {
           "type": "text",
           "settings": {
-            "text": "agence.",
+            "text": "demandes.",
             "tone": "custom",
             "custom_color": "#fa703d"
           }
@@ -92,21 +92,21 @@
         "t6"
       ],
       "settings": {
-        "proof_text": "Industriels et bureaux d'études de la région toulousaine.",
+        "proof_text": "PME, artisans et entreprises de la région toulousaine.",
         "avatar_1": "shopify://shop_images/cc_avatar_2.webp",
         "avatar_2": "shopify://shop_images/cc_avatar_2.webp",
-        "sub_text": "Sur un marché structuré par l'aéronautique, on ne vous trouve pas en tapant votre métier. On vous trouve en tapant une norme, une matière, une tolérance.",
-        "cta_label": "Demander un relevé de position",
+        "sub_text": "Nous plaçons votre entreprise sur les recherches que font vos clients à Toulouse, et nous mesurons ce que cela rapporte en demandes.",
+        "cta_label": "Recevoir mon audit gratuit",
         "cta_url": "/pages/reserver",
         "bg_color": "",
         "pb_mobile": 64,
         "pb_desktop": 20,
         "schema_service_name": "Référencement naturel à Toulouse",
-        "schema_service_type": "Référencement naturel pour l'industrie",
-        "schema_service_description": "Accompagnement SEO des industriels, sous-traitants et bureaux d'études de la région toulousaine : pages par procédé, contenus techniques et acquisition de demandes qualifiées.",
-        "schema_service_audience": "Industriels et bureaux d'études",
-        "schema_service_areas": "Toulouse\nBlagnac\nColomiers\nLabège\nHaute-Garonne\nOccitanie",
-        "schema_service_offers": "Audit SEO\nPages par procédé\nContenu technique\nNetlinking B2B\nSuivi de positions"
+        "schema_service_type": "Référencement naturel local",
+        "schema_service_description": "Accompagnement SEO des PME et entreprises toulousaines : audit de visibilité, pages de prestation, référencement local et suivi des demandes entrantes.",
+        "schema_service_audience": "PME, artisans et entreprises",
+        "schema_service_areas": "Toulouse\nBlagnac\nColomiers\nBalma\nHaute-Garonne\nOccitanie",
+        "schema_service_offers": "Audit SEO\nRéférencement local\nRédaction de pages\nFiche établissement\nSuivi des positions"
       }
     },
     "bandes": {
@@ -115,42 +115,42 @@
         "c1": {
           "type": "chip",
           "settings": {
-            "label": "Aéronautique",
+            "label": "PME",
             "url": ""
           }
         },
         "c2": {
           "type": "chip",
           "settings": {
-            "label": "Spatial",
+            "label": "Artisans",
             "url": ""
           }
         },
         "c3": {
           "type": "chip",
           "settings": {
-            "label": "Sous-traitance",
+            "label": "Commerces",
             "url": ""
           }
         },
         "c4": {
           "type": "chip",
           "settings": {
-            "label": "Bureaux d'études",
+            "label": "Services B2B",
             "url": ""
           }
         },
         "c5": {
           "type": "chip",
           "settings": {
-            "label": "Normes",
+            "label": "Professions libérales",
             "url": ""
           }
         },
         "c6": {
           "type": "chip",
           "settings": {
-            "label": "Qualifications",
+            "label": "Franchises",
             "url": ""
           }
         }
@@ -164,10 +164,10 @@
         "c6"
       ],
       "settings": {
-        "ribbon_a_items": "SEO technique\nPages par procédé\nContenu de filière\nNetlinking B2B\nSuivi de positions",
-        "ribbon_b_items": "Blagnac\nColomiers\nLabège\nMontaudran\nSaint-Martin-du-Touch\nHaute-Garonne",
+        "ribbon_a_items": "Audit SEO\nRéférencement local\nContenu et pages\nFiche établissement\nSuivi des positions",
+        "ribbon_b_items": "Toulouse\nBlagnac\nColomiers\nBalma\nTournefeuille\nHaute-Garonne",
         "eyebrow": "(Toulouse)",
-        "reveal_text": "Un document qui détaille un procédé et ses tolérances attire trente lecteurs par mois. Ce sont les trente qui cherchent un fournisseur.",
+        "reveal_text": "À Toulouse, vos clients ne cherchent pas votre nom. Ils cherchent ce que vous faites, avec une ville à côté. C'est cette recherche-là qu'il faut prendre.",
         "bg_color": ""
       }
     },
@@ -177,11 +177,11 @@
         "s1": {
           "type": "service",
           "settings": {
-            "title": "Une page par procédé",
-            "marquee_text": "Par procédé",
+            "title": "Un audit avant toute chose",
+            "marquee_text": "L'audit",
             "image_alt": "",
-            "description": "Personne ne tape « prestataire Toulouse ». On tape un traitement de surface, une tolérance, une qualification. Chaque savoir-faire mérite donc sa propre page.",
-            "tags": "Procédés\nMatières\nTolérances\nQualifications",
+            "description": "Nous relevons vos positions actuelles, celles de vos concurrents toulousains et les recherches que vous ne captez pas encore. Vous savez où vous en êtes avant qu'on engage quoi que ce soit.",
+            "tags": "Positions\nConcurrents\nMots-clés\nTechnique",
             "button_label": "",
             "button_link": ""
           }
@@ -189,11 +189,11 @@
         "s2": {
           "type": "service",
           "settings": {
-            "title": "Les preuves avant l'argumentaire",
-            "marquee_text": "Les preuves",
+            "title": "Des pages qui prennent la demande",
+            "marquee_text": "Les pages",
             "image_alt": "",
-            "description": "Certifications, agréments, donneurs d'ordre déjà servis : c'est le premier filtre d'un acheteur industriel, bien avant votre discours commercial.",
-            "tags": "Certifications\nAgréments\nRéférences\nContrôles",
+            "description": "Une page par prestation et par zone réellement travaillée, écrite comme vos clients formulent leur besoin. Pas une page par commune de la Haute-Garonne.",
+            "tags": "Prestations\nZones\nRédaction\nMaillage",
             "button_label": "",
             "button_link": ""
           }
@@ -201,11 +201,11 @@
         "s3": {
           "type": "service",
           "settings": {
-            "title": "Des bassins, pas des quartiers",
-            "marquee_text": "Les bassins",
+            "title": "La fiche Google et le suivi",
+            "marquee_text": "Le local",
             "image_alt": "",
-            "description": "Blagnac, Colomiers et Labège ne se comportent pas comme des quartiers de Toulouse, mais comme des marchés autonomes, avec leurs propres recherches.",
-            "tags": "Blagnac\nColomiers\nLabège\nMontaudran",
+            "description": "Sur une recherche toulousaine, la fiche établissement s'affiche souvent avant le site. Nous la tenons, nous suivons les demandes, et nous corrigeons chaque mois.",
+            "tags": "Google Business\nAvis\nSuivi\nReporting",
             "button_label": "",
             "button_link": ""
           }
@@ -217,10 +217,9 @@
         "s3"
       ],
       "settings": {
-        "section_aria_label": "Leviers du référencement à Toulouse",
-        "accordion_aria_label": "Choisir un levier",
-        "eyebrow": "(Marché)",
-        "title": "Ce qui marche ici",
+        "section_aria_label": "Prestation SEO à Toulouse",
+        "accordion_aria_label": "Choisir une étape",
+        "eyebrow": "(Prestation)",
         "empty_state_text": "Ajoutez un volet depuis l'éditeur de thème.",
         "marquee_duration": 36
       }
@@ -231,32 +230,32 @@
         "q1": {
           "type": "question",
           "settings": {
-            "question": "Mon activité est-elle trop technique pour Google ?",
-            "answer": "C'est l'inverse. Les requêtes techniques ont peu de volume, presque aucune concurrence éditoriale et une intention d'achat très forte. Ce sont les positions les plus stables du B2B.",
+            "question": "En combien de temps voit-on les premiers résultats ?",
+            "answer": "Les premiers mouvements arrivent en général entre six et douze semaines selon l'état du site. Sur les requêtes toulousaines les plus disputées, il faut compter davantage.",
             "open_by_default": true
           }
         },
         "q2": {
           "type": "question",
           "settings": {
-            "question": "Les donneurs d'ordre passent-ils vraiment par Google ?",
-            "answer": "Pour sourcer un nouveau fournisseur et pour vérifier celui qu'on leur a recommandé, oui. Un site daté fait douter au moment précis où l'on cherchait à se rassurer."
+            "question": "Travaillez-vous avec les petites entreprises ?",
+            "answer": "C'est même l'essentiel de notre activité. Une PME de dix personnes n'a pas les moyens d'un groupe, mais elle peut occuper des recherches que le groupe néglige."
           }
         },
         "q3": {
           "type": "question",
           "settings": {
             "column": "right",
-            "question": "Faut-il une page par commune de l'agglomération ?",
-            "answer": "Non, et c'est le piège classique. Une page ne se justifie que si la recherche existe vraiment sur cette zone. Sinon elle vient concurrencer votre page principale."
+            "question": "Faut-il refaire mon site pour faire du SEO ?",
+            "answer": "Pas toujours. Nous commençons par ce qui se corrige sur l'existant. La refonte n'arrive que si la structure du site empêche réellement de progresser."
           }
         },
         "q4": {
           "type": "question",
           "settings": {
             "column": "right",
-            "question": "Combien de temps avant les premières demandes ?",
-            "answer": "Sur des requêtes de filière peu disputées, les premiers positionnements arrivent souvent en deux à trois mois. Les pages les plus convoitées demandent davantage."
+            "question": "Intervenez-vous en dehors de Toulouse ?",
+            "answer": "Oui, sur toute la Haute-Garonne et au-delà. Nous travaillons à distance avec des points réguliers, comme avec nos clients parisiens ou niçois."
           }
         }
       },
@@ -268,19 +267,19 @@
       ],
       "settings": {
         "section_aria_label": "Questions fréquentes sur le référencement à Toulouse",
-        "title": "Ce que nous demandent les industriels",
-        "subtitle": "Volumes faibles, intentions fortes, découpage géographique : les points qui reviennent sur ce marché."
+        "title": "Avant de démarrer à Toulouse",
+        "subtitle": "Délais, budget, état du site : ce que les dirigeants toulousains nous demandent en premier."
       }
     },
     "contact": {
       "type": "cc-contact-natif-shopify",
       "settings": {
         "back_title": "Toulouse",
-        "title": "Parlons de votre filière.",
-        "subtitle": "Donnez-nous vos procédés et vos qualifications. Nous relevons les recherches de votre marché et votre position dessus.",
+        "title": "Parlons de votre visibilité.",
+        "subtitle": "Dites-nous ce que vous vendez et où vous intervenez. Nous relevons vos positions actuelles et les recherches que vous laissez passer.",
         "email_subject": "Demande — SEO Toulouse",
         "message_label": "Votre projet",
-        "message_placeholder": "Vos procédés, vos qualifications, vos donneurs d'ordre...",
+        "message_placeholder": "Votre activité, vos zones, votre site actuel...",
         "marquee_text": "contact@clickscreation.com",
         "marquee_duration": 34
       }

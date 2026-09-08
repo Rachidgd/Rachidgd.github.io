@@ -31,7 +31,7 @@
         "t3": {
           "type": "text",
           "settings": {
-            "text": "Dix-neuf communes,",
+            "text": "Visible sur",
             "tone": "muted"
           }
         },
@@ -47,7 +47,7 @@
         "t4": {
           "type": "text",
           "settings": {
-            "text": "autant"
+            "text": "google.be,"
           }
         },
         "br2": {
@@ -57,7 +57,7 @@
         "t5": {
           "type": "text",
           "settings": {
-            "text": "de"
+            "text": "avant vos"
           }
         },
         "b3": {
@@ -72,7 +72,7 @@
         "t6": {
           "type": "text",
           "settings": {
-            "text": "marchés.",
+            "text": "concurrents.",
             "tone": "custom",
             "custom_color": "#fa703d"
           }
@@ -92,10 +92,10 @@
         "t6"
       ],
       "settings": {
-        "proof_text": "PME, indépendants et cabinets de la région bruxelloise.",
+        "proof_text": "PME, indépendants et commerces de la région bruxelloise.",
         "avatar_1": "shopify://shop_images/cc_avatar_2.webp",
         "avatar_2": "shopify://shop_images/cc_avatar_2.webp",
-        "sub_text": "À Bruxelles, la langue de recherche change d'une commune à l'autre, et le concurrent qui vous précède n'est pas toujours belge.",
+        "sub_text": "Nous travaillons vos positions sur google.be, là où vos clients cherchent réellement, et nous mesurons les demandes que cela déclenche.",
         "cta_label": "Demander un audit google.be",
         "cta_url": "/pages/reserver",
         "bg_color": "",
@@ -103,10 +103,10 @@
         "pb_desktop": 20,
         "schema_service_name": "Référencement naturel à Bruxelles",
         "schema_service_type": "Référencement local et multilingue",
-        "schema_service_description": "Accompagnement SEO des entreprises bruxelloises : arbitrage entre français, néerlandais et anglais, pages par commune et visibilité sur google.be.",
-        "schema_service_audience": "PME, indépendants et cabinets bruxellois",
+        "schema_service_description": "Accompagnement SEO des PME, indépendants et commerces bruxellois : relevé de positions sur google.be, pages de prestation, fiche établissement et suivi mensuel.",
+        "schema_service_audience": "PME, indépendants et commerces",
         "schema_service_areas": "Bruxelles\nIxelles\nUccle\nSchaerbeek\nRégion de Bruxelles-Capitale",
-        "schema_service_offers": "Audit google.be\nArbitrage des langues\nPages par commune\nFiche établissement\nNetlinking belge"
+        "schema_service_offers": "Audit google.be\nRéférencement local\nRédaction de pages\nFiche établissement\nSuivi mensuel"
       }
     },
     "bandes": {
@@ -129,7 +129,7 @@
         "c3": {
           "type": "chip",
           "settings": {
-            "label": "Cabinets",
+            "label": "Commerces",
             "url": ""
           }
         },
@@ -143,14 +143,14 @@
         "c5": {
           "type": "chip",
           "settings": {
-            "label": "Commerces",
+            "label": "Cabinets",
             "url": ""
           }
         },
         "c6": {
           "type": "chip",
           "settings": {
-            "label": "Institutions",
+            "label": "Services B2B",
             "url": ""
           }
         }
@@ -164,10 +164,10 @@
         "c6"
       ],
       "settings": {
-        "ribbon_a_items": "SEO google.be\nPages par commune\nArbitrage FR / NL\nNetlinking belge\nFiche établissement",
-        "ribbon_b_items": "Ixelles\nUccle\nSchaerbeek\nSaint-Gilles\nWoluwe\nAnderlecht",
+        "ribbon_a_items": "Audit google.be\nRéférencement local\nPages de prestation\nFiche établissement\nSuivi mensuel",
+        "ribbon_b_items": "Bruxelles\nIxelles\nUccle\nSchaerbeek\nWoluwe\nBrabant wallon",
         "eyebrow": "(Bruxelles)",
-        "reveal_text": "Ixelles ne cherche pas comme Schaerbeek, et Uccle ne cherche pas dans la même langue. Une seule page pour Bruxelles n'en couvre aucune.",
+        "reveal_text": "Sur google.be, un concurrent mieux structuré passe devant vous même s'il n'est pas belge. La position se travaille, elle ne se décrète pas.",
         "bg_color": ""
       }
     },
@@ -177,11 +177,11 @@
         "s1": {
           "type": "service",
           "settings": {
-            "title": "Choisir sa langue par zone",
-            "marquee_text": "La langue",
+            "title": "On commence par mesurer",
+            "marquee_text": "Le relevé",
             "image_alt": "",
-            "description": "Le français domine au sud, le néerlandais remonte au nord, l'anglais s'impose autour des institutions. Publier partout dans les trois coûte cher pour rien.",
-            "tags": "Français\nNéerlandais\nAnglais\nArbitrage",
+            "description": "Positions actuelles sur google.be, concurrents qui vous précèdent, recherches que vous ne captez pas. Le constat passe avant la proposition.",
+            "tags": "Relevé\nConcurrence\nRequêtes\nTechnique",
             "button_label": "",
             "button_link": ""
           }
@@ -189,11 +189,11 @@
         "s2": {
           "type": "service",
           "settings": {
-            "title": "Une page là où la demande existe",
-            "marquee_text": "Par commune",
+            "title": "Écrire ce que vos clients tapent",
+            "marquee_text": "Les pages",
             "image_alt": "",
-            "description": "Ixelles, Uccle ou Schaerbeek méritent leur page si la recherche y existe vraiment. Sinon on empile des pages qui se volent leurs positions entre elles.",
-            "tags": "Communes\nQuartiers\nMaillage\nCannibalisation",
+            "description": "Une page par prestation, formulée comme vos clients bruxellois posent leur question, et dans la langue où ils décident vraiment.",
+            "tags": "Prestations\nLangue\nRédaction\nMaillage",
             "button_label": "",
             "button_link": ""
           }
@@ -201,11 +201,11 @@
         "s3": {
           "type": "service",
           "settings": {
-            "title": "Tenir la fiche établissement",
-            "marquee_text": "La fiche",
+            "title": "Occuper le terrain local",
+            "marquee_text": "Le terrain",
             "image_alt": "",
-            "description": "Sur les recherches locales bruxelloises, la fiche Google passe souvent avant le site. Horaires, avis et photos y pèsent autant que vos pages.",
-            "tags": "Google Business\nAvis\nHoraires\nPhotos",
+            "description": "Fiche établissement à jour, avis, cohérence des coordonnées : sur une recherche bruxelloise, c'est souvent ce qui s'affiche avant votre site.",
+            "tags": "Google Business\nAvis\nCoordonnées\nSuivi",
             "button_label": "",
             "button_link": ""
           }
@@ -217,10 +217,10 @@
         "s3"
       ],
       "settings": {
-        "section_aria_label": "Leviers du référencement à Bruxelles",
-        "accordion_aria_label": "Choisir un levier",
-        "eyebrow": "(Terrain)",
-        "title": "Ce qui se joue ici",
+        "section_aria_label": "Prestation SEO à Bruxelles",
+        "accordion_aria_label": "Choisir une étape",
+        "eyebrow": "(Prestation)",
+        "title": "Comment nous procédons",
         "empty_state_text": "Ajoutez un volet depuis l'éditeur de thème.",
         "marquee_duration": 36
       }
@@ -231,32 +231,32 @@
         "q1": {
           "type": "question",
           "settings": {
-            "question": "Faut-il publier en néerlandais ?",
-            "answer": "Seulement si vos clients décident dans cette langue. Beaucoup d'entreprises bruxelloises traduisent tout par principe, diluent leur budget et ne performent nulle part.",
+            "question": "Faut-il un site en néerlandais ?",
+            "answer": "Seulement si vos clients décident dans cette langue. Beaucoup d'entreprises traduisent tout par principe, diluent leur budget et ne ressortent nulle part.",
             "open_by_default": true
           }
         },
         "q2": {
           "type": "question",
           "settings": {
-            "question": "Un domaine en .be est-il indispensable ?",
-            "answer": "Non. Une adresse belge, des contenus clairement bruxellois et une fiche établissement à jour pèsent davantage que l'extension du domaine."
+            "question": "Un domaine en .be change-t-il quelque chose ?",
+            "answer": "Peu. Une adresse belge, des contenus clairement locaux et une fiche à jour pèsent bien plus lourd que l'extension du domaine."
           }
         },
         "q3": {
           "type": "question",
           "settings": {
             "column": "right",
-            "question": "Pourquoi des concurrents français sortent-ils avant moi ?",
-            "answer": "Parce que Google classe sur la pertinence avant la nationalité. Un site français bien structuré passe devant un site belge mal organisé, même sur google.be."
+            "question": "Pourquoi des concurrents français passent-ils devant ?",
+            "answer": "Parce que Google classe d'abord sur la pertinence. Un site mieux structuré passe devant un site belge mal organisé, même sur une recherche belge."
           }
         },
         "q4": {
           "type": "question",
           "settings": {
             "column": "right",
-            "question": "Faut-il une page pour chacune des dix-neuf communes ?",
-            "answer": "Non. On en ouvre une là où la recherche existe et où vous intervenez réellement. Le reste se traite dans une page régionale, sans concurrence interne."
+            "question": "Travaillez-vous avec des petites structures ?",
+            "answer": "Oui, c'est notre terrain habituel. Un indépendant ou une PME peut occuper des recherches que les grandes enseignes ne travaillent pas."
           }
         }
       },
@@ -269,18 +269,18 @@
       "settings": {
         "section_aria_label": "Questions fréquentes sur le référencement à Bruxelles",
         "title": "Avant de viser google.be",
-        "subtitle": "Langues, extension de domaine, concurrence transfrontalière : ce qui décide vraiment de vos positions."
+        "subtitle": "Langue, domaine, taille de structure : les points qu'on nous soumet avant de signer."
       }
     },
     "contact": {
       "type": "cc-contact-natif-shopify",
       "settings": {
         "back_title": "Bruxelles",
-        "title": "Parlons de vos communes.",
-        "subtitle": "Dites-nous où vous intervenez et dans quelle langue vos clients décident. Nous relevons vos positions sur google.be.",
+        "title": "Parlons de vos positions.",
+        "subtitle": "Dites-nous ce que vous vendez, où vous intervenez et dans quelle langue. Nous relevons vos positions sur google.be.",
         "email_subject": "Demande — SEO Bruxelles",
         "message_label": "Votre projet",
-        "message_placeholder": "Vos zones d'intervention, vos langues, vos concurrents...",
+        "message_placeholder": "Votre activité, vos zones, vos langues de travail...",
         "marquee_text": "contact@clickscreation.com",
         "marquee_duration": 34
       }
