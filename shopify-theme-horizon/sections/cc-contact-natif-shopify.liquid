@@ -1,0 +1,708 @@
+{%- liquid
+  assign s = section.settings
+  assign uid = section.id
+  assign form_id = 'ContactForm-' | append: uid
+  assign marquee_text = s.marquee_text
+  if marquee_text == blank
+    assign marquee_text = shop.email
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ uid }} {
+    display: block;
+    overflow-x: clip;
+    background: {{ s.background_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-contact {
+    position: relative;
+    overflow-x: clip;
+    padding-top: {{ s.padding_top_mobile }}px;
+    padding-bottom: {{ s.padding_bottom_mobile }}px;
+    color: {{ s.text_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-contact,
+  #shopify-section-{{ uid }} .cc-contact *,
+  #shopify-section-{{ uid }} .cc-contact *::before,
+  #shopify-section-{{ uid }} .cc-contact *::after {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__inner {
+    position: relative;
+    width: min({{ s.max_width }}px, calc(100% - 32px));
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__back-title {
+    position: absolute;
+    z-index: 0;
+    top: {{ s.back_title_top_mobile }}px;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    color: {{ s.back_title_color }};
+    font-size: {{ s.back_title_size_mobile }}px;
+    font-weight: 900;
+    line-height: 0.8;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    opacity: {{ s.back_title_opacity | divided_by: 100.0 }};
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__panel {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    min-height: {{ s.panel_min_height_mobile }}px;
+    overflow: hidden;
+    border: {{ s.panel_border_width }}px solid {{ s.panel_border_color }};
+    border-radius: {{ s.panel_radius_mobile }}px;
+    background: {{ s.panel_fallback_color }};
+    box-shadow: 0 {{ s.panel_shadow_y }}px {{ s.panel_shadow_blur }}px rgba(0, 0, 0, {{ s.panel_shadow_opacity | divided_by: 100.0 }});
+    isolation: isolate;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__image {
+    position: absolute;
+    inset: calc(-1 * {{ s.image_bleed }}px);
+    z-index: -4;
+    width: calc(100% + {{ s.image_bleed | times: 2 }}px);
+    height: calc(100% + {{ s.image_bleed | times: 2 }}px);
+    object-fit: cover;
+    filter: blur({{ s.image_blur }}px) saturate({{ s.image_saturation }}%);
+    opacity: {{ s.image_opacity | divided_by: 100.0 }};
+    transform: scale({{ s.image_scale | divided_by: 100.0 }});
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__fallback-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -4;
+    background:
+      radial-gradient(circle at 25% 35%, rgba(255, 255, 255, 0.34), transparent 18%),
+      radial-gradient(circle at 72% 52%, rgba(255, 82, 28, 0.36), transparent 20%),
+      radial-gradient(circle at 55% 20%, rgba(145, 255, 128, 0.16), transparent 14%),
+      linear-gradient(135deg, #121212 0%, #0a0a0a 100%);
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__shade {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, {{ s.side_shadow_opacity | divided_by: 100.0 }}) 0%, rgba(0, 0, 0, 0.35) 42%, rgba(0, 0, 0, {{ s.side_shadow_opacity | divided_by: 100.0 }}) 100%),
+      rgba(0, 0, 0, {{ s.overlay_opacity | divided_by: 100.0 }});
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__grain {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      repeating-radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 4px),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+    mix-blend-mode: overlay;
+    opacity: {{ s.grain_opacity | divided_by: 100.0 }};
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__content {
+    display: grid;
+    align-items: center;
+    gap: {{ s.content_gap_mobile }}px;
+    width: min({{ s.content_width }}px, 100%);
+    min-height: inherit;
+    margin-inline: auto;
+    padding: {{ s.panel_padding_y_mobile }}px {{ s.panel_padding_x_mobile }}px calc({{ s.panel_padding_y_mobile }}px + {{ s.marquee_space_mobile }}px);
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__copy {
+    max-width: {{ s.copy_width }}px;
+    color: {{ s.panel_text_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__title {
+    margin: 0;
+    color: {{ s.panel_title_color }};
+    font-size: {{ s.title_size_mobile }}px;
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: 0;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__subtitle {
+    margin: {{ s.subtitle_top }}px 0 0;
+    color: {{ s.panel_muted_color }};
+    font-size: {{ s.subtitle_size_mobile }}px;
+    font-weight: 650;
+    line-height: 1.45;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__form-wrap {
+    width: min({{ s.form_width }}px, 100%);
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__form {
+    display: grid;
+    gap: {{ s.field_gap_mobile }}px;
+    margin: 0;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__field {
+    display: grid;
+    gap: {{ s.label_gap }}px;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__label {
+    color: {{ s.label_color }};
+    font-size: {{ s.label_size_mobile }}px;
+    font-weight: 750;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__input,
+  #shopify-section-{{ uid }} .cc-contact__textarea {
+    width: 100%;
+    min-height: {{ s.input_height }}px;
+    padding: 0 0 {{ s.input_padding_bottom }}px;
+    border: 0;
+    border-bottom: {{ s.input_border_width }}px solid {{ s.input_border_color }};
+    border-radius: 0;
+    outline: 0;
+    background: transparent;
+    color: {{ s.input_text_color }};
+    font: inherit;
+    font-size: {{ s.input_size_mobile }}px;
+    font-weight: 650;
+    line-height: 1.35;
+    box-shadow: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__textarea {
+    min-height: {{ s.textarea_height_mobile }}px;
+    resize: vertical;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__input::placeholder,
+  #shopify-section-{{ uid }} .cc-contact__textarea::placeholder {
+    color: {{ s.placeholder_color }};
+    opacity: 1;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__input:focus,
+  #shopify-section-{{ uid }} .cc-contact__textarea:focus {
+    border-bottom-color: {{ s.input_focus_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: {{ s.button_height }}px;
+    margin-top: {{ s.button_top }}px;
+    padding: 12px 24px;
+    border: 0;
+    border-radius: 999px;
+    background: {{ s.button_background }};
+    color: {{ s.button_text_color }};
+    font-size: {{ s.button_size_mobile }}px;
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.22s ease, opacity 0.22s ease, background-color 0.22s ease;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__button:focus-visible,
+  #shopify-section-{{ uid }} .cc-contact__input:focus-visible,
+  #shopify-section-{{ uid }} .cc-contact__textarea:focus-visible {
+    outline: 2px solid {{ s.focus_ring_color }};
+    outline-offset: 4px;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__feedback {
+    padding: 14px 16px;
+    border-radius: 12px;
+    font-size: {{ s.feedback_size }}px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__feedback--success {
+    background: {{ s.success_background }};
+    color: {{ s.success_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__feedback--error {
+    background: {{ s.error_background }};
+    color: {{ s.error_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__feedback--error ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__marquee {
+    position: absolute;
+    right: 0;
+    bottom: {{ s.marquee_bottom_mobile }}px;
+    left: 0;
+    z-index: 2;
+    overflow: hidden;
+    display: flex;
+    color: {{ s.marquee_color }};
+    font-size: {{ s.marquee_size_mobile }}px;
+    font-weight: 900;
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 14%, #000 86%, transparent 100%);
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__marquee-track {
+    display: flex;
+    min-width: max-content;
+    animation: cc-contact-marquee-{{ uid }} {{ s.marquee_duration }}s linear infinite;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__marquee-group {
+    display: flex;
+    align-items: center;
+    gap: {{ s.marquee_gap_mobile }}px;
+    padding-right: {{ s.marquee_gap_mobile }}px;
+  }
+
+  #shopify-section-{{ uid }} .cc-contact__marquee-separator {
+    color: {{ s.marquee_separator_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-contact--ready .cc-contact__back-title,
+  #shopify-section-{{ uid }} .cc-contact--ready .cc-contact__panel {
+    opacity: 0;
+    filter: blur({{ s.reveal_blur }}px);
+    transition:
+      opacity {{ s.reveal_duration }}ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform {{ s.reveal_duration }}ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter {{ s.reveal_duration }}ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  #shopify-section-{{ uid }} .cc-contact--ready .cc-contact__back-title {
+    transform: translate(-50%, {{ s.back_title_reveal_offset }}px);
+  }
+
+  #shopify-section-{{ uid }} .cc-contact--ready .cc-contact__panel {
+    transform: translateY({{ s.panel_reveal_offset }}px) scale(0.985);
+  }
+
+  #shopify-section-{{ uid }} .cc-contact--visible .cc-contact__back-title {
+    opacity: {{ s.back_title_opacity | divided_by: 100.0 }};
+    filter: blur(0);
+    transform: translate(-50%, 0);
+  }
+
+  #shopify-section-{{ uid }} .cc-contact--visible .cc-contact__panel {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+
+  @keyframes cc-contact-marquee-{{ uid }} {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (min-width: 750px) {
+    #shopify-section-{{ uid }} .cc-contact {
+      padding-top: {{ s.padding_top_desktop }}px;
+      padding-bottom: {{ s.padding_bottom_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__inner {
+      width: min({{ s.max_width }}px, calc(100% - 64px));
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__back-title {
+      top: {{ s.back_title_top_desktop }}px;
+      font-size: {{ s.back_title_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__panel {
+      min-height: {{ s.panel_min_height_desktop }}px;
+      border-radius: {{ s.panel_radius_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__content {
+      grid-template-columns: minmax(0, 1fr) minmax(320px, {{ s.form_width }}px);
+      gap: {{ s.content_gap_desktop }}px;
+      padding: {{ s.panel_padding_y_desktop }}px {{ s.panel_padding_x_desktop }}px calc({{ s.panel_padding_y_desktop }}px + {{ s.marquee_space_desktop }}px);
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__copy {
+      align-self: center;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__form-wrap {
+      justify-self: end;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__form {
+      gap: {{ s.field_gap_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__title {
+      font-size: {{ s.title_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__subtitle {
+      font-size: {{ s.subtitle_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__label {
+      font-size: {{ s.label_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__input,
+    #shopify-section-{{ uid }} .cc-contact__textarea {
+      font-size: {{ s.input_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__textarea {
+      min-height: {{ s.textarea_height_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__button {
+      font-size: {{ s.button_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__marquee {
+      bottom: {{ s.marquee_bottom_desktop }}px;
+      font-size: {{ s.marquee_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact__marquee-group {
+      gap: {{ s.marquee_gap_desktop }}px;
+      padding-right: {{ s.marquee_gap_desktop }}px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ uid }} .cc-contact__marquee-track {
+      animation: none;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact--ready .cc-contact__back-title,
+    #shopify-section-{{ uid }} .cc-contact--ready .cc-contact__panel {
+      opacity: 1;
+      filter: none;
+      transform: none;
+      transition: none;
+    }
+
+    #shopify-section-{{ uid }} .cc-contact--ready .cc-contact__back-title {
+      transform: translateX(-50%);
+    }
+  }
+</style>
+
+<section id="cc-contact-{{ uid }}" class="cc-contact" aria-label="{{ s.section_aria_label | escape }}">
+  <div class="cc-contact__inner">
+    {%- if s.back_title != blank -%}
+      <div class="cc-contact__back-title" aria-hidden="true">{{ s.back_title | escape }}</div>
+    {%- endif -%}
+
+    <div class="cc-contact__panel">
+      {%- if s.background_image != blank -%}
+        {{ s.background_image | image_url: width: 2200 | image_tag: loading: 'lazy', class: 'cc-contact__image', alt: '' }}
+      {%- else -%}
+        <span class="cc-contact__fallback-bg" aria-hidden="true"></span>
+      {%- endif -%}
+
+      <span class="cc-contact__shade" aria-hidden="true"></span>
+      <span class="cc-contact__grain" aria-hidden="true"></span>
+
+      <div class="cc-contact__content">
+        <div class="cc-contact__copy">
+          {%- if s.title != blank -%}
+            <h2 class="cc-contact__title">{{ s.title | escape | newline_to_br }}</h2>
+          {%- endif -%}
+
+          {%- if s.subtitle != blank -%}
+            <p class="cc-contact__subtitle">{{ s.subtitle | escape }}</p>
+          {%- endif -%}
+        </div>
+
+        <div class="cc-contact__form-wrap">
+          {%- form 'contact', id: form_id, class: 'cc-contact__form' -%}
+            {%- if s.email_subject != blank -%}
+              <input type="hidden" name="contact[objet]" value="{{ s.email_subject | escape }}">
+            {%- endif -%}
+
+            {%- if form.posted_successfully? -%}
+              <div class="cc-contact__feedback cc-contact__feedback--success" tabindex="-1" autofocus>
+                {{ s.success_message | escape }}
+              </div>
+            {%- endif -%}
+
+            {%- if form.errors -%}
+              <div class="cc-contact__feedback cc-contact__feedback--error" tabindex="-1" autofocus>
+                {{ form.errors | default_errors }}
+              </div>
+            {%- endif -%}
+
+            <div class="cc-contact__field">
+              <label class="cc-contact__label" for="{{ form_id }}-name">{{ s.name_label | escape }}</label>
+              <input
+                class="cc-contact__input"
+                autocomplete="name"
+                type="text"
+                id="{{ form_id }}-name"
+                name="contact[name]"
+                value="{% if form.name %}{{ form.name | escape }}{% elsif customer %}{{ customer.name | escape }}{% endif %}"
+                placeholder="{{ s.name_placeholder | escape }}"
+              >
+            </div>
+
+            <div class="cc-contact__field">
+              <label class="cc-contact__label" for="{{ form_id }}-email">{{ s.email_label | escape }}</label>
+              <input
+                class="cc-contact__input"
+                autocomplete="email"
+                type="email"
+                id="{{ form_id }}-email"
+                name="contact[email]"
+                spellcheck="false"
+                autocapitalize="off"
+                value="{% if form.email %}{{ form.email | escape }}{% elsif customer %}{{ customer.email | escape }}{% endif %}"
+                aria-required="true"
+                required
+                placeholder="{{ s.email_placeholder | escape }}"
+              >
+            </div>
+
+            <div class="cc-contact__field">
+              <label class="cc-contact__label" for="{{ form_id }}-message">{{ s.message_label | escape }}</label>
+              <textarea
+                class="cc-contact__textarea"
+                rows="5"
+                id="{{ form_id }}-message"
+                name="contact[body]"
+                aria-required="true"
+                required
+                placeholder="{{ s.message_placeholder | escape }}"
+              >{{ form.body | escape }}</textarea>
+            </div>
+
+            <button class="cc-contact__button" type="submit">
+              {{ s.button_label | escape }}
+            </button>
+          {%- endform -%}
+        </div>
+      </div>
+
+      {%- if marquee_text != blank -%}
+        <div class="cc-contact__marquee" aria-hidden="true">
+          <div class="cc-contact__marquee-track">
+            {%- for i in (1..2) -%}
+              <div class="cc-contact__marquee-group">
+                {%- for n in (1..6) -%}
+                  <span>{{ marquee_text | escape }}</span>
+                  <span class="cc-contact__marquee-separator">{{ s.marquee_separator | escape }}</span>
+                {%- endfor -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const section = document.getElementById('cc-contact-{{ uid }}');
+    if (!section) return;
+
+    section.classList.add('cc-contact--ready');
+
+    const reveal = () => section.classList.add('cc-contact--visible');
+
+    if (!('IntersectionObserver' in window)) {
+      reveal();
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          reveal();
+          observer.unobserve(section);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    observer.observe(section);
+
+    if (window.Shopify && window.Shopify.designMode) {
+      reveal();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Contact natif",
+  "tag": "section",
+  "class": "cc-contact-section",
+  "settings": [
+    { "type": "header", "content": "Textes" },
+    { "type": "text", "id": "section_aria_label", "label": "Libellé accessible", "default": "Contact" },
+    { "type": "text", "id": "back_title", "label": "Grand texte en arrière-plan", "default": "Let's Connect" },
+    { "type": "textarea", "id": "title", "label": "Titre", "default": "Un projet en tête ?" },
+    { "type": "text", "id": "subtitle", "label": "Sous-titre", "default": "Créons quelque chose de clair, utile et performant ensemble." },
+    { "type": "text", "id": "email_subject", "label": "Objet envoyé dans le mail", "default": "Nouvelle demande depuis le formulaire de contact" },
+    { "type": "text", "id": "name_label", "label": "Libellé nom", "default": "Votre nom" },
+    { "type": "text", "id": "name_placeholder", "label": "Placeholder nom", "default": "Entrez votre nom" },
+    { "type": "text", "id": "email_label", "label": "Libellé email", "default": "Votre email" },
+    { "type": "text", "id": "email_placeholder", "label": "Placeholder email", "default": "Entrez votre email" },
+    { "type": "text", "id": "message_label", "label": "Libellé message", "default": "Description du projet" },
+    { "type": "text", "id": "message_placeholder", "label": "Placeholder message", "default": "Décrivez votre projet..." },
+    { "type": "text", "id": "button_label", "label": "Texte bouton", "default": "Envoyer" },
+    { "type": "text", "id": "success_message", "label": "Message de succès", "default": "Merci, votre message a bien été envoyé." },
+    { "type": "text", "id": "marquee_text", "label": "Texte défilant", "default": "contact@votresite.com" },
+    { "type": "text", "id": "marquee_separator", "label": "Séparateur du texte défilant", "default": "✦" },
+
+    { "type": "header", "content": "Image et fond" },
+    { "type": "image_picker", "id": "background_image", "label": "Image de fond" },
+    { "type": "range", "id": "image_opacity", "label": "Opacité image", "unit": "%", "min": 0, "max": 100, "step": 1, "default": 72 },
+    { "type": "range", "id": "image_blur", "label": "Flou image", "unit": "px", "min": 0, "max": 18, "step": 1, "default": 6 },
+    { "type": "range", "id": "image_saturation", "label": "Saturation image", "unit": "%", "min": 40, "max": 160, "step": 2, "default": 90 },
+    { "type": "range", "id": "image_scale", "label": "Zoom image", "unit": "%", "min": 100, "max": 130, "step": 1, "default": 104 },
+    { "type": "range", "id": "image_bleed", "label": "Débord image pour le flou", "unit": "px", "min": 0, "max": 40, "step": 1, "default": 16 },
+    { "type": "range", "id": "overlay_opacity", "label": "Opacité voile noir", "unit": "%", "min": 0, "max": 90, "step": 1, "default": 54 },
+    { "type": "range", "id": "side_shadow_opacity", "label": "Assombrissement côtés", "unit": "%", "min": 0, "max": 95, "step": 1, "default": 74 },
+    { "type": "range", "id": "grain_opacity", "label": "Texture légère", "unit": "%", "min": 0, "max": 45, "step": 1, "default": 18 },
+
+    { "type": "header", "content": "Marges et largeur" },
+    { "type": "range", "id": "padding_top_mobile", "label": "Marge haute mobile", "unit": "px", "min": 0, "max": 240, "step": 4, "default": 72 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Marge basse mobile", "unit": "px", "min": 0, "max": 240, "step": 4, "default": 72 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Marge haute desktop", "unit": "px", "min": 0, "max": 320, "step": 4, "default": 88 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Marge basse desktop", "unit": "px", "min": 0, "max": 320, "step": 4, "default": 88 },
+    { "type": "range", "id": "max_width", "label": "Largeur section", "unit": "px", "min": 900, "max": 1800, "step": 10, "default": 1620 },
+    { "type": "range", "id": "content_width", "label": "Largeur contenu dans la carte", "unit": "px", "min": 760, "max": 1320, "step": 10, "default": 1080 },
+    { "type": "range", "id": "copy_width", "label": "Largeur texte gauche", "unit": "px", "min": 280, "max": 620, "step": 5, "default": 430 },
+    { "type": "range", "id": "form_width", "label": "Largeur formulaire", "unit": "px", "min": 300, "max": 620, "step": 5, "default": 440 },
+
+    { "type": "header", "content": "Carte" },
+    { "type": "range", "id": "panel_min_height_mobile", "label": "Hauteur carte mobile", "unit": "px", "min": 520, "max": 900, "step": 5, "default": 680 },
+    { "type": "range", "id": "panel_min_height_desktop", "label": "Hauteur carte desktop", "unit": "px", "min": 480, "max": 820, "step": 5, "default": 650 },
+    { "type": "range", "id": "panel_padding_x_mobile", "label": "Marge intérieure horizontale mobile", "unit": "px", "min": 22, "max": 60, "step": 1, "default": 26 },
+    { "type": "range", "id": "panel_padding_y_mobile", "label": "Marge intérieure verticale mobile", "unit": "px", "min": 38, "max": 90, "step": 1, "default": 52 },
+    { "type": "range", "id": "panel_padding_x_desktop", "label": "Marge intérieure horizontale desktop", "unit": "px", "min": 50, "max": 160, "step": 2, "default": 96 },
+    { "type": "range", "id": "panel_padding_y_desktop", "label": "Marge intérieure verticale desktop", "unit": "px", "min": 60, "max": 150, "step": 2, "default": 92 },
+    { "type": "range", "id": "panel_radius_mobile", "label": "Arrondi carte mobile", "unit": "px", "min": 10, "max": 42, "step": 1, "default": 24 },
+    { "type": "range", "id": "panel_radius_desktop", "label": "Arrondi carte desktop", "unit": "px", "min": 10, "max": 56, "step": 1, "default": 34 },
+    { "type": "range", "id": "panel_border_width", "label": "Épaisseur bordure carte", "unit": "px", "min": 0, "max": 4, "step": 1, "default": 0 },
+    { "type": "range", "id": "panel_shadow_y", "label": "Ombre verticale", "unit": "px", "min": 0, "max": 40, "step": 1, "default": 0 },
+    { "type": "range", "id": "panel_shadow_blur", "label": "Flou ombre", "unit": "px", "min": 0, "max": 80, "step": 1, "default": 0 },
+    { "type": "range", "id": "panel_shadow_opacity", "label": "Opacité ombre", "unit": "%", "min": 0, "max": 40, "step": 1, "default": 0 },
+    { "type": "range", "id": "content_gap_mobile", "label": "Espace texte/formulaire mobile", "unit": "px", "min": 24, "max": 80, "step": 1, "default": 38 },
+    { "type": "range", "id": "content_gap_desktop", "label": "Espace texte/formulaire desktop", "unit": "px", "min": 40, "max": 160, "step": 2, "default": 110 },
+
+    { "type": "header", "content": "Typographie" },
+    { "type": "range", "id": "back_title_size_mobile", "label": "Taille grand texte mobile", "unit": "px", "min": 54, "max": 130, "step": 1, "default": 78 },
+    { "type": "range", "id": "back_title_size_desktop", "label": "Taille grand texte desktop", "unit": "px", "min": 90, "max": 220, "step": 2, "default": 176 },
+    { "type": "range", "id": "back_title_top_mobile", "label": "Position grand texte mobile", "unit": "px", "min": 0, "max": 120, "step": 2, "default": 0 },
+    { "type": "range", "id": "back_title_top_desktop", "label": "Position grand texte desktop", "unit": "px", "min": 0, "max": 160, "step": 2, "default": 0 },
+    { "type": "range", "id": "back_title_opacity", "label": "Opacité grand texte", "unit": "%", "min": 0, "max": 100, "step": 1, "default": 30 },
+    { "type": "range", "id": "title_size_mobile", "label": "Taille titre mobile", "unit": "px", "min": 34, "max": 72, "step": 1, "default": 44 },
+    { "type": "range", "id": "title_size_desktop", "label": "Taille titre desktop", "unit": "px", "min": 48, "max": 92, "step": 1, "default": 64 },
+    { "type": "range", "id": "subtitle_size_mobile", "label": "Taille sous-titre mobile", "unit": "px", "min": 13, "max": 22, "step": 1, "default": 15 },
+    { "type": "range", "id": "subtitle_size_desktop", "label": "Taille sous-titre desktop", "unit": "px", "min": 14, "max": 24, "step": 1, "default": 16 },
+    { "type": "range", "id": "subtitle_top", "label": "Espace sous le titre", "unit": "px", "min": 12, "max": 44, "step": 1, "default": 24 },
+    { "type": "range", "id": "label_size_mobile", "label": "Taille labels mobile", "unit": "px", "min": 13, "max": 22, "step": 1, "default": 15 },
+    { "type": "range", "id": "label_size_desktop", "label": "Taille labels desktop", "unit": "px", "min": 14, "max": 24, "step": 1, "default": 16 },
+    { "type": "range", "id": "input_size_mobile", "label": "Taille champs mobile", "unit": "px", "min": 13, "max": 22, "step": 1, "default": 14 },
+    { "type": "range", "id": "input_size_desktop", "label": "Taille champs desktop", "unit": "px", "min": 14, "max": 24, "step": 1, "default": 15 },
+    { "type": "range", "id": "button_size_mobile", "label": "Taille bouton mobile", "unit": "px", "min": 13, "max": 22, "step": 1, "default": 14 },
+    { "type": "range", "id": "button_size_desktop", "label": "Taille bouton desktop", "unit": "px", "min": 14, "max": 24, "step": 1, "default": 15 },
+    { "type": "range", "id": "feedback_size", "label": "Taille message formulaire", "unit": "px", "min": 12, "max": 20, "step": 1, "default": 14 },
+
+    { "type": "header", "content": "Champs" },
+    { "type": "range", "id": "field_gap_mobile", "label": "Espace entre champs mobile", "unit": "px", "min": 16, "max": 50, "step": 1, "default": 26 },
+    { "type": "range", "id": "field_gap_desktop", "label": "Espace entre champs desktop", "unit": "px", "min": 18, "max": 58, "step": 1, "default": 30 },
+    { "type": "range", "id": "label_gap", "label": "Espace label/champ", "unit": "px", "min": 8, "max": 24, "step": 1, "default": 14 },
+    { "type": "range", "id": "input_height", "label": "Hauteur champ", "unit": "px", "min": 34, "max": 64, "step": 1, "default": 40 },
+    { "type": "range", "id": "input_padding_bottom", "label": "Marge sous texte champ", "unit": "px", "min": 4, "max": 18, "step": 1, "default": 10 },
+    { "type": "range", "id": "input_border_width", "label": "Épaisseur ligne champ", "unit": "px", "min": 1, "max": 4, "step": 1, "default": 1 },
+    { "type": "range", "id": "textarea_height_mobile", "label": "Hauteur message mobile", "unit": "px", "min": 78, "max": 180, "step": 2, "default": 110 },
+    { "type": "range", "id": "textarea_height_desktop", "label": "Hauteur message desktop", "unit": "px", "min": 78, "max": 180, "step": 2, "default": 112 },
+    { "type": "range", "id": "button_height", "label": "Hauteur bouton", "unit": "px", "min": 40, "max": 68, "step": 1, "default": 48 },
+    { "type": "range", "id": "button_top", "label": "Espace au-dessus bouton", "unit": "px", "min": 6, "max": 36, "step": 1, "default": 8 },
+
+    { "type": "header", "content": "Texte défilant" },
+    { "type": "range", "id": "marquee_space_mobile", "label": "Espace réservé mobile", "unit": "px", "min": 44, "max": 110, "step": 1, "default": 74 },
+    { "type": "range", "id": "marquee_space_desktop", "label": "Espace réservé desktop", "unit": "px", "min": 52, "max": 130, "step": 1, "default": 82 },
+    { "type": "range", "id": "marquee_bottom_mobile", "label": "Position basse mobile", "unit": "px", "min": 24, "max": 90, "step": 1, "default": 34 },
+    { "type": "range", "id": "marquee_bottom_desktop", "label": "Position basse desktop", "unit": "px", "min": 24, "max": 100, "step": 1, "default": 54 },
+    { "type": "range", "id": "marquee_size_mobile", "label": "Taille texte défilant mobile", "unit": "px", "min": 18, "max": 42, "step": 1, "default": 26 },
+    { "type": "range", "id": "marquee_size_desktop", "label": "Taille texte défilant desktop", "unit": "px", "min": 24, "max": 60, "step": 1, "default": 36 },
+    { "type": "range", "id": "marquee_gap_mobile", "label": "Espace texte défilant mobile", "unit": "px", "min": 16, "max": 60, "step": 1, "default": 28 },
+    { "type": "range", "id": "marquee_gap_desktop", "label": "Espace texte défilant desktop", "unit": "px", "min": 24, "max": 80, "step": 1, "default": 40 },
+    { "type": "range", "id": "marquee_duration", "label": "Vitesse défilement", "unit": "s", "min": 8, "max": 40, "step": 1, "default": 18 },
+
+    { "type": "header", "content": "Animation" },
+    { "type": "range", "id": "reveal_duration", "label": "Durée apparition", "unit": "ms", "min": 300, "max": 1300, "step": 10, "default": 820 },
+    { "type": "range", "id": "reveal_blur", "label": "Flou apparition", "unit": "px", "min": 0, "max": 12, "step": 1, "default": 6 },
+    { "type": "range", "id": "panel_reveal_offset", "label": "Décalage carte", "unit": "px", "min": 0, "max": 80, "step": 1, "default": 26 },
+    { "type": "range", "id": "back_title_reveal_offset", "label": "Décalage grand titre", "unit": "px", "min": 0, "max": 80, "step": 1, "default": 18 },
+
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background_color", "label": "Fond section", "default": "#dedede" },
+    { "type": "color", "id": "text_color", "label": "Texte général", "default": "#ffffff" },
+    { "type": "color", "id": "back_title_color", "label": "Grand texte arrière-plan", "default": "#bdbdbd" },
+    { "type": "color", "id": "panel_fallback_color", "label": "Fond carte sans image", "default": "#0b0b0b" },
+    { "type": "color", "id": "panel_border_color", "label": "Bordure carte", "default": "#161616" },
+    { "type": "color", "id": "panel_text_color", "label": "Texte dans la carte", "default": "#ffffff" },
+    { "type": "color", "id": "panel_title_color", "label": "Titre dans la carte", "default": "#ffffff" },
+    { "type": "color", "id": "panel_muted_color", "label": "Sous-titre dans la carte", "default": "#c8c8c8" },
+    { "type": "color", "id": "label_color", "label": "Labels formulaire", "default": "#ffffff" },
+    { "type": "color", "id": "input_text_color", "label": "Texte champs", "default": "#ffffff" },
+    { "type": "color", "id": "placeholder_color", "label": "Placeholder champs", "default": "#bdbdbd" },
+    { "type": "color", "id": "input_border_color", "label": "Lignes champs", "default": "#ffffff" },
+    { "type": "color", "id": "input_focus_color", "label": "Lignes champs au focus", "default": "#ffffff" },
+    { "type": "color", "id": "button_background", "label": "Fond bouton", "default": "#eeeeee" },
+    { "type": "color", "id": "button_text_color", "label": "Texte bouton", "default": "#242424" },
+    { "type": "color", "id": "focus_ring_color", "label": "Contour focus", "default": "#ffffff" },
+    { "type": "color", "id": "success_background", "label": "Fond succès", "default": "#e9f8ef" },
+    { "type": "color", "id": "success_color", "label": "Texte succès", "default": "#135f32" },
+    { "type": "color", "id": "error_background", "label": "Fond erreur", "default": "#ffecec" },
+    { "type": "color", "id": "error_color", "label": "Texte erreur", "default": "#8a1f1f" },
+    { "type": "color", "id": "marquee_color", "label": "Texte défilant", "default": "#ffffff" },
+    { "type": "color", "id": "marquee_separator_color", "label": "Séparateur défilant", "default": "#ffffff" }
+  ],
+  "presets": [
+    {
+      "name": "Contact natif"
+    }
+  ]
+}
+{% endschema %}

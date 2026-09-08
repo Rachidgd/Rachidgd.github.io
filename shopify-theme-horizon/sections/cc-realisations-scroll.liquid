@@ -1,0 +1,743 @@
+{%- liquid
+  assign s = section.settings
+  assign uid = section.id
+  assign total_projects = section.blocks.size
+  if total_projects == 0
+    assign total_projects = 1
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ uid }} {
+    display: block;
+    background: {{ s.background_color }};
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll {
+    position: relative;
+    overflow-x: clip;
+    overflow-y: visible;
+    padding-top: {{ s.padding_top_mobile }}px;
+    padding-bottom: {{ s.padding_bottom_mobile }}px;
+    color: {{ s.section_text_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll,
+  #shopify-section-{{ uid }} .cc-projets-scroll *,
+  #shopify-section-{{ uid }} .cc-projets-scroll *::before,
+  #shopify-section-{{ uid }} .cc-projets-scroll *::after {
+    box-sizing: border-box;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__inner {
+    width: min({{ s.max_width }}px, calc(100% - 32px));
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__head {
+    position: relative;
+    z-index: 1;
+    margin-bottom: {{ s.header_offset_mobile }}px;
+    text-align: center;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__eyebrow {
+    margin: 0 0 {{ s.eyebrow_gap }}px;
+    color: {{ s.eyebrow_color }};
+    font-size: {{ s.eyebrow_size }}px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__title {
+    margin: 0;
+    color: {{ s.title_color }};
+    font-size: {{ s.title_size_mobile }}px;
+    font-weight: 800;
+    line-height: 0.82;
+    letter-spacing: 0;
+    opacity: {{ s.title_opacity | divided_by: 100.0 }};
+    overflow-wrap: anywhere;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__track {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: {{ s.card_gap_mobile }}px;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__shell {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__card {
+    position: relative;
+    z-index: var(--cc-card-order);
+    display: grid;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: {{ s.card_height_mobile }}px;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    overflow: hidden;
+    padding: {{ s.card_padding_mobile }}px;
+    border-radius: {{ s.card_radius_mobile }}px;
+    background: var(--cc-card-bg);
+    color: #ffffff;
+    isolation: isolate;
+    transform: none;
+    transform-origin: center top;
+    opacity: 1;
+    filter: none;
+    will-change: auto;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll.is-reveal-ready .cc-projets-scroll__card {
+    opacity: 0;
+    transform: translate3d(0, {{ s.reveal_offset }}px, 0);
+    transition:
+      opacity {{ s.reveal_duration }}ms ease,
+      transform {{ s.reveal_duration }}ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll.is-reveal-ready .cc-projets-scroll__card.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: {{ s.background_image_opacity | divided_by: 100.0 }};
+    filter: blur({{ s.background_blur }}px) saturate(1.1);
+    transform: scale(1.08);
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__fallback-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    background: linear-gradient(135deg, var(--cc-card-bg), #080808);
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__shade {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      linear-gradient(90deg, rgba(0, 0, 0, {{ s.left_shadow | divided_by: 100.0 }}) 0%, rgba(0, 0, 0, 0.18) 42%, rgba(0, 0, 0, {{ s.right_shadow | divided_by: 100.0 }}) 100%),
+      rgba(0, 0, 0, {{ s.card_overlay | divided_by: 100.0 }});
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__content {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__intro {
+    max-width: 34ch;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: {{ s.body_size_mobile }}px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__bottom {
+    display: grid;
+    gap: 18px;
+    margin-top: 22px;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__counter {
+    display: grid;
+    gap: 12px;
+    width: max-content;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: {{ s.counter_size }}px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__counter::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.28);
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__project-title {
+    margin: 0;
+    color: #ffffff;
+    font-size: {{ s.project_title_size_mobile }}px;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    max-width: 100%;
+    color: #ffffff;
+    font-size: {{ s.body_size_mobile }}px;
+    font-weight: 700;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__link:hover svg {
+    transform: translate(2px, -2px);
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__media {
+    position: relative;
+    min-width: 0;
+    min-height: {{ s.media_height_mobile }}px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: {{ s.media_radius }}px;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 34px 70px -48px rgba(0, 0, 0, 0.9);
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: {{ s.media_height_mobile }}px;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__image-placeholder {
+    display: grid;
+    min-height: {{ s.media_height_mobile }}px;
+    place-items: center;
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    text-align: center;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__meta {
+    display: grid;
+    min-width: 0;
+    max-width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 18px;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__meta-group--year {
+    grid-column: 1 / -1;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__meta-group {
+    display: grid;
+    gap: 10px;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__meta-label {
+    color: rgba(255, 255, 255, 0.56);
+    font-size: {{ s.label_size }}px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__meta-value,
+  #shopify-section-{{ uid }} .cc-projets-scroll__services {
+    color: #ffffff;
+    font-size: {{ s.body_size_mobile }}px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__services {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-projets-scroll__empty {
+    display: grid;
+    min-height: {{ s.card_height_mobile }}px;
+    place-items: center;
+    padding: 32px;
+    border-radius: {{ s.card_radius_mobile }}px;
+    background: #111111;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ uid }} .cc-projets-scroll__card {
+      transform: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+      transition: none !important;
+      will-change: auto;
+    }
+  }
+
+  @media (min-width: 750px) {
+    #shopify-section-{{ uid }} .cc-projets-scroll {
+      padding-top: {{ s.padding_top_desktop }}px;
+      padding-bottom: {{ s.padding_bottom_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__inner {
+      width: min({{ s.max_width }}px, calc(100% - 64px));
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__head {
+      margin-bottom: {{ s.header_offset_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__title {
+      font-size: {{ s.title_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__track {
+      gap: {{ s.card_gap_tablet }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__shell {
+      min-height: auto;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__card {
+      position: relative;
+      min-height: {{ s.card_height_desktop }}px;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 34px;
+      padding: {{ s.card_padding_desktop }}px;
+      border-radius: {{ s.card_radius_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__intro,
+    #shopify-section-{{ uid }} .cc-projets-scroll__meta-value,
+    #shopify-section-{{ uid }} .cc-projets-scroll__services,
+    #shopify-section-{{ uid }} .cc-projets-scroll__link {
+      font-size: {{ s.body_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__bottom {
+      margin-top: 0;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__project-title {
+      font-size: {{ s.project_title_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__media {
+      width: 100%;
+      height: {{ s.media_height_desktop }}px;
+      min-height: 0;
+      align-self: center;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__image,
+    #shopify-section-{{ uid }} .cc-projets-scroll__image-placeholder {
+      height: 100%;
+      min-height: 0;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__meta {
+      grid-column: 1 / -1;
+      display: grid;
+      min-width: 0;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__meta-group--year {
+      grid-column: auto;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__empty {
+      min-height: {{ s.card_height_desktop }}px;
+      border-radius: {{ s.card_radius_desktop }}px;
+    }
+  }
+
+  @media (min-width: 990px) {
+    #shopify-section-{{ uid }} .cc-projets-scroll__track {
+      gap: {{ s.card_gap_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__card {
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.12fr) minmax(0, 0.82fr);
+      gap: clamp(26px, 3.6vw, 68px);
+    }
+
+    #shopify-section-{{ uid }} .cc-projets-scroll__meta {
+      grid-column: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 74px;
+    }
+  }
+</style>
+
+<section
+  id="cc-projets-scroll-{{ uid }}"
+  class="cc-projets-scroll"
+  data-cc-scroll-projects
+  aria-label="{{ s.section_aria_label | escape }}"
+>
+  <div class="cc-projets-scroll__inner">
+    <div class="cc-projets-scroll__head">
+      {%- if s.eyebrow != blank -%}
+        <p class="cc-projets-scroll__eyebrow">{{ s.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if s.title != blank -%}
+        <h2 class="cc-projets-scroll__title">{{ s.title | escape }}</h2>
+      {%- endif -%}
+    </div>
+
+    <div class="cc-projets-scroll__track">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign services = block.settings.services | strip | newline_to_br | split: '<br />'
+            assign bg_image = block.settings.background_image
+            if bg_image == blank
+              assign bg_image = block.settings.image
+            endif
+          -%}
+          <div class="cc-projets-scroll__shell" data-cc-project-shell>
+            <article
+              class="cc-projets-scroll__card"
+              data-cc-project-card
+              style="--cc-card-order: {{ forloop.index }}; --cc-card-bg: {{ block.settings.card_color }};"
+              {{ block.shopify_attributes }}
+            >
+              {%- if bg_image != blank -%}
+                {{ bg_image | image_url: width: 1800 | image_tag: loading: 'lazy', class: 'cc-projets-scroll__bg', alt: '' }}
+              {%- else -%}
+                <span class="cc-projets-scroll__fallback-bg" aria-hidden="true"></span>
+              {%- endif -%}
+              <span class="cc-projets-scroll__shade" aria-hidden="true"></span>
+
+              <div class="cc-projets-scroll__content">
+                {%- if block.settings.description != blank -%}
+                  <p class="cc-projets-scroll__intro">{{ block.settings.description | escape | newline_to_br }}</p>
+                {%- endif -%}
+                <div class="cc-projets-scroll__bottom">
+                  <span class="cc-projets-scroll__counter">
+                    {%- if forloop.index < 10 -%}0{%- endif -%}{{ forloop.index }} / {%- if total_projects < 10 -%}0{%- endif -%}{{ total_projects }}
+                  </span>
+                  {%- if block.settings.title != blank -%}
+                    <h3 class="cc-projets-scroll__project-title">{{ block.settings.title | escape }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.project_url != blank and s.project_link_label != blank -%}
+                    <a class="cc-projets-scroll__link" href="{{ block.settings.project_url }}">
+                      <span>{{ s.project_link_label | escape }}</span>
+                      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M7 17L17 7M9 7H17V15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  {%- endif -%}
+                </div>
+              </div>
+
+              <div class="cc-projets-scroll__media">
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 1100 | image_tag: loading: 'lazy', class: 'cc-projets-scroll__image', alt: block.settings.image_alt }}
+                {%- else -%}
+                  <div class="cc-projets-scroll__image-placeholder">{{ s.image_placeholder_text | escape }}</div>
+                {%- endif -%}
+              </div>
+
+              <div class="cc-projets-scroll__meta">
+                {%- if block.settings.year != blank -%}
+                  <div class="cc-projets-scroll__meta-group cc-projets-scroll__meta-group--year">
+                    <span class="cc-projets-scroll__meta-label">{{ s.year_label | escape }}</span>
+                    <span class="cc-projets-scroll__meta-value">{{ block.settings.year | escape }}</span>
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.role != blank -%}
+                  <div class="cc-projets-scroll__meta-group cc-projets-scroll__meta-group--role">
+                    <span class="cc-projets-scroll__meta-label">{{ s.role_label | escape }}</span>
+                    <span class="cc-projets-scroll__meta-value">{{ block.settings.role | escape }}</span>
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.services != blank -%}
+                  <div class="cc-projets-scroll__meta-group cc-projets-scroll__meta-group--services">
+                    <span class="cc-projets-scroll__meta-label">{{ s.services_label | escape }}</span>
+                    <ul class="cc-projets-scroll__services">
+                      {%- for service in services -%}
+                        {%- assign clean_service = service | strip -%}
+                        {%- if clean_service != blank -%}
+                          <li>{{ clean_service | escape }}</li>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                {%- endif -%}
+              </div>
+            </article>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div class="cc-projets-scroll__empty">
+          <p>{{ s.empty_state_text | escape }}</p>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const sectionId = 'cc-projets-scroll-{{ uid }}';
+    const wrapperId = 'shopify-section-{{ uid }}';
+    window.CCProjetsReveal = window.CCProjetsReveal || { cleanups: {}, handlers: {} };
+
+    const cleanup = () => {
+      if (!window.CCProjetsReveal.cleanups[sectionId]) return;
+      window.CCProjetsReveal.cleanups[sectionId]();
+      delete window.CCProjetsReveal.cleanups[sectionId];
+    };
+
+    const removeHandlers = () => {
+      const stored = window.CCProjetsReveal.handlers[sectionId];
+      if (!stored) return;
+      document.removeEventListener('shopify:section:load', stored.load);
+      document.removeEventListener('shopify:section:unload', stored.unload);
+      delete window.CCProjetsReveal.handlers[sectionId];
+    };
+
+    const mount = () => {
+      const root = document.getElementById(sectionId);
+      if (!root) return;
+
+      cleanup();
+
+      const cards = Array.from(root.querySelectorAll('[data-cc-project-card]'));
+      if (!cards.length) return;
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      root.classList.add('is-reveal-ready');
+
+      const revealAll = () => {
+        cards.forEach((card) => card.classList.add('is-visible'));
+      };
+
+      if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+        revealAll();
+        window.CCProjetsReveal.cleanups[sectionId] = () => {
+          root.classList.remove('is-reveal-ready');
+        };
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, {
+        threshold: 0.18,
+        rootMargin: '0px 0px -12% 0px'
+      });
+
+      cards.forEach((card, index) => {
+        card.style.transitionDelay = `${Math.min(index * 70, 180)}ms`;
+        observer.observe(card);
+      });
+
+      window.CCProjetsReveal.cleanups[sectionId] = () => {
+        observer.disconnect();
+        cards.forEach((card) => {
+          card.classList.remove('is-visible');
+          card.style.removeProperty('transition-delay');
+        });
+        root.classList.remove('is-reveal-ready');
+      };
+    };
+
+    removeHandlers();
+
+    const handlers = {
+      load(event) {
+        if (event.target.id === wrapperId || event.target.querySelector(`#${sectionId}`)) mount();
+      },
+      unload(event) {
+        if (event.target.id === wrapperId || event.target.querySelector(`#${sectionId}`)) cleanup();
+      }
+    };
+
+    window.CCProjetsReveal.handlers[sectionId] = handlers;
+    document.addEventListener('shopify:section:load', handlers.load);
+    document.addEventListener('shopify:section:unload', handlers.unload);
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Réalisations au scroll",
+  "tag": "section",
+  "class": "cc-projets-scroll-section",
+  "settings": [
+    { "type": "header", "content": "Textes" },
+    { "type": "text", "id": "section_aria_label", "label": "Libellé accessible", "default": "Réalisations récentes" },
+    { "type": "text", "id": "eyebrow", "label": "Surtitre", "default": "(Pourquoi nos clients nous aiment)" },
+    { "type": "text", "id": "title", "label": "Grand titre", "default": "Réalisations récentes" },
+    { "type": "text", "id": "year_label", "label": "Libellé année", "default": "Année" },
+    { "type": "text", "id": "role_label", "label": "Libellé rôle", "default": "Rôle" },
+    { "type": "text", "id": "services_label", "label": "Libellé services", "default": "Services" },
+    { "type": "text", "id": "project_link_label", "label": "Libellé du lien projet", "default": "Voir le projet" },
+    { "type": "text", "id": "image_placeholder_text", "label": "Texte si une image manque", "default": "Ajoutez une image de projet" },
+    { "type": "text", "id": "empty_state_text", "label": "Texte si aucun projet n'est ajouté", "default": "Ajoutez un projet depuis l'éditeur de thème." },
+
+    { "type": "header", "content": "Marges et dimensions" },
+    { "type": "range", "id": "padding_top_mobile", "label": "Marge haute mobile", "unit": "px", "min": 0, "max": 220, "step": 4, "default": 72 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Marge haute desktop", "unit": "px", "min": 0, "max": 320, "step": 4, "default": 132 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Marge basse mobile", "unit": "px", "min": 0, "max": 220, "step": 4, "default": 72 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Marge basse desktop", "unit": "px", "min": 0, "max": 360, "step": 4, "default": 168 },
+    { "type": "range", "id": "max_width", "label": "Largeur maximale", "unit": "px", "min": 1000, "max": 1900, "step": 20, "default": 1720 },
+    { "type": "range", "id": "header_offset_mobile", "label": "Décalage cartes sous titre mobile", "unit": "px", "min": -80, "max": 80, "step": 2, "default": -8 },
+    { "type": "range", "id": "header_offset_desktop", "label": "Décalage cartes sous titre desktop", "unit": "px", "min": -100, "max": 100, "step": 4, "default": -28 },
+    { "type": "range", "id": "card_height_mobile", "label": "Hauteur carte mobile", "unit": "px", "min": 560, "max": 960, "step": 5, "default": 740 },
+    { "type": "range", "id": "card_height_desktop", "label": "Hauteur carte desktop", "unit": "px", "min": 520, "max": 900, "step": 4, "default": 720 },
+    { "type": "range", "id": "card_radius_mobile", "label": "Arrondi carte mobile", "unit": "px", "min": 0, "max": 56, "step": 1, "default": 24 },
+    { "type": "range", "id": "card_radius_desktop", "label": "Arrondi carte desktop", "unit": "px", "min": 0, "max": 72, "step": 1, "default": 32 },
+    { "type": "range", "id": "card_padding_mobile", "label": "Marge intérieure mobile", "unit": "px", "min": 20, "max": 72, "step": 2, "default": 28 },
+    { "type": "range", "id": "card_padding_desktop", "label": "Marge intérieure desktop", "unit": "px", "min": 40, "max": 140, "step": 2, "default": 70 },
+    { "type": "range", "id": "media_height_mobile", "label": "Hauteur image mobile", "unit": "px", "min": 220, "max": 520, "step": 4, "default": 320 },
+    { "type": "range", "id": "media_height_desktop", "label": "Hauteur image desktop", "unit": "px", "min": 260, "max": 520, "step": 4, "default": 360 },
+    { "type": "range", "id": "media_radius", "label": "Arrondi image", "unit": "px", "min": 0, "max": 48, "step": 1, "default": 22 },
+
+    { "type": "header", "content": "Animation d'apparition" },
+    { "type": "range", "id": "card_gap_mobile", "label": "Espace entre les cartes mobile", "unit": "px", "min": 8, "max": 80, "step": 1, "default": 22 },
+    { "type": "range", "id": "card_gap_tablet", "label": "Espace entre les cartes tablette", "unit": "px", "min": 8, "max": 90, "step": 1, "default": 24 },
+    { "type": "range", "id": "card_gap_desktop", "label": "Espace entre les cartes desktop", "unit": "px", "min": 8, "max": 100, "step": 1, "default": 28 },
+    { "type": "range", "id": "reveal_offset", "label": "Décalage d'arrivée depuis le bas", "unit": "px", "min": 0, "max": 80, "step": 1, "default": 42 },
+    { "type": "range", "id": "reveal_duration", "label": "Durée du fondu", "unit": "ms", "min": 200, "max": 1200, "step": 10, "default": 700 },
+
+    { "type": "header", "content": "Typographie" },
+    { "type": "range", "id": "eyebrow_size", "label": "Taille du surtitre", "unit": "px", "min": 10, "max": 24, "step": 1, "default": 14 },
+    { "type": "range", "id": "eyebrow_gap", "label": "Espace sous le surtitre", "unit": "px", "min": 0, "max": 80, "step": 1, "default": 22 },
+    { "type": "range", "id": "title_size_mobile", "label": "Taille grand titre mobile", "unit": "px", "min": 44, "max": 130, "step": 2, "default": 70 },
+    { "type": "range", "id": "title_size_desktop", "label": "Taille grand titre desktop", "unit": "px", "min": 100, "max": 260, "step": 2, "default": 168 },
+    { "type": "range", "id": "project_title_size_mobile", "label": "Taille titre projet mobile", "unit": "px", "min": 28, "max": 76, "step": 2, "default": 42 },
+    { "type": "range", "id": "project_title_size_desktop", "label": "Taille titre projet desktop", "unit": "px", "min": 34, "max": 100, "step": 2, "default": 54 },
+    { "type": "range", "id": "body_size_mobile", "label": "Taille textes mobile", "unit": "px", "min": 12, "max": 22, "step": 1, "default": 14 },
+    { "type": "range", "id": "body_size_desktop", "label": "Taille textes desktop", "unit": "px", "min": 12, "max": 24, "step": 1, "default": 14 },
+    { "type": "range", "id": "label_size", "label": "Taille des libellés", "unit": "px", "min": 11, "max": 22, "step": 1, "default": 14 },
+    { "type": "range", "id": "counter_size", "label": "Taille du compteur", "unit": "px", "min": 11, "max": 24, "step": 1, "default": 15 },
+
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background_color", "label": "Fond de section", "default": "#dedede" },
+    { "type": "color", "id": "section_text_color", "label": "Texte de section", "default": "#1f1f1f" },
+    { "type": "color", "id": "eyebrow_color", "label": "Couleur surtitre", "default": "#767676" },
+    { "type": "color", "id": "title_color", "label": "Couleur grand titre", "default": "#c3c3c3" },
+    { "type": "range", "id": "title_opacity", "label": "Opacité grand titre", "unit": "%", "min": 10, "max": 100, "step": 1, "default": 70 },
+    { "type": "range", "id": "card_overlay", "label": "Obscurité carte", "unit": "%", "min": 0, "max": 90, "step": 1, "default": 48 },
+    { "type": "range", "id": "left_shadow", "label": "Ombre gauche", "unit": "%", "min": 0, "max": 90, "step": 1, "default": 36 },
+    { "type": "range", "id": "right_shadow", "label": "Ombre droite", "unit": "%", "min": 0, "max": 90, "step": 1, "default": 68 },
+    { "type": "range", "id": "background_image_opacity", "label": "Opacité image de fond", "unit": "%", "min": 0, "max": 100, "step": 2, "default": 58 },
+    { "type": "range", "id": "background_blur", "label": "Flou image de fond", "unit": "px", "min": 0, "max": 34, "step": 1, "default": 16 }
+  ],
+  "blocks": [
+    {
+      "type": "projet",
+      "name": "Projet",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Nom du projet", "default": "Archin" },
+        { "type": "textarea", "id": "description", "label": "Description courte", "default": "Nous avons accompagné cette entreprise de la stratégie à la mise en ligne pour créer une expérience claire, premium et efficace." },
+        { "type": "image_picker", "id": "image", "label": "Image principale" },
+        { "type": "text", "id": "image_alt", "label": "Texte alternatif de l'image principale" },
+        { "type": "image_picker", "id": "background_image", "label": "Image de fond optionnelle" },
+        { "type": "text", "id": "year", "label": "Année", "default": "2025" },
+        { "type": "text", "id": "role", "label": "Rôle", "default": "Lead designer" },
+        { "type": "textarea", "id": "services", "label": "Services", "info": "Un service par ligne.", "default": "Webdesign\nProduct design\nBranding\nDéveloppement" },
+        { "type": "url", "id": "project_url", "label": "Lien du projet" },
+        { "type": "color", "id": "card_color", "label": "Couleur de fond de la carte", "default": "#111111" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Réalisations au scroll",
+      "blocks": [
+        {
+          "type": "projet",
+          "settings": {
+            "title": "Archin",
+            "description": "Nous avons aidé cette marque à clarifier son positionnement et à transformer son site en véritable vitrine commerciale.",
+            "year": "2025",
+            "role": "Lead designer",
+            "services": "Webdesign\nProduct design\nBranding\nDéveloppement",
+            "card_color": "#111111"
+          }
+        },
+        {
+          "type": "projet",
+          "settings": {
+            "title": "Maison Orée",
+            "description": "Une identité plus chaleureuse, une expérience plus lisible et un parcours pensé pour convertir sans perdre l'élégance de la marque.",
+            "year": "2024",
+            "role": "Direction créative",
+            "services": "Identité visuelle\nUX design\nShopify\nOptimisation conversion",
+            "card_color": "#3a1510"
+          }
+        },
+        {
+          "type": "projet",
+          "settings": {
+            "title": "Nova Studio",
+            "description": "Une refonte complète pour présenter l'offre, rassurer les prospects et donner plus de rythme à la prise de contact.",
+            "year": "2023",
+            "role": "Design et développement",
+            "services": "Stratégie\nWebdesign\nDéveloppement\nSEO technique",
+            "card_color": "#181f24"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

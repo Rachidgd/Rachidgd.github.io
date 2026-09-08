@@ -1,0 +1,75 @@
+{
+  "suffix": "seo-toulouse",
+  "h1": ["Agence", "@", ["SEO à Toulouse.", "accent"], "|", ["Vos prospects cherchent", "muted"], "@", "un procédé,", "|", "pas une", "@", ["agence.", "accent"]],
+  "preuve": "Industriels et bureaux d'études de la région toulousaine.",
+  "sousTitre": "Sur un marché structuré par l'aéronautique, on ne vous trouve pas en tapant votre métier. On vous trouve en tapant une norme, une matière, une tolérance.",
+  "cta": { "label": "Demander un relevé de position", "url": "/pages/reserver" },
+
+  "surtitre": "(Toulouse)",
+  "constat": "Un document qui détaille un procédé et ses tolérances attire trente lecteurs par mois. Ce sont les trente qui cherchent un fournisseur.",
+  "bandeauA": ["SEO technique", "Pages par procédé", "Contenu de filière", "Netlinking B2B", "Suivi de positions"],
+  "bandeauB": ["Blagnac", "Colomiers", "Labège", "Montaudran", "Saint-Martin-du-Touch", "Haute-Garonne"],
+  "pastilles": ["Aéronautique", "Spatial", "Sous-traitance", "Bureaux d'études", "Normes", "Qualifications"],
+
+  "accordeonAria": "Leviers du référencement à Toulouse",
+  "accordeonChoix": "Choisir un levier",
+  "accordeonSurtitre": "(Marché)",
+  "accordeonTitre": "Ce qui marche ici",
+  "volets": [
+    {
+      "titre": "Une page par procédé",
+      "marquee": "Par procédé",
+      "texte": "Personne ne tape « prestataire Toulouse ». On tape un traitement de surface, une tolérance, une qualification. Chaque savoir-faire mérite donc sa propre page.",
+      "tags": ["Procédés", "Matières", "Tolérances", "Qualifications"]
+    },
+    {
+      "titre": "Les preuves avant l'argumentaire",
+      "marquee": "Les preuves",
+      "texte": "Certifications, agréments, donneurs d'ordre déjà servis : c'est le premier filtre d'un acheteur industriel, bien avant votre discours commercial.",
+      "tags": ["Certifications", "Agréments", "Références", "Contrôles"]
+    },
+    {
+      "titre": "Des bassins, pas des quartiers",
+      "marquee": "Les bassins",
+      "texte": "Blagnac, Colomiers et Labège ne se comportent pas comme des quartiers de Toulouse, mais comme des marchés autonomes, avec leurs propres recherches.",
+      "tags": ["Blagnac", "Colomiers", "Labège", "Montaudran"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement à Toulouse",
+  "faqTitre": "Ce que nous demandent les industriels",
+  "faqSousTitre": "Volumes faibles, intentions fortes, découpage géographique : les points qui reviennent sur ce marché.",
+  "faq": [
+    {
+      "q": "Mon activité est-elle trop technique pour Google ?",
+      "r": "C'est l'inverse. Les requêtes techniques ont peu de volume, presque aucune concurrence éditoriale et une intention d'achat très forte. Ce sont les positions les plus stables du B2B."
+    },
+    {
+      "q": "Les donneurs d'ordre passent-ils vraiment par Google ?",
+      "r": "Pour sourcer un nouveau fournisseur et pour vérifier celui qu'on leur a recommandé, oui. Un site daté fait douter au moment précis où l'on cherchait à se rassurer."
+    },
+    {
+      "q": "Faut-il une page par commune de l'agglomération ?",
+      "r": "Non, et c'est le piège classique. Une page ne se justifie que si la recherche existe vraiment sur cette zone. Sinon elle vient concurrencer votre page principale."
+    },
+    {
+      "q": "Combien de temps avant les premières demandes ?",
+      "r": "Sur des requêtes de filière peu disputées, les premiers positionnements arrivent souvent en deux à trois mois. Les pages les plus convoitées demandent davantage."
+    }
+  ],
+
+  "contactFond": "Toulouse",
+  "contactTitre": "Parlons de votre filière.",
+  "contactTexte": "Donnez-nous vos procédés et vos qualifications. Nous relevons les recherches de votre marché et votre position dessus.",
+  "contactObjet": "Demande — SEO Toulouse",
+  "contactPlaceholder": "Vos procédés, vos qualifications, vos donneurs d'ordre...",
+
+  "schema": {
+    "nom": "Référencement naturel à Toulouse",
+    "type": "Référencement naturel pour l'industrie",
+    "description": "Accompagnement SEO des industriels, sous-traitants et bureaux d'études de la région toulousaine : pages par procédé, contenus techniques et acquisition de demandes qualifiées.",
+    "public": "Industriels et bureaux d'études",
+    "zones": ["Toulouse", "Blagnac", "Colomiers", "Labège", "Haute-Garonne", "Occitanie"],
+    "prestations": ["Audit SEO", "Pages par procédé", "Contenu technique", "Netlinking B2B", "Suivi de positions"]
+  }
+}

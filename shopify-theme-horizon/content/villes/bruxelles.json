@@ -1,0 +1,75 @@
+{
+  "suffix": "seo-bruxelles",
+  "h1": ["Agence", "@", ["SEO à Bruxelles.", "accent"], "|", ["Dix-neuf communes,", "muted"], "@", "autant", "|", "de", "@", ["marchés.", "accent"]],
+  "preuve": "PME, indépendants et cabinets de la région bruxelloise.",
+  "sousTitre": "À Bruxelles, la langue de recherche change d'une commune à l'autre, et le concurrent qui vous précède n'est pas toujours belge.",
+  "cta": { "label": "Demander un audit google.be", "url": "/pages/reserver" },
+
+  "surtitre": "(Bruxelles)",
+  "constat": "Ixelles ne cherche pas comme Schaerbeek, et Uccle ne cherche pas dans la même langue. Une seule page pour Bruxelles n'en couvre aucune.",
+  "bandeauA": ["SEO google.be", "Pages par commune", "Arbitrage FR / NL", "Netlinking belge", "Fiche établissement"],
+  "bandeauB": ["Ixelles", "Uccle", "Schaerbeek", "Saint-Gilles", "Woluwe", "Anderlecht"],
+  "pastilles": ["PME", "Indépendants", "Cabinets", "Horeca", "Commerces", "Institutions"],
+
+  "accordeonAria": "Leviers du référencement à Bruxelles",
+  "accordeonChoix": "Choisir un levier",
+  "accordeonSurtitre": "(Terrain)",
+  "accordeonTitre": "Ce qui se joue ici",
+  "volets": [
+    {
+      "titre": "Choisir sa langue par zone",
+      "marquee": "La langue",
+      "texte": "Le français domine au sud, le néerlandais remonte au nord, l'anglais s'impose autour des institutions. Publier partout dans les trois coûte cher pour rien.",
+      "tags": ["Français", "Néerlandais", "Anglais", "Arbitrage"]
+    },
+    {
+      "titre": "Une page là où la demande existe",
+      "marquee": "Par commune",
+      "texte": "Ixelles, Uccle ou Schaerbeek méritent leur page si la recherche y existe vraiment. Sinon on empile des pages qui se volent leurs positions entre elles.",
+      "tags": ["Communes", "Quartiers", "Maillage", "Cannibalisation"]
+    },
+    {
+      "titre": "Tenir la fiche établissement",
+      "marquee": "La fiche",
+      "texte": "Sur les recherches locales bruxelloises, la fiche Google passe souvent avant le site. Horaires, avis et photos y pèsent autant que vos pages.",
+      "tags": ["Google Business", "Avis", "Horaires", "Photos"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement à Bruxelles",
+  "faqTitre": "Avant de viser google.be",
+  "faqSousTitre": "Langues, extension de domaine, concurrence transfrontalière : ce qui décide vraiment de vos positions.",
+  "faq": [
+    {
+      "q": "Faut-il publier en néerlandais ?",
+      "r": "Seulement si vos clients décident dans cette langue. Beaucoup d'entreprises bruxelloises traduisent tout par principe, diluent leur budget et ne performent nulle part."
+    },
+    {
+      "q": "Un domaine en .be est-il indispensable ?",
+      "r": "Non. Une adresse belge, des contenus clairement bruxellois et une fiche établissement à jour pèsent davantage que l'extension du domaine."
+    },
+    {
+      "q": "Pourquoi des concurrents français sortent-ils avant moi ?",
+      "r": "Parce que Google classe sur la pertinence avant la nationalité. Un site français bien structuré passe devant un site belge mal organisé, même sur google.be."
+    },
+    {
+      "q": "Faut-il une page pour chacune des dix-neuf communes ?",
+      "r": "Non. On en ouvre une là où la recherche existe et où vous intervenez réellement. Le reste se traite dans une page régionale, sans concurrence interne."
+    }
+  ],
+
+  "contactFond": "Bruxelles",
+  "contactTitre": "Parlons de vos communes.",
+  "contactTexte": "Dites-nous où vous intervenez et dans quelle langue vos clients décident. Nous relevons vos positions sur google.be.",
+  "contactObjet": "Demande — SEO Bruxelles",
+  "contactPlaceholder": "Vos zones d'intervention, vos langues, vos concurrents...",
+
+  "schema": {
+    "nom": "Référencement naturel à Bruxelles",
+    "type": "Référencement local et multilingue",
+    "description": "Accompagnement SEO des entreprises bruxelloises : arbitrage entre français, néerlandais et anglais, pages par commune et visibilité sur google.be.",
+    "public": "PME, indépendants et cabinets bruxellois",
+    "zones": ["Bruxelles", "Ixelles", "Uccle", "Schaerbeek", "Région de Bruxelles-Capitale"],
+    "prestations": ["Audit google.be", "Arbitrage des langues", "Pages par commune", "Fiche établissement", "Netlinking belge"]
+  }
+}

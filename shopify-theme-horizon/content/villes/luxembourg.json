@@ -1,0 +1,75 @@
+{
+  "suffix": "agence-seo-luxembourg",
+  "h1": ["Agence", "@", ["SEO au Luxembourg.", "accent"], "|", ["Peu de volume,", "muted"], "@", "beaucoup", "|", "de", "@", ["valeur.", "accent"]],
+  "preuve": "Cabinets, fiduciaires et sociétés de services du Grand-Duché.",
+  "sousTitre": "Un marché où trente recherches par mois pèsent parfois plus qu'un trafic de masse ailleurs. Encore faut-il occuper les bonnes.",
+  "cta": { "label": "Réserver un audit offert", "url": "/pages/reserver" },
+
+  "surtitre": "(Luxembourg)",
+  "constat": "Au Grand-Duché, une requête à trente recherches mensuelles peut valoir plus qu'une à trois mille ailleurs. Tout dépend de qui la tape.",
+  "bandeauA": ["SEO Grand-Duché", "Contenu expert", "SEO multilingue", "Netlinking", "Audit de visibilité"],
+  "bandeauB": ["Luxembourg-Ville", "Kirchberg", "Esch-sur-Alzette", "Belval", "Grande Région", "Frontaliers"],
+  "pastilles": ["Finance", "Fiduciaires", "Conseil", "Services B2B", "Multilingue", "Grande Région"],
+
+  "accordeonAria": "Leviers du référencement au Luxembourg",
+  "accordeonChoix": "Choisir un levier",
+  "accordeonSurtitre": "(Marché)",
+  "accordeonTitre": "Ce qui change ici",
+  "volets": [
+    {
+      "titre": "Viser la valeur, pas le volume",
+      "marquee": "La valeur",
+      "texte": "À l'échelle du pays, les volumes de recherche sont faibles. Une poignée de requêtes bien choisies rapporte davantage qu'une stratégie de masse importée de France.",
+      "tags": ["Requêtes à enjeu", "Intention d'achat", "Pages piliers", "Arbitrages"]
+    },
+    {
+      "titre": "Trancher les langues avant d'écrire",
+      "marquee": "Les langues",
+      "texte": "Français, anglais, allemand : tout traduire coûte cher et dilue le budget. On décide selon la langue dans laquelle vos clients décident réellement.",
+      "tags": ["Français", "Anglais", "Allemand", "Hreflang"]
+    },
+    {
+      "titre": "Étendre à la Grande Région",
+      "marquee": "Grande Région",
+      "texte": "Thionville, Arlon, Trèves : une partie de votre marché habite ailleurs et travaille ici. Ces recherches se captent, à condition de les traiter à part.",
+      "tags": ["Frontaliers", "Lorraine", "Wallonie", "Sarre"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement au Luxembourg",
+  "faqTitre": "Les questions du Grand-Duché",
+  "faqSousTitre": "Volumes, langues, extension de domaine : ce qui revient avant chaque lancement.",
+  "faq": [
+    {
+      "q": "Les volumes de recherche sont-ils suffisants ici ?",
+      "r": "Faibles en valeur absolue, oui. Mais une demande de fiduciaire ou de conseil pèse plusieurs milliers d'euros : la rentabilité se joue sur la valeur du client, pas sur le nombre de visites."
+    },
+    {
+      "q": "Faut-il un domaine en .lu ?",
+      "r": "Ce n'est pas obligatoire. Un contenu clairement rattaché au pays, une adresse locale et des signaux cohérents pèsent davantage que l'extension elle-même."
+    },
+    {
+      "q": "En combien de langues faut-il publier ?",
+      "r": "Rarement toutes. On regarde dans quelle langue vos clients cherchent et signent, puis on ouvre une seconde langue seulement si les données la justifient."
+    },
+    {
+      "q": "Peut-on viser la France depuis le Luxembourg ?",
+      "r": "Oui quand l'offre s'y prête, mais avec des pages distinctes. Une même page qui vise deux pays finit par n'en convaincre aucun."
+    }
+  ],
+
+  "contactFond": "Luxembourg",
+  "contactTitre": "Parlons de votre marché.",
+  "contactTexte": "Dites-nous ce que vous vendez et à qui, au Grand-Duché comme au-delà. Nous relevons les recherches qui comptent et votre position dessus.",
+  "contactObjet": "Demande — SEO Luxembourg",
+  "contactPlaceholder": "Votre activité, vos clients, vos langues de travail...",
+
+  "schema": {
+    "nom": "Référencement naturel au Luxembourg",
+    "type": "Référencement naturel multilingue",
+    "description": "Accompagnement SEO des entreprises du Grand-Duché : arbitrage des langues, requêtes à forte valeur, contenus experts et extension à la Grande Région.",
+    "public": "Entreprises de services et cabinets du Grand-Duché",
+    "zones": ["Luxembourg", "Luxembourg-Ville", "Kirchberg", "Esch-sur-Alzette", "Grande Région"],
+    "prestations": ["Audit de visibilité", "Arbitrage multilingue", "Contenu expert", "Netlinking", "Suivi de positions"]
+  }
+}

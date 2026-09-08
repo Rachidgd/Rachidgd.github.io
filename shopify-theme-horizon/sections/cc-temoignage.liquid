@@ -1,0 +1,603 @@
+{%- liquid
+  assign s = section.settings
+  assign uid = section.id
+  assign slide_count = section.blocks.size
+  if slide_count == 0
+    assign slide_count = 1
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ uid }} {
+    display: block;
+    background: {{ s.background_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages {
+    overflow: hidden;
+    padding-top: {{ s.padding_top_mobile }}px;
+    padding-bottom: {{ s.padding_bottom_mobile }}px;
+    color: {{ s.text_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__inner {
+    width: min({{ s.max_width }}px, calc(100% - 32px));
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__head {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__eyebrow {
+    margin: 0 0 {{ s.eyebrow_margin_bottom_mobile }}px;
+    color: {{ s.eyebrow_color }};
+    font-size: {{ s.eyebrow_size_mobile }}px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__title {
+    margin: 0;
+    color: {{ s.title_color }};
+    font-size: {{ s.title_size_mobile }}px;
+    font-weight: 800;
+    line-height: 0.8;
+    letter-spacing: 0;
+    opacity: {{ s.title_opacity | divided_by: 100.0 }};
+    overflow-wrap: anywhere;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: {{ s.card_gap_mobile }}px;
+    margin-top: {{ s.cards_overlap_mobile }}px;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__stats,
+  #shopify-section-{{ uid }} .cc-temoignages__slider {
+    position: relative;
+    min-height: {{ s.card_height_mobile }}px;
+    overflow: hidden;
+    border-radius: {{ s.card_radius_mobile }}px;
+    isolation: isolate;
+    background: #111111;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__image,
+  #shopify-section-{{ uid }} .cc-temoignages__slide-image {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__placeholder {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.26), transparent 28%),
+      radial-gradient(circle at 76% 54%, rgba(255, 255, 255, 0.16), transparent 30%),
+      linear-gradient(135deg, #343434, #080808);
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(0, 0, 0, {{ s.stats_overlay | divided_by: 100.0 }});
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__slide-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(0, 0, 0, {{ s.testimonial_overlay | divided_by: 100.0 }});
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__stats-content {
+    display: flex;
+    min-height: {{ s.card_height_mobile }}px;
+    flex-direction: column;
+    justify-content: center;
+    gap: {{ s.stat_gap_mobile }}px;
+    padding: {{ s.stats_padding_mobile }}px;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__stat {
+    display: grid;
+    gap: 6px;
+    color: #ffffff;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__stat-value {
+    font-size: {{ s.stat_value_size_mobile }}px;
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: 0;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__stat-label {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: {{ s.stat_label_size_mobile }}px;
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__slider {
+    min-width: 0;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__slide {
+    position: relative;
+    min-height: {{ s.card_height_mobile }}px;
+    padding: {{ s.testimonial_padding_mobile }}px;
+    color: #ffffff;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__slide[hidden] {
+    display: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__counter {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: {{ s.counter_size_mobile }}px;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__quote-wrap {
+    display: flex;
+    min-height: calc({{ s.card_height_mobile }}px - {{ s.testimonial_padding_mobile | times: 2 }}px);
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__quote {
+    max-width: {{ s.quote_max_width }}px;
+    margin: 0 0 {{ s.author_margin_top_mobile }}px;
+    color: #ffffff;
+    font-size: {{ s.quote_size_mobile }}px;
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__author {
+    display: grid;
+    gap: 4px;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__author-name {
+    color: #ffffff;
+    font-size: {{ s.author_size_mobile }}px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__author-role {
+    color: rgba(255, 255, 255, 0.74);
+    font-size: {{ s.role_size_mobile }}px;
+    line-height: 1.3;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__controls {
+    position: absolute;
+    right: {{ s.controls_offset_mobile }}px;
+    bottom: {{ s.controls_offset_mobile }}px;
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: {{ s.control_size_mobile }}px;
+    height: {{ s.control_size_mobile }}px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__button:hover {
+    background: rgba(255, 255, 255, 0.26);
+    transform: translateY(-1px);
+  }
+
+  #shopify-section-{{ uid }} .cc-temoignages__button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  @media (min-width: 750px) {
+    #shopify-section-{{ uid }} .cc-temoignages {
+      padding-top: {{ s.padding_top_desktop }}px;
+      padding-bottom: {{ s.padding_bottom_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__inner {
+      width: min({{ s.max_width }}px, calc(100% - 64px));
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__eyebrow {
+      margin-bottom: {{ s.eyebrow_margin_bottom_desktop }}px;
+      font-size: {{ s.eyebrow_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__title {
+      font-size: {{ s.title_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__grid {
+      grid-template-columns: minmax(280px, {{ s.stats_card_width }}fr) minmax(0, {{ s.testimonial_card_width }}fr);
+      gap: {{ s.card_gap_desktop }}px;
+      margin-top: {{ s.cards_overlap_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__stats,
+    #shopify-section-{{ uid }} .cc-temoignages__slider {
+      min-height: {{ s.card_height_desktop }}px;
+      border-radius: {{ s.card_radius_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__stats-content {
+      min-height: {{ s.card_height_desktop }}px;
+      gap: {{ s.stat_gap_desktop }}px;
+      padding: {{ s.stats_padding_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__stat-value {
+      font-size: {{ s.stat_value_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__stat-label {
+      font-size: {{ s.stat_label_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__slide {
+      min-height: {{ s.card_height_desktop }}px;
+      padding: {{ s.testimonial_padding_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__quote-wrap {
+      min-height: calc({{ s.card_height_desktop }}px - {{ s.testimonial_padding_desktop | times: 2 }}px);
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__counter {
+      font-size: {{ s.counter_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__quote {
+      margin-bottom: {{ s.author_margin_top_desktop }}px;
+      font-size: {{ s.quote_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__author-name {
+      font-size: {{ s.author_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__author-role {
+      font-size: {{ s.role_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__controls {
+      right: {{ s.controls_offset_desktop }}px;
+      bottom: {{ s.controls_offset_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-temoignages__button {
+      width: {{ s.control_size_desktop }}px;
+      height: {{ s.control_size_desktop }}px;
+    }
+  }
+</style>
+
+<section id="cc-temoignages-{{ uid }}" class="cc-temoignages" data-cc-temoignages>
+  <div class="cc-temoignages__inner">
+    <div class="cc-temoignages__head">
+      {%- if s.eyebrow != blank -%}
+        <p class="cc-temoignages__eyebrow">{{ s.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if s.title != blank -%}
+        <h2 class="cc-temoignages__title">{{ s.title | escape }}</h2>
+      {%- endif -%}
+    </div>
+
+    <div class="cc-temoignages__grid">
+      <article class="cc-temoignages__stats" aria-label="{{ s.stats_aria_label | escape }}">
+        {%- if s.stats_image != blank -%}
+          {{ s.stats_image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'cc-temoignages__image', alt: s.stats_image_alt }}
+        {%- else -%}
+          <span class="cc-temoignages__placeholder" aria-hidden="true"></span>
+        {%- endif -%}
+        <span class="cc-temoignages__overlay" aria-hidden="true"></span>
+        <div class="cc-temoignages__stats-content">
+          {%- if s.stat_1_value != blank or s.stat_1_label != blank -%}
+            <div class="cc-temoignages__stat">
+              {%- if s.stat_1_value != blank -%}
+                <strong class="cc-temoignages__stat-value">{{ s.stat_1_value | escape }}</strong>
+              {%- endif -%}
+              {%- if s.stat_1_label != blank -%}
+                <span class="cc-temoignages__stat-label">{{ s.stat_1_label | escape }}</span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if s.stat_2_value != blank or s.stat_2_label != blank -%}
+            <div class="cc-temoignages__stat">
+              {%- if s.stat_2_value != blank -%}
+                <strong class="cc-temoignages__stat-value">{{ s.stat_2_value | escape }}</strong>
+              {%- endif -%}
+              {%- if s.stat_2_label != blank -%}
+                <span class="cc-temoignages__stat-label">{{ s.stat_2_label | escape }}</span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+          {%- if s.stat_3_value != blank or s.stat_3_label != blank -%}
+            <div class="cc-temoignages__stat">
+              {%- if s.stat_3_value != blank -%}
+                <strong class="cc-temoignages__stat-value">{{ s.stat_3_value | escape }}</strong>
+              {%- endif -%}
+              {%- if s.stat_3_label != blank -%}
+                <span class="cc-temoignages__stat-label">{{ s.stat_3_label | escape }}</span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      </article>
+
+      <div class="cc-temoignages__slider" aria-label="{{ s.carousel_aria_label | escape }}">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            <article class="cc-temoignages__slide" data-cc-slide {% unless forloop.first %}hidden{% endunless %} aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', class: 'cc-temoignages__slide-image', alt: block.settings.image_alt }}
+              {%- else -%}
+                <span class="cc-temoignages__placeholder" aria-hidden="true"></span>
+              {%- endif -%}
+              <span class="cc-temoignages__slide-overlay" aria-hidden="true"></span>
+              <p class="cc-temoignages__counter">
+                {%- if forloop.index < 10 -%}0{%- endif -%}{{ forloop.index }} / {%- if slide_count < 10 -%}0{%- endif -%}{{ slide_count }}
+              </p>
+              <div class="cc-temoignages__quote-wrap">
+                {%- if block.settings.quote != blank -%}
+                  <p class="cc-temoignages__quote">{{ block.settings.quote | escape | newline_to_br }}</p>
+                {%- endif -%}
+                <div class="cc-temoignages__author">
+                  {%- if block.settings.author != blank -%}
+                    <span class="cc-temoignages__author-name">{{ block.settings.author | escape }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.role != blank -%}
+                    <span class="cc-temoignages__author-role">{{ block.settings.role | escape }}</span>
+                  {%- endif -%}
+                </div>
+              </div>
+            </article>
+          {%- endfor -%}
+        {%- else -%}
+          <article class="cc-temoignages__slide" data-cc-slide aria-hidden="false">
+            <span class="cc-temoignages__placeholder" aria-hidden="true"></span>
+            <span class="cc-temoignages__slide-overlay" aria-hidden="true"></span>
+            <p class="cc-temoignages__counter">01 / 01</p>
+            <div class="cc-temoignages__quote-wrap">
+              <p class="cc-temoignages__quote">{{ s.empty_quote | escape }}</p>
+              <div class="cc-temoignages__author">
+                <span class="cc-temoignages__author-name">{{ s.empty_author | escape }}</span>
+                <span class="cc-temoignages__author-role">{{ s.empty_role | escape }}</span>
+              </div>
+            </div>
+          </article>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 1 -%}
+          <div class="cc-temoignages__controls">
+            <button class="cc-temoignages__button" type="button" aria-label="{{ s.prev_label | escape }}" data-cc-prev>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M15 5L8 12L15 19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="cc-temoignages__button" type="button" aria-label="{{ s.next_label | escape }}" data-cc-next>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M9 5L16 12L9 19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const root = document.getElementById('cc-temoignages-{{ uid }}');
+    if (!root) return;
+
+    const slides = Array.from(root.querySelectorAll('[data-cc-slide]'));
+    const previous = root.querySelector('[data-cc-prev]');
+    const next = root.querySelector('[data-cc-next]');
+    let current = 0;
+
+    const format = (number) => String(number).padStart(2, '0');
+
+    const showSlide = (index) => {
+      if (!slides.length) return;
+      current = (index + slides.length) % slides.length;
+
+      slides.forEach((slide, slideIndex) => {
+        const active = slideIndex === current;
+        slide.hidden = !active;
+        slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+
+        const counter = slide.querySelector('.cc-temoignages__counter');
+        if (counter) {
+          counter.textContent = `${format(current + 1)} / ${format(slides.length)}`;
+        }
+      });
+    };
+
+    if (previous) {
+      previous.addEventListener('click', () => showSlide(current - 1));
+    }
+
+    if (next) {
+      next.addEventListener('click', () => showSlide(current + 1));
+    }
+
+    showSlide(0);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Témoignages visuels",
+  "tag": "section",
+  "class": "cc-temoignages-section",
+  "settings": [
+    { "type": "header", "content": "Textes" },
+    { "type": "text", "id": "eyebrow", "label": "Surtitre", "default": "(Pourquoi nos clients nous aiment)" },
+    { "type": "text", "id": "title", "label": "Grand titre", "default": "Témoignages" },
+    { "type": "text", "id": "stats_aria_label", "label": "Libellé accessible de la carte statistiques", "default": "Résultats clients" },
+    { "type": "text", "id": "carousel_aria_label", "label": "Libellé accessible du carrousel", "default": "Témoignages clients" },
+    { "type": "text", "id": "prev_label", "label": "Libellé du bouton précédent", "default": "Témoignage précédent" },
+    { "type": "text", "id": "next_label", "label": "Libellé du bouton suivant", "default": "Témoignage suivant" },
+    { "type": "text", "id": "empty_quote", "label": "Texte si aucun témoignage n'est ajouté", "default": "Ajoutez un témoignage depuis l'éditeur de thème." },
+    { "type": "text", "id": "empty_author", "label": "Auteur par défaut", "default": "Votre client" },
+    { "type": "text", "id": "empty_role", "label": "Fonction par défaut", "default": "Entreprise" },
+
+    { "type": "header", "content": "Statistiques" },
+    { "type": "image_picker", "id": "stats_image", "label": "Image de la carte statistiques" },
+    { "type": "text", "id": "stats_image_alt", "label": "Texte alternatif de l'image statistiques" },
+    { "type": "text", "id": "stat_1_value", "label": "Statistique 1 - valeur", "default": "26+" },
+    { "type": "text", "id": "stat_1_label", "label": "Statistique 1 - texte", "default": "Projets finalisés" },
+    { "type": "text", "id": "stat_2_value", "label": "Statistique 2 - valeur", "default": "98%" },
+    { "type": "text", "id": "stat_2_label", "label": "Statistique 2 - texte", "default": "Taux de satisfaction client" },
+    { "type": "text", "id": "stat_3_value", "label": "Statistique 3 - valeur", "default": "10M" },
+    { "type": "text", "id": "stat_3_label", "label": "Statistique 3 - texte", "default": "Chiffre d'affaires généré" },
+
+    { "type": "header", "content": "Mise en page" },
+    { "type": "range", "id": "max_width", "label": "Largeur maximale", "unit": "px", "min": 1000, "max": 1800, "step": 20, "default": 1520 },
+    { "type": "range", "id": "padding_top_mobile", "label": "Marge haute mobile", "unit": "px", "min": 0, "max": 180, "step": 4, "default": 72 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Marge haute desktop", "unit": "px", "min": 0, "max": 260, "step": 4, "default": 144 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Marge basse mobile", "unit": "px", "min": 0, "max": 180, "step": 4, "default": 72 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Marge basse desktop", "unit": "px", "min": 0, "max": 260, "step": 4, "default": 140 },
+    { "type": "range", "id": "card_height_mobile", "label": "Hauteur des cartes mobile", "unit": "px", "min": 300, "max": 620, "step": 4, "default": 380 },
+    { "type": "range", "id": "card_height_desktop", "label": "Hauteur des cartes desktop", "unit": "px", "min": 320, "max": 620, "step": 4, "default": 432 },
+    { "type": "range", "id": "card_gap_mobile", "label": "Espace entre les cartes mobile", "unit": "px", "min": 8, "max": 40, "step": 1, "default": 16 },
+    { "type": "range", "id": "card_gap_desktop", "label": "Espace entre les cartes desktop", "unit": "px", "min": 8, "max": 48, "step": 1, "default": 24 },
+    { "type": "range", "id": "card_radius_mobile", "label": "Arrondi des cartes mobile", "unit": "px", "min": 0, "max": 40, "step": 1, "default": 18 },
+    { "type": "range", "id": "card_radius_desktop", "label": "Arrondi des cartes desktop", "unit": "px", "min": 0, "max": 40, "step": 1, "default": 22 },
+    { "type": "range", "id": "cards_overlap_mobile", "label": "Décalage des cartes sous le titre mobile", "unit": "px", "min": -60, "max": 60, "step": 2, "default": -10 },
+    { "type": "range", "id": "cards_overlap_desktop", "label": "Décalage des cartes sous le titre desktop", "unit": "px", "min": -120, "max": 80, "step": 2, "default": -8 },
+    { "type": "range", "id": "stats_card_width", "label": "Largeur relative carte statistiques", "min": 3, "max": 8, "step": 1, "default": 5 },
+    { "type": "range", "id": "testimonial_card_width", "label": "Largeur relative carte témoignages", "min": 6, "max": 14, "step": 1, "default": 10 },
+
+    { "type": "header", "content": "Typographie" },
+    { "type": "range", "id": "eyebrow_size_mobile", "label": "Taille du surtitre mobile", "unit": "px", "min": 10, "max": 22, "step": 1, "default": 12 },
+    { "type": "range", "id": "eyebrow_size_desktop", "label": "Taille du surtitre desktop", "unit": "px", "min": 10, "max": 24, "step": 1, "default": 14 },
+    { "type": "range", "id": "eyebrow_margin_bottom_mobile", "label": "Espace sous le surtitre mobile", "unit": "px", "min": 0, "max": 40, "step": 1, "default": 14 },
+    { "type": "range", "id": "eyebrow_margin_bottom_desktop", "label": "Espace sous le surtitre desktop", "unit": "px", "min": 0, "max": 60, "step": 1, "default": 22 },
+    { "type": "range", "id": "title_size_mobile", "label": "Taille du grand titre mobile", "unit": "px", "min": 44, "max": 120, "step": 2, "default": 72 },
+    { "type": "range", "id": "title_size_desktop", "label": "Taille du grand titre desktop", "unit": "px", "min": 96, "max": 220, "step": 2, "default": 154 },
+    { "type": "range", "id": "stat_value_size_mobile", "label": "Taille des chiffres mobile", "unit": "px", "min": 36, "max": 96, "step": 2, "default": 58 },
+    { "type": "range", "id": "stat_value_size_desktop", "label": "Taille des chiffres desktop", "unit": "px", "min": 52, "max": 120, "step": 2, "default": 76 },
+    { "type": "range", "id": "stat_label_size_mobile", "label": "Taille des textes statistiques mobile", "unit": "px", "min": 11, "max": 22, "step": 1, "default": 13 },
+    { "type": "range", "id": "stat_label_size_desktop", "label": "Taille des textes statistiques desktop", "unit": "px", "min": 12, "max": 24, "step": 1, "default": 14 },
+    { "type": "range", "id": "quote_size_mobile", "label": "Taille du témoignage mobile", "unit": "px", "min": 18, "max": 34, "step": 1, "default": 24 },
+    { "type": "range", "id": "quote_size_desktop", "label": "Taille du témoignage desktop", "unit": "px", "min": 22, "max": 48, "step": 1, "default": 28 },
+    { "type": "range", "id": "quote_max_width", "label": "Largeur maximale du témoignage", "unit": "px", "min": 420, "max": 1100, "step": 20, "default": 920 },
+    { "type": "range", "id": "counter_size_mobile", "label": "Taille du compteur mobile", "unit": "px", "min": 10, "max": 20, "step": 1, "default": 12 },
+    { "type": "range", "id": "counter_size_desktop", "label": "Taille du compteur desktop", "unit": "px", "min": 10, "max": 22, "step": 1, "default": 14 },
+    { "type": "range", "id": "author_size_mobile", "label": "Taille du nom mobile", "unit": "px", "min": 12, "max": 22, "step": 1, "default": 14 },
+    { "type": "range", "id": "author_size_desktop", "label": "Taille du nom desktop", "unit": "px", "min": 12, "max": 24, "step": 1, "default": 15 },
+    { "type": "range", "id": "role_size_mobile", "label": "Taille de la fonction mobile", "unit": "px", "min": 11, "max": 20, "step": 1, "default": 13 },
+    { "type": "range", "id": "role_size_desktop", "label": "Taille de la fonction desktop", "unit": "px", "min": 11, "max": 22, "step": 1, "default": 14 },
+
+    { "type": "header", "content": "Espacements internes" },
+    { "type": "range", "id": "stats_padding_mobile", "label": "Marge intérieure statistiques mobile", "unit": "px", "min": 20, "max": 70, "step": 2, "default": 30 },
+    { "type": "range", "id": "stats_padding_desktop", "label": "Marge intérieure statistiques desktop", "unit": "px", "min": 24, "max": 90, "step": 2, "default": 34 },
+    { "type": "range", "id": "stat_gap_mobile", "label": "Espace entre statistiques mobile", "unit": "px", "min": 18, "max": 80, "step": 2, "default": 42 },
+    { "type": "range", "id": "stat_gap_desktop", "label": "Espace entre statistiques desktop", "unit": "px", "min": 24, "max": 100, "step": 2, "default": 56 },
+    { "type": "range", "id": "testimonial_padding_mobile", "label": "Marge intérieure témoignage mobile", "unit": "px", "min": 20, "max": 70, "step": 2, "default": 28 },
+    { "type": "range", "id": "testimonial_padding_desktop", "label": "Marge intérieure témoignage desktop", "unit": "px", "min": 24, "max": 90, "step": 2, "default": 38 },
+    { "type": "range", "id": "author_margin_top_mobile", "label": "Espace sous le témoignage mobile", "unit": "px", "min": 12, "max": 48, "step": 1, "default": 22 },
+    { "type": "range", "id": "author_margin_top_desktop", "label": "Espace sous le témoignage desktop", "unit": "px", "min": 12, "max": 60, "step": 1, "default": 28 },
+
+    { "type": "header", "content": "Boutons du carrousel" },
+    { "type": "range", "id": "control_size_mobile", "label": "Taille des boutons mobile", "unit": "px", "min": 34, "max": 58, "step": 2, "default": 42 },
+    { "type": "range", "id": "control_size_desktop", "label": "Taille des boutons desktop", "unit": "px", "min": 38, "max": 66, "step": 2, "default": 46 },
+    { "type": "range", "id": "controls_offset_mobile", "label": "Décalage des boutons mobile", "unit": "px", "min": 14, "max": 54, "step": 2, "default": 22 },
+    { "type": "range", "id": "controls_offset_desktop", "label": "Décalage des boutons desktop", "unit": "px", "min": 18, "max": 70, "step": 2, "default": 34 },
+
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background_color", "label": "Fond de section", "default": "#d8d8d8" },
+    { "type": "color", "id": "text_color", "label": "Couleur du texte principal", "default": "#171717" },
+    { "type": "color", "id": "eyebrow_color", "label": "Couleur du surtitre", "default": "#747474" },
+    { "type": "color", "id": "title_color", "label": "Couleur du grand titre", "default": "#bdbdbd" },
+    { "type": "range", "id": "title_opacity", "label": "Opacité du grand titre", "unit": "%", "min": 10, "max": 100, "step": 1, "default": 68 },
+    { "type": "range", "id": "stats_overlay", "label": "Obscurité de l'image statistiques", "unit": "%", "min": 0, "max": 90, "step": 1, "default": 52 },
+    { "type": "range", "id": "testimonial_overlay", "label": "Obscurité de l'image témoignage", "unit": "%", "min": 0, "max": 90, "step": 1, "default": 46 }
+  ],
+  "blocks": [
+    {
+      "type": "temoignage",
+      "name": "Témoignage",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "image_alt", "label": "Texte alternatif de l'image" },
+        { "type": "textarea", "id": "quote", "label": "Texte du témoignage", "default": "L'équipe a transformé nos idées en une marque claire, rapide à comprendre et parfaitement alignée avec nos objectifs." },
+        { "type": "text", "id": "author", "label": "Nom du client", "default": "Ethan Moore" },
+        { "type": "text", "id": "role", "label": "Fonction ou entreprise", "default": "Co-fondateur, NovaTech" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Témoignages visuels",
+      "blocks": [
+        {
+          "type": "temoignage",
+          "settings": {
+            "quote": "Ils ont transformé nos idées en une marque nette, simple et exactement dans le ton.",
+            "author": "Ethan Moore",
+            "role": "Co-fondateur, NovaTech"
+          }
+        },
+        {
+          "type": "temoignage",
+          "settings": {
+            "quote": "Le projet a avancé vite, avec une direction claire et des choix faciles à valider.",
+            "author": "Camille Laurent",
+            "role": "Fondatrice, Atelier Nord"
+          }
+        },
+        {
+          "type": "temoignage",
+          "settings": {
+            "quote": "On a gagné en crédibilité dès la mise en ligne, sans perdre notre personnalité.",
+            "author": "Nadia Benali",
+            "role": "Directrice marketing, Maison Aube"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

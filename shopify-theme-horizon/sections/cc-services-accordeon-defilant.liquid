@@ -1,0 +1,693 @@
+{%- liquid
+  assign s = section.settings
+  assign uid = section.id
+-%}
+
+<style>
+  #shopify-section-{{ uid }} {
+    display: block;
+    background: {{ s.background_color }};
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant {
+    position: relative;
+    overflow: hidden;
+    padding-top: {{ s.padding_top_mobile }}px;
+    padding-bottom: {{ s.padding_bottom_mobile }}px;
+    color: {{ s.text_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__inner {
+    width: min({{ s.max_width }}px, calc(100% - 32px));
+    margin-inline: auto;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__header {
+    display: grid;
+    gap: {{ s.header_gap_mobile }}px;
+    margin-bottom: {{ s.header_bottom_mobile }}px;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__eyebrow {
+    margin: 0;
+    color: {{ s.eyebrow_color }};
+    font-size: {{ s.eyebrow_size }}px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__title {
+    margin: 0;
+    color: {{ s.title_color }};
+    font-size: {{ s.title_size_mobile }}px;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: 0;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__accordion {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid {{ s.divider_color }};
+    margin-bottom: {{ s.accordion_bottom_mobile }}px;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    width: 100%;
+    min-height: 54px;
+    padding: 16px 0;
+    border: 0;
+    border-bottom: 1px solid {{ s.divider_color }};
+    background: transparent;
+    color: {{ s.inactive_color }};
+    font: inherit;
+    font-size: {{ s.accordion_size_mobile }}px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__trigger:hover,
+  #shopify-section-{{ uid }} .cc-services-defilant__trigger.is-active {
+    color: {{ s.accent_color }};
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__trigger-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__trigger-dot {
+    order: -1;
+    flex: 0 0 auto;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__trigger.is-active .cc-services-defilant__trigger-dot {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__panels {
+    display: grid;
+    position: relative;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__panel {
+    grid-area: 1 / 1;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate3d(0, 18px, 0);
+    transition:
+      opacity 320ms ease,
+      transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 420ms;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__panel.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate3d(0, 0, 0);
+    transition-delay: 0s;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__visual {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    min-height: calc({{ s.image_height_mobile }}px + {{ s.marquee_space_mobile }}px);
+    padding-top: {{ s.marquee_space_mobile }}px;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__marquee {
+    position: absolute;
+    top: {{ s.marquee_top_mobile }}%;
+    left: 50%;
+    z-index: 1;
+    width: 100vw;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__marquee-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: 0.42em;
+    animation: cc-services-defilant-marquee-{{ uid }} {{ s.marquee_duration }}s linear infinite;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__marquee-word {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42em;
+    color: {{ s.accent_color }};
+    font-size: {{ s.marquee_size_mobile }}px;
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__marquee-word:nth-child(even) {
+    opacity: {{ s.marquee_faded_opacity | divided_by: 100.0 }};
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__media {
+    position: relative;
+    z-index: 2;
+    width: min({{ s.image_width_mobile }}px, 100%);
+    height: {{ s.image_height_mobile }}px;
+    overflow: hidden;
+    border-radius: {{ s.image_radius }}px;
+    background: {{ s.image_background }};
+    box-shadow: 0 28px 72px rgba(0, 0, 0, {{ s.image_shadow_opacity | divided_by: 100.0 }});
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__placeholder {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    padding: 24px;
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 14px;
+    text-align: center;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__body {
+    display: grid;
+    justify-items: center;
+    gap: {{ s.body_gap_mobile }}px;
+    margin-top: {{ s.body_top_mobile }}px;
+    text-align: center;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__description {
+    max-width: {{ s.description_width }}px;
+    margin: 0;
+    color: {{ s.description_color }};
+    font-size: {{ s.description_size_mobile }}px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 7px 13px;
+    border-radius: 999px;
+    background: {{ s.tag_background }};
+    color: {{ s.tag_color }};
+    font-size: {{ s.tag_size }}px;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, {{ s.tag_shadow_opacity | divided_by: 100.0 }});
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: {{ s.button_background }};
+    color: {{ s.button_text_color }};
+    font-size: {{ s.button_size }}px;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__link:hover {
+    transform: translateY(-2px);
+    opacity: 0.88;
+  }
+
+  #shopify-section-{{ uid }} .cc-services-defilant__empty {
+    display: grid;
+    min-height: 280px;
+    place-items: center;
+    padding: 32px;
+    color: {{ s.description_color }};
+    text-align: center;
+  }
+
+  @keyframes cc-services-defilant-marquee-{{ uid }} {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ uid }} .cc-services-defilant__marquee-track {
+      animation: none;
+    }
+
+    #shopify-section-{{ uid }} .cc-services-defilant__panel {
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  @media (min-width: 750px) {
+    #shopify-section-{{ uid }} .cc-services-defilant {
+      padding-top: {{ s.padding_top_desktop }}px;
+      padding-bottom: {{ s.padding_bottom_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-services-defilant__inner {
+      width: min({{ s.max_width }}px, calc(100% - 64px));
+    }
+
+    #shopify-section-{{ uid }} .cc-services-defilant__header {
+      gap: {{ s.header_gap_desktop }}px;
+      margin-bottom: {{ s.header_bottom_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-services-defilant__title {
+      font-size: {{ s.title_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-services-defilant__accordion {
+      grid-template-columns: repeat({{ section.blocks.size | at_least: 1 }}, minmax(0, 1fr));
+      margin-bottom: {{ s.accordion_bottom_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-services-defilant__trigger {
+      min-height: 78px;
+      padding: 18px 20px 18px 0;
+      border-bottom: 0;
+      font-size: {{ s.accordion_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-services-defilant__visual {
+      min-height: calc({{ s.image_height_desktop }}px + {{ s.marquee_space_desktop }}px);
+      padding-top: {{ s.marquee_space_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-services-defilant__marquee {
+      top: {{ s.marquee_top_desktop }}%;
+    }
+
+    #shopify-section-{{ uid }} .cc-services-defilant__marquee-word {
+      font-size: {{ s.marquee_size_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-services-defilant__media {
+      width: min({{ s.image_width_desktop }}px, 100%);
+      height: {{ s.image_height_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-services-defilant__body {
+      gap: {{ s.body_gap_desktop }}px;
+      margin-top: {{ s.body_top_desktop }}px;
+    }
+
+    #shopify-section-{{ uid }} .cc-services-defilant__description {
+      font-size: {{ s.description_size_desktop }}px;
+    }
+  }
+</style>
+
+<section
+  id="cc-services-defilant-{{ uid }}"
+  class="cc-services-defilant"
+  data-cc-services-defilant
+  aria-label="{{ s.section_aria_label | escape }}"
+>
+  <div class="cc-services-defilant__inner">
+    <div class="cc-services-defilant__header">
+      {%- if s.eyebrow != blank -%}
+        <p class="cc-services-defilant__eyebrow">{{ s.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      {%- if s.title != blank -%}
+        <h2 class="cc-services-defilant__title">{{ s.title | escape }}</h2>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <h3 class="cc-services-defilant__accordion" role="tablist" aria-label="{{ s.accordion_aria_label | escape }}">
+        {%- for block in section.blocks -%}
+          <button
+            type="button"
+            class="cc-services-defilant__trigger{% if forloop.first %} is-active{% endif %}"
+            id="cc-services-defilant-trigger-{{ uid }}-{{ block.id }}"
+            data-cc-service-trigger
+            data-cc-service-index="{{ forloop.index0 }}"
+            data-cc-service-block-id="{{ block.id }}"
+            role="tab"
+            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+            aria-controls="cc-services-defilant-panel-{{ uid }}-{{ block.id }}"
+            {{ block.shopify_attributes }}
+          >
+            <span class="cc-services-defilant__trigger-inner">
+              <span>{{ block.settings.title | escape }}</span>
+              <span class="cc-services-defilant__trigger-dot" aria-hidden="true"></span>
+            </span>
+          </button>
+        {%- endfor -%}
+    </h3>
+
+      <div class="cc-services-defilant__panels">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign marquee_text = block.settings.marquee_text
+            if marquee_text == blank
+              assign marquee_text = block.settings.title
+            endif
+            assign tags = block.settings.tags | strip | newline_to_br | split: '<br />'
+          -%}
+
+          <article
+            class="cc-services-defilant__panel{% if forloop.first %} is-active{% endif %}"
+            id="cc-services-defilant-panel-{{ uid }}-{{ block.id }}"
+            data-cc-service-panel
+            data-cc-service-index="{{ forloop.index0 }}"
+            data-cc-service-block-id="{{ block.id }}"
+            role="tabpanel"
+            aria-labelledby="cc-services-defilant-trigger-{{ uid }}-{{ block.id }}"
+            aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
+          >
+            <div class="cc-services-defilant__visual">
+              <div class="cc-services-defilant__marquee" aria-hidden="true">
+                <div class="cc-services-defilant__marquee-track">
+                  {%- for i in (1..6) -%}
+                    <span class="cc-services-defilant__marquee-word">
+                      {{ marquee_text | escape }}
+                      <span>{{ s.marquee_separator | escape }}</span>
+                    </span>
+                  {%- endfor -%}
+                </div>
+              </div>
+
+              <div class="cc-services-defilant__media">
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 1400 | image_tag: loading: 'lazy', class: 'cc-services-defilant__image', alt: block.settings.image_alt }}
+                {%- else -%}
+                  <div class="cc-services-defilant__placeholder">{{ s.image_placeholder_text | escape }}</div>
+                {%- endif -%}
+              </div>
+            </div>
+
+            <div class="cc-services-defilant__body">
+              {%- if block.settings.description != blank -%}
+                <p class="cc-services-defilant__description">{{ block.settings.description | escape | newline_to_br }}</p>
+              {%- endif -%}
+
+              {%- if block.settings.tags != blank -%}
+                <ul class="cc-services-defilant__tags">
+                  {%- for tag in tags -%}
+                    {%- assign clean_tag = tag | strip -%}
+                    {%- if clean_tag != blank -%}
+                      <li class="cc-services-defilant__tag">{{ clean_tag | escape }}</li>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+
+              {%- if block.settings.button_link != blank and block.settings.button_label != blank -%}
+                <a class="cc-services-defilant__link" href="{{ block.settings.button_link }}">
+                  {{ block.settings.button_label | escape }}
+                </a>
+              {%- endif -%}
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="cc-services-defilant__empty">
+        <p>{{ s.empty_state_text | escape }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  (() => {
+    const sectionId = 'cc-services-defilant-{{ uid }}';
+    const wrapperId = 'shopify-section-{{ uid }}';
+    window.CCServicesDefilant = window.CCServicesDefilant || { cleanups: {}, handlers: {} };
+
+    const cleanup = () => {
+      if (!window.CCServicesDefilant.cleanups[sectionId]) return;
+      window.CCServicesDefilant.cleanups[sectionId]();
+      delete window.CCServicesDefilant.cleanups[sectionId];
+    };
+
+    const removeHandlers = () => {
+      const stored = window.CCServicesDefilant.handlers[sectionId];
+      if (!stored) return;
+      document.removeEventListener('shopify:section:load', stored.load);
+      document.removeEventListener('shopify:section:unload', stored.unload);
+      document.removeEventListener('shopify:block:select', stored.blockSelect);
+      delete window.CCServicesDefilant.handlers[sectionId];
+    };
+
+    const mount = () => {
+      const root = document.getElementById(sectionId);
+      if (!root) return;
+
+      cleanup();
+
+      const triggers = Array.from(root.querySelectorAll('[data-cc-service-trigger]'));
+      const panels = Array.from(root.querySelectorAll('[data-cc-service-panel]'));
+      if (!triggers.length || !panels.length) return;
+
+      const setActive = (index) => {
+        triggers.forEach((trigger) => {
+          const isActive = trigger.dataset.ccServiceIndex === String(index);
+          trigger.classList.toggle('is-active', isActive);
+          trigger.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        panels.forEach((panel) => {
+          const isActive = panel.dataset.ccServiceIndex === String(index);
+          panel.classList.toggle('is-active', isActive);
+          panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        });
+      };
+
+      const clickHandlers = [];
+
+      triggers.forEach((trigger) => {
+        const onClick = () => setActive(trigger.dataset.ccServiceIndex);
+        trigger.addEventListener('click', onClick);
+        clickHandlers.push([trigger, onClick]);
+      });
+
+      window.CCServicesDefilant.cleanups[sectionId] = () => {
+        clickHandlers.forEach(([trigger, onClick]) => {
+          trigger.removeEventListener('click', onClick);
+        });
+      };
+    };
+
+    removeHandlers();
+
+    const handlers = {
+      load(event) {
+        if (event.target.id === wrapperId || event.target.querySelector(`#${sectionId}`)) mount();
+      },
+      unload(event) {
+        if (event.target.id === wrapperId || event.target.querySelector(`#${sectionId}`)) cleanup();
+      },
+      blockSelect(event) {
+        if (!event.detail || event.detail.sectionId !== '{{ section.id }}') return;
+
+        const root = document.getElementById(sectionId);
+        if (!root) return;
+
+        const trigger = root.querySelector(`[data-cc-service-block-id="${event.detail.blockId}"]`);
+        if (!trigger) return;
+
+        trigger.click();
+      }
+    };
+
+    window.CCServicesDefilant.handlers[sectionId] = handlers;
+    document.addEventListener('shopify:section:load', handlers.load);
+    document.addEventListener('shopify:section:unload', handlers.unload);
+    document.addEventListener('shopify:block:select', handlers.blockSelect);
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', mount, { once: true });
+    } else {
+      mount();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Services défilants",
+  "tag": "section",
+  "class": "cc-services-defilant-section",
+  "settings": [
+    { "type": "header", "content": "Textes" },
+    { "type": "text", "id": "section_aria_label", "label": "Libellé accessible", "default": "Services" },
+    { "type": "text", "id": "accordion_aria_label", "label": "Libellé accessible de l'accordéon", "default": "Choisir un service" },
+    { "type": "text", "id": "eyebrow", "label": "Surtitre", "default": "(Services)" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Ce que nous faisons" },
+    { "type": "text", "id": "marquee_separator", "label": "Séparateur du texte défilant", "default": "✣" },
+    { "type": "text", "id": "image_placeholder_text", "label": "Texte si une image manque", "default": "Ajoutez une image" },
+    { "type": "text", "id": "empty_state_text", "label": "Texte si aucun service n'est ajouté", "default": "Ajoutez un service depuis l'éditeur de thème." },
+
+    { "type": "header", "content": "Marges" },
+    { "type": "range", "id": "padding_top_mobile", "label": "Marge haute mobile", "unit": "px", "min": 0, "max": 240, "step": 4, "default": 72 },
+    { "type": "range", "id": "padding_bottom_mobile", "label": "Marge basse mobile", "unit": "px", "min": 0, "max": 240, "step": 4, "default": 72 },
+    { "type": "range", "id": "padding_top_desktop", "label": "Marge haute desktop", "unit": "px", "min": 0, "max": 320, "step": 4, "default": 120 },
+    { "type": "range", "id": "padding_bottom_desktop", "label": "Marge basse desktop", "unit": "px", "min": 0, "max": 320, "step": 4, "default": 120 },
+    { "type": "range", "id": "max_width", "label": "Largeur maximale", "unit": "px", "min": 960, "max": 1900, "step": 20, "default": 1440 },
+    { "type": "range", "id": "header_gap_mobile", "label": "Espace surtitre/titre mobile", "unit": "px", "min": 8, "max": 60, "step": 1, "default": 18 },
+    { "type": "range", "id": "header_gap_desktop", "label": "Espace surtitre/titre desktop", "unit": "px", "min": 8, "max": 80, "step": 1, "default": 22 },
+    { "type": "range", "id": "header_bottom_mobile", "label": "Espace sous l'en-tête mobile", "unit": "px", "min": 24, "max": 110, "step": 1, "default": 48 },
+    { "type": "range", "id": "header_bottom_desktop", "label": "Espace sous l'en-tête desktop", "unit": "px", "min": 24, "max": 140, "step": 2, "default": 72 },
+    { "type": "range", "id": "accordion_bottom_mobile", "label": "Espace sous accordéon mobile", "unit": "px", "min": 24, "max": 120, "step": 1, "default": 54 },
+    { "type": "range", "id": "accordion_bottom_desktop", "label": "Espace sous accordéon desktop", "unit": "px", "min": 40, "max": 180, "step": 2, "default": 80 },
+
+    { "type": "header", "content": "Image et contenu" },
+    { "type": "range", "id": "image_width_mobile", "label": "Largeur image mobile", "unit": "px", "min": 260, "max": 420, "step": 2, "default": 340 },
+    { "type": "range", "id": "image_height_mobile", "label": "Hauteur image mobile", "unit": "px", "min": 180, "max": 360, "step": 2, "default": 240 },
+    { "type": "range", "id": "image_width_desktop", "label": "Largeur image desktop", "unit": "px", "min": 420, "max": 860, "step": 5, "default": 560 },
+    { "type": "range", "id": "image_height_desktop", "label": "Hauteur image desktop", "unit": "px", "min": 260, "max": 560, "step": 4, "default": 340 },
+    { "type": "range", "id": "image_radius", "label": "Arrondi image", "unit": "px", "min": 0, "max": 48, "step": 1, "default": 20 },
+    { "type": "range", "id": "image_shadow_opacity", "label": "Ombre image", "unit": "%", "min": 0, "max": 60, "step": 1, "default": 18 },
+    { "type": "range", "id": "body_top_mobile", "label": "Espace image/texte mobile", "unit": "px", "min": 12, "max": 70, "step": 1, "default": 26 },
+    { "type": "range", "id": "body_top_desktop", "label": "Espace image/texte desktop", "unit": "px", "min": 12, "max": 80, "step": 1, "default": 30 },
+    { "type": "range", "id": "body_gap_mobile", "label": "Espace entre description et tags mobile", "unit": "px", "min": 10, "max": 48, "step": 1, "default": 18 },
+    { "type": "range", "id": "body_gap_desktop", "label": "Espace entre description et tags desktop", "unit": "px", "min": 10, "max": 60, "step": 1, "default": 22 },
+    { "type": "range", "id": "description_width", "label": "Largeur maximale description", "unit": "px", "min": 320, "max": 760, "step": 5, "default": 460 },
+
+    { "type": "header", "content": "Texte défilant" },
+    { "type": "range", "id": "marquee_size_mobile", "label": "Taille texte défilant mobile", "unit": "px", "min": 42, "max": 110, "step": 1, "default": 64 },
+    { "type": "range", "id": "marquee_size_desktop", "label": "Taille texte défilant desktop", "unit": "px", "min": 90, "max": 250, "step": 2, "default": 150 },
+    { "type": "range", "id": "marquee_duration", "label": "Durée d'un tour", "unit": "s", "min": 8, "max": 40, "step": 1, "default": 18 },
+    { "type": "range", "id": "marquee_top_mobile", "label": "Position verticale mobile", "unit": "%", "min": 25, "max": 75, "step": 1, "default": 50 },
+    { "type": "range", "id": "marquee_top_desktop", "label": "Position verticale desktop", "unit": "%", "min": 25, "max": 75, "step": 1, "default": 52 },
+    { "type": "range", "id": "marquee_space_mobile", "label": "Espace haut autour du texte mobile", "unit": "px", "min": 20, "max": 160, "step": 2, "default": 76 },
+    { "type": "range", "id": "marquee_space_desktop", "label": "Espace haut autour du texte desktop", "unit": "px", "min": 40, "max": 220, "step": 2, "default": 96 },
+    { "type": "range", "id": "marquee_faded_opacity", "label": "Opacité des répétitions claires", "unit": "%", "min": 10, "max": 100, "step": 1, "default": 34 },
+
+    { "type": "header", "content": "Typographie" },
+    { "type": "range", "id": "eyebrow_size", "label": "Taille surtitre", "unit": "px", "min": 10, "max": 24, "step": 1, "default": 14 },
+    { "type": "range", "id": "title_size_mobile", "label": "Taille titre mobile", "unit": "px", "min": 38, "max": 92, "step": 1, "default": 56 },
+    { "type": "range", "id": "title_size_desktop", "label": "Taille titre desktop", "unit": "px", "min": 70, "max": 160, "step": 1, "default": 96 },
+    { "type": "range", "id": "accordion_size_mobile", "label": "Taille accordéon mobile", "unit": "px", "min": 13, "max": 24, "step": 1, "default": 15 },
+    { "type": "range", "id": "accordion_size_desktop", "label": "Taille accordéon desktop", "unit": "px", "min": 13, "max": 26, "step": 1, "default": 15 },
+    { "type": "range", "id": "description_size_mobile", "label": "Taille description mobile", "unit": "px", "min": 13, "max": 22, "step": 1, "default": 15 },
+    { "type": "range", "id": "description_size_desktop", "label": "Taille description desktop", "unit": "px", "min": 13, "max": 24, "step": 1, "default": 16 },
+    { "type": "range", "id": "tag_size", "label": "Taille tags", "unit": "px", "min": 10, "max": 18, "step": 1, "default": 12 },
+    { "type": "range", "id": "button_size", "label": "Taille bouton", "unit": "px", "min": 11, "max": 20, "step": 1, "default": 13 },
+
+    { "type": "header", "content": "Couleurs" },
+    { "type": "color", "id": "background_color", "label": "Fond section", "default": "#dedede" },
+    { "type": "color", "id": "text_color", "label": "Texte général", "default": "#111111" },
+    { "type": "color", "id": "eyebrow_color", "label": "Couleur surtitre", "default": "#6f6f6f" },
+    { "type": "color", "id": "title_color", "label": "Couleur titre", "default": "#080808" },
+    { "type": "color", "id": "inactive_color", "label": "Accordéon inactif", "default": "#777777" },
+    { "type": "color", "id": "accent_color", "label": "Orange actif et texte défilant", "default": "#ff4b0b" },
+    { "type": "color", "id": "divider_color", "label": "Ligne séparatrice", "default": "#cfcfcf" },
+    { "type": "color", "id": "description_color", "label": "Description", "default": "#1a1a1a" },
+    { "type": "color", "id": "image_background", "label": "Fond image vide", "default": "#151515" },
+    { "type": "color", "id": "tag_background", "label": "Fond tags", "default": "#666666" },
+    { "type": "color", "id": "tag_color", "label": "Texte tags", "default": "#ffffff" },
+    { "type": "range", "id": "tag_shadow_opacity", "label": "Ombre tags", "unit": "%", "min": 0, "max": 45, "step": 1, "default": 25 },
+    { "type": "color", "id": "button_background", "label": "Fond bouton", "default": "#111111" },
+    { "type": "color", "id": "button_text_color", "label": "Texte bouton", "default": "#ffffff" }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre accordéon", "default": "Référencement naturel (SEO)" },
+        { "type": "text", "id": "marquee_text", "label": "Texte orange défilant", "default": "Référencement naturel (SEO)" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "image_alt", "label": "Texte alternatif de l'image" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Nous optimisons votre visibilité sur Google avec une stratégie claire, une base technique saine et des contenus pensés pour attirer les bons clients." },
+        { "type": "textarea", "id": "tags", "label": "Tags", "info": "Un tag par ligne.", "default": "Audit SEO\nOptimisation technique\nContenu\nSuivi mensuel" },
+        { "type": "text", "id": "button_label", "label": "Texte bouton" },
+        { "type": "url", "id": "button_link", "label": "Lien bouton" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Services défilants",
+      "blocks": [
+        {
+          "type": "service",
+          "settings": {
+            "title": "Référencement naturel (SEO)",
+            "marquee_text": "Référencement naturel",
+            "description": "Nous optimisons votre visibilité sur Google avec une stratégie claire, une base technique saine et des contenus pensés pour attirer les bons clients.",
+            "tags": "Audit SEO\nSEO technique\nContenu\nSuivi"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "title": "Création site vitrine",
+            "marquee_text": "Création site vitrine",
+            "description": "Nous créons un site clair, rapide et élégant pour présenter votre activité, rassurer vos visiteurs et générer plus de demandes qualifiées.",
+            "tags": "Webdesign\nDéveloppement\nResponsive\nConversion"
+          }
+        },
+        {
+          "type": "service",
+          "settings": {
+            "title": "Boutique Shopify",
+            "marquee_text": "Boutique Shopify",
+            "description": "Nous concevons une boutique Shopify fluide et professionnelle, pensée pour valoriser vos produits et simplifier le passage à l'achat.",
+            "tags": "Shopify\nFiches produit\nPaiement\nOptimisation panier"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

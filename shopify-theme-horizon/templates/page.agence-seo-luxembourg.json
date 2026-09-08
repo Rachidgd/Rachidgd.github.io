@@ -1,0 +1,296 @@
+{
+  "sections": {
+    "hero": {
+      "type": "heroseo",
+      "blocks": {
+        "t1": {
+          "type": "text",
+          "settings": {
+            "text": "Agence"
+          }
+        },
+        "b1": {
+          "type": "bubble",
+          "settings": {
+            "image": "shopify://shop_images/cc_avatar_2.webp",
+            "image_alt": ""
+          }
+        },
+        "t2": {
+          "type": "text",
+          "settings": {
+            "text": "SEO au Luxembourg.",
+            "tone": "custom",
+            "custom_color": "#fa703d"
+          }
+        },
+        "br1": {
+          "type": "line_break",
+          "settings": {}
+        },
+        "t3": {
+          "type": "text",
+          "settings": {
+            "text": "Peu de volume,",
+            "tone": "muted"
+          }
+        },
+        "b2": {
+          "type": "bubble",
+          "settings": {
+            "amplitude": 5,
+            "rotate": -20,
+            "duration": 8,
+            "image_alt": ""
+          }
+        },
+        "t4": {
+          "type": "text",
+          "settings": {
+            "text": "beaucoup"
+          }
+        },
+        "br2": {
+          "type": "line_break",
+          "settings": {}
+        },
+        "t5": {
+          "type": "text",
+          "settings": {
+            "text": "de"
+          }
+        },
+        "b3": {
+          "type": "bubble",
+          "settings": {
+            "amplitude": 7,
+            "rotate": 30,
+            "duration": 6,
+            "image_alt": ""
+          }
+        },
+        "t6": {
+          "type": "text",
+          "settings": {
+            "text": "valeur.",
+            "tone": "custom",
+            "custom_color": "#fa703d"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "b1",
+        "t2",
+        "br1",
+        "t3",
+        "b2",
+        "t4",
+        "br2",
+        "t5",
+        "b3",
+        "t6"
+      ],
+      "settings": {
+        "proof_text": "Cabinets, fiduciaires et sociétés de services du Grand-Duché.",
+        "avatar_1": "shopify://shop_images/cc_avatar_2.webp",
+        "avatar_2": "shopify://shop_images/cc_avatar_2.webp",
+        "sub_text": "Un marché où trente recherches par mois pèsent parfois plus qu'un trafic de masse ailleurs. Encore faut-il occuper les bonnes.",
+        "cta_label": "Réserver un audit offert",
+        "cta_url": "/pages/reserver",
+        "bg_color": "",
+        "pb_mobile": 64,
+        "pb_desktop": 20,
+        "schema_service_name": "Référencement naturel au Luxembourg",
+        "schema_service_type": "Référencement naturel multilingue",
+        "schema_service_description": "Accompagnement SEO des entreprises du Grand-Duché : arbitrage des langues, requêtes à forte valeur, contenus experts et extension à la Grande Région.",
+        "schema_service_audience": "Entreprises de services et cabinets du Grand-Duché",
+        "schema_service_areas": "Luxembourg\nLuxembourg-Ville\nKirchberg\nEsch-sur-Alzette\nGrande Région",
+        "schema_service_offers": "Audit de visibilité\nArbitrage multilingue\nContenu expert\nNetlinking\nSuivi de positions"
+      }
+    },
+    "bandes": {
+      "type": "cc-ribbons",
+      "blocks": {
+        "c1": {
+          "type": "chip",
+          "settings": {
+            "label": "Finance",
+            "url": ""
+          }
+        },
+        "c2": {
+          "type": "chip",
+          "settings": {
+            "label": "Fiduciaires",
+            "url": ""
+          }
+        },
+        "c3": {
+          "type": "chip",
+          "settings": {
+            "label": "Conseil",
+            "url": ""
+          }
+        },
+        "c4": {
+          "type": "chip",
+          "settings": {
+            "label": "Services B2B",
+            "url": ""
+          }
+        },
+        "c5": {
+          "type": "chip",
+          "settings": {
+            "label": "Multilingue",
+            "url": ""
+          }
+        },
+        "c6": {
+          "type": "chip",
+          "settings": {
+            "label": "Grande Région",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6"
+      ],
+      "settings": {
+        "ribbon_a_items": "SEO Grand-Duché\nContenu expert\nSEO multilingue\nNetlinking\nAudit de visibilité",
+        "ribbon_b_items": "Luxembourg-Ville\nKirchberg\nEsch-sur-Alzette\nBelval\nGrande Région\nFrontaliers",
+        "eyebrow": "(Luxembourg)",
+        "reveal_text": "Au Grand-Duché, une requête à trente recherches mensuelles peut valoir plus qu'une à trois mille ailleurs. Tout dépend de qui la tape.",
+        "bg_color": ""
+      }
+    },
+    "marche": {
+      "type": "cc-services-accordeon-defilant",
+      "blocks": {
+        "s1": {
+          "type": "service",
+          "settings": {
+            "title": "Viser la valeur, pas le volume",
+            "marquee_text": "La valeur",
+            "image_alt": "",
+            "description": "À l'échelle du pays, les volumes de recherche sont faibles. Une poignée de requêtes bien choisies rapporte davantage qu'une stratégie de masse importée de France.",
+            "tags": "Requêtes à enjeu\nIntention d'achat\nPages piliers\nArbitrages",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "s2": {
+          "type": "service",
+          "settings": {
+            "title": "Trancher les langues avant d'écrire",
+            "marquee_text": "Les langues",
+            "image_alt": "",
+            "description": "Français, anglais, allemand : tout traduire coûte cher et dilue le budget. On décide selon la langue dans laquelle vos clients décident réellement.",
+            "tags": "Français\nAnglais\nAllemand\nHreflang",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "s3": {
+          "type": "service",
+          "settings": {
+            "title": "Étendre à la Grande Région",
+            "marquee_text": "Grande Région",
+            "image_alt": "",
+            "description": "Thionville, Arlon, Trèves : une partie de votre marché habite ailleurs et travaille ici. Ces recherches se captent, à condition de les traiter à part.",
+            "tags": "Frontaliers\nLorraine\nWallonie\nSarre",
+            "button_label": "",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "section_aria_label": "Leviers du référencement au Luxembourg",
+        "accordion_aria_label": "Choisir un levier",
+        "eyebrow": "(Marché)",
+        "title": "Ce qui change ici",
+        "empty_state_text": "Ajoutez un volet depuis l'éditeur de thème.",
+        "marquee_duration": 36
+      }
+    },
+    "faq": {
+      "type": "cc-faq-accordeon-animee",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "Les volumes de recherche sont-ils suffisants ici ?",
+            "answer": "Faibles en valeur absolue, oui. Mais une demande de fiduciaire ou de conseil pèse plusieurs milliers d'euros : la rentabilité se joue sur la valeur du client, pas sur le nombre de visites.",
+            "open_by_default": true
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Faut-il un domaine en .lu ?",
+            "answer": "Ce n'est pas obligatoire. Un contenu clairement rattaché au pays, une adresse locale et des signaux cohérents pèsent davantage que l'extension elle-même."
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "column": "right",
+            "question": "En combien de langues faut-il publier ?",
+            "answer": "Rarement toutes. On regarde dans quelle langue vos clients cherchent et signent, puis on ouvre une seconde langue seulement si les données la justifient."
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "column": "right",
+            "question": "Peut-on viser la France depuis le Luxembourg ?",
+            "answer": "Oui quand l'offre s'y prête, mais avec des pages distinctes. Une même page qui vise deux pays finit par n'en convaincre aucun."
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4"
+      ],
+      "settings": {
+        "section_aria_label": "Questions fréquentes sur le référencement au Luxembourg",
+        "title": "Les questions du Grand-Duché",
+        "subtitle": "Volumes, langues, extension de domaine : ce qui revient avant chaque lancement."
+      }
+    },
+    "contact": {
+      "type": "cc-contact-natif-shopify",
+      "settings": {
+        "back_title": "Luxembourg",
+        "title": "Parlons de votre marché.",
+        "subtitle": "Dites-nous ce que vous vendez et à qui, au Grand-Duché comme au-delà. Nous relevons les recherches qui comptent et votre position dessus.",
+        "email_subject": "Demande — SEO Luxembourg",
+        "message_label": "Votre projet",
+        "message_placeholder": "Votre activité, vos clients, vos langues de travail...",
+        "marquee_text": "contact@clickscreation.com",
+        "marquee_duration": 34
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "bandes",
+    "marche",
+    "faq",
+    "contact"
+  ]
+}
