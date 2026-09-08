@@ -1,0 +1,110 @@
+{
+  "suffix": "creation-site-vitrine",
+  "ordre": ["hero", "bandes", "methode", "realisations", "tarifs", "faq", "contact"],
+
+  "h1": ["Création de", "@", ["site vitrine.", "accent"], "|", ["Un site rapide,", "muted"], "@", "clair,", "|", "et des demandes", "@", ["en plus.", "accent"]],
+  "preuve": "PME, artisans, indépendants : ils nous confient leur site.",
+  "sousTitre": "Un site sur mesure qui charge vite, explique votre offre, et que vous modifiez vous-même sans rappeler personne.",
+  "cta": { "label": "Demander mon devis", "url": "/pages/contact" },
+
+  "surtitre": "(votre site)",
+  "constat": "Un site vitrine sert à une chose : donner envie de vous appeler. Tout ce qui retarde cette décision — effets inutiles, pages vides, temps de chargement — travaille contre vous.",
+  "bandeauA": ["Site vitrine", "Refonte de site", "Maquette sur mesure", "Rédaction web", "Mise en ligne"],
+  "bandeauB": ["PME", "Artisans", "Indépendants", "Cabinets", "Restaurants", "Commerces"],
+  "pastilles": ["Maquette", "Développement", "Rédaction", "Responsive", "Performance", "Autonomie"],
+
+  "accordeonAria": "Méthode de création",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Méthode)",
+  "accordeonTitre": "Comment on avance",
+  "volets": [
+    {
+      "titre": "Cadrage et maquette",
+      "marquee": "Cadrage",
+      "texte": "Nous partons de votre offre, de vos clients et de vos concurrents pour poser une arborescence et une maquette. Tout est validé avant la première ligne de code.",
+      "tags": ["Arborescence", "Contenus", "Maquette", "Validation"]
+    },
+    {
+      "titre": "Développement sur mesure",
+      "marquee": "Développement",
+      "texte": "Le site est développé en Liquid natif, sans page builder ni empilement d'applications. Des pages légères aujourd'hui, et qui le restent dans deux ans.",
+      "tags": ["Liquid natif", "Responsive", "Performance", "Accessibilité"]
+    },
+    {
+      "titre": "Mise en ligne et autonomie",
+      "marquee": "Autonomie",
+      "texte": "Vous repartez avec un site que vous pilotez : textes, images et sections se règlent depuis l'éditeur. Le domaine et l'hébergement restent à votre nom.",
+      "tags": ["Prise en main", "Éditeur de thème", "Documentation", "Suivi"]
+    }
+  ],
+
+  "projetsAria": "Sites vitrine réalisés",
+  "projetsSurtitre": "(Réalisations)",
+  "projetsTitre": "Quelques sites",
+  "projets": [
+    { "titre": "Cabinet Stellar", "annee": "2025", "role": "Design et développement",
+      "texte": "Un site de cabinet qui explique enfin ce qu'il fait, en trois pages plutôt qu'en douze, avec un formulaire qui qualifie la demande avant l'appel.",
+      "services": ["Arborescence", "Webdesign", "Rédaction", "Développement"] },
+    { "titre": "Atelier Nord", "annee": "2024", "role": "Direction artistique",
+      "texte": "Une refonte pour un atelier qui vendait mal en ligne ce qu'il vendait très bien en boutique. Priorité donnée aux photos et au passage à l'appel.",
+      "services": ["Identité", "Maquette", "Photographie", "Intégration"] },
+    { "titre": "Maison Aube", "annee": "2024", "role": "Conception et intégration",
+      "texte": "Un site vitrine livré en quelques semaines, que l'équipe met à jour seule depuis. Aucune intervention de notre part depuis la mise en ligne.",
+      "services": ["Webdesign", "Développement", "SEO technique", "Formation"] }
+  ],
+
+  "tarifAria": "Tarif de création de site vitrine",
+  "tarifSurtitre": "(Budget)",
+  "tarifSectionTitre": "Ce que ça coûte",
+  "tarifTitre": "Site vitrine",
+  "tarifTexte": "Un site sur mesure, livré prêt à vivre, dont vous gardez toutes les clés.",
+  "tarifPrix": "900€",
+  "tarifLivrables": [
+    "Cadrage et maquette validés avant développement",
+    "Développement en Liquid natif, sans page builder",
+    "Rédaction des pages si vous le souhaitez",
+    "Mise en ligne, redirections et prise en main",
+    "Domaine, hébergement et accès à votre nom"
+  ],
+  "tarifDelaiLabel": "Devis détaillé",
+  "tarifDelaiValeur": "Sous 48 h",
+  "tarifBouton": "Demander mon devis",
+  "tarifLien": "/pages/contact",
+
+  "faqAria": "Questions fréquentes sur la création de site vitrine",
+  "faqTitre": "Ce qu'on nous demande le plus",
+  "faqSousTitre": "Budget, délais, autonomie, propriété des accès : les points qui reviennent avant de lancer un site.",
+  "faq": [
+    { "q": "Combien coûte un site vitrine ?",
+      "r": "À partir de 900 € pour un site sur mesure. Le chiffrage final dépend du nombre de pages, de la rédaction et des fonctionnalités : il est détaillé poste par poste dans le devis." },
+    { "q": "Combien de temps prend la création ?",
+      "r": "Comptez quelques semaines entre le cadrage et la mise en ligne. Le délai dépend surtout du nombre de pages et de la disponibilité de vos contenus." },
+    { "q": "Puis-je modifier le site moi-même ensuite ?",
+      "r": "Oui. Chaque texte, image et section se règle depuis l'éditeur de thème. Changer un horaire ou une photo ne demande pas de nous rappeler." },
+    { "q": "Rédigez-vous les textes ?",
+      "r": "Oui si vous le souhaitez. Nous partons de votre offre et de vos clients pour écrire des pages qui expliquent avant de vendre." },
+    { "q": "Le site est-il optimisé pour Google ?",
+      "r": "La base l'est : structure des titres, vitesse, balises, données structurées. Le référencement se travaille ensuite dans la durée, page par page." },
+    { "q": "À qui appartiennent le domaine et l'hébergement ?",
+      "r": "À vous. Le domaine, l'hébergement et les accès restent rattachés à votre organisation, quoi qu'il arrive ensuite." },
+    { "q": "Que se passe-t-il après la mise en ligne ?",
+      "r": "Vous repartez avec un site autonome et une prise en main. Nous restons joignables si un besoin dépasse ce que vous pouvez faire seul." },
+    { "q": "Travaillez-vous sur devis fermé ?",
+      "r": "Oui. Le périmètre est écrit avant de commencer, et ce qui n'y figure pas ne s'ajoute pas en cours de route sans votre accord." }
+  ],
+
+  "contactFond": "Votre site",
+  "contactTitre": "Parlons de votre site.",
+  "contactTexte": "Dites-nous ce que vous vendez et à qui. Nous revenons vers vous avec un périmètre et un délai.",
+  "contactObjet": "Demande — création de site vitrine",
+  "contactPlaceholder": "Votre activité, vos clients, ce qui existe déjà...",
+
+  "schema": {
+    "nom": "Création de site vitrine",
+    "type": "Conception et développement de sites internet",
+    "description": "Conception de sites vitrine sur mesure pour PME, artisans et indépendants : cadrage de l'arborescence, maquette validée avant développement, intégration en Liquid natif et prise en main par le client.",
+    "public": "PME, artisans et indépendants",
+    "zones": ["Paris", "Île-de-France", "Nice", "Luxembourg"],
+    "prestations": ["Cadrage et arborescence", "Maquette sur mesure", "Développement Liquid", "Rédaction des contenus", "Mise en ligne et formation"]
+  }
+}

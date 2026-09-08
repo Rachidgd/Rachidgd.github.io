@@ -297,6 +297,108 @@ const contact = (c) => ({
   },
 });
 
+const showcase = (c) => {
+  const blocks = {}; const order = [];
+  (c.logos || []).forEach((l, i) => {
+    const k = `l${i + 1}`;
+    blocks[k] = { type: 'logo', settings: { ...(l.image ? { image: l.image } : {}), alt: l.alt || '', url: '' } };
+    order.push(k);
+  });
+  return {
+    type: 'cc-showcase', blocks, block_order: order,
+    settings: {
+      eyebrow: c.vitrineSurtitre, eyebrow_color: DA.accent,
+      title: c.vitrineTitre, title_color: DA.ink,
+      image_alt: c.vitrineAlt, placeholder_label: c.vitrinePlaceholder,
+      frame_bg: DA.ink, card_bg: '#ffffff', strip_bg: '#ffffff',
+      strip_full_width: true, logo_h_max: 63,
+      bg_color: '', pt_mobile: 8, pt_desktop: 16, pb_mobile: 24, pb_desktop: 40,
+    },
+  };
+};
+
+const realisations = (c) => {
+  const blocks = {}; const order = [];
+  c.projets.forEach((p, i) => {
+    const k = `p${i + 1}`;
+    blocks[k] = {
+      type: 'projet',
+      settings: {
+        title: p.titre, description: p.texte, image_alt: '',
+        year: p.annee, role: p.role, services: p.services.join('\n'),
+        project_url: '', card_color: ['#111111', '#3a1510', '#181f24'][i % 3],
+      },
+    };
+    order.push(k);
+  });
+  return {
+    type: 'cc-realisations-scroll', blocks, block_order: order,
+    settings: {
+      section_aria_label: c.projetsAria, eyebrow: c.projetsSurtitre, title: c.projetsTitre,
+      background_color: DA.fondSombre,
+    },
+  };
+};
+
+const temoignages = (c) => {
+  const blocks = {}; const order = [];
+  c.temoignages.forEach((t, i) => {
+    const k = `tm${i + 1}`;
+    blocks[k] = { type: 'temoignage', settings: { image_alt: '', quote: t.quote, author: t.auteur, role: t.role } };
+    order.push(k);
+  });
+  return {
+    type: 'cc-temoignage', blocks, block_order: order,
+    settings: {
+      eyebrow: c.temoignagesSurtitre, title: c.temoignagesTitre,
+      stats_aria_label: c.statsAria, carousel_aria_label: c.temoignagesAria,
+      stat_1_value: '26+', stat_1_label: 'Projets finalisés',
+      stat_2_value: '98%', stat_2_label: 'Taux de satisfaction client',
+      stat_3_value: '10M', stat_3_label: "Chiffre d'affaires généré",
+      background_color: DA.fondTemoignage,
+    },
+  };
+};
+
+/* Le tarif suit ce que réclament les acheteurs sur ce marché : un prix
+   d'entrée annoncé, un périmètre écrit poste par poste, et un délai de
+   réponse. Pas de « sur devis » sans autre indication. */
+const tarifs = (c) => ({
+  type: 'cc-plans-tarifaires',
+  blocks: {
+    offre: {
+      type: 'plan',
+      settings: {
+        title: c.tarifTitre,
+        description: c.tarifTexte,
+        price_prefix: 'À partir de',
+        price: c.tarifPrix,
+        period: '',
+        features: c.tarifLivrables.join('\n'),
+        delivery_label: c.tarifDelaiLabel,
+        delivery_value: c.tarifDelaiValeur,
+        button_label: c.tarifBouton,
+        button_link: c.tarifLien,
+        icon_text: '✦',
+        card_background: '#120602', card_text_color: '#ffffff',
+        muted_text_color: '#bba9a0', muted_strong_color: '#e0d1c8',
+        delivery_text_color: '#ffffff', delivery_value_color: '#ffffff',
+        feature_text_color: '#ffffff', price_color: '#ff5a1f',
+        divider_color: '#4d2c20', border_color: '#2a1008',
+        icon_background: '#171717', icon_border_color: '#343434',
+        check_background: '#624234', check_color: '#ffffff',
+        button_background: '#5f514c',
+        glow_opacity: 92, texture_opacity: 18, overlay_opacity: 30,
+      },
+    },
+  },
+  block_order: ['offre'],
+  settings: {
+    section_aria_label: c.tarifAria, eyebrow: c.tarifSurtitre, title: c.tarifSectionTitre,
+    cards_width: 620, background_color: DA.fondSombre,
+  },
+});
+
 /* ---------- Assemblage ---------- */
 /* Une page ville reste volontairement plus courte qu'une page service :
    cinq sections, pas six. Une landing locale se lit debout, sur un quai. */
@@ -307,13 +409,31 @@ function pageVille(c) {
   };
 }
 
-const FAMILLES = { 'ville-seo': pageVille };
+/* Une page prestation compose son propre enchaînement : deux pages qui
+   partagent la même suite de sections finissent par se ressembler, même avec
+   des textes différents. */
+const CONSTRUCTEURS = {
+  hero, bandes: ribbons, vitrine: showcase, methode: accordeon, perimetre: accordeon,
+  realisations, temoignages, tarifs, faq, contact,
+};
+
+function pageService(c) {
+  const sections = {};
+  for (const cle of c.ordre) {
+    const f = CONSTRUCTEURS[cle];
+    if (!f) throw new Error(`Section inconnue dans l'ordre : ${cle}`);
+    sections[cle] = f(c);
+  }
+  return { sections, order: [...c.ordre] };
+}
+
+const FAMILLES = { 'ville-seo': pageVille, service: pageService };
 
 const famille = process.argv[2] || 'ville-seo';
 const build = FAMILLES[famille];
 if (!build) { console.error(`Famille inconnue : ${famille}`); process.exit(1); }
 
-const dossier = path.join(ROOT, 'content', famille === 'ville-seo' ? 'villes' : famille);
+const dossier = path.join(ROOT, 'content', famille === 'ville-seo' ? 'villes' : famille + 's');
 const fichiers = fs.readdirSync(dossier).filter((f) => f.endsWith('.json'));
 if (!fichiers.length) { console.error(`Aucun contenu dans ${dossier}`); process.exit(1); }
 

@@ -1,0 +1,110 @@
+{
+  "suffix": "agence-shopify",
+  "ordre": ["hero", "vitrine", "perimetre", "temoignages", "tarifs", "faq", "contact"],
+
+  "h1": ["Agence", "@", ["Shopify.", "accent"], "|", ["Une boutique en ligne", "muted"], "@", "rapide,", "|", "sobre,", "@", ["et qui vend.", "accent"]],
+  "preuve": "Des marques qui voulaient sortir des thèmes surchargés.",
+  "sousTitre": "Développée en Liquid natif, avec le minimum d'applications : un site marchand qui reste rapide, un tunnel d'achat court, et un compte dont vous gardez les clés.",
+  "cta": { "label": "Demander un audit e-commerce", "url": "/pages/audit-ecommerce" },
+
+  "vitrineSurtitre": "(E-commerce)",
+  "vitrineTitre": "Des boutiques en ligne qui vont droit au but",
+  "vitrineAlt": "Sélection de boutiques Shopify réalisées par Clickscreation",
+  "vitrinePlaceholder": "Chargez ici le montage de vos boutiques",
+  "logos": [
+    { "image": "shopify://shop_images/Oshira_svg.svg", "alt": "" },
+    { "image": "shopify://shop_images/logo_stellar.svg", "alt": "Cabinet Stellar" },
+    { "image": "shopify://shop_images/Green_Modern_and_Minimalistic_Travel_Typography_Logo_500_x_200_px.svg", "alt": "" },
+    {}, {}, {}
+  ],
+
+  "accordeonAria": "Périmètre du projet e-commerce",
+  "accordeonChoix": "Choisir un volet",
+  "accordeonSurtitre": "(Périmètre)",
+  "accordeonTitre": "Ce que couvre le projet",
+  "volets": [
+    {
+      "titre": "Un thème Shopify sur mesure",
+      "marquee": "Sur mesure",
+      "texte": "Votre site marchand est développé sur une base Liquid propre, pensée pour votre catalogue. Pas de thème du commerce acheté puis tordu jusqu'à ce qu'il tienne.",
+      "tags": ["Liquid natif", "Design sur mesure", "Responsive", "Éditeur de thème"]
+    },
+    {
+      "titre": "Fiches produit et tunnel d'achat",
+      "marquee": "Tunnel d'achat",
+      "texte": "La fiche produit et le passage en caisse se travaillent ensemble : ce sont eux qui décident si un panier rempli devient une commande payée.",
+      "tags": ["Fiches produit", "Variantes", "Panier", "Checkout"]
+    },
+    {
+      "titre": "Référencement et vitesse",
+      "marquee": "Performance",
+      "texte": "Collections, pagination, variantes, poids des pages : les arbitrages du SEO e-commerce se prennent pendant le développement, pas six mois après la mise en vente.",
+      "tags": ["Core Web Vitals", "Collections", "Données structurées", "Redirections"]
+    }
+  ],
+
+  "temoignagesAria": "Témoignages de marchands",
+  "statsAria": "Résultats e-commerce",
+  "temoignagesSurtitre": "(Ce qu'en disent nos clients)",
+  "temoignagesTitre": "Retours",
+  "temoignages": [
+    { "quote": "La boutique charge enfin vite, et on a supprimé trois applications qui faisaient la même chose.", "auteur": "Julien Marchand", "role": "Fondateur, Oshira" },
+    { "quote": "La migration s'est faite sans perdre nos positions. C'était notre principale crainte.", "auteur": "Sarah Nguyen", "role": "Responsable e-commerce, Maison Aube" },
+    { "quote": "On modifie nos fiches et nos collections nous-mêmes, sans casser la mise en page.", "auteur": "Thomas Rivière", "role": "Gérant, Atelier Nord" }
+  ],
+
+  "tarifAria": "Tarif de création de boutique en ligne",
+  "tarifSurtitre": "(Budget)",
+  "tarifSectionTitre": "Ce que ça coûte",
+  "tarifTitre": "Boutique Shopify",
+  "tarifTexte": "Un site marchand construit pour vendre, dont vous gardez le compte et les données.",
+  "tarifPrix": "1500€",
+  "tarifLivrables": [
+    "Thème Shopify développé sur mesure en Liquid",
+    "Fiches produit, collections et tunnel d'achat",
+    "Reprise du catalogue et redirections",
+    "Paramétrage des paiements et de la livraison",
+    "Compte, domaine et données à votre nom"
+  ],
+  "tarifDelaiLabel": "Devis détaillé",
+  "tarifDelaiValeur": "Sous 48 h",
+  "tarifBouton": "Demander mon devis",
+  "tarifLien": "/pages/contact",
+
+  "faqAria": "Questions fréquentes sur la création de boutique en ligne",
+  "faqTitre": "Avant de lancer votre boutique",
+  "faqSousTitre": "Budget, migration, applications, propriété du compte : les questions qui reviennent à chaque projet e-commerce.",
+  "faq": [
+    { "q": "Combien coûte une boutique Shopify ?",
+      "r": "À partir de 1 500 € pour un site marchand développé sur mesure. Le chiffrage dépend de la taille du catalogue, des reprises de données et des intégrations : chaque poste figure au devis." },
+    { "q": "Partez-vous d'un thème existant ou de zéro ?",
+      "r": "Nous développons en Liquid natif à partir d'une base saine. Pas de page builder, pas de thème du commerce revendu tel quel." },
+    { "q": "Combien d'applications installez-vous ?",
+      "r": "Le moins possible. Chaque application ajoute du poids, un coût mensuel et une dépendance. Nous n'en gardons une que si elle sert vraiment le parcours d'achat." },
+    { "q": "Pouvez-vous reprendre un site marchand déjà en ligne ?",
+      "r": "Oui. Nous auditons l'existant, puis nous corrigeons ou nous refondons selon ce qui coûte le moins cher sur la durée." },
+    { "q": "Gérez-vous la migration depuis une autre plateforme ?",
+      "r": "Oui : produits, clients, commandes et redirections. Les redirections protègent votre visibilité, elles se préparent avant la bascule." },
+    { "q": "Paramétrez-vous les paiements et la livraison ?",
+      "r": "Oui : moyens de paiement, transporteurs, zones et frais de port. C'est souvent là que se perdent les dernières commandes." },
+    { "q": "Le référencement d'une boutique, c'est différent ?",
+      "r": "Sur le fond non, sur la forme oui. Collections, fiches produits, variantes et pagination demandent des arbitrages propres à la vente en ligne." },
+    { "q": "Qui garde la main sur le compte ?",
+      "r": "Vous. Le compte Shopify, le domaine et les données restent à votre nom. Nous intervenons dessus, nous ne les détenons pas." }
+  ],
+
+  "contactFond": "E-commerce",
+  "contactTitre": "Parlons de votre boutique.",
+  "contactTexte": "Dites-nous ce que vous vendez et où vous en êtes. Nous revenons avec un périmètre, un délai et les points à traiter en premier.",
+  "contactObjet": "Demande — boutique Shopify",
+  "contactPlaceholder": "Catalogue, plateforme actuelle, volume de commandes...",
+
+  "schema": {
+    "nom": "Création de boutique Shopify",
+    "type": "Développement e-commerce Shopify",
+    "description": "Conception et développement de boutiques en ligne Shopify en Liquid natif : thème sur mesure, fiches produit et tunnel d'achat, migration depuis une autre plateforme, performances et référencement du site marchand.",
+    "public": "Marques e-commerce et commerçants",
+    "zones": ["Paris", "Île-de-France", "Nice", "Luxembourg"],
+    "prestations": ["Thème Shopify sur mesure", "Migration de boutique", "Fiches produit et tunnel d'achat", "SEO e-commerce", "Optimisation des performances"]
+  }
+}
