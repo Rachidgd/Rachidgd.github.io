@@ -179,12 +179,12 @@
     transition-delay: calc(var(--cc-faq-index, 0) * {{ s.stagger_delay }}ms);
   }
 
-  #shopify-section-{{ uid }} .cc-faq--ready .cc-faq__column--left .cc-faq__item {
-    transform: translateX(calc(-1 * {{ s.slide_distance_mobile }}px));
-  }
-
+  /* Sous 750 px les deux colonnes s'empilent : les faire entrer l'une par la
+     gauche et l'autre par la droite désaligne visuellement les bords pendant
+     toute la durée du décalage. Sur mobile, tout monte donc du même axe. */
+  #shopify-section-{{ uid }} .cc-faq--ready .cc-faq__column--left .cc-faq__item,
   #shopify-section-{{ uid }} .cc-faq--ready .cc-faq__column--right .cc-faq__item {
-    transform: translateX({{ s.slide_distance_mobile }}px);
+    transform: translateY({{ s.slide_distance_mobile }}px);
   }
 
   #shopify-section-{{ uid }} .cc-faq--visible .cc-faq__header,

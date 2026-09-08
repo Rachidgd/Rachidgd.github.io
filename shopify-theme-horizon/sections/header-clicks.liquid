@@ -62,7 +62,7 @@
      DOM — le script inline d'Horizon continue donc de le trouver, et le bloc
      conteneur du sticky devient .page-wrapper, qui court sur toute la page. */
   #header-group { display: contents; }
-  #shopify-section-{{ uid }} { position: sticky; top: 0; }
+  #shopify-section-{{ uid }} { position: sticky; top: {% if s.header_style == 'pill' %}{{ s.pill_top }}px{% else %}0{% endif %}; }
   {%- endif -%}
 
   /* --- Barre --------------------------------------------------------------
@@ -84,6 +84,47 @@
   {%- endif -%}
   {%- if s.show_border -%}
   #shopify-section-{{ uid }} .cc-header__bar { box-shadow: 0 1px 0 0 var(--cc-line); }
+  {%- endif -%}
+
+  {%- if s.header_style == 'pill' -%}
+  /* --- Pilule flottante ---------------------------------------------------
+     La barre pleine largeur devient une pastille détachée des bords. Le fond
+     et l'arrondi sont portés par .cc-header__inner, qui est déjà le conteneur
+     centré et borné : rien à recalculer.
+
+     Deux précautions. D'abord aucun backdrop-filter ni transform ici : l'un
+     comme l'autre créent un bloc conteneur pour les descendants en position
+     fixed, ce qui décrocherait le panneau mobile. Ensuite overflow visible,
+     sinon le sous-menu déroulant serait rogné par l'arrondi.
+
+     Le fond est opaque en permanence, pas seulement une fois le défilement
+     entamé : c'est ce qui rend l'en-tête lisible au-dessus de n'importe
+     quelle section, claire ou foncée. */
+  #shopify-section-{{ uid }} .cc-header__bar,
+  #shopify-section-{{ uid }} .cc-header__bar.is-stuck {
+    background-color: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+    padding-block-start: {{ s.pill_top }}px;
+  }
+
+  #shopify-section-{{ uid }} .cc-header__inner {
+    /* .cc-container fait 100 % de large avec une gouttière interne : tel quel,
+       la pilule collerait aux deux bords de l'écran. On la rentre donc de
+       chaque côté, et la gouttière devient sa marge intérieure. */
+    width: calc(100% - {{ s.pill_inset }}px * 2);
+    max-width: calc({{ s.pill_max_width }} * 1px);
+    margin-inline: auto;
+    overflow: visible;
+    border-radius: calc({{ s.pill_radius_mobile }} * 1px + ({{ s.pill_radius_desktop }} - {{ s.pill_radius_mobile }}) * var(--cc-fluid-t));
+    background: {{ s.pill_bg | default: '#ffffff' }};
+    padding-inline: calc({{ s.pill_pad_x_mobile }} * 1px + ({{ s.pill_pad_x_desktop }} - {{ s.pill_pad_x_mobile }}) * var(--cc-fluid-t));
+    box-shadow: 0 {{ s.pill_shadow_y }}px {{ s.pill_shadow_blur }}px -{{ s.pill_shadow_spread }}px rgba(20, 18, 15, {{ s.pill_shadow_opacity | divided_by: 100.0 }});
+    {%- if s.pill_border_width > 0 %}
+    border: {{ s.pill_border_width }}px solid {{ s.pill_border_color | default: '#e7e3df' }};
+    {%- endif %}
+  }
   {%- endif -%}
 
   #shopify-section-{{ uid }} .cc-header__inner {
@@ -724,9 +765,36 @@
     { "type": "range", "id": "cta_pad_x", "label": "Largeur interne du bouton", "unit": "px", "min": 12, "max": 56, "step": 1, "default": 22 },
 
     { "type": "header", "content": "Mise en page et comportement" },
+    {
+      "type": "select",
+      "id": "header_style",
+      "label": "Allure de l'en-tête",
+      "info": "La pilule reste lisible au-dessus de n'importe quelle section : son fond est opaque en permanence, pas seulement une fois le défilement entamé.",
+      "options": [
+        { "value": "bar", "label": "Barre pleine largeur" },
+        { "value": "pill", "label": "Pilule flottante" }
+      ],
+      "default": "pill"
+    },
     { "type": "range", "id": "header_py", "label": "Hauteur de la barre", "unit": "px", "min": 4, "max": 56, "step": 1, "default": 26 },
     { "type": "checkbox", "id": "sticky", "label": "En-tête collant au scroll", "default": true },
     { "type": "checkbox", "id": "show_border", "label": "Filet sous l'en-tête", "default": false },
+
+    { "type": "header", "content": "Pilule flottante" },
+    { "type": "color", "id": "pill_bg", "label": "Fond", "default": "#ffffff" },
+    { "type": "range", "id": "pill_top", "label": "Détachement du haut", "unit": "px", "min": 0, "max": 40, "step": 1, "default": 12 },
+    { "type": "range", "id": "pill_inset", "label": "Détachement des côtés", "unit": "px", "min": 0, "max": 48, "step": 1, "default": 16 },
+    { "type": "range", "id": "pill_max_width", "label": "Largeur maximale", "unit": "px", "min": 720, "max": 1600, "step": 10, "default": 1240 },
+    { "type": "range", "id": "pill_radius_mobile", "label": "Arrondi — mobile", "unit": "px", "min": 0, "max": 40, "step": 1, "default": 18 },
+    { "type": "range", "id": "pill_radius_desktop", "label": "Arrondi — desktop", "unit": "px", "min": 0, "max": 60, "step": 1, "default": 22 },
+    { "type": "range", "id": "pill_pad_x_mobile", "label": "Marge interne — mobile", "unit": "px", "min": 8, "max": 40, "step": 1, "default": 18 },
+    { "type": "range", "id": "pill_pad_x_desktop", "label": "Marge interne — desktop", "unit": "px", "min": 12, "max": 64, "step": 1, "default": 28 },
+    { "type": "range", "id": "pill_shadow_y", "label": "Ombre — décalage", "unit": "px", "min": 0, "max": 40, "step": 1, "default": 14 },
+    { "type": "range", "id": "pill_shadow_blur", "label": "Ombre — flou", "unit": "px", "min": 0, "max": 80, "step": 2, "default": 34 },
+    { "type": "range", "id": "pill_shadow_spread", "label": "Ombre — resserrement", "unit": "px", "min": 0, "max": 40, "step": 1, "default": 16 },
+    { "type": "range", "id": "pill_shadow_opacity", "label": "Ombre — opacité", "unit": "%", "min": 0, "max": 60, "step": 1, "default": 16 },
+    { "type": "range", "id": "pill_border_width", "label": "Contour", "unit": "px", "min": 0, "max": 3, "step": 1, "default": 0 },
+    { "type": "color", "id": "pill_border_color", "label": "Couleur du contour", "default": "#e7e3df" },
     {
       "type": "select",
       "id": "nav_breakpoint",
