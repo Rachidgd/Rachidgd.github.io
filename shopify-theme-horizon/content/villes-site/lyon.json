@@ -1,0 +1,67 @@
+{
+  "suffix": "creation-site-lyon",
+  "h1": ["Création de site", "@", ["internet à Lyon.", "accent"], "|", ["Un devis qui dit", "muted"], "@", "tout,", "|", "dès le", "@", ["premier appel.", "accent"]],
+  "preuve": "PME, artisans et commerces de la métropole lyonnaise.",
+  "sousTitre": "Vous devez savoir ce que vous achetez avant de signer : le nombre de pages, qui rédige, ce qui vous appartient à la fin. Rien de tout cela ne se découvre en cours de route.",
+  "cta": { "label": "Demander un devis chiffré", "url": "/pages/reserver" },
+
+  "surtitre": "(Lyon)",
+  "constat": "Deux sites peuvent se ressembler sur la maquette et coûter du simple au triple. L'écart ne se voit pas à l'écran, il se lit dans le devis.",
+  "bandeauA": ["Site vitrine", "Refonte", "Boutique en ligne", "Rédaction", "Maintenance"],
+  "bandeauB": ["Lyon", "Villeurbanne", "Écully", "Caluire", "Oullins", "Rhône"],
+  "pastilles": ["PME", "Artisans", "Commerces", "Cabinets", "Restaurants", "Services"],
+
+  "accordeonAria": "Création de site internet à Lyon",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Déroulé)",
+  "accordeonTitre": "Ce que comprend la prestation",
+  "volets": [
+    {
+      "titre": "Cadrer avant de dessiner",
+      "marquee": "Le cadrage",
+      "texte": "Une heure d'échange suffit à lister vos pages, vos objectifs et vos contraintes. Le chiffrage sort de cette conversation, pas d'une grille appliquée à l'aveugle.",
+      "tags": ["Besoins", "Arborescence", "Chiffrage", "Échéance"]
+    },
+    {
+      "titre": "Valider la maquette d'abord",
+      "marquee": "La maquette",
+      "texte": "Vous voyez le site avant qu'une ligne de code soit écrite. C'est le moment où un retour ne coûte rien, et où l'on s'assure que le résultat vous ressemble.",
+      "tags": ["Maquette", "Retours", "Intégration", "Mobile"]
+    },
+    {
+      "titre": "Remettre toutes les clés",
+      "marquee": "Les clés",
+      "texte": "Nom de domaine, hébergement, comptes administrateur : tout est établi à votre nom. Le site vous suit, y compris si vous confiez la suite à quelqu'un d'autre.",
+      "tags": ["Accès", "Domaine", "Prise en main", "Garantie"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur la création de site à Lyon",
+  "faqTitre": "Les questions avant signature",
+  "faqSousTitre": "Budget, rédaction, propriété : ce qu'un dirigeant lyonnais veut voir écrit.",
+  "faq": [
+    { "q": "Combien coûte un site vitrine ?",
+      "r": "À partir de 900 €, mis en ligne et fonctionnel. Le montant final dépend du nombre de pages et du travail de rédaction, et il est arrêté avant de commencer." },
+    { "q": "Qui écrit les textes du site ?",
+      "r": "Nous, dans la majorité des cas. Vous nous donnez la matière lors du cadrage et nous la mettons en forme, sans vous demander de rédiger vous-même." },
+    { "q": "Et si je veux vendre en ligne ?",
+      "r": "Une boutique commence à 1 500 €, catalogue et encaissement inclus. Le travail n'a rien à voir avec une vitrine, le chiffrage est donc séparé." },
+    { "q": "Puis-je changer de prestataire ensuite ?",
+      "r": "Sans difficulté. Les accès sont à vous dès la livraison, et rien dans le montage ne vous oblige à rester chez nous." }
+  ],
+
+  "contactFond": "Lyon",
+  "contactTitre": "Parlons de votre projet.",
+  "contactTexte": "Décrivez votre activité et ce que le site doit vous rapporter. Vous recevez un chiffrage détaillé, poste par poste.",
+  "contactObjet": "Demande — Site internet Lyon",
+  "contactPlaceholder": "Votre activité, vos pages, votre échéance...",
+
+  "schema": {
+    "nom": "Création de site internet à Lyon",
+    "type": "Création de site internet",
+    "description": "Conception de sites vitrines et de boutiques en ligne pour les entreprises lyonnaises : cadrage du besoin, maquette validée avant développement et remise complète des accès.",
+    "public": "PME, artisans et commerces",
+    "zones": ["Lyon", "Villeurbanne", "Écully", "Caluire", "Rhône", "Auvergne-Rhône-Alpes"],
+    "prestations": ["Site vitrine", "Boutique en ligne", "Refonte", "Rédaction", "Maintenance"]
+  }
+}

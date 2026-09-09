@@ -1,0 +1,67 @@
+{
+  "suffix": "creation-site-marseille",
+  "h1": ["Création de site", "@", ["internet à Marseille.", "accent"], "|", ["Votre site a dix ans,", "muted"], "@", "et ça", "|", "se", "@", ["voit.", "accent"]],
+  "preuve": "TPE, commerces et professions libérales des Bouches-du-Rhône.",
+  "sousTitre": "Un site qui date se repère en trois secondes : il s'affiche mal sur téléphone, on n'y trouve pas le numéro, on va voir ailleurs. La refonte règle les trois.",
+  "cta": { "label": "Faire évaluer mon site actuel", "url": "/pages/reserver" },
+
+  "surtitre": "(Marseille)",
+  "constat": "Refaire un site ne veut pas dire tout jeter. Vos textes, vos photos et vos pages déjà positionnées ont de la valeur : c'est la structure qui a vieilli.",
+  "bandeauA": ["Refonte", "Site vitrine", "Migration", "Rédaction", "Hébergement"],
+  "bandeauB": ["Marseille", "Aix-en-Provence", "Aubagne", "La Ciotat", "Martigues", "Bouches-du-Rhône"],
+  "pastilles": ["Commerces", "Artisans", "Professions libérales", "Restaurants", "Immobilier", "Services"],
+
+  "accordeonAria": "Refonte et création de site à Marseille",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Déroulé)",
+  "accordeonTitre": "Comment se passe une refonte",
+  "volets": [
+    {
+      "titre": "Trier ce qui vaut d'être gardé",
+      "marquee": "Le tri",
+      "texte": "Vos contenus, vos images et les pages qui vous amènent déjà des visiteurs sont repris. On ne repart de la page blanche que là où c'est nécessaire.",
+      "tags": ["Contenus", "Images", "Positions", "Structure"]
+    },
+    {
+      "titre": "Reconstruire sur des bases saines",
+      "marquee": "La base",
+      "texte": "Un socle propre, rapide et lisible sur téléphone. C'est ce qui manque presque toujours aux sites conçus il y a dix ans.",
+      "tags": ["Mobile", "Vitesse", "Ergonomie", "Accessibilité"]
+    },
+    {
+      "titre": "Basculer sans rien perdre",
+      "marquee": "La bascule",
+      "texte": "Les anciennes adresses sont redirigées une à une vers les nouvelles. Sans cette étape, une refonte fait chuter la visibilité acquise du jour au lendemain.",
+      "tags": ["Redirections", "Mise en ligne", "Contrôles", "Suivi"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur la refonte de site à Marseille",
+  "faqTitre": "Avant de refaire votre site",
+  "faqSousTitre": "Coût, visibilité, contenus : les craintes qu'on nous soumet en premier.",
+  "faq": [
+    { "q": "Vais-je perdre mon référencement ?",
+      "r": "Pas si les redirections sont préparées correctement. C'est la première chose que nous mettons en place, avant même la mise en ligne." },
+    { "q": "Peut-on garder mes textes actuels ?",
+      "r": "Oui, et c'est souvent souhaitable quand ils fonctionnent. Nous les reprenons, nous les retaillons, et nous complétons ce qui manque." },
+    { "q": "Combien coûte une refonte ?",
+      "r": "Le tarif démarre à 900 €, comme pour un site neuf. Reprendre un site existant revient rarement plus cher que de repartir de rien." },
+    { "q": "Mon site n'est plus modifiable, est-ce grave ?",
+      "r": "Non, c'est même fréquent. Nous rebâtissons sur un outil que vous pourrez mettre à jour vous-même sans nous appeler." }
+  ],
+
+  "contactFond": "Marseille",
+  "contactTitre": "Parlons de votre refonte.",
+  "contactTexte": "Envoyez-nous l'adresse de votre site actuel. Nous vous disons ce qui mérite d'être gardé et ce qui doit être repris.",
+  "contactObjet": "Demande — Site internet Marseille",
+  "contactPlaceholder": "L'adresse de votre site, votre activité, ce qui vous gêne...",
+
+  "schema": {
+    "nom": "Création et refonte de site internet à Marseille",
+    "type": "Refonte de site internet",
+    "description": "Refonte et création de sites pour les entreprises marseillaises : reprise des contenus utiles, socle rapide et lisible sur mobile, redirections préparées avant la mise en ligne.",
+    "public": "TPE, commerces et professions libérales",
+    "zones": ["Marseille", "Aix-en-Provence", "Aubagne", "La Ciotat", "Bouches-du-Rhône", "Provence-Alpes-Côte d'Azur"],
+    "prestations": ["Refonte de site", "Site vitrine", "Migration", "Rédaction", "Hébergement"]
+  }
+}

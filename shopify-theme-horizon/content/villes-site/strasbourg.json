@@ -1,0 +1,67 @@
+{
+  "suffix": "creation-site-strasbourg",
+  "h1": ["Création de site", "@", ["internet à Strasbourg.", "accent"], "|", ["Une belle vitrine", "muted"], "@", "ne remplit", "|", "pas un", "@", ["agenda.", "accent"]],
+  "preuve": "PME, artisans et prestataires du Bas-Rhin.",
+  "sousTitre": "Un site peut être irréprochable et ne rien produire. Ce qui déclenche un appel tient à trois ou quatre choses, et elles se décident au moment du design.",
+  "cta": { "label": "Lancer mon projet de site", "url": "/pages/reserver" },
+
+  "surtitre": "(Strasbourg)",
+  "constat": "On juge un site sur son apparence et on le paie sur ses résultats. Entre les deux il y a un travail que personne ne voit, et que peu d'agences facturent.",
+  "bandeauA": ["Site vitrine", "Refonte", "Page d'atterrissage", "Rédaction", "Suivi des demandes"],
+  "bandeauB": ["Strasbourg", "Schiltigheim", "Illkirch", "Haguenau", "Colmar", "Bas-Rhin"],
+  "pastilles": ["PME", "Artisans", "Prestataires", "Cabinets", "Commerces", "Industrie"],
+
+  "accordeonAria": "Création de site internet à Strasbourg",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Méthode)",
+  "accordeonTitre": "Ce qui transforme un visiteur",
+  "volets": [
+    {
+      "titre": "Dire ce que vous faites, vite",
+      "marquee": "La clarté",
+      "texte": "Un visiteur se fait une idée de votre page d'accueil en quelques secondes. Si votre métier et votre zone n'y sont pas lisibles, il repart sans lire la suite.",
+      "tags": ["Accroche", "Métier", "Zone", "Hiérarchie"]
+    },
+    {
+      "titre": "Donner des raisons de vous croire",
+      "marquee": "La preuve",
+      "texte": "Réalisations, avis, certifications, chiffres réels : la confiance ne se déclare pas dans un texte, elle s'appuie sur des éléments vérifiables.",
+      "tags": ["Réalisations", "Avis", "Références", "Certifications"]
+    },
+    {
+      "titre": "Rendre le premier pas facile",
+      "marquee": "L'action",
+      "texte": "Un formulaire court, un numéro visible, un rendez-vous en deux clics. Chaque champ ajouté fait perdre une part des contacts.",
+      "tags": ["Formulaire", "Appel", "Rendez-vous", "Relances"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur la création de site à Strasbourg",
+  "faqTitre": "Ce qu'on nous demande à Strasbourg",
+  "faqSousTitre": "Résultats, mesure, langues : les points sur lesquels on nous attend.",
+  "faq": [
+    { "q": "Un nouveau site va-t-il m'apporter des clients ?",
+      "r": "Pas à lui seul. Il convertit mieux les visiteurs qui arrivent, encore faut-il qu'ils arrivent : c'est le rôle du référencement, que nous traitons à part." },
+    { "q": "Comment mesure-t-on que ça fonctionne ?",
+      "r": "Sur le nombre de formulaires reçus et d'appels passés. Le suivi est branché à la mise en ligne pour que le chiffre existe dès le premier jour." },
+    { "q": "Faut-il un site en allemand ?",
+      "r": "Seulement si vous travaillez de l'autre côté du Rhin. Sinon c'est un budget de traduction sans retour, et une maintenance à faire en double." },
+    { "q": "Combien de pages faut-il prévoir ?",
+      "r": "Entre cinq et huit pour la plupart des activités : l'accueil, vos prestations, une page de preuve et le contact. Au-delà, on dilue plus qu'on ne gagne." }
+  ],
+
+  "contactFond": "Strasbourg",
+  "contactTitre": "Parlons de vos demandes.",
+  "contactTexte": "Dites-nous combien de contacts votre site vous apporte aujourd'hui. C'est le seul chiffre à partir duquel on peut discuter d'un nouveau.",
+  "contactObjet": "Demande — Site internet Strasbourg",
+  "contactPlaceholder": "Votre activité, votre site actuel, vos objectifs...",
+
+  "schema": {
+    "nom": "Création de site internet à Strasbourg",
+    "type": "Création de site orienté conversion",
+    "description": "Conception de sites pour les entreprises du Bas-Rhin : message clair dès la page d'accueil, éléments de preuve vérifiables et prise de contact simplifiée, avec suivi des demandes dès la mise en ligne.",
+    "public": "PME, artisans et prestataires",
+    "zones": ["Strasbourg", "Schiltigheim", "Illkirch", "Haguenau", "Bas-Rhin", "Grand Est"],
+    "prestations": ["Site vitrine", "Refonte", "Page d'atterrissage", "Rédaction", "Suivi des demandes"]
+  }
+}

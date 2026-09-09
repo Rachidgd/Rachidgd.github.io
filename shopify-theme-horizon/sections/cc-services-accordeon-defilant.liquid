@@ -370,7 +370,13 @@
     </div>
 
     {%- if section.blocks.size > 0 -%}
-      <h3 class="cc-services-defilant__accordion" role="tablist" aria-label="{{ s.accordion_aria_label | escape }}">
+      {%- comment -%}
+        Conteneur neutre, et non un titre : role="tablist" annule la sémantique
+        de titre du hôte, si bien qu'un <h3> ici n'était annoncé ni comme titre
+        ni comme niveau de plan. Les intitulés des volets restent portés par
+        les boutons role="tab", qui est leur place dans un système d'onglets.
+      {%- endcomment -%}
+      <div class="cc-services-defilant__accordion" role="tablist" aria-label="{{ s.accordion_aria_label | escape }}">
         {%- for block in section.blocks -%}
           <button
             type="button"
@@ -390,7 +396,7 @@
             </span>
           </button>
         {%- endfor -%}
-    </h3>
+      </div>
 
       <div class="cc-services-defilant__panels">
         {%- for block in section.blocks -%}

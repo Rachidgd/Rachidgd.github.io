@@ -1,0 +1,67 @@
+{
+  "suffix": "creation-site-lille",
+  "h1": ["Création de site", "@", ["internet à Lille.", "accent"], "|", ["En ligne en", "muted"], "@", "quatre", "|", "à six", "@", ["semaines.", "accent"]],
+  "preuve": "PME, commerces et entreprises de la métropole lilloise.",
+  "sousTitre": "Un site vitrine se livre en quatre à six semaines quand le déroulé est tenu des deux côtés. Ce qui allonge un projet, ce n'est presque jamais le développement.",
+  "cta": { "label": "Demander un planning daté", "url": "/pages/reserver" },
+
+  "surtitre": "(Lille)",
+  "constat": "Un projet prend du retard pour une seule raison neuf fois sur dix : les textes et les photos n'arrivent pas. Le reste tient ses délais sans difficulté.",
+  "bandeauA": ["Site vitrine", "Refonte", "Boutique en ligne", "Rédaction", "Mise en ligne"],
+  "bandeauB": ["Lille", "Roubaix", "Tourcoing", "Villeneuve-d'Ascq", "Lens", "Nord"],
+  "pastilles": ["PME", "Commerces", "Industrie", "Cabinets", "Associations", "Services"],
+
+  "accordeonAria": "Création de site internet à Lille",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Calendrier)",
+  "accordeonTitre": "Le déroulé, semaine par semaine",
+  "volets": [
+    {
+      "titre": "Semaine un : le cadrage",
+      "marquee": "Semaine 1",
+      "texte": "Un rendez-vous, une arborescence validée, et la liste précise de ce que vous devez nous fournir. Rien ne démarre tant que cette liste n'est pas arrêtée.",
+      "tags": ["Rendez-vous", "Arborescence", "Fournitures", "Planning"]
+    },
+    {
+      "titre": "Semaines deux et trois : le design",
+      "marquee": "Semaines 2-3",
+      "texte": "La page d'accueil d'abord, les pages intérieures ensuite. Deux tours de retours sont prévus ; au-delà, nous décalons la livraison ensemble plutôt que de la subir.",
+      "tags": ["Maquette", "Retours", "Validation", "Charte"]
+    },
+    {
+      "titre": "Semaines quatre à six : la mise en ligne",
+      "marquee": "Semaines 4-6",
+      "texte": "Intégration, contrôles sur téléphone et tablette, puis publication. Vous êtes formé à l'outil le jour même de la livraison.",
+      "tags": ["Intégration", "Tests", "Publication", "Formation"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur les délais de création de site à Lille",
+  "faqTitre": "Les questions de calendrier",
+  "faqSousTitre": "Délais, retards, urgences : ce qu'on nous demande avant de bloquer une date.",
+  "faq": [
+    { "q": "Peut-on aller plus vite que six semaines ?",
+      "r": "Oui, jusqu'à trois semaines quand les contenus sont prêts dès le départ. C'est le seul vrai levier sur la durée d'un projet." },
+    { "q": "Que se passe-t-il si je prends du retard ?",
+      "r": "La date de livraison glisse d'autant, et nous vous le disons le jour même. Personne n'a intérêt à découvrir un décalage la semaine de la publication." },
+    { "q": "Faut-il tout fournir avant de commencer ?",
+      "r": "Non, mais l'essentiel oui : vos prestations, vos coordonnées et vos visuels. Le reste se complète pendant que le design avance." },
+    { "q": "Le prix change-t-il selon le délai ?",
+      "r": "Non. Le tarif d'entrée est de 900 € que le site sorte en trois ou en six semaines. Nous ne facturons pas l'urgence." }
+  ],
+
+  "contactFond": "Lille",
+  "contactTitre": "Parlons de votre échéance.",
+  "contactTexte": "Dites-nous pour quand vous voulez être en ligne. Vous recevez un calendrier daté et la liste de ce qu'il faudra nous transmettre.",
+  "contactObjet": "Demande — Site internet Lille",
+  "contactPlaceholder": "Votre activité, votre échéance, ce que vous avez déjà...",
+
+  "schema": {
+    "nom": "Création de site internet à Lille",
+    "type": "Création de site internet",
+    "description": "Conception de sites vitrines pour les entreprises de la métropole lilloise : cadrage la première semaine, maquette validée, puis mise en ligne et formation entre la quatrième et la sixième semaine.",
+    "public": "PME, commerces et entreprises",
+    "zones": ["Lille", "Roubaix", "Tourcoing", "Villeneuve-d'Ascq", "Nord", "Hauts-de-France"],
+    "prestations": ["Site vitrine", "Refonte", "Boutique en ligne", "Rédaction", "Mise en ligne"]
+  }
+}

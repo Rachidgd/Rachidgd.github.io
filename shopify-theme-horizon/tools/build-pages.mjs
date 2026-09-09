@@ -427,13 +427,25 @@ function pageService(c) {
   return { sections, order: [...c.ordre] };
 }
 
-const FAMILLES = { 'ville-seo': pageVille, service: pageService };
+/* Une famille associe un constructeur au dossier de contenus qui l'alimente.
+   « ville-seo » et « ville-site » partagent le même enchaînement de sections
+   mais visent deux requêtes distinctes — référencement d'un côté, création de
+   site de l'autre. Les contenus restent séparés pour que les deux lignes
+   éditoriales ne se contaminent pas. */
+const FAMILLES = {
+  'ville-seo': { build: pageVille, dossier: 'villes' },
+  'ville-site': { build: pageVille, dossier: 'villes-site' },
+  service: { build: pageService, dossier: 'services' },
+};
 
 const famille = process.argv[2] || 'ville-seo';
-const build = FAMILLES[famille];
-if (!build) { console.error(`Famille inconnue : ${famille}`); process.exit(1); }
+if (!FAMILLES[famille]) {
+  console.error(`Famille inconnue : ${famille} (attendu : ${Object.keys(FAMILLES).join(', ')})`);
+  process.exit(1);
+}
+const { build, dossier: nomDossier } = FAMILLES[famille];
 
-const dossier = path.join(ROOT, 'content', famille === 'ville-seo' ? 'villes' : famille + 's');
+const dossier = path.join(ROOT, 'content', nomDossier);
 const fichiers = fs.readdirSync(dossier).filter((f) => f.endsWith('.json'));
 if (!fichiers.length) { console.error(`Aucun contenu dans ${dossier}`); process.exit(1); }
 
@@ -482,6 +494,12 @@ for (const f of fichiers) {
   const c = JSON.parse(fs.readFileSync(path.join(dossier, f), 'utf8'));
   const sortie = path.join(ROOT, 'templates', `page.${c.suffix}.json`);
   const tpl = build(c);
-  fs.writeFileSync(sortie, JSON.stringify(lean ? elaguer(tpl) : tpl, null, 2) + '\n');
+  /* Écriture compacte et sans saut de ligne final : c'est exactement la forme
+     sous laquelle Shopify stocke un gabarit JSON. Le fichier du dépôt et le
+     fichier du thème ont ainsi la même empreinte md5, et `git status` suffit
+     à savoir si le thème est à jour. Une sortie indentée obligerait à
+     recompacter à la main avant chaque téléversement, et la moindre
+     reconstruction ferait diverger les deux côtés. */
+  fs.writeFileSync(sortie, JSON.stringify(lean ? elaguer(tpl) : tpl));
   console.log(`${path.basename(sortie).padEnd(42)} ${fs.statSync(sortie).size} octets`);
 }

@@ -1,0 +1,67 @@
+{
+  "suffix": "creation-site-nice",
+  "h1": ["Création de site", "@", ["internet à Nice.", "accent"], "|", ["Vos clients vous", "muted"], "@", "découvrent", "|", "sur", "@", ["téléphone.", "accent"]],
+  "preuve": "Commerces, hôtels et restaurants des Alpes-Maritimes.",
+  "sousTitre": "La plupart de vos visiteurs arrivent d'un mobile, souvent debout, souvent pressés. Un site dessiné sur grand écran puis rétréci se reconnaît en un coup d'œil.",
+  "cta": { "label": "Faire tester mon site sur mobile", "url": "/pages/reserver" },
+
+  "surtitre": "(Nice)",
+  "constat": "Passé quelques secondes d'attente, une bonne part des visiteurs referment la page. Sur un réseau saturé en plein mois d'août, une page trop lourde ne s'affiche jamais.",
+  "bandeauA": ["Site vitrine", "Refonte", "Réservation en ligne", "Rédaction", "Performance"],
+  "bandeauB": ["Nice", "Cannes", "Antibes", "Menton", "Grasse", "Alpes-Maritimes"],
+  "pastilles": ["Hôtels", "Restaurants", "Commerces", "Immobilier", "Tourisme", "Services"],
+
+  "accordeonAria": "Création de site internet à Nice",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Méthode)",
+  "accordeonTitre": "Ce qui se joue sur le téléphone",
+  "volets": [
+    {
+      "titre": "Dessiner sur le petit écran",
+      "marquee": "Le mobile",
+      "texte": "La maquette part du format téléphone, puis s'élargit vers l'ordinateur. L'inverse produit des pages tassées où l'on ne trouve plus rien.",
+      "tags": ["Maquette", "Lisibilité", "Navigation", "Tactile"]
+    },
+    {
+      "titre": "Alléger tout ce qui pèse",
+      "marquee": "La vitesse",
+      "texte": "Images compressées, polices limitées, scripts réduits au nécessaire. Une page doit s'ouvrir avant qu'on ait le temps d'y renoncer.",
+      "tags": ["Images", "Chargement", "Cache", "Core Web Vitals"]
+    },
+    {
+      "titre": "Rendre le contact évident",
+      "marquee": "Le contact",
+      "texte": "Appeler, réserver ou trouver l'adresse doit tenir en un geste. C'est tout ce que cherche un visiteur pressé, et rien ne doit s'interposer.",
+      "tags": ["Appel", "Réservation", "Itinéraire", "Formulaire"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur la création de site à Nice",
+  "faqTitre": "Les questions des commerces niçois",
+  "faqSousTitre": "Affichage, vitesse, réservation : ce qui revient à chaque rendez-vous.",
+  "faq": [
+    { "q": "Mon site s'affiche mal sur téléphone, est-ce réparable ?",
+      "r": "Souvent oui, sans le refaire entièrement. Nous regardons d'abord ce qui se corrige sur l'existant avant de proposer autre chose." },
+    { "q": "Comment savoir si mon site est trop lent ?",
+      "r": "Ça se mesure en quelques minutes et nous vous envoyons le relevé. Le ressenti sur votre propre connexion n'est pas un bon juge." },
+    { "q": "Peut-on prendre des réservations depuis le site ?",
+      "r": "Oui, soit par un formulaire simple, soit en branchant l'outil que vous utilisez déjà. Le choix dépend du volume que vous traitez." },
+    { "q": "Le site sera-t-il en plusieurs langues ?",
+      "r": "C'est possible et souvent utile ici. La version anglaise se chiffre à part, car elle demande une vraie traduction et non un automatisme." }
+  ],
+
+  "contactFond": "Nice",
+  "contactTitre": "Parlons de vos visiteurs.",
+  "contactTexte": "Donnez-nous l'adresse de votre site. Nous mesurons son affichage et son temps de chargement sur mobile, et nous vous renvoyons le relevé.",
+  "contactObjet": "Demande — Site internet Nice",
+  "contactPlaceholder": "Votre établissement, votre site actuel, vos besoins...",
+
+  "schema": {
+    "nom": "Création de site internet à Nice",
+    "type": "Création de site mobile",
+    "description": "Conception de sites pour les commerces, hôtels et restaurants des Alpes-Maritimes : maquette pensée depuis le format téléphone, pages allégées et prise de contact accessible en un geste.",
+    "public": "Commerces, hôtels et restaurants",
+    "zones": ["Nice", "Cannes", "Antibes", "Menton", "Alpes-Maritimes", "Provence-Alpes-Côte d'Azur"],
+    "prestations": ["Site vitrine", "Refonte", "Réservation en ligne", "Rédaction", "Performance"]
+  }
+}

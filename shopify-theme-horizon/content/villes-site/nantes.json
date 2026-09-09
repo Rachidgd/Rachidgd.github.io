@@ -1,0 +1,67 @@
+{
+  "suffix": "creation-site-nantes",
+  "h1": ["Création de site", "@", ["internet à Nantes.", "accent"], "|", ["Un site que vous", "muted"], "@", "pouvez", "|", "modifier", "@", ["vous-même.", "accent"]],
+  "preuve": "PME, indépendants et associations de Loire-Atlantique.",
+  "sousTitre": "Changer un tarif ou publier une actualité ne devrait pas passer par un devis. Nous livrons des sites que vous tenez à jour sans nous.",
+  "cta": { "label": "Prendre rendez-vous", "url": "/pages/reserver" },
+
+  "surtitre": "(Nantes)",
+  "constat": "Beaucoup d'entreprises ne peuvent plus toucher à leur propre site. Ni les accès, ni le nom de domaine, ni l'hébergement ne sont à leur nom.",
+  "bandeauA": ["Site vitrine", "Refonte", "Formation", "Rédaction", "Maintenance"],
+  "bandeauB": ["Nantes", "Saint-Herblain", "Rezé", "Saint-Nazaire", "Vertou", "Loire-Atlantique"],
+  "pastilles": ["PME", "Indépendants", "Associations", "Commerces", "Cabinets", "Artisans"],
+
+  "accordeonAria": "Création de site internet à Nantes",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Engagement)",
+  "accordeonTitre": "Ce que vous gardez en main",
+  "volets": [
+    {
+      "titre": "Tout ouvert à votre nom",
+      "marquee": "Les accès",
+      "texte": "Nom de domaine, hébergement, comptes : les contrats sont établis au vôtre, pas au nôtre. Vous pouvez tout reprendre du jour au lendemain.",
+      "tags": ["Domaine", "Hébergement", "Comptes", "Contrats"]
+    },
+    {
+      "titre": "Une interface qui se comprend",
+      "marquee": "L'outil",
+      "texte": "Modifier un texte, remplacer une photo, publier une actualité : trois gestes que nous vous montrons à la livraison et que vous refaites seul ensuite.",
+      "tags": ["Interface", "Textes", "Images", "Publication"]
+    },
+    {
+      "titre": "De l'aide quand vous en voulez",
+      "marquee": "Le renfort",
+      "texte": "Nous restons joignables pour les évolutions et les coups de main ponctuels. Vous appelez si vous en avez besoin, aucune clause ne vous y oblige.",
+      "tags": ["Assistance", "Évolutions", "Sauvegardes", "Sans engagement"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur la création de site à Nantes",
+  "faqTitre": "Les questions de propriété",
+  "faqSousTitre": "Accès, autonomie, maintenance : ce que les dirigeants nantais veulent clarifier.",
+  "faq": [
+    { "q": "Suis-je vraiment propriétaire du site ?",
+      "r": "Oui, entièrement, et dès la livraison. Les identifiants vous sont remis et rien n'est gardé de notre côté pour vous retenir." },
+    { "q": "Faut-il savoir coder pour le mettre à jour ?",
+      "r": "Pas du tout. L'interface ressemble à un traitement de texte, et une heure de prise en main suffit à la plupart de nos clients." },
+    { "q": "La maintenance est-elle obligatoire ?",
+      "r": "Non. Elle couvre les mises à jour et les sauvegardes, mais un site livré fonctionne très bien sans contrat mensuel." },
+    { "q": "Que se passe-t-il si j'arrête de travailler avec vous ?",
+      "r": "Rien de particulier : le site continue de tourner et un autre prestataire reprend la main sans conversion ni rachat de licence." }
+  ],
+
+  "contactFond": "Nantes",
+  "contactTitre": "Parlons de votre autonomie.",
+  "contactTexte": "Dites-nous ce que vous voulez pouvoir changer seul. Nous adaptons l'outil à ce que vous ferez réellement, pas à ce qui se vend le mieux.",
+  "contactObjet": "Demande — Site internet Nantes",
+  "contactPlaceholder": "Votre activité, ce que vous voulez gérer vous-même...",
+
+  "schema": {
+    "nom": "Création de site internet à Nantes",
+    "type": "Création de site autonome",
+    "description": "Conception de sites pour les entreprises et associations de Loire-Atlantique : contrats ouverts au nom du client, interface de mise à jour simple et prise en main assurée le jour de la livraison.",
+    "public": "PME, indépendants et associations",
+    "zones": ["Nantes", "Saint-Herblain", "Rezé", "Saint-Nazaire", "Loire-Atlantique", "Pays de la Loire"],
+    "prestations": ["Site vitrine", "Refonte", "Formation", "Rédaction", "Maintenance"]
+  }
+}
