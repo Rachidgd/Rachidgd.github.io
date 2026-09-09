@@ -1,0 +1,68 @@
+{
+  "suffix": "seo-paris",
+  "h1": ["Agence", "@", ["SEO à Paris.", "accent"], "|", ["Se faire une place", "muted"], "@", "sur un", "|", "marché", "@", ["saturé.", "accent"]],
+  "preuve": "PME, cabinets et commerces parisiens.",
+  "sousTitre": "Presque toutes les requêtes rentables sont déjà occupées. On ne les attaque pas de face : on prend d'abord celles que vos concurrents ont laissées de côté.",
+  "cta": { "label": "Recevoir mon audit gratuit", "url": "/pages/reserver" },
+
+  "surtitre": "(Paris)",
+  "constat": "À Paris, être vingtième sur une grosse requête ne rapporte rien. Être premier sur dix petites requêtes précises remplit un carnet de commandes.",
+  "bandeauA": ["Audit de visibilité", "Référencement local", "Pages de prestation", "Netlinking", "Suivi des positions"],
+  "bandeauB": ["Paris", "Boulogne", "Levallois", "Montreuil", "Saint-Denis", "Île-de-France"],
+  "pastilles": ["PME", "Cabinets", "Commerces", "Services B2B", "Professions libérales", "Franchises"],
+
+  "accordeonAria": "Prestation SEO à Paris",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Notre façon de faire",
+  "volets": [
+    {
+      "titre": "Trouver les brèches",
+      "marquee": "Les brèches",
+      "texte": "Nous cartographions qui occupe quoi, puis nous isolons les recherches où les places sont encore prenables. C'est là que se gagnent les premiers mois.",
+      "tags": ["Cartographie", "Concurrents", "Requêtes", "Priorités"]
+    },
+    {
+      "titre": "Descendre au quartier",
+      "marquee": "Le quartier",
+      "texte": "Un Parisien cherche rarement « à Paris ». Il cherche dans son arrondissement, parfois dans sa rue. Vos pages doivent parler ce langage-là.",
+      "tags": ["Arrondissements", "Quartiers", "Fiche établissement", "Avis"]
+    },
+    {
+      "titre": "Tenir dans la durée",
+      "marquee": "Tenir"
+      ,
+      "texte": "Ici, une position gagnée se reprend vite. Nous suivons chaque mois ce qui bouge et nous corrigeons avant que le terrain ne se referme.",
+      "tags": ["Suivi mensuel", "Contenu", "Netlinking", "Reporting"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement à Paris",
+  "faqTitre": "Ce qu'on nous demande d'abord",
+  "faqSousTitre": "Concurrence, délais, budget : les trois sujets qui reviennent dès le premier rendez-vous parisien.",
+  "faq": [
+    { "q": "Peut-on encore percer sur un marché aussi occupé ?",
+      "r": "Oui, mais pas en visant les mêmes mots que tout le monde. Les places restent nombreuses sur les recherches précises, celles que les gros acteurs ne traitent pas." },
+    { "q": "Combien de temps avant de bouger ?",
+      "r": "Sur des requêtes de niche, quelques semaines suffisent parfois. Sur les grosses requêtes parisiennes, il faut compter en trimestres, pas en semaines." },
+    { "q": "Faut-il une page par arrondissement ?",
+      "r": "Seulement là où vous intervenez vraiment et où la recherche existe. Vingt pages creuses se cannibalisent au lieu de se renforcer." },
+    { "q": "Travaillez-vous avec les petites structures ?",
+      "r": "Oui, et c'est souvent plus efficace : une petite structure décide vite, publie vite, et prend des positions pendant que les autres arbitrent." }
+  ],
+
+  "contactFond": "Paris",
+  "contactTitre": "Parlons de votre terrain.",
+  "contactTexte": "Dites-nous ce que vous vendez et dans quels quartiers. Nous relevons qui vous précède et sur quoi la place est encore libre.",
+  "contactObjet": "Demande — SEO Paris",
+  "contactPlaceholder": "Votre activité, vos quartiers, votre site actuel...",
+
+  "schema": {
+    "nom": "Référencement naturel à Paris",
+    "type": "Référencement naturel local",
+    "description": "Accompagnement SEO des PME et entreprises parisiennes : cartographie de la concurrence, requêtes accessibles, pages par quartier et suivi mensuel des positions.",
+    "public": "PME, cabinets et commerces",
+    "zones": ["Paris", "Boulogne-Billancourt", "Levallois-Perret", "Montreuil", "Île-de-France"],
+    "prestations": ["Audit de visibilité", "Référencement local", "Rédaction de pages", "Netlinking", "Suivi des positions"]
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "suffix": "seo-local-nantes",
+  "h1": ["Agence", "@", ["SEO à Nantes.", "accent"], "|", ["Se distinguer quand", "muted"], "@", "tout le", "|", "monde dit", "@", ["pareil.", "accent"]],
+  "preuve": "PME, artisans et prestataires nantais.",
+  "sousTitre": "La ville attire des entreprises chaque année, et elles disent toutes la même chose. Ce qui vous différencie doit se lire dès la page de résultats.",
+  "cta": { "label": "Demander un état des lieux", "url": "/pages/reserver" },
+
+  "surtitre": "(Nantes)",
+  "constat": "Quand dix prestataires promettent la même chose avec les mêmes mots, celui qu'on appelle est simplement celui qu'on a lu en premier.",
+  "bandeauA": ["Audit de visibilité", "Positionnement", "Pages de prestation", "Netlinking", "Suivi mensuel"],
+  "bandeauB": ["Nantes", "Saint-Herblain", "Rezé", "Orvault", "Saint-Nazaire", "Loire-Atlantique"],
+  "pastilles": ["PME", "Artisans", "Prestataires", "Numérique", "Bâtiment", "Services"],
+
+  "accordeonAria": "Prestation SEO à Nantes",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Notre méthode",
+  "volets": [
+    {
+      "titre": "Trouver ce qui vous sépare",
+      "marquee": "Se séparer",
+      "texte": "Avant les mots-clés, on cherche ce que vous faites autrement. Sans cet angle, une page de plus dans un marché encombré ne change rien.",
+      "tags": ["Positionnement", "Concurrents", "Angle", "Priorités"]
+    },
+    {
+      "titre": "Écrire des pages qui tranchent",
+      "marquee": "Trancher",
+      "texte": "Une prestation par page, expliquée avec vos mots et vos limites. Ce qu'on ne fait pas qualifie autant que ce qu'on fait.",
+      "tags": ["Prestations", "Rédaction", "Preuves", "Maillage"]
+    },
+    {
+      "titre": "Occuper avant les autres",
+      "marquee": "Occuper",
+      "texte": "Sur un marché qui grossit, les recherches nouvelles apparaissent vite et restent libres quelques mois. On les prend pendant ce temps-là.",
+      "tags": ["Veille", "Contenu", "Netlinking", "Suivi"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement à Nantes",
+  "faqTitre": "Avant de se lancer ici",
+  "faqSousTitre": "Différenciation, concurrence, rythme : ce que nous demandent les entreprises nantaises.",
+  "faq": [
+    { "q": "Comment se différencier sur un marché encombré ?",
+      "r": "En disant précisément ce que vous faites et pour qui, plutôt qu'en promettant tout à tout le monde. Les pages précises sont aussi celles qui se positionnent." },
+    { "q": "Faut-il publier beaucoup pour exister ?",
+      "r": "Non. Il vaut mieux cinq pages solides sur vos prestations qu'un blog nourri au kilomètre que personne ne lit ni ne classe." },
+    { "q": "Mes concurrents sont mieux placés, est-ce rattrapable ?",
+      "r": "Souvent oui. Beaucoup occupent leur position par ancienneté plus que par travail : sur ce terrain-là, l'écart se comble." },
+    { "q": "Quel rythme de travail prévoir ?",
+      "r": "Un point mensuel suffit dans la plupart des cas. L'essentiel est la régularité, pas l'intensité sur trois semaines puis plus rien." }
+  ],
+
+  "contactFond": "Nantes",
+  "contactTitre": "Parlons de votre différence.",
+  "contactTexte": "Dites-nous ce que vous faites autrement que vos concurrents. C'est de là qu'on part pour construire vos pages.",
+  "contactObjet": "Demande — SEO Nantes",
+  "contactPlaceholder": "Votre activité, ce qui vous distingue, vos concurrents...",
+
+  "schema": {
+    "nom": "Référencement naturel à Nantes",
+    "type": "Référencement naturel et positionnement",
+    "description": "Accompagnement SEO des PME et prestataires nantais : travail du positionnement, pages de prestation différenciantes et occupation des recherches nouvelles.",
+    "public": "PME, artisans et prestataires",
+    "zones": ["Nantes", "Saint-Herblain", "Rezé", "Saint-Nazaire", "Loire-Atlantique", "Pays de la Loire"],
+    "prestations": ["Audit de visibilité", "Positionnement", "Rédaction de pages", "Netlinking", "Suivi mensuel"]
+  }
+}

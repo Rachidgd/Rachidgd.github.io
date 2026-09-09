@@ -1,0 +1,67 @@
+{
+  "suffix": "seo-montpellier",
+  "h1": ["Agence", "@", ["SEO à Montpellier.", "accent"], "|", ["De nouveaux clients", "muted"], "@", "arrivent", "|", "chaque", "@", ["année.", "accent"]],
+  "preuve": "Commerces, PME et professions libérales montpelliéraines.",
+  "sousTitre": "Chaque nouvel arrivant cherche tout depuis zéro : un médecin, un garagiste, un comptable. Cette demande se renouvelle en permanence.",
+  "cta": { "label": "Demander mon bilan de visibilité", "url": "/pages/reserver" },
+
+  "surtitre": "(Montpellier)",
+  "constat": "Un habitant installé depuis vingt ans a ses adresses. Celui qui arrive n'a que Google. C'est lui qui fait tourner votre acquisition.",
+  "bandeauA": ["Audit de visibilité", "Référencement de proximité", "Fiche établissement", "Contenu", "Suivi"],
+  "bandeauB": ["Montpellier", "Castelnau-le-Lez", "Lattes", "Juvignac", "Pérols", "Hérault"],
+  "pastilles": ["Commerces", "Santé", "PME", "Professions libérales", "Immobilier", "Services"],
+
+  "accordeonAria": "Prestation SEO à Montpellier",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Ce que nous installons",
+  "volets": [
+    {
+      "titre": "Se rendre trouvable",
+      "marquee": "Trouvable",
+      "texte": "Un nouvel arrivant tape un besoin et un quartier. Vos pages doivent répondre exactement à cette formulation, pas à votre vocabulaire métier.",
+      "tags": ["Requêtes", "Quartiers", "Rédaction", "Balises"]
+    },
+    {
+      "titre": "Convaincre en une visite",
+      "marquee": "Convaincre",
+      "texte": "Quelqu'un qui ne connaît personne ici se décide sur ce qu'il lit : horaires, tarifs, accès, avis. Une information manquante coûte un client.",
+      "tags": ["Horaires", "Accès", "Tarifs", "Avis"]
+    },
+    {
+      "titre": "Tenir le rythme",
+      "marquee": "Le rythme",
+      "texte": "La demande se renouvelle chaque année, la concurrence aussi. Un point mensuel suffit pour ne pas se faire déborder sans s'en rendre compte.",
+      "tags": ["Suivi", "Contenu", "Netlinking", "Reporting"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement à Montpellier",
+  "faqTitre": "Les questions qu'on nous pose ici",
+  "faqSousTitre": "Nouveaux arrivants, proximité, fiche Google : ce qui revient chez les commerçants et libéraux du secteur.",
+  "faq": [
+    { "q": "Comment capter les nouveaux arrivants ?",
+      "r": "En répondant à leur façon de chercher : un besoin plus un quartier. Ils ne connaissent ni votre nom ni vos concurrents, tout se joue sur la page de résultats." },
+    { "q": "Ma fiche Google est-elle suffisante ?",
+      "r": "Elle vous rend visible en proximité immédiate, mais elle ne dit rien de vos prestations. Le site prend le relais dès que la demande se précise." },
+    { "q": "Faut-il un blog ?",
+      "r": "Rarement en priorité. Les pages de prestation et la présence locale rapportent davantage, et plus vite, qu'un blog alimenté sans stratégie." },
+    { "q": "Quel budget pour commencer ?",
+      "r": "Il dépend de l'état du site et du nombre de prestations à couvrir. L'audit distingue ce qui se corrige tout de suite de ce qui demande du travail." }
+  ],
+
+  "contactFond": "Montpellier",
+  "contactTitre": "Parlons de vos nouveaux clients.",
+  "contactTexte": "Dites-nous ce que vous proposez et dans quel quartier. Nous relevons comment on vous cherche et si l'on vous trouve.",
+  "contactObjet": "Demande — SEO Montpellier",
+  "contactPlaceholder": "Votre activité, votre quartier, votre fiche Google...",
+
+  "schema": {
+    "nom": "Référencement naturel à Montpellier",
+    "type": "Référencement de proximité",
+    "description": "Accompagnement SEO des commerces, PME et professions libérales montpelliéraines : captation des nouveaux arrivants, réassurance sur la page et présence locale.",
+    "public": "Commerces, santé et professions libérales",
+    "zones": ["Montpellier", "Castelnau-le-Lez", "Lattes", "Hérault", "Occitanie"],
+    "prestations": ["Audit de visibilité", "Référencement de proximité", "Fiche établissement", "Contenu", "Suivi"]
+  }
+}

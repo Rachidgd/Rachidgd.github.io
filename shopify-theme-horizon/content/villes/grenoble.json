@@ -1,0 +1,67 @@
+{
+  "suffix": "seo-grenoble",
+  "h1": ["Agence", "@", ["SEO à Grenoble.", "accent"], "|", ["Vos prospects lisent", "muted"], "@", "avant", "|", "de vous", "@", ["appeler.", "accent"]],
+  "preuve": "PME, bureaux d'études et prestataires de l'agglomération.",
+  "sousTitre": "Ici, on compare méthodiquement avant de décrocher. Une page qui explique vraiment ce que vous faites vaut mieux que dix promesses.",
+  "cta": { "label": "Demander une évaluation", "url": "/pages/reserver" },
+
+  "surtitre": "(Grenoble)",
+  "constat": "Un prospect qui lit trois pages de votre site avant d'appeler arrive déjà convaincu. Celui qui n'en trouve aucune appelle votre concurrent.",
+  "bandeauA": ["Audit de visibilité", "Pages de prestation", "Contenu détaillé", "Netlinking", "Suivi"],
+  "bandeauB": ["Grenoble", "Saint-Martin-d'Hères", "Échirolles", "Meylan", "Voiron", "Isère"],
+  "pastilles": ["PME", "Bureaux d'études", "Prestataires", "Services B2B", "Santé", "Commerces"],
+
+  "accordeonAria": "Prestation SEO à Grenoble",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Notre démarche",
+  "volets": [
+    {
+      "titre": "Comprendre ce qu'on vous demande",
+      "marquee": "Comprendre",
+      "texte": "On part de vos questions clients réelles, celles du téléphone et des devis. Ce sont exactement celles qui se tapent sur Google.",
+      "tags": ["Questions clients", "Requêtes", "Priorités", "Angle"]
+    },
+    {
+      "titre": "Écrire du contenu qui tient",
+      "marquee": "Du solide",
+      "texte": "Des pages qui détaillent la méthode, les limites et les cas d'usage. Elles convainquent un lecteur exigeant et se positionnent durablement.",
+      "tags": ["Rédaction", "Méthode", "Cas d'usage", "Maillage"]
+    },
+    {
+      "titre": "Mesurer ce qui rentre",
+      "marquee": "Mesurer",
+      "texte": "On suit les demandes reçues, pas seulement les visites. Trente lecteurs pertinents valent mieux que trois mille passants.",
+      "tags": ["Demandes", "Positions", "Reporting", "Ajustements"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement à Grenoble",
+  "faqTitre": "Ce que nous demandent nos clients",
+  "faqSousTitre": "Contenu, volumes, mesure : les points qui reviennent chez les entreprises de l'agglomération.",
+  "faq": [
+    { "q": "Faut-il écrire des pages longues ?",
+      "r": "Longues n'est pas le critère. Complètes, oui : une page doit répondre à la question posée sans obliger le lecteur à vous appeler pour comprendre." },
+    { "q": "Mon marché est étroit, le SEO vaut-il le coup ?",
+      "r": "Souvent plus qu'ailleurs. Peu de volume signifie peu de concurrence éditoriale, et les rares visiteurs sont presque tous des prospects." },
+    { "q": "Comment savoir si ça marche ?",
+      "r": "Par les demandes entrantes et leur qualité. Les positions et le trafic sont des indicateurs de chemin, pas des résultats." },
+    { "q": "Qui écrit les contenus techniques ?",
+      "r": "Nous, à partir d'entretiens avec vous. Vous relisez : personne ne connaît vos contraintes mieux que vous, et ça se lit dans le texte." }
+  ],
+
+  "contactFond": "Grenoble",
+  "contactTitre": "Parlons de vos prospects.",
+  "contactTexte": "Dites-nous les questions qu'on vous pose le plus souvent. Ce sont elles qui deviendront vos pages les mieux placées.",
+  "contactObjet": "Demande — SEO Grenoble",
+  "contactPlaceholder": "Votre activité, vos questions clients, votre site...",
+
+  "schema": {
+    "nom": "Référencement naturel à Grenoble",
+    "type": "Référencement naturel et contenu",
+    "description": "Accompagnement SEO des PME et prestataires grenoblois : contenus détaillés issus des questions clients, pages de prestation complètes et mesure des demandes entrantes.",
+    "public": "PME, bureaux d'études et prestataires",
+    "zones": ["Grenoble", "Saint-Martin-d'Hères", "Échirolles", "Meylan", "Isère", "Auvergne-Rhône-Alpes"],
+    "prestations": ["Audit de visibilité", "Rédaction de pages", "Contenu détaillé", "Netlinking", "Suivi"]
+  }
+}

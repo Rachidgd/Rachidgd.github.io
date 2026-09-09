@@ -1,0 +1,67 @@
+{
+  "suffix": "seo-lyon",
+  "h1": ["Agence", "@", ["SEO à Lyon.", "accent"], "|", ["Être trouvé avant", "muted"], "@", "la mise", "|", "en", "@", ["concurrence.", "accent"]],
+  "preuve": "PME et prestataires de la métropole lyonnaise.",
+  "sousTitre": "Vos futurs clients cherchent, comparent trois prestataires, puis appellent. Tout se joue avant cet appel, et ça se travaille.",
+  "cta": { "label": "Demander un relevé de positions", "url": "/pages/reserver" },
+
+  "surtitre": "(Lyon)",
+  "constat": "Personne ne consulte cinq entreprises. On en retient trois, et on les trouve toutes les trois sur la première page. Le reste n'existe pas.",
+  "bandeauA": ["Audit de visibilité", "Pages de prestation", "Contenu", "Netlinking", "Suivi mensuel"],
+  "bandeauB": ["Lyon", "Villeurbanne", "Écully", "Bron", "Vénissieux", "Rhône"],
+  "pastilles": ["PME", "Prestataires", "Cabinets", "Industrie", "Santé", "Logistique"],
+
+  "accordeonAria": "Prestation SEO à Lyon",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Comment nous travaillons",
+  "volets": [
+    {
+      "titre": "Savoir où vous êtes",
+      "marquee": "Le relevé",
+      "texte": "Nous relevons vos positions, celles des trois prestataires lyonnais qu'on vous compare, et les recherches sur lesquelles aucun de vous n'est présent.",
+      "tags": ["Positions", "Comparatif", "Requêtes", "Technique"]
+    },
+    {
+      "titre": "Répondre avant l'appel",
+      "marquee": "Répondre",
+      "texte": "Prix, délais, méthode, références : ce que vos prospects cherchent avant de décrocher. Une page qui y répond fait la moitié du travail commercial.",
+      "tags": ["Prestations", "Preuves", "Rédaction", "Maillage"]
+    },
+    {
+      "titre": "Rester dans les trois",
+      "marquee": "Rester",
+      "texte": "Une position se surveille. Nous regardons chaque mois qui monte, qui descend, et ce qu'il faut reprendre pour ne pas sortir de la sélection.",
+      "tags": ["Suivi", "Contenu", "Avis", "Reporting"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement à Lyon",
+  "faqTitre": "Les questions du premier rendez-vous",
+  "faqSousTitre": "Ce que veulent savoir les dirigeants lyonnais avant d'engager quoi que ce soit.",
+  "faq": [
+    { "q": "Comment savoir si mes concurrents font du SEO ?",
+      "r": "Ça se lit dans les résultats. Nous relevons qui occupe vos requêtes, depuis combien de temps, et avec quels moyens. C'est la première chose que nous vous remettons." },
+    { "q": "Le bouche-à-oreille me suffit, pourquoi changer ?",
+      "r": "Parce qu'on vérifie désormais sur Google ce qu'on vous a recommandé. Un site absent ou daté fait douter au pire moment." },
+    { "q": "Sur quoi mesure-t-on le résultat ?",
+      "r": "Sur les demandes entrantes, pas sur le nombre de visites. Les positions et le trafic ne sont que le chemin pour y arriver." },
+    { "q": "Faut-il s'engager sur la durée ?",
+      "r": "Le référencement se construit mois après mois. Mais l'audit de départ se règle seul, et vous décidez ensuite en connaissance de cause." }
+  ],
+
+  "contactFond": "Lyon",
+  "contactTitre": "Parlons de vos concurrents.",
+  "contactTexte": "Dites-nous ce que vous vendez et à qui on vous compare. Nous relevons les positions de chacun et les recherches encore libres.",
+  "contactObjet": "Demande — SEO Lyon",
+  "contactPlaceholder": "Votre activité, vos concurrents, votre site actuel...",
+
+  "schema": {
+    "nom": "Référencement naturel à Lyon",
+    "type": "Référencement naturel local",
+    "description": "Accompagnement SEO des PME et prestataires de la métropole lyonnaise : relevé de positions, pages de prestation orientées prise de contact et suivi mensuel.",
+    "public": "PME et prestataires de services",
+    "zones": ["Lyon", "Villeurbanne", "Écully", "Bron", "Rhône", "Auvergne-Rhône-Alpes"],
+    "prestations": ["Audit de visibilité", "Référencement local", "Rédaction de pages", "Netlinking", "Suivi mensuel"]
+  }
+}

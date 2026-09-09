@@ -1,0 +1,67 @@
+{
+  "suffix": "seo-strasbourg",
+  "h1": ["Agence", "@", ["SEO à Strasbourg.", "accent"], "|", ["Un marché qui", "muted"], "@", "déborde", "|", "le", "@", ["Rhin.", "accent"]],
+  "preuve": "PME, commerces et prestataires du Bas-Rhin.",
+  "sousTitre": "Vos clients et vos concurrents traversent la frontière tous les jours. Votre visibilité, elle, s'arrête souvent au bord du fleuve.",
+  "cta": { "label": "Demander une analyse de visibilité", "url": "/pages/reserver" },
+
+  "surtitre": "(Strasbourg)",
+  "constat": "Une part mesurable de la demande locale se formule en allemand, depuis l'autre rive. Presque personne ne la travaille de ce côté-ci.",
+  "bandeauA": ["Audit de visibilité", "Référencement local", "Recherches frontalières", "Netlinking", "Suivi"],
+  "bandeauB": ["Strasbourg", "Schiltigheim", "Illkirch", "Haguenau", "Kehl", "Bas-Rhin"],
+  "pastilles": ["PME", "Commerces", "Santé", "Prestataires", "Institutions", "Services"],
+
+  "accordeonAria": "Prestation SEO à Strasbourg",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Notre périmètre de travail",
+  "volets": [
+    {
+      "titre": "Mesurer les deux rives",
+      "marquee": "Deux rives",
+      "texte": "Nous relevons vos positions côté français et côté allemand. L'écart entre les deux dit tout de ce qui reste à prendre.",
+      "tags": ["google.fr", "google.de", "Requêtes", "Concurrents"]
+    },
+    {
+      "titre": "Décider de la langue",
+      "marquee": "La langue",
+      "texte": "Tout traduire coûte cher et se tient mal dans la durée. On ouvre l'allemand seulement quand la demande le justifie vraiment.",
+      "tags": ["Français", "Allemand", "Hreflang", "Arbitrage"]
+    },
+    {
+      "titre": "Ancrer l'eurométropole",
+      "marquee": "L'ancrage",
+      "texte": "Schiltigheim, Illkirch, Haguenau : des recherches distinctes de Strasbourg. On ouvre une page là où vous intervenez réellement.",
+      "tags": ["Communes", "Fiche établissement", "Avis", "Maillage"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement à Strasbourg",
+  "faqTitre": "Les questions de l'eurométropole",
+  "faqSousTitre": "Langue, frontière, périmètre : ce que nous demandent les entreprises alsaciennes.",
+  "faq": [
+    { "q": "Faut-il un site en allemand ?",
+      "r": "Seulement si une part réelle de votre chiffre vient d'outre-Rhin. Une version allemande à l'abandon dessert plus qu'elle ne sert." },
+    { "q": "Peut-on viser l'Allemagne depuis la France ?",
+      "r": "Oui, avec des pages dédiées et un ciblage propre. Une page unique qui s'adresse aux deux pays finit par ne convaincre ni l'un ni l'autre." },
+    { "q": "Les frontaliers cherchent-ils différemment ?",
+      "r": "Souvent, oui : ils comparent les deux côtés avant de choisir, et ils arbitrent sur des critères que vos pages françaises n'abordent jamais." },
+    { "q": "Combien de temps avant un effet visible ?",
+      "r": "De six à douze semaines sur les recherches de proximité. Les requêtes régionales et bilingues demandent plus de patience." }
+  ],
+
+  "contactFond": "Strasbourg",
+  "contactTitre": "Parlons de vos deux marchés.",
+  "contactTexte": "Dites-nous d'où viennent vos clients et dans quelle langue ils vous écrivent. Nous relevons vos positions des deux côtés.",
+  "contactObjet": "Demande — SEO Strasbourg",
+  "contactPlaceholder": "Votre activité, vos clients frontaliers, vos langues...",
+
+  "schema": {
+    "nom": "Référencement naturel à Strasbourg",
+    "type": "Référencement local et frontalier",
+    "description": "Accompagnement SEO des entreprises du Bas-Rhin : positions sur les deux rives, arbitrage entre français et allemand, et ancrage sur les communes de l'eurométropole.",
+    "public": "PME, commerces et prestataires",
+    "zones": ["Strasbourg", "Schiltigheim", "Illkirch-Graffenstaden", "Haguenau", "Bas-Rhin", "Grand Est"],
+    "prestations": ["Audit de visibilité", "Référencement local", "Recherches frontalières", "Netlinking", "Suivi"]
+  }
+}

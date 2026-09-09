@@ -1,0 +1,67 @@
+{
+  "suffix": "seo-nice",
+  "h1": ["Agence", "@", ["SEO à Nice.", "accent"], "|", ["On vous cherche", "muted"], "@", "souvent", "|", "avant", "@", ["d'arriver.", "accent"]],
+  "preuve": "Commerces, PME et prestataires des Alpes-Maritimes.",
+  "sousTitre": "Une part de votre clientèle prépare son séjour ou son installation à distance. Elle vous choisit sur Google des semaines avant de pousser votre porte.",
+  "cta": { "label": "Demander mon audit offert", "url": "/pages/reserver" },
+
+  "surtitre": "(Nice)",
+  "constat": "Le client qui vous découvre en marchant, vous ne le contrôlez pas. Celui qui vous cherche depuis Paris ou Milan trois semaines avant, si.",
+  "bandeauA": ["Audit de visibilité", "Référencement local", "Pages de prestation", "Fiche établissement", "Suivi"],
+  "bandeauB": ["Nice", "Cannes", "Antibes", "Saint-Laurent-du-Var", "Menton", "Alpes-Maritimes"],
+  "pastilles": ["Commerces", "PME", "Hôtellerie", "Immobilier", "Services", "Professions libérales"],
+
+  "accordeonAria": "Prestation SEO à Nice",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Ce que nous mettons en œuvre",
+  "volets": [
+    {
+      "titre": "Capter la recherche anticipée",
+      "marquee": "En amont",
+      "texte": "On identifie ce que tapent ceux qui préparent leur venue, pas seulement ceux qui sont déjà sur place. Les deux ne cherchent pas la même chose.",
+      "tags": ["Intentions", "Saisonnalité", "Requêtes", "Priorités"]
+    },
+    {
+      "titre": "Rassurer à distance",
+      "marquee": "Rassurer",
+      "texte": "Quand on réserve ou qu'on mandate sans vous avoir vu, tout se joue sur les preuves : photos réelles, avis, tarifs annoncés, conditions claires.",
+      "tags": ["Preuves", "Avis", "Tarifs", "Rédaction"]
+    },
+    {
+      "titre": "Couvrir la Côte",
+      "marquee": "La Côte",
+      "texte": "Cannes, Antibes, Menton : autant de recherches distinctes que Nice ne capte pas. On ouvre une page là où vous intervenez réellement.",
+      "tags": ["Communes", "Zones", "Maillage", "Suivi"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement à Nice",
+  "faqTitre": "Ce qu'on nous demande sur la Côte",
+  "faqSousTitre": "Saisonnalité, clientèle de passage, périmètre : les points qui reviennent chez nos clients azuréens.",
+  "faq": [
+    { "q": "Le SEO fonctionne-t-il hors saison ?",
+      "r": "C'est même là qu'il se prépare. Les recherches montent des semaines avant la venue : une page publiée en janvier travaille pour l'été." },
+    { "q": "Ma clientèle est surtout locale, est-ce utile ?",
+      "r": "Oui, mais le travail change : on vise alors les recherches de proximité et la fiche établissement plutôt que les requêtes d'anticipation." },
+    { "q": "Faut-il un site en anglais ?",
+      "r": "Seulement si vos clients étrangers représentent une part réelle du chiffre. Une version anglaise mal tenue coûte plus qu'elle ne rapporte." },
+    { "q": "Jusqu'où étendre la zone ?",
+      "r": "Jusqu'aux communes où vous intervenez vraiment. Annoncer toute la Côte quand on ne dépasse pas Cagnes attire des demandes qu'on décline." }
+  ],
+
+  "contactFond": "Nice",
+  "contactTitre": "Parlons de votre clientèle.",
+  "contactTexte": "Dites-nous qui vous fait vivre : les gens d'ici, ceux qui viennent, ou les deux. Nous relevons les recherches correspondantes.",
+  "contactObjet": "Demande — SEO Nice",
+  "contactPlaceholder": "Votre activité, votre clientèle, vos communes...",
+
+  "schema": {
+    "nom": "Référencement naturel à Nice",
+    "type": "Référencement local et saisonnier",
+    "description": "Accompagnement SEO des commerces et PME des Alpes-Maritimes : recherches anticipées, preuves de réassurance à distance et couverture des communes de la Côte.",
+    "public": "Commerces, PME et prestataires",
+    "zones": ["Nice", "Cannes", "Antibes", "Menton", "Alpes-Maritimes", "Provence-Alpes-Côte d'Azur"],
+    "prestations": ["Audit de visibilité", "Référencement local", "Rédaction de pages", "Fiche établissement", "Suivi"]
+  }
+}

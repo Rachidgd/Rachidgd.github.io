@@ -1,0 +1,141 @@
+{
+  "suffix": "seo-local-marseille",
+  "h1": [
+    "Agence",
+    "@",
+    [
+      "SEO à Marseille.",
+      "accent"
+    ],
+    "|",
+    [
+      "Une ville,",
+      "muted"
+    ],
+    "@",
+    "plusieurs",
+    "|",
+    "marchés",
+    "@",
+    [
+      "distincts.",
+      "accent"
+    ]
+  ],
+  "preuve": "Commerces, artisans et PME du bassin marseillais.",
+  "sousTitre": "Entre le Vieux-Port, la Joliette et l'est marseillais, un client ne cherche jamais « à Marseille ». Il cherche là où il se trouve.",
+  "cta": {
+    "label": "Demander un diagnostic",
+    "url": "/pages/reserver"
+  },
+  "surtitre": "(Marseille)",
+  "constat": "Une entreprise du 8e et une entreprise du 15e ne se disputent pas les mêmes clients. Les traiter avec une seule page, c'est perdre les deux.",
+  "bandeauA": [
+    "Audit de visibilité",
+    "Référencement de proximité",
+    "Pages par zone",
+    "Fiche établissement",
+    "Suivi"
+  ],
+  "bandeauB": [
+    "Vieux-Port",
+    "La Joliette",
+    "Castellane",
+    "Aubagne",
+    "Aix-en-Provence",
+    "Bouches-du-Rhône"
+  ],
+  "pastilles": [
+    "Commerces",
+    "Artisans",
+    "PME",
+    "Restauration",
+    "Services",
+    "Bâtiment"
+  ],
+  "accordeonAria": "Prestation SEO à Marseille",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Ce que nous mettons en place",
+  "volets": [
+    {
+      "titre": "Délimiter votre zone",
+      "marquee": "La zone",
+      "texte": "Avant d'écrire quoi que ce soit, on établit où vous intervenez réellement et jusqu'où ça vaut le coup de se déplacer. Tout le reste en découle.",
+      "tags": [
+        "Périmètre",
+        "Secteurs",
+        "Déplacements",
+        "Priorités"
+      ]
+    },
+    {
+      "titre": "Une page par secteur qui compte",
+      "marquee": "Par secteur",
+      "texte": "On ouvre une page là où la demande existe et où vous allez vraiment. Pas sur les seize arrondissements par principe.",
+      "tags": [
+        "Arrondissements",
+        "Communes",
+        "Rédaction",
+        "Maillage"
+      ]
+    },
+    {
+      "titre": "Sortir dans le bloc local",
+      "marquee": "Le bloc local",
+      "texte": "Sur une recherche de proximité, la carte s'affiche avant les sites. Fiche à jour, avis, horaires : c'est souvent ce qui décide de l'appel.",
+      "tags": [
+        "Google Business",
+        "Avis",
+        "Horaires",
+        "Photos"
+      ]
+    }
+  ],
+  "faqAria": "Questions fréquentes sur le référencement à Marseille",
+  "faqTitre": "Ce qu'on nous demande sur place",
+  "faqSousTitre": "Zone d'intervention, fiche Google, budget : les sujets qui reviennent chez les commerçants et artisans du secteur.",
+  "faq": [
+    {
+      "q": "Jusqu'où doit aller ma zone d'intervention ?",
+      "r": "Jusqu'où vous vous déplacez sans y perdre. Annoncer toute la métropole quand on ne quitte pas son quartier attire des demandes qu'on refuse ensuite."
+    },
+    {
+      "q": "La fiche Google suffit-elle ?",
+      "r": "Elle apporte beaucoup en local, mais elle plafonne vite. Un site qui explique vos prestations prend les recherches que la fiche ne couvre pas."
+    },
+    {
+      "q": "Les avis comptent-ils vraiment ?",
+      "r": "Beaucoup, et sur deux plans : ils pèsent dans le classement local, et ils décident de l'appel une fois que vous êtes affiché."
+    },
+    {
+      "q": "Combien faut-il prévoir pour démarrer ?",
+      "r": "Ça dépend de l'état du site et du nombre de zones à couvrir. L'audit chiffre précisément ce qui se corrige tout de suite et ce qui attend."
+    }
+  ],
+  "contactFond": "Marseille",
+  "contactTitre": "Parlons de votre secteur.",
+  "contactTexte": "Dites-nous ce que vous faites et jusqu'où vous vous déplacez. Nous relevons les recherches de votre zone et votre présence dessus.",
+  "contactObjet": "Demande — SEO Marseille",
+  "contactPlaceholder": "Votre activité, vos secteurs, votre fiche Google...",
+  "schema": {
+    "nom": "Référencement naturel à Marseille",
+    "type": "Référencement de proximité",
+    "description": "Accompagnement SEO des commerces, artisans et PME du bassin marseillais : délimitation de la zone d'intervention, pages par secteur et travail de la fiche établissement.",
+    "public": "Commerces, artisans et PME",
+    "zones": [
+      "Marseille",
+      "Aubagne",
+      "Aix-en-Provence",
+      "Bouches-du-Rhône",
+      "Provence-Alpes-Côte d'Azur"
+    ],
+    "prestations": [
+      "Audit de visibilité",
+      "Référencement de proximité",
+      "Pages par zone",
+      "Fiche établissement",
+      "Suivi"
+    ]
+  }
+}

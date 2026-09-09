@@ -1,0 +1,67 @@
+{
+  "suffix": "seo-belgique",
+  "h1": ["Consultant", "@", ["SEO en Belgique.", "accent"], "|", ["De la Wallonie", "muted"], "@", "au reste", "|", "du", "@", ["pays.", "accent"]],
+  "preuve": "PME et indépendants de Wallonie et de Flandre francophone.",
+  "sousTitre": "Liège, Namur, Charleroi, Mons : chaque bassin a ses recherches et ses acteurs installés. Une seule page nationale ne les couvre pas.",
+  "cta": { "label": "Demander mon audit belge", "url": "/pages/reserver" },
+
+  "surtitre": "(Belgique)",
+  "constat": "Un prospect liégeois et un prospect namurois ne tapent pas la même chose. Le pays est petit, ses marchés ne le sont pas.",
+  "bandeauA": ["Audit google.be", "Référencement régional", "Pages par province", "Netlinking belge", "Suivi"],
+  "bandeauB": ["Liège", "Namur", "Charleroi", "Mons", "Brabant wallon", "Wallonie"],
+  "pastilles": ["PME", "Indépendants", "Commerces", "Cabinets", "Industrie", "Services"],
+
+  "accordeonAria": "Prestation SEO en Belgique",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Comment nous couvrons le pays",
+  "volets": [
+    {
+      "titre": "Cartographier les bassins",
+      "marquee": "Les bassins",
+      "texte": "On établit où votre demande existe réellement : quelles provinces, quelles villes, et quels concurrents y sont déjà bien installés.",
+      "tags": ["Provinces", "Concurrents", "Requêtes", "Priorités"]
+    },
+    {
+      "titre": "Ouvrir les bonnes pages",
+      "marquee": "Les pages",
+      "texte": "Une page par zone que vous servez vraiment, écrite avec les tournures d'ici. Le vocabulaire belge n'est pas le vocabulaire français.",
+      "tags": ["Zones", "Vocabulaire", "Rédaction", "Maillage"]
+    },
+    {
+      "titre": "Peser sur google.be",
+      "marquee": "google.be",
+      "texte": "Signaux locaux, liens de sites belges, fiche établissement : ce qui vous distingue d'un concurrent français qui vise le même mot.",
+      "tags": ["Signaux locaux", "Netlinking", "Fiche", "Suivi"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement en Belgique",
+  "faqTitre": "Avant de couvrir le pays",
+  "faqSousTitre": "Provinces, langues, concurrence française : ce que nous demandent les entreprises belges.",
+  "faq": [
+    { "q": "Faut-il une page par province ?",
+      "r": "Uniquement là où vous intervenez et où la recherche existe. Cinq pages utiles valent mieux que dix qui se prennent leurs positions entre elles." },
+    { "q": "Et le néerlandais ?",
+      "r": "Nous priorisons le francophone, où nous apportons le plus. L'ouverture au néerlandais se décide sur des données, pas par symétrie." },
+    { "q": "Pourquoi des sites français dominent-ils mes requêtes ?",
+      "r": "Parce qu'ils sont mieux structurés, pas parce qu'ils sont français. Des signaux locaux clairs et des liens belges renversent souvent la tendance." },
+    { "q": "Travaillez-vous à distance ?",
+      "r": "Oui, avec des points réguliers et des accès partagés. La distance n'a jamais posé de problème sur ce type d'accompagnement." }
+  ],
+
+  "contactFond": "Belgique",
+  "contactTitre": "Parlons de vos provinces.",
+  "contactTexte": "Dites-nous où vous intervenez et qui vous précède sur google.be. Nous relevons vos positions bassin par bassin.",
+  "contactObjet": "Demande — SEO Belgique",
+  "contactPlaceholder": "Votre activité, vos provinces, vos concurrents...",
+
+  "schema": {
+    "nom": "Référencement naturel en Belgique",
+    "type": "Référencement régional francophone",
+    "description": "Accompagnement SEO des PME et indépendants belges francophones : cartographie des bassins wallons, pages par zone servie et travail des signaux locaux sur google.be.",
+    "public": "PME et indépendants francophones",
+    "zones": ["Liège", "Namur", "Charleroi", "Mons", "Brabant wallon", "Wallonie"],
+    "prestations": ["Audit google.be", "Référencement régional", "Pages par province", "Netlinking belge", "Suivi"]
+  }
+}

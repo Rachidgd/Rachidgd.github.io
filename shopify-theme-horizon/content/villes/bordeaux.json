@@ -1,0 +1,67 @@
+{
+  "suffix": "seo-local-bordeaux",
+  "h1": ["Agence", "@", ["SEO à Bordeaux.", "accent"], "|", ["L'ancienneté ne", "muted"], "@", "protège", "|", "plus de", "@", ["rien.", "accent"]],
+  "preuve": "PME, commerces et prestataires bordelais.",
+  "sousTitre": "De nouveaux acteurs arrivent chaque année avec des sites récents et bien construits. Être installé depuis quinze ans ne vous met plus devant eux.",
+  "cta": { "label": "Faire le point sur ma visibilité", "url": "/pages/reserver" },
+
+  "surtitre": "(Bordeaux)",
+  "constat": "Un concurrent arrivé l'an dernier peut vous passer devant en six mois. Google ne classe pas sur l'ancienneté de l'entreprise, mais sur celle du travail.",
+  "bandeauA": ["Audit de visibilité", "Référencement local", "Refonte des pages", "Netlinking", "Suivi des positions"],
+  "bandeauB": ["Bordeaux", "Mérignac", "Pessac", "Talence", "Bègles", "Gironde"],
+  "pastilles": ["PME", "Commerces", "Prestataires", "Vin et négoce", "Immobilier", "Services"],
+
+  "accordeonAria": "Prestation SEO à Bordeaux",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Reprendre la main",
+  "volets": [
+    {
+      "titre": "Mesurer le retard",
+      "marquee": "Le retard",
+      "texte": "Nous comparons votre site à ceux qui vous précèdent : structure, vitesse, contenu, liens. L'écart est rarement là où on l'imagine.",
+      "tags": ["Comparatif", "Technique", "Contenu", "Liens"]
+    },
+    {
+      "titre": "Remettre les pages à niveau",
+      "marquee": "À niveau",
+      "texte": "Un site de 2015 n'a pas les pages que Google attend aujourd'hui. On reprend l'existant plutôt que de tout jeter, quand c'est encore rentable.",
+      "tags": ["Structure", "Rédaction", "Vitesse", "Balises"]
+    },
+    {
+      "titre": "Reprendre les positions",
+      "marquee": "Reprendre",
+      "texte": "On récupère d'abord les recherches où vous n'êtes qu'à quelques places du haut. C'est le chemin le plus court vers les premières demandes.",
+      "tags": ["Priorités", "Contenu", "Netlinking", "Suivi"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement à Bordeaux",
+  "faqTitre": "Avant de reprendre le chantier",
+  "faqSousTitre": "Site ancien, concurrence récente, budget : ce que nous demandent les dirigeants installés depuis longtemps.",
+  "faq": [
+    { "q": "Mon site a dix ans, faut-il tout refaire ?",
+      "r": "Pas systématiquement. On commence par ce qui se corrige sur l'existant. La refonte ne se justifie que si la structure bloque réellement la progression." },
+    { "q": "Pourquoi des entreprises plus récentes sortent avant moi ?",
+      "r": "Parce qu'elles sont parties d'une base propre et qu'elles publient. Google mesure la pertinence des pages, pas l'année de création de la société." },
+    { "q": "Peut-on récupérer des positions perdues ?",
+      "r": "Souvent oui, et plus vite qu'une conquête à froid : le site a déjà de l'historique et des liens. C'est ce capital qu'on remet en état." },
+    { "q": "En combien de temps voit-on l'effet ?",
+      "r": "Sur des pages proches du haut de page, quelques semaines. Sur les requêtes que vous avez laissées filer depuis des années, il faut du temps." }
+  ],
+
+  "contactFond": "Bordeaux",
+  "contactTitre": "Parlons de votre retard.",
+  "contactTexte": "Dites-nous depuis quand votre site n'a pas bougé. Nous comparons votre position à celle de ceux qui vous précèdent.",
+  "contactObjet": "Demande — SEO Bordeaux",
+  "contactPlaceholder": "Votre activité, l'âge de votre site, vos concurrents...",
+
+  "schema": {
+    "nom": "Référencement naturel à Bordeaux",
+    "type": "Référencement naturel et refonte",
+    "description": "Accompagnement SEO des entreprises bordelaises installées : comparatif face aux nouveaux entrants, remise à niveau des pages existantes et reconquête des positions.",
+    "public": "PME, commerces et prestataires",
+    "zones": ["Bordeaux", "Mérignac", "Pessac", "Talence", "Gironde", "Nouvelle-Aquitaine"],
+    "prestations": ["Audit de visibilité", "Référencement local", "Refonte des pages", "Netlinking", "Suivi des positions"]
+  }
+}

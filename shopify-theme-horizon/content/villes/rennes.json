@@ -1,0 +1,67 @@
+{
+  "suffix": "seo-rennes",
+  "h1": ["Agence", "@", ["SEO à Rennes.", "accent"], "|", ["Un public qui", "muted"], "@", "compare", "|", "tout en", "@", ["ligne.", "accent"]],
+  "preuve": "Commerces, PME et prestataires du bassin rennais.",
+  "sousTitre": "On vérifie ici plus qu'ailleurs : avis, tarifs, alternatives. Votre visibilité dépend autant de ce qu'on lit sur vous que de vos pages.",
+  "cta": { "label": "Demander mon audit", "url": "/pages/reserver" },
+
+  "surtitre": "(Rennes)",
+  "constat": "Entre le moment où l'on vous découvre et celui où l'on vous contacte, il y a trois recherches de vérification. Elles se préparent.",
+  "bandeauA": ["Audit de visibilité", "Référencement local", "Avis et réputation", "Contenu", "Suivi"],
+  "bandeauB": ["Rennes", "Cesson-Sévigné", "Bruz", "Saint-Grégoire", "Betton", "Ille-et-Vilaine"],
+  "pastilles": ["Commerces", "PME", "Prestataires", "Numérique", "Restauration", "Services"],
+
+  "accordeonAria": "Prestation SEO à Rennes",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Ce sur quoi nous agissons",
+  "volets": [
+    {
+      "titre": "Occuper la première recherche",
+      "marquee": "La découverte",
+      "texte": "Celle où l'on ne vous connaît pas encore et où l'on décrit un besoin. C'est la seule qui amène des clients réellement nouveaux.",
+      "tags": ["Requêtes", "Prestations", "Rédaction", "Priorités"]
+    },
+    {
+      "titre": "Tenir la recherche de vérification",
+      "marquee": "Vérifier",
+      "texte": "On tape votre nom pour se rassurer. Ce qui s'affiche alors — avis, fiche, mentions — pèse autant que votre page d'accueil.",
+      "tags": ["Avis", "Fiche établissement", "Mentions", "Réputation"]
+    },
+    {
+      "titre": "Suivre ce qui bouge",
+      "marquee": "Suivre",
+      "texte": "Un avis négatif, un concurrent qui publie, une page qui décroche : on regarde chaque mois et on corrige avant que ça pèse.",
+      "tags": ["Suivi", "Contenu", "Netlinking", "Reporting"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement à Rennes",
+  "faqTitre": "Ce qui revient le plus souvent",
+  "faqSousTitre": "Avis, réputation, comparaison : les sujets qui préoccupent les entreprises rennaises.",
+  "faq": [
+    { "q": "Les avis influencent-ils le référencement ?",
+      "r": "Sur les recherches locales, nettement. Et même quand ils ne changent pas le classement, ils décident du clic et de l'appel." },
+    { "q": "Que faire d'un avis négatif ?",
+      "r": "Y répondre posément et publiquement. Une réponse mesurée rassure davantage qu'une page sans le moindre avis critique." },
+    { "q": "Faut-il apparaître sur les comparateurs ?",
+      "r": "Cela dépend du secteur. Quand ils occupent le haut des résultats, mieux vaut y être présent que de leur laisser tout l'espace." },
+    { "q": "Combien de temps pour installer une présence ?",
+      "r": "Quelques semaines pour la présence locale et la fiche, plusieurs mois pour les recherches de prestation les plus disputées." }
+  ],
+
+  "contactFond": "Rennes",
+  "contactTitre": "Parlons de votre réputation.",
+  "contactTexte": "Dites-nous ce que l'on trouve aujourd'hui en tapant votre nom. Nous regardons ce qui manque et ce qui dessert.",
+  "contactObjet": "Demande — SEO Rennes",
+  "contactPlaceholder": "Votre activité, vos avis, ce qui sort sur votre nom...",
+
+  "schema": {
+    "nom": "Référencement naturel à Rennes",
+    "type": "Référencement local et réputation",
+    "description": "Accompagnement SEO des commerces et PME rennaises : captation des recherches de découverte, maîtrise des recherches de vérification et suivi de la réputation locale.",
+    "public": "Commerces, PME et prestataires",
+    "zones": ["Rennes", "Cesson-Sévigné", "Bruz", "Saint-Grégoire", "Ille-et-Vilaine", "Bretagne"],
+    "prestations": ["Audit de visibilité", "Référencement local", "Avis et réputation", "Contenu", "Suivi"]
+  }
+}

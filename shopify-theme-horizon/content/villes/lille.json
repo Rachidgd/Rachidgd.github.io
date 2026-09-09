@@ -1,0 +1,67 @@
+{
+  "suffix": "seo-lille",
+  "h1": ["Agence", "@", ["SEO à Lille.", "accent"], "|", ["Une partie de vos", "muted"], "@", "clients", "|", "cherche en", "@", ["Belgique.", "accent"]],
+  "preuve": "PME, commerces et prestataires de la métropole lilloise.",
+  "sousTitre": "Ici la frontière ne se voit pas dans les chiffres d'affaires. Elle se voit dans les recherches, et rares sont les sites qui en tiennent compte.",
+  "cta": { "label": "Demander une analyse", "url": "/pages/reserver" },
+
+  "surtitre": "(Lille)",
+  "constat": "Vos concurrents ne sont pas tous français, et vos clients non plus. Un site qui ignore l'autre côté de la frontière laisse une part du marché de côté.",
+  "bandeauA": ["Audit de visibilité", "Référencement local", "Recherches transfrontalières", "Netlinking", "Suivi"],
+  "bandeauB": ["Lille", "Roubaix", "Tourcoing", "Villeneuve-d'Ascq", "Tournai", "Mouscron"],
+  "pastilles": ["PME", "Commerces", "Prestataires", "Distribution", "Textile", "Services"],
+
+  "accordeonAria": "Prestation SEO à Lille",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Ce que nous couvrons",
+  "volets": [
+    {
+      "titre": "Regarder des deux côtés",
+      "marquee": "Deux côtés",
+      "texte": "Nous relevons vos positions sur google.fr et sur google.be. L'écart entre les deux révèle souvent une demande que personne ne travaille.",
+      "tags": ["google.fr", "google.be", "Requêtes", "Concurrents"]
+    },
+    {
+      "titre": "Écrire pour la métropole",
+      "marquee": "La métropole",
+      "texte": "Roubaix, Tourcoing, Villeneuve-d'Ascq : chaque commune a ses recherches propres. Une page « Lille » ne les capte pas.",
+      "tags": ["Communes", "Prestations", "Rédaction", "Maillage"]
+    },
+    {
+      "titre": "Ancrer la présence locale",
+      "marquee": "L'ancrage",
+      "texte": "Fiche établissement, avis, cohérence des coordonnées : les signaux qui disent à Google où vous êtes vraiment et jusqu'où vous intervenez.",
+      "tags": ["Google Business", "Avis", "Coordonnées", "Suivi"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement à Lille",
+  "faqTitre": "Les questions de la métropole",
+  "faqSousTitre": "Frontière, communes, budget : ce que nous demandent les entreprises du Nord avant de se lancer.",
+  "faq": [
+    { "q": "Faut-il viser la Belgique ?",
+      "r": "Si vous y livrez ou intervenez, oui. Ça demande des pages distinctes : une même page qui vise deux pays finit par n'en convaincre aucun." },
+    { "q": "Faut-il une page par commune ?",
+      "r": "Uniquement là où vous travaillez vraiment. Roubaix et Villeneuve-d'Ascq justifient souvent leur page ; les vingt suivantes rarement." },
+    { "q": "Mes concurrents belges me passent devant, pourquoi ?",
+      "r": "Parce que Google classe sur la pertinence avant la nationalité. Un site mieux structuré passe devant, quel que soit le pays d'immatriculation." },
+    { "q": "Combien de temps pour voir un effet ?",
+      "r": "Comptez six à douze semaines sur les recherches de proximité. Les requêtes régionales, plus disputées, demandent davantage." }
+  ],
+
+  "contactFond": "Lille",
+  "contactTitre": "Parlons de votre périmètre.",
+  "contactTexte": "Dites-nous où vous intervenez, frontière comprise. Nous relevons vos positions des deux côtés et ce qui reste à prendre.",
+  "contactObjet": "Demande — SEO Lille",
+  "contactPlaceholder": "Votre activité, vos communes, la Belgique ou non...",
+
+  "schema": {
+    "nom": "Référencement naturel à Lille",
+    "type": "Référencement local et transfrontalier",
+    "description": "Accompagnement SEO des entreprises de la métropole lilloise : positions sur google.fr et google.be, pages par commune et travail de la présence locale.",
+    "public": "PME, commerces et prestataires",
+    "zones": ["Lille", "Roubaix", "Tourcoing", "Villeneuve-d'Ascq", "Nord", "Hauts-de-France"],
+    "prestations": ["Audit de visibilité", "Référencement local", "Recherches transfrontalières", "Netlinking", "Suivi"]
+  }
+}

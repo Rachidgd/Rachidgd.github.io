@@ -1,0 +1,67 @@
+{
+  "suffix": "seo-suisse",
+  "h1": ["Consultant", "@", ["SEO en Suisse.", "accent"], "|", ["Le clic payant", "muted"], "@", "y coûte", "|", "très", "@", ["cher.", "accent"]],
+  "preuve": "PME, cabinets et commerces de Suisse romande.",
+  "sousTitre": "Sur ce marché, chaque visiteur acheté se paie au prix fort. Occuper les mêmes recherches en organique change durablement le coût d'acquisition.",
+  "cta": { "label": "Demander une évaluation", "url": "/pages/reserver" },
+
+  "surtitre": "(Suisse)",
+  "constat": "Un clic publicitaire suisse peut coûter plusieurs fois son équivalent français. La même position gagnée en organique ne se repaie pas chaque mois.",
+  "bandeauA": ["Audit de visibilité", "Référencement romand", "Pages de prestation", "Netlinking", "Suivi"],
+  "bandeauB": ["Genève", "Lausanne", "Fribourg", "Neuchâtel", "Valais", "Suisse romande"],
+  "pastilles": ["PME", "Cabinets", "Commerces", "Services B2B", "Santé", "Horlogerie"],
+
+  "accordeonAria": "Prestation SEO en Suisse",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Ce que nous construisons",
+  "volets": [
+    {
+      "titre": "Chiffrer ce que vous payez",
+      "marquee": "Le coût",
+      "texte": "On regarde d'abord ce que vous dépensez en publicité sur chaque recherche. C'est la mesure la plus honnête de ce que l'organique peut vous faire économiser.",
+      "tags": ["Coût par clic", "Requêtes", "Arbitrages", "Priorités"]
+    },
+    {
+      "titre": "Prendre les positions durables",
+      "marquee": "Durable",
+      "texte": "Une position organique se construit une fois et se tient. Elle ne s'arrête pas le jour où l'on coupe le budget publicitaire.",
+      "tags": ["Pages piliers", "Rédaction", "Netlinking", "Technique"]
+    },
+    {
+      "titre": "Couvrir la Romandie",
+      "marquee": "La Romandie",
+      "texte": "Genève, Lausanne, Fribourg : des marchés proches mais des recherches distinctes. On ouvre une page là où vous servez réellement.",
+      "tags": ["Cantons", "Villes", "Maillage", "Suivi"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement en Suisse",
+  "faqTitre": "Les questions des romands",
+  "faqSousTitre": "Coût d'acquisition, domaine, cantons : ce que nous demandent les entreprises de Suisse romande.",
+  "faq": [
+    { "q": "Faut-il arrêter la publicité pour faire du SEO ?",
+      "r": "Non, les deux se complètent. La publicité achète le temps que le référencement met à s'installer, puis son budget peut baisser." },
+    { "q": "Un domaine en .ch est-il nécessaire ?",
+      "r": "Il aide, sans être indispensable. Une adresse suisse, des contenus clairement locaux et des liens du pays pèsent au moins autant." },
+    { "q": "Faut-il une page par canton ?",
+      "r": "Seulement là où vous êtes actif. Un cabinet genevois n'a rien à gagner à publier une page valaisanne qu'il ne pourra pas servir." },
+    { "q": "Travaillez-vous depuis la France ?",
+      "r": "Oui, à distance et avec des points réguliers. Ce qui compte est la connaissance du marché romand, pas l'adresse de nos bureaux." }
+  ],
+
+  "contactFond": "Suisse",
+  "contactTitre": "Parlons de votre acquisition.",
+  "contactTexte": "Dites-nous ce que vous dépensez aujourd'hui pour être visible. Nous chiffrons ce que l'organique peut reprendre à sa charge.",
+  "contactObjet": "Demande — SEO Suisse",
+  "contactPlaceholder": "Votre activité, vos cantons, votre budget publicitaire...",
+
+  "schema": {
+    "nom": "Référencement naturel en Suisse romande",
+    "type": "Référencement naturel et acquisition",
+    "description": "Accompagnement SEO des PME et cabinets de Suisse romande : arbitrage entre publicité et organique, positions durables et couverture des cantons servis.",
+    "public": "PME, cabinets et commerces romands",
+    "zones": ["Genève", "Lausanne", "Fribourg", "Neuchâtel", "Valais", "Suisse romande"],
+    "prestations": ["Audit de visibilité", "Référencement romand", "Rédaction de pages", "Netlinking", "Suivi"]
+  }
+}
