@@ -1,0 +1,67 @@
+{
+  "suffix": "site-vitrine-pme-tpe",
+  "h1": ["Site vitrine", "@", ["pour PME et TPE.", "accent"], "|", ["Quand personne", "muted"], "@", "chez vous", "|", "n'a le", "@", ["temps.", "accent"]],
+  "preuve": "Entreprises de trois à cinquante salariés, sans service marketing.",
+  "sousTitre": "Vous n'avez ni chef de projet web ni chargé de communication. Le site doit donc tenir tout seul une fois livré, et se modifier en cinq minutes quand vos tarifs changent.",
+  "cta": { "label": "Demander mon devis", "url": "/pages/contact" },
+
+  "surtitre": "(PME et TPE)",
+  "constat": "Votre site ne sert pas qu'à vos clients. Un candidat, une banque, un donneur d'ordre le consultent aussi avant de vous répondre, et ils en tirent des conclusions.",
+  "bandeauA": ["Site vitrine", "Refonte", "Rédaction", "Prise en main", "Maintenance"],
+  "bandeauB": ["Industrie", "Services B2B", "Bâtiment", "Négoce", "Transport", "Conseil"],
+  "pastilles": ["3 à 50 salariés", "Sans service marketing", "B2B", "Sous-traitance", "Recrutement", "Multi-sites"],
+
+  "accordeonAria": "Création de site vitrine pour PME et TPE",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Ce qu'on prend en charge",
+  "volets": [
+    {
+      "titre": "Le travail que vous n'aurez pas à faire",
+      "marquee": "La charge",
+      "texte": "Arborescence, rédaction, photos à réclamer, relances : nous portons le projet plutôt que de vous envoyer une liste de devoirs. Un dirigeant n'a pas trois heures par semaine à y consacrer.",
+      "tags": ["Cadrage", "Rédaction", "Visuels", "Pilotage"]
+    },
+    {
+      "titre": "Un site qui vous crédibilise",
+      "marquee": "La crédibilité",
+      "texte": "Certifications, références, effectif, ancienneté : ce qui rassure un acheteur professionnel n'est pas ce qui séduit un particulier. La page est écrite pour le premier.",
+      "tags": ["Références", "Certifications", "Équipe", "Chiffres"]
+    },
+    {
+      "titre": "Modifiable sans nous rappeler",
+      "marquee": "L'autonomie",
+      "texte": "Vos tarifs bougent, vous recrutez, vous ouvrez un site : trois manipulations dans l'éditeur suffisent. Nous les montrons à la personne qui s'en occupera vraiment.",
+      "tags": ["Éditeur", "Tarifs", "Actualités", "Offres d'emploi"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur la création de site vitrine pour PME",
+  "faqTitre": "Ce que demandent les dirigeants",
+  "faqSousTitre": "Budget, charge de travail, autonomie : les points bloquants avant de lancer.",
+  "faq": [
+    { "q": "Combien de temps vais-je devoir y consacrer ?",
+      "r": "Deux rendez-vous et quelques validations, guère plus. Nous préparons les contenus à partir de ce que vous nous dites plutôt que de vous demander de les écrire." },
+    { "q": "Quel budget prévoir ?",
+      "r": "À partir de 900 €, arrêté avant de commencer. C'est un investissement unique, pas un abonnement qui court tant que le site existe." },
+    { "q": "Notre secteur est très technique, saurez-vous l'écrire ?",
+      "r": "Nous ne prétendons pas connaître votre métier. Nous vous faisons parler, nous mettons en forme, et vous corrigez ce qui n'est pas juste avant publication." },
+    { "q": "Qui s'en occupera chez nous après ?",
+      "r": "La personne que vous désignez, quel que soit son niveau. Une heure de prise en main suffit à couvrir ce qui se modifie au quotidien." }
+  ],
+
+  "contactFond": "PME",
+  "contactTitre": "Parlons de votre entreprise.",
+  "contactTexte": "Dites-nous ce que vous vendez, à qui, et ce que votre site doit produire. Nous revenons avec un périmètre chiffré.",
+  "contactObjet": "Demande — Site vitrine PME",
+  "contactPlaceholder": "Votre activité, vos clients, votre effectif...",
+
+  "schema": {
+    "nom": "Création de site vitrine pour PME et TPE",
+    "type": "Création de site internet professionnel",
+    "description": "Conception de sites vitrine pour les petites et moyennes entreprises sans service marketing : prise en charge du cadrage et des contenus, éléments de crédibilité destinés aux acheteurs professionnels, et autonomie de mise à jour après livraison.",
+    "public": "Entreprises de 3 à 50 salariés",
+    "zones": ["France", "Belgique", "Suisse", "Luxembourg"],
+    "prestations": ["Site vitrine", "Refonte de site", "Rédaction", "Prise en main", "Maintenance"]
+  }
+}

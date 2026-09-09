@@ -435,6 +435,7 @@ function pageService(c) {
 const FAMILLES = {
   'ville-seo': { build: pageVille, dossier: 'villes' },
   'ville-site': { build: pageVille, dossier: 'villes-site' },
+  'cible-site': { build: pageVille, dossier: 'cibles-site' },
   service: { build: pageService, dossier: 'services' },
 };
 

@@ -1,0 +1,67 @@
+{
+  "suffix": "site-vitrine-artisan",
+  "h1": ["Site vitrine", "@", ["pour artisan.", "accent"], "|", ["Vos chantiers", "muted"], "@", "valent mieux", "|", "qu'une", "@", ["plaquette.", "accent"]],
+  "preuve": "Bâtiment, second œuvre, dépannage, aménagement.",
+  "sousTitre": "Un particulier consulte trois artisans et retient celui qui inspire le plus confiance. Cette confiance se construit avec des chantiers montrés, pas avec des adjectifs.",
+  "cta": { "label": "Demander mon devis", "url": "/pages/contact" },
+
+  "surtitre": "(Artisans et BTP)",
+  "constat": "Un devis sur trois se perd avant l'appel, parce que le client n'a rien trouvé qui prouve que vous faites du bon travail. Il ne vous le dira jamais.",
+  "bandeauA": ["Site vitrine", "Galerie de chantiers", "Demande de devis", "Rédaction", "Fiche Google"],
+  "bandeauB": ["Maçonnerie", "Menuiserie", "Électricité", "Plomberie", "Peinture", "Couverture"],
+  "pastilles": ["Rénovation", "Neuf", "Dépannage", "Particuliers", "Syndics", "Marchés publics"],
+
+  "accordeonAria": "Création de site vitrine pour artisan",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Ce qui déclenche le devis",
+  "volets": [
+    {
+      "titre": "Montrer le travail fini",
+      "marquee": "Les chantiers",
+      "texte": "Un avant-après bien cadré convainc plus que trois paragraphes. Nous organisons vos photos de chantier par type de travaux, avec ce que chacun a impliqué.",
+      "tags": ["Avant-après", "Types de travaux", "Durées", "Matériaux"]
+    },
+    {
+      "titre": "Dire jusqu'où vous vous déplacez",
+      "marquee": "La zone",
+      "texte": "La première question d'un client est de savoir si vous intervenez chez lui. Une zone claire évite les demandes inutiles autant que les occasions manquées.",
+      "tags": ["Communes", "Rayon", "Délais", "Urgences"]
+    },
+    {
+      "titre": "Rendre la demande facile",
+      "marquee": "Le devis",
+      "texte": "Un formulaire court, un numéro cliquable, et la possibilité de joindre une photo. Beaucoup de chantiers se chiffrent à partir de deux images bien prises.",
+      "tags": ["Formulaire", "Photos", "Appel direct", "Rappel"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur la création de site pour artisan",
+  "faqTitre": "Ce que nous demandent les artisans",
+  "faqSousTitre": "Photos, zone d'intervention, budget : les objections qui reviennent sur les chantiers.",
+  "faq": [
+    { "q": "Je n'ai que des photos prises au téléphone.",
+      "r": "Elles suffisent dans la plupart des cas, à condition d'être nettes et prises au bon moment. Nous vous disons quoi photographier sur le prochain chantier." },
+    { "q": "Combien coûte un site d'artisan ?",
+      "r": "À partir de 900 €. C'est l'ordre de grandeur d'un seul chantier gagné, et le site en amène plusieurs par an quand il est bien fait." },
+    { "q": "Vais-je recevoir des demandes hors de ma zone ?",
+      "r": "Beaucoup moins si la zone est écrite noir sur blanc sur chaque page. C'est l'un des réglages qui change le plus la qualité des demandes." },
+    { "q": "Faut-il afficher mes prix ?",
+      "r": "Rarement au détail près, mais un ordre de grandeur par type de travaux aide. Les clients qui n'ont pas le budget se retirent d'eux-mêmes." }
+  ],
+
+  "contactFond": "Artisan",
+  "contactTitre": "Parlons de vos chantiers.",
+  "contactTexte": "Dites-nous vos travaux, votre zone et ce que vous avez comme photos. Nous revenons avec une structure et un chiffrage.",
+  "contactObjet": "Demande — Site artisan",
+  "contactPlaceholder": "Vos travaux, votre zone d'intervention, vos photos...",
+
+  "schema": {
+    "nom": "Création de site vitrine pour artisan et BTP",
+    "type": "Création de site pour artisans du bâtiment",
+    "description": "Conception de sites pour artisans du bâtiment et du second œuvre : mise en valeur des chantiers réalisés, zone d'intervention affichée clairement et demande de devis simplifiée avec envoi de photos.",
+    "public": "Artisans du bâtiment et du second œuvre",
+    "zones": ["France", "Belgique", "Suisse", "Luxembourg"],
+    "prestations": ["Site vitrine", "Galerie de chantiers", "Demande de devis", "Rédaction", "Fiche Google"]
+  }
+}

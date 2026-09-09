@@ -1,0 +1,67 @@
+{
+  "suffix": "site-vitrine-freelance",
+  "h1": ["Site vitrine", "@", ["pour indépendant.", "accent"], "|", ["On vous compare", "muted"], "@", "avant de", "|", "vous", "@", ["appeler.", "accent"]],
+  "preuve": "Consultants, graphistes, développeurs, thérapeutes, formateurs.",
+  "sousTitre": "Un prospect qui vous a été recommandé cherche votre nom, tombe sur trois profils, et tranche en deux minutes. Votre site est ce qu'il regarde en dernier avant de décider.",
+  "cta": { "label": "Parler de mon activité", "url": "/pages/contact" },
+
+  "surtitre": "(Indépendants)",
+  "constat": "Un profil sur une plateforme vous met en concurrence sur le prix. Votre propre site vous laisse choisir sur quoi on vous juge.",
+  "bandeauA": ["Site vitrine", "Portfolio", "Page de vente", "Rédaction", "Prise de rendez-vous"],
+  "bandeauB": ["Consultants", "Graphistes", "Développeurs", "Thérapeutes", "Formateurs", "Photographes"],
+  "pastilles": ["Freelance", "Micro-entreprise", "Profession libérale", "Portage", "Temps partagé", "Solo"],
+
+  "accordeonAria": "Création de site vitrine pour indépendant",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Ce qui fait la différence",
+  "volets": [
+    {
+      "titre": "Dire pour qui vous travaillez",
+      "marquee": "Le cadrage",
+      "texte": "« Je fais un peu de tout » ne convainc personne. Une page qui nomme un profil de client et un problème précis attire moins de monde, et de bien meilleures demandes.",
+      "tags": ["Positionnement", "Cible", "Offre", "Message"]
+    },
+    {
+      "titre": "Montrer plutôt que dire",
+      "marquee": "La preuve",
+      "texte": "Trois travaux expliqués valent mieux que vingt vignettes muettes. Ce qui compte est le problème posé, ce que vous avez fait, et ce que ça a donné.",
+      "tags": ["Réalisations", "Contexte", "Résultat", "Témoignages"]
+    },
+    {
+      "titre": "Filtrer avant le premier appel",
+      "marquee": "Le filtre",
+      "texte": "Annoncer un ordre de prix et une façon de travailler fait fuir ceux qui ne suivront pas. C'est du temps que vous ne passez plus en rendez-vous sans suite.",
+      "tags": ["Tarifs", "Méthode", "Formulaire", "Agenda"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur la création de site pour indépendant",
+  "faqTitre": "Les questions des indépendants",
+  "faqSousTitre": "Budget, contenu, plateformes : ce qui revient quand on travaille seul.",
+  "faq": [
+    { "q": "Un site est-il utile si je vis du bouche-à-oreille ?",
+      "r": "C'est justement là qu'il sert le plus. On vous recommande, puis on vérifie : sans rien à vérifier, la recommandation retombe." },
+    { "q": "Combien ça coûte quand on démarre ?",
+      "r": "900 € pour l'entrée de gamme, en une fois. Beaucoup d'indépendants paient plus que ça par an en abonnements et commissions de plateforme." },
+    { "q": "Je n'ai pas encore de réalisations à montrer.",
+      "r": "On construit alors la page sur votre méthode et votre parcours, quitte à la compléter dans six mois. Mieux vaut une page honnête qu'une page vide." },
+    { "q": "Puis-je afficher mes tarifs ?",
+      "r": "C'est souvent une bonne idée, au moins un point de départ. Ça écarte les demandes hors budget avant qu'elles ne vous coûtent un rendez-vous." }
+  ],
+
+  "contactFond": "Freelance",
+  "contactTitre": "Parlons de votre activité.",
+  "contactTexte": "Dites-nous ce que vous faites et pour qui. Nous revenons avec une structure de site et un chiffrage.",
+  "contactObjet": "Demande — Site vitrine indépendant",
+  "contactPlaceholder": "Votre métier, vos clients, ce que vous avez déjà en ligne...",
+
+  "schema": {
+    "nom": "Création de site vitrine pour indépendant et freelance",
+    "type": "Création de site internet professionnel",
+    "description": "Conception de sites vitrine pour travailleurs indépendants : clarification du positionnement, mise en valeur des réalisations et qualification des demandes entrantes avant le premier rendez-vous.",
+    "public": "Freelances, consultants et professions libérales",
+    "zones": ["France", "Belgique", "Suisse", "Luxembourg"],
+    "prestations": ["Site vitrine", "Portfolio", "Page de vente", "Rédaction", "Prise de rendez-vous"]
+  }
+}

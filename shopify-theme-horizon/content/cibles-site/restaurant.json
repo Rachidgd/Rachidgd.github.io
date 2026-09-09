@@ -1,0 +1,67 @@
+{
+  "suffix": "site-vitrine-restaurant",
+  "h1": ["Création de site", "@", ["pour restaurant.", "accent"], "|", ["La carte, l'adresse,", "muted"], "@", "la table.", "|", "Le reste", "@", ["attendra.", "accent"]],
+  "preuve": "Restaurants, brasseries, bars et traiteurs.",
+  "sousTitre": "Quelqu'un cherche où dîner ce soir. Il veut voir la carte, savoir si vous êtes ouvert et réserver. S'il doit chercher plus de dix secondes, il va chez le voisin.",
+  "cta": { "label": "Voir ce que ça donnerait", "url": "/pages/contact" },
+
+  "surtitre": "(Restauration)",
+  "constat": "Les plateformes de réservation prennent une commission sur des clients qui vous connaissaient déjà. Un site qui prend la réservation en direct récupère cette marge.",
+  "bandeauA": ["Site vitrine", "Carte en ligne", "Réservation", "Photographie", "Fiche Google"],
+  "bandeauB": ["Restaurants", "Brasseries", "Bars", "Traiteurs", "Food trucks", "Salons de thé"],
+  "pastilles": ["Carte du jour", "Réservation", "Horaires", "Menus groupes", "Privatisation", "Livraison"],
+
+  "accordeonAria": "Création de site pour restaurant",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Ce que le site doit faire",
+  "volets": [
+    {
+      "titre": "Une carte lisible et à jour",
+      "marquee": "La carte",
+      "texte": "Pas un PDF qu'on zoome à deux doigts. Une carte qui s'affiche comme une page, que vous changez vous-même le jour où le poisson change.",
+      "tags": ["Plats", "Prix", "Allergènes", "Carte du jour"]
+    },
+    {
+      "titre": "La table réservée en trois taps",
+      "marquee": "La table",
+      "texte": "Le bouton de réservation reste visible pendant tout le défilement. Nous branchons l'outil que vous utilisez déjà plutôt que de vous en imposer un autre.",
+      "tags": ["Réservation", "Couverts", "Créneaux", "Confirmation"]
+    },
+    {
+      "titre": "Trouvé, puis choisi",
+      "marquee": "Le local",
+      "texte": "Horaires, itinéraire, photos, avis : c'est la fiche Google qui décide souvent avant le site. Nous la tenons cohérente avec ce que le site raconte.",
+      "tags": ["Fiche Google", "Avis", "Photos", "Itinéraire"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur la création de site pour restaurant",
+  "faqTitre": "Les questions de la salle",
+  "faqSousTitre": "Carte, réservation, plateformes : ce que nous demandent les restaurateurs.",
+  "faq": [
+    { "q": "Puis-je changer la carte moi-même ?",
+      "r": "Oui, depuis votre téléphone s'il le faut. Un plat qui saute ne devrait jamais attendre le prestataire pour disparaître de la carte." },
+    { "q": "Faut-il quitter les plateformes de réservation ?",
+      "r": "Pas forcément. Elles amènent des nouveaux clients ; le site récupère les habitués, sur lesquels vous ne devriez pas payer de commission." },
+    { "q": "Combien coûte un site de restaurant ?",
+      "r": "À partir de 900 €, réservation branchée comprise. Le montant dépend surtout du nombre de cartes et de la partie photo." },
+    { "q": "Nos photos ne sont pas terribles.",
+      "r": "C'est le point qui pénalise le plus les sites de restaurant. Nous préférons peu de bonnes photos que beaucoup de mauvaises, et nous savons vers qui vous orienter." }
+  ],
+
+  "contactFond": "Restaurant",
+  "contactTitre": "Parlons de votre établissement.",
+  "contactTexte": "Dites-nous où vous êtes, combien de couverts et comment vous prenez vos réservations aujourd'hui.",
+  "contactObjet": "Demande — Site restaurant",
+  "contactPlaceholder": "Votre établissement, vos couverts, votre outil de réservation...",
+
+  "schema": {
+    "nom": "Création de site internet pour restaurant",
+    "type": "Création de site pour la restauration",
+    "description": "Conception de sites pour restaurants, brasseries et traiteurs : carte modifiable en autonomie, réservation en direct branchée sur l'outil existant et cohérence avec la fiche établissement Google.",
+    "public": "Restaurants, brasseries, bars et traiteurs",
+    "zones": ["France", "Belgique", "Suisse", "Luxembourg"],
+    "prestations": ["Site vitrine", "Carte en ligne", "Réservation", "Photographie", "Fiche Google"]
+  }
+}
