@@ -77,6 +77,8 @@
   "faq": [
     { "q": "Combien coûte une boutique Shopify ?",
       "r": "À partir de 1 500 € pour un site marchand développé sur mesure. Le chiffrage dépend de la taille du catalogue, des reprises de données et des intégrations : chaque poste figure au devis." },
+    { "q": "En combien de temps la boutique est-elle en ligne ?",
+      "r": "Une dizaine de jours pour un catalogue de taille courante. Une reprise de données volumineuse ou des intégrations particulières allongent ce délai, et le devis le dit." },
     { "q": "Partez-vous d'un thème existant ou de zéro ?",
       "r": "Nous développons en Liquid natif à partir d'une base saine. Pas de page builder, pas de thème du commerce revendu tel quel." },
     { "q": "Combien d'applications installez-vous ?",

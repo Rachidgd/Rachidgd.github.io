@@ -1,67 +1,67 @@
 {
   "suffix": "creation-site-lille",
-  "h1": ["Création de site", "@", ["internet à Lille.", "accent"], "|", ["En ligne en", "muted"], "@", "quatre", "|", "à six", "@", ["semaines.", "accent"]],
+  "h1": ["Création de site", "@", ["internet à Lille.", "accent"], "|", ["En ligne en", "muted"], "@", "une", "|", "dizaine de", "@", ["jours.", "accent"]],
   "preuve": "PME, commerces et entreprises de la métropole lilloise.",
-  "sousTitre": "Un site vitrine se livre en quatre à six semaines quand le déroulé est tenu des deux côtés. Ce qui allonge un projet, ce n'est presque jamais le développement.",
-  "cta": { "label": "Demander un planning daté", "url": "/pages/reserver" },
+  "sousTitre": "Comptez une dizaine de jours entre le premier échange et la mise en ligne, boutique comprise. Ce délai tient parce que le déroulé est cadré, pas parce qu'on travaille dans l'urgence.",
+  "cta": { "label": "Demander une date de mise en ligne", "url": "/pages/reserver" },
 
   "surtitre": "(Lille)",
-  "constat": "Un projet prend du retard pour une seule raison neuf fois sur dix : les textes et les photos n'arrivent pas. Le reste tient ses délais sans difficulté.",
-  "bandeauA": ["Site vitrine", "Refonte", "Boutique en ligne", "Rédaction", "Mise en ligne"],
+  "constat": "Dix jours surprennent, parce qu'on a l'habitude des projets qui s'étirent. Ce qui les étire, ce sont les allers-retours sans décision, jamais le développement.",
+  "bandeauA": ["Site vitrine", "Boutique en ligne", "Refonte", "Rédaction", "Mise en ligne"],
   "bandeauB": ["Lille", "Roubaix", "Tourcoing", "Villeneuve-d'Ascq", "Lens", "Nord"],
   "pastilles": ["PME", "Commerces", "Industrie", "Cabinets", "Associations", "Services"],
 
   "accordeonAria": "Création de site internet à Lille",
   "accordeonChoix": "Choisir une étape",
   "accordeonSurtitre": "(Calendrier)",
-  "accordeonTitre": "Le déroulé, semaine par semaine",
+  "accordeonTitre": "Dix jours, jour par jour",
   "volets": [
     {
-      "titre": "Semaine un : le cadrage",
-      "marquee": "Semaine 1",
-      "texte": "Un rendez-vous, une arborescence validée, et la liste précise de ce que vous devez nous fournir. Rien ne démarre tant que cette liste n'est pas arrêtée.",
-      "tags": ["Rendez-vous", "Arborescence", "Fournitures", "Planning"]
+      "titre": "Jours un et deux : le cadrage",
+      "marquee": "Jours 1-2",
+      "texte": "Un échange, une arborescence arrêtée, et la liste de ce que vous nous transmettez. Tout le délai se joue là : un cadrage flou coûte plus cher qu'une semaine de développement.",
+      "tags": ["Échange", "Arborescence", "Fournitures", "Date"]
     },
     {
-      "titre": "Semaines deux et trois : le design",
-      "marquee": "Semaines 2-3",
-      "texte": "La page d'accueil d'abord, les pages intérieures ensuite. Deux tours de retours sont prévus ; au-delà, nous décalons la livraison ensemble plutôt que de la subir.",
-      "tags": ["Maquette", "Retours", "Validation", "Charte"]
+      "titre": "Jours trois à six : le design",
+      "marquee": "Jours 3-6",
+      "texte": "La page d'accueil, puis les pages intérieures. Vous validez au fil de l'eau plutôt qu'en une grande revue finale : c'est ce qui évite d'avoir à tout reprendre.",
+      "tags": ["Maquette", "Validation", "Charte", "Mobile"]
     },
     {
-      "titre": "Semaines quatre à six : la mise en ligne",
-      "marquee": "Semaines 4-6",
-      "texte": "Intégration, contrôles sur téléphone et tablette, puis publication. Vous êtes formé à l'outil le jour même de la livraison.",
-      "tags": ["Intégration", "Tests", "Publication", "Formation"]
+      "titre": "Jours sept à dix : la mise en ligne",
+      "marquee": "Jours 7-10",
+      "texte": "Intégration, contrôles sur téléphone et tablette, puis publication. La prise en main de l'outil se fait le jour de la livraison, pas trois semaines après.",
+      "tags": ["Intégration", "Contrôles", "Publication", "Prise en main"]
     }
   ],
 
   "faqAria": "Questions fréquentes sur les délais de création de site à Lille",
   "faqTitre": "Les questions de calendrier",
-  "faqSousTitre": "Délais, retards, urgences : ce qu'on nous demande avant de bloquer une date.",
+  "faqSousTitre": "Délais, retards, boutique en ligne : ce qu'on nous demande avant de bloquer une date.",
   "faq": [
-    { "q": "Peut-on aller plus vite que six semaines ?",
-      "r": "Oui, jusqu'à trois semaines quand les contenus sont prêts dès le départ. C'est le seul vrai levier sur la durée d'un projet." },
+    { "q": "Dix jours, c'est réaliste ?",
+      "r": "C'est notre rythme courant, boutique en ligne comprise. Il suppose que vous soyez disponible pour valider : c'est la seule part du travail que nous ne pouvons pas faire à votre place." },
     { "q": "Que se passe-t-il si je prends du retard ?",
-      "r": "La date de livraison glisse d'autant, et nous vous le disons le jour même. Personne n'a intérêt à découvrir un décalage la semaine de la publication." },
+      "r": "La date glisse d'autant, et nous vous le disons le jour même. Personne n'a intérêt à découvrir un décalage la veille de la publication." },
     { "q": "Faut-il tout fournir avant de commencer ?",
-      "r": "Non, mais l'essentiel oui : vos prestations, vos coordonnées et vos visuels. Le reste se complète pendant que le design avance." },
+      "r": "L'essentiel oui : vos prestations, vos coordonnées et vos visuels. Le reste se complète pendant que le design avance." },
     { "q": "Le prix change-t-il selon le délai ?",
-      "r": "Non. Le tarif d'entrée est de 900 € que le site sorte en trois ou en six semaines. Nous ne facturons pas l'urgence." }
+      "r": "Non. Un site vitrine part de 900 €, une boutique de 1 500 €, et nous ne facturons pas l'urgence." }
   ],
 
   "contactFond": "Lille",
   "contactTitre": "Parlons de votre échéance.",
-  "contactTexte": "Dites-nous pour quand vous voulez être en ligne. Vous recevez un calendrier daté et la liste de ce qu'il faudra nous transmettre.",
+  "contactTexte": "Dites-nous pour quand vous voulez être en ligne. Vous recevez une date ferme et la liste de ce qu'il faudra nous transmettre.",
   "contactObjet": "Demande — Site internet Lille",
   "contactPlaceholder": "Votre activité, votre échéance, ce que vous avez déjà...",
 
   "schema": {
     "nom": "Création de site internet à Lille",
     "type": "Création de site internet",
-    "description": "Conception de sites vitrines pour les entreprises de la métropole lilloise : cadrage la première semaine, maquette validée, puis mise en ligne et formation entre la quatrième et la sixième semaine.",
+    "description": "Conception de sites vitrines et de boutiques en ligne pour les entreprises de la métropole lilloise : cadrage en deux jours, design validé au fil de l'eau, mise en ligne et prise en main sous une dizaine de jours.",
     "public": "PME, commerces et entreprises",
     "zones": ["Lille", "Roubaix", "Tourcoing", "Villeneuve-d'Ascq", "Nord", "Hauts-de-France"],
-    "prestations": ["Site vitrine", "Refonte", "Boutique en ligne", "Rédaction", "Mise en ligne"]
+    "prestations": ["Site vitrine", "Boutique en ligne", "Refonte", "Rédaction", "Mise en ligne"]
   }
 }

@@ -49,7 +49,7 @@
       "texte": "Une refonte pour un atelier qui vendait mal en ligne ce qu'il vendait très bien en boutique. Priorité donnée aux photos et au passage à l'appel.",
       "services": ["Identité", "Maquette", "Photographie", "Intégration"] },
     { "titre": "Maison Aube", "annee": "2024", "role": "Conception et intégration",
-      "texte": "Un site vitrine livré en quelques semaines, que l'équipe met à jour seule depuis. Aucune intervention de notre part depuis la mise en ligne.",
+      "texte": "Un site vitrine livré en dix jours, que l'équipe met à jour seule depuis. Aucune intervention de notre part depuis la mise en ligne.",
       "services": ["Webdesign", "Développement", "SEO technique", "Formation"] }
   ],
 
@@ -78,7 +78,7 @@
     { "q": "Combien coûte un site vitrine ?",
       "r": "À partir de 900 € pour un site sur mesure. Le chiffrage final dépend du nombre de pages, de la rédaction et des fonctionnalités : il est détaillé poste par poste dans le devis." },
     { "q": "Combien de temps prend la création ?",
-      "r": "Comptez quelques semaines entre le cadrage et la mise en ligne. Le délai dépend surtout du nombre de pages et de la disponibilité de vos contenus." },
+      "r": "Une dizaine de jours entre le cadrage et la mise en ligne. Ce qui allonge ce délai n'est presque jamais le développement, mais l'attente de vos contenus." },
     { "q": "Puis-je modifier le site moi-même ensuite ?",
       "r": "Oui. Chaque texte, image et section se règle depuis l'éditeur de thème. Changer un horaire ou une photo ne demande pas de nous rappeler." },
     { "q": "Rédigez-vous les textes ?",

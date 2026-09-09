@@ -19,7 +19,7 @@ préoccupation d'acheteur distincte, et son champ sémantique suit :
 |---|---|---|
 | Lyon | Le devis et son périmètre | cadrage, chiffrage, livrables, propriété |
 | Marseille | La refonte d'un site vieillissant | refonte, migration, redirections, reprise |
-| Lille | Le délai et le déroulé | planning, étapes, mise en ligne, formation |
+| Lille | Le délai de dix jours | planning, étapes, mise en ligne, prise en main |
 | Nice | Le mobile et la vitesse | affichage, chargement, réservation, tactile |
 | Nantes | La propriété et l'autonomie | accès, domaine, interface, sans engagement |
 | Strasbourg | Le site qui déclenche des demandes | clarté, preuve, formulaire, mesure |
@@ -33,12 +33,16 @@ C'est ce qui donne le maillage sémantique large demandé, sans répéter
 montants apparaissent en FAQ, formulés différemment sur chaque page. Toute
 modification tarifaire se répercute ici **et** dans `content/services/`.
 
-## À faire valider avant publication
+## Délai de livraison
 
-Les délais annoncés sur la page de Lille — quatre à six semaines, trois
-semaines en accéléré — sont un engagement commercial. Ils sont modifiables
-depuis l'éditeur de thème comme le reste, mais ils doivent être confirmés
-avant la mise en ligne.
+**Une dizaine de jours**, site vitrine comme boutique en ligne. C'est un
+argument fort et il est écrit à trois endroits : la page de Lille, qui est
+bâtie dessus, et la FAQ des deux pages prestation. Toute révision de ce
+délai doit passer par les trois, sans quoi le site se contredit lui-même.
+
+Le chiffre est annoncé comme un rythme courant, jamais comme une garantie
+contractuelle : la page dit explicitement qu'il suppose un client
+disponible pour valider. C'est ce qui le rend tenable.
 
 ## Contrôles
 
