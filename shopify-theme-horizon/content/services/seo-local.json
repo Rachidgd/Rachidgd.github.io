@@ -1,0 +1,68 @@
+{
+  "suffix": "seo-local",
+  "ordre": ["hero", "bandes", "methode", "faq", "contact"],
+  "h1": ["Référencement", "@", ["local.", "accent"], "|", ["Le client cherche", "muted"], "@", "déjà,", "|", "et il est", "@", ["tout près.", "accent"]],
+  "preuve": "Commerces, artisans, cabinets et réseaux multi-sites.",
+  "sousTitre": "Quand quelqu'un cherche une prestation près de chez lui, ce n'est pas votre site qui répond en premier : c'est votre fiche établissement. Elle se travaille comme une page.",
+  "cta": { "label": "Faire le point sur ma fiche", "url": "/pages/reserver" },
+
+  "surtitre": "(Local)",
+  "constat": "Trois établissements occupent le bloc affiché sur la carte. Le quatrième existe, mais il faut déplier pour le voir — et presque personne ne déplie.",
+  "bandeauA": ["Fiche établissement", "Avis clients", "Cohérence des données", "Pages de zone", "Suivi des appels"],
+  "bandeauB": ["Commerces", "Artisans", "Cabinets", "Restaurants", "Santé", "Multi-sites"],
+  "pastilles": ["Fiche Google", "Avis", "Pack local", "Zones servies", "Horaires", "Photos"],
+
+  "accordeonAria": "Prestation de référencement local",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Ce qui fait monter une fiche",
+  "volets": [
+    {
+      "titre": "Tenir la fiche comme une page",
+      "marquee": "La fiche",
+      "texte": "Catégorie principale, prestations, horaires, photos datées : chaque champ pèse. Une fiche remplie à moitié plafonne, quelle que soit la qualité du site derrière.",
+      "tags": ["Catégorie", "Prestations", "Horaires", "Photos"]
+    },
+    {
+      "titre": "Faire venir les avis, et y répondre",
+      "marquee": "Les avis",
+      "texte": "Le nombre compte, la régularité davantage. Dix avis étalés sur l'année pèsent plus que trente obtenus en une semaine, et se remarquent moins.",
+      "tags": ["Collecte", "Régularité", "Réponses", "Signalements"]
+    },
+    {
+      "titre": "Dire la même chose partout",
+      "marquee": "Les données",
+      "texte": "Nom, adresse et téléphone doivent être strictement identiques sur le site, la fiche et les annuaires. Une seule incohérence suffit à brouiller le signal.",
+      "tags": ["Coordonnées", "Annuaires", "Zones", "Balisage"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement local",
+  "faqTitre": "Les questions du terrain",
+  "faqSousTitre": "Fiche, avis, adresses multiples : ce qui revient sur la visibilité de proximité.",
+  "faq": [
+    { "q": "Faut-il une adresse pour apparaître localement ?",
+      "r": "Une adresse vérifiable, oui, même sans accueil du public. Sans elle, vous restez hors du bloc affiché sur la carte, quel que soit votre budget." },
+    { "q": "Comment obtenir des avis sans forcer la main ?",
+      "r": "En demandant au bon moment, juste après une prestation réussie, avec un lien direct. Le reste relève de la relance polie, pas de l'incitation." },
+    { "q": "Et si j'ai plusieurs établissements ?",
+      "r": "Une fiche par adresse et une page par établissement. Les regrouper sur une page unique les fait se concurrencer entre eux." },
+    { "q": "Au bout de combien de temps voit-on bouger la fiche ?",
+      "r": "Plus vite que le site, généralement. C'est ce qui rend ce levier intéressant quand on part de zéro et qu'il faut des résultats rapidement." }
+  ],
+
+  "contactFond": "Local",
+  "contactTitre": "Parlons de votre zone.",
+  "contactTexte": "Dites-nous où vous êtes implanté et ce que vous cherchez à attirer. Nous relevons l'état de votre fiche et celui de vos voisins directs.",
+  "contactObjet": "Demande — Référencement local",
+  "contactPlaceholder": "Votre activité, vos adresses, votre zone...",
+
+  "schema": {
+    "nom": "Référencement local",
+    "type": "Référencement de proximité",
+    "description": "Travail de la visibilité de proximité : fiche établissement tenue comme une page, collecte et suivi des avis, cohérence des coordonnées entre le site, la fiche et les annuaires.",
+    "public": "Commerces, artisans, cabinets et réseaux multi-sites",
+    "zones": ["France", "Belgique", "Suisse", "Luxembourg"],
+    "prestations": ["Fiche établissement", "Avis clients", "Cohérence des données", "Pages de zone", "Suivi des appels"]
+  }
+}

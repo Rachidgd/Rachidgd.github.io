@@ -1,0 +1,68 @@
+{
+  "suffix": "seo-ecommerce",
+  "ordre": ["hero", "bandes", "methode", "faq", "contact"],
+  "h1": ["Référencement", "@", ["e-commerce.", "accent"], "|", ["Des milliers de pages,", "muted"], "@", "et trois", "|", "qui font le", "@", ["chiffre.", "accent"]],
+  "preuve": "Boutiques en ligne, de dix à dix mille références.",
+  "sousTitre": "Un catalogue fabrique des pages par centaines. La plupart ne verront jamais un visiteur, quelques-unes portent presque tout : le travail consiste à savoir lesquelles.",
+  "cta": { "label": "Demander un audit de catalogue", "url": "/pages/audit-ecommerce" },
+
+  "surtitre": "(Catalogue)",
+  "constat": "Sur une boutique, le référencement ne se joue pas sur la page d'accueil. Il se joue dans les collections et les fiches produit, là où personne ne pense à regarder.",
+  "bandeauA": ["Audit de catalogue", "Collections", "Fiches produit", "Technique", "Suivi des ventes"],
+  "bandeauB": ["Shopify", "WooCommerce", "PrestaShop", "Magento", "BigCommerce", "Sur mesure"],
+  "pastilles": ["Catalogue", "Collections", "Variantes", "Facettes", "Pagination", "Ruptures"],
+
+  "accordeonAria": "Prestation de référencement e-commerce",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Ce qui se joue dans un catalogue",
+  "volets": [
+    {
+      "titre": "Trier ce qui mérite d'exister",
+      "marquee": "Le tri",
+      "texte": "Une boutique publie souvent plus de pages qu'elle n'a de demande. On garde celles qui peuvent se positionner, et on cesse d'en soumettre des milliers qui diluent les autres.",
+      "tags": ["Indexation", "Facettes", "Pagination", "Doublons"]
+    },
+    {
+      "titre": "Écrire des collections, pas des listes",
+      "marquee": "Les collections",
+      "texte": "Une page de collection réduite à une grille de produits n'a rien à dire. C'est pourtant elle qui vise les recherches les plus rentables du catalogue.",
+      "tags": ["Collections", "Contenu", "Maillage", "Filtres"]
+    },
+    {
+      "titre": "Tenir les fiches dans la durée",
+      "marquee": "Les fiches",
+      "texte": "Variantes, ruptures, références retirées : un catalogue bouge tous les jours. Sans règle écrite, chaque changement coûte des positions déjà acquises.",
+      "tags": ["Variantes", "Ruptures", "Redirections", "Données structurées"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur le référencement e-commerce",
+  "faqTitre": "Avant de toucher au catalogue",
+  "faqSousTitre": "Indexation, ruptures, plateformes : ce que nous demandent les marchands.",
+  "faq": [
+    { "q": "Faut-il soumettre toutes mes fiches produit ?",
+      "r": "Presque jamais. Un catalogue à forte rotation gagne à concentrer sa force sur les collections et sur les références qui vendent réellement." },
+    { "q": "Que faire d'un produit épuisé ?",
+      "r": "Le laisser en ligne s'il revient, le rediriger s'il ne revient pas. Le supprimer sans redirection est la manière la plus rapide de perdre une position." },
+    { "q": "Travaillez-vous ailleurs que sur Shopify ?",
+      "r": "Oui. Les arbitrages techniques changent d'une plateforme à l'autre, la logique du catalogue reste identique." },
+    { "q": "Est-ce le même travail que sur un site classique ?",
+      "r": "Le socle oui, le reste non. Un catalogue pose des questions d'indexation qu'un site de six pages ne rencontre jamais." }
+  ],
+
+  "contactFond": "Catalogue",
+  "contactTitre": "Parlons de votre catalogue.",
+  "contactTexte": "Dites-nous combien de références vous vendez et sur quelle plateforme. Nous regardons ce qui est indexé, ce qui vend, et l'écart entre les deux.",
+  "contactObjet": "Demande — Référencement e-commerce",
+  "contactPlaceholder": "Votre plateforme, votre nombre de références, vos best-sellers...",
+
+  "schema": {
+    "nom": "Référencement e-commerce",
+    "type": "Référencement de site marchand",
+    "description": "Référencement naturel des boutiques en ligne : arbitrage de l'indexation du catalogue, travail éditorial des collections, gestion des variantes, des ruptures et des redirections.",
+    "public": "Commerçants en ligne et marques",
+    "zones": ["France", "Belgique", "Suisse", "Luxembourg"],
+    "prestations": ["Audit de catalogue", "Collections", "Fiches produit", "Technique", "Suivi des ventes"]
+  }
+}

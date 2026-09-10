@@ -1,0 +1,68 @@
+{
+  "suffix": "meta-ads",
+  "ordre": ["hero", "bandes", "methode", "faq", "contact"],
+  "h1": ["Expert", "@", ["Meta Ads.", "accent"], "|", ["Savoir où part", "muted"], "@", "chaque", "|", "euro", "@", ["dépensé.", "accent"]],
+  "preuve": "Marques, boutiques en ligne et services aux particuliers.",
+  "sousTitre": "La plupart des comptes dépensent correctement sur deux ou trois audiences et dispersent le reste. L'écart ne saute pas aux yeux dans l'interface : il se voit à la fin du mois.",
+  "cta": { "label": "Demander un audit de compte", "url": "/pages/audit-meta-ads" },
+
+  "surtitre": "(Publicité)",
+  "constat": "Une campagne qui tourne n'est pas une campagne qui rapporte. Tant que la mesure n'est pas fiable, tout ce que vous lisez dans le tableau de bord reste une hypothèse.",
+  "bandeauA": ["Audit de compte", "Structure des campagnes", "Suivi des conversions", "Créations", "Reporting"],
+  "bandeauB": ["E-commerce", "Services", "Immobilier", "Formation", "Santé", "Commerce local"],
+  "pastilles": ["Facebook", "Instagram", "Acquisition", "Retargeting", "Catalogue", "Génération de contacts"],
+
+  "accordeonAria": "Prestation de gestion Meta Ads",
+  "accordeonChoix": "Choisir une étape",
+  "accordeonSurtitre": "(Prestation)",
+  "accordeonTitre": "Ce qu'on remet d'aplomb",
+  "volets": [
+    {
+      "titre": "Fiabiliser la mesure d'abord",
+      "marquee": "La mesure",
+      "texte": "Sans suivi correct des conversions, l'algorithme optimise sur du vide et vous arbitrez à l'aveugle. C'est systématiquement par là que nous commençons.",
+      "tags": ["Pixel", "API Conversions", "Événements", "Attribution"]
+    },
+    {
+      "titre": "Simplifier la structure",
+      "marquee": "La structure",
+      "texte": "Plusieurs campagnes qui visent les mêmes personnes se disputent votre propre budget. Regrouper coûte moins cher et laisse la plateforme apprendre plus vite.",
+      "tags": ["Campagnes", "Audiences", "Budgets", "Enchères"]
+    },
+    {
+      "titre": "Nourrir en créations",
+      "marquee": "Les créations",
+      "texte": "Une publicité s'use en quelques semaines. Ce qui tient un compte dans la durée, c'est le rythme de production des visuels, pas le réglage parfait.",
+      "tags": ["Formats", "Accroches", "Tests", "Rotation"]
+    }
+  ],
+
+  "faqAria": "Questions fréquentes sur la publicité Meta Ads",
+  "faqTitre": "Avant de reprendre un compte",
+  "faqSousTitre": "Budget, mesure, visuels : ce que demandent les annonceurs au premier rendez-vous.",
+  "faq": [
+    { "q": "À partir de quel budget est-ce pertinent ?",
+      "r": "En dessous d'un certain volume, la plateforme n'a pas de quoi apprendre et le pilotage coûte plus qu'il ne rapporte. Nous vous le disons avant de commencer, pas après." },
+    { "q": "Mon suivi des conversions est-il fiable ?",
+      "r": "C'est la première chose que nous vérifions, et c'est rarement le cas. Un écart entre la plateforme et vos ventes réelles fausse toutes les décisions qui suivent." },
+    { "q": "Faut-il refaire les visuels ?",
+      "r": "Souvent. Un compte bien réglé avec des visuels usés plafonne, alors qu'une création neuve relance un compte moyennement structuré." },
+    { "q": "Est-ce que ça remplace le référencement ?",
+      "r": "Non, les deux n'interviennent pas au même moment. La publicité achète de l'attention tout de suite, le référencement la capte quand elle se manifeste." }
+  ],
+
+  "contactFond": "Meta Ads",
+  "contactTitre": "Parlons de vos campagnes.",
+  "contactTexte": "Dites-nous ce que vous dépensez et ce que vous en retirez aujourd'hui. Nous regardons le compte avant de proposer quoi que ce soit.",
+  "contactObjet": "Demande — Meta Ads",
+  "contactPlaceholder": "Votre budget mensuel, vos objectifs, votre suivi actuel...",
+
+  "schema": {
+    "nom": "Gestion de campagnes Meta Ads",
+    "type": "Publicité en ligne Facebook et Instagram",
+    "description": "Pilotage de campagnes Facebook et Instagram : fiabilisation du suivi des conversions, simplification de la structure des campagnes et production régulière de créations.",
+    "public": "Marques, commerçants en ligne et prestataires de services",
+    "zones": ["France", "Belgique", "Suisse", "Luxembourg"],
+    "prestations": ["Audit de compte", "Structure des campagnes", "Suivi des conversions", "Créations", "Reporting"]
+  }
+}
