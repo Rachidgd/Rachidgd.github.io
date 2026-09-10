@@ -72,6 +72,17 @@ mérite d'être revue en même temps.
   gabarit. Elle demande des chiffres clients réels : rien n'a été écrit
   plutôt que d'inventer des performances. Trois options : fournir les
   chiffres, dépublier la page, ou la rediriger vers l'accueil.
+- **Chiffres affichés sur l'accueil.** Le bloc de témoignages annonce
+  « 26+ projets finalisés », « 98 % de satisfaction client » et « 10M de
+  chiffre d'affaires généré ». Ces trois valeurs préexistaient à cette
+  refonte et **n'ont pas été vérifiées**. Un chiffre invérifiable affiché en
+  page d'accueil engage l'agence : à confirmer ou à retirer.
+- **Tarifs SEO de l'accueil.** Les plans « SEO Essentiel » à 700 €/mois et
+  « SEO Croissance » à 1 200 €/mois sont affichés sur l'accueil. Les trois
+  pages prestation SEO (`seo-local`, `seo-ecommerce`, `meta-ads`) ne portent
+  volontairement aucun tarif, pour ne pas dupliquer ce bloc ni annoncer un
+  prix qui n'a pas été arrêté. Vérifiez que ces deux montants sont à jour :
+  ce sont les seuls prix SEO visibles du site.
 
 ## 5. Réglages à changer dans l'éditeur de thème
 
