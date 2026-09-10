@@ -64,6 +64,43 @@ for (const g of gabarits) {
   }
 }
 
+/* ---------- Contrôle des H1 ----------
+   Un H1 est composé de blocs de quelques mots chacun, tous très en dessous du
+   seuil : le contrôle par chaîne ne peut pas voir deux pages qui ouvrent sur la
+   même phrase. Il faut donc recomposer le titre avant de comparer. Ce cas s'est
+   présenté entre l'accueil et la page Paris, tous deux en « Agence SEO à
+   Paris. », sans qu'aucune chaîne longue ne soit partagée. */
+function titreH1(tpl) {
+  const hero = Object.values(tpl.sections || {}).find((s) => s.type === 'heroseo');
+  if (!hero) return null;
+  return (hero.block_order || [])
+    .map((id) => hero.blocks?.[id])
+    .filter((b) => b?.type === 'text')
+    .map((b) => b.settings?.text || '')
+    .join(' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/* Deux pages peuvent légitimement partager une tournure — « Création de site
+   internet à X » — tant que la ville les sépare. On compare donc la phrase
+   d'ouverture, jusqu'au premier point, qui porte le mot-clé. */
+const ouverture = (h) => h.split(/(?<=\.)\s/)[0].toLowerCase();
+
+const h1s = new Map();
+for (const g of gabarits) {
+  const h = titreH1(JSON.parse(fs.readFileSync(path.join(ROOT, 'templates', g), 'utf8')));
+  if (!h) continue;
+  const cle = ouverture(h);
+  if (!h1s.has(cle)) h1s.set(cle, []);
+  h1s.get(cle).push({ page: g.replace(/^page\.|\.json$/g, ''), h1: h });
+}
+const collisionsH1 = [...h1s].filter(([, o]) => o.length > 1);
+for (const [ouv, pages] of collisionsH1) {
+  console.log(`\n✗ H1 : deux pages ouvrent sur « ${pages[0].h1.split(/(?<=\.)\s/)[0]} »`);
+  for (const p of pages) console.log(`    ${p.page} → ${p.h1}`);
+}
+
 const collisions = [...index].filter(([, o]) => o.length > 1);
 for (const [texte, occurrences] of collisions) {
   console.log(`\n✗ « ${texte.slice(0, 90)}${texte.length > 90 ? '…' : ''} »`);
@@ -71,7 +108,7 @@ for (const [texte, occurrences] of collisions) {
 }
 
 console.log(
-  `\n${collisions.length} chaîne(s) partagée(s) — ${gabarits.length} gabarits, ` +
-  `${total} chaînes de plus de ${SEUIL} caractères.`
+  `\n${collisions.length} chaîne(s) partagée(s) et ${collisionsH1.length} H1 en collision — ` +
+  `${gabarits.length} gabarits, ${total} chaînes de plus de ${SEUIL} caractères.`
 );
-process.exit(collisions.length ? 1 : 0);
+process.exit(collisions.length + collisionsH1.length ? 1 : 0);
